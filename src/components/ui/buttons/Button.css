@@ -9,21 +9,3 @@
 .hivegames-button:hover {
     background-color: var(--secondary-color);
 }
-
-.hivegames-menuItem {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    background-color: var(--background-color-primary);
-    color: white;
-    border-left: 0.25rem solid transparent;
-}
-
-.hivegames-menuItem:hover {
-    border-left: 0.25rem solid orange;
-}
-
-.hivegames-menuItem.active {
-    background-color: orange;
-    border-left: 0.25rem solid orange;
-}
