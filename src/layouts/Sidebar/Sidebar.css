@@ -5,12 +5,11 @@
   flex-direction: column;
   background: var(--background-color-primary);
   position: relative;
-
   transition: width 500ms;
 }
 
 .sidebar-container.collapsed {
-  width: 64px;
+  width: 80px;
   transition: width 500ms;
 }
 
