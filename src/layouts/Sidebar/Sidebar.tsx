@@ -16,9 +16,9 @@ const Sidebar:React.FC = () => {
         <img src={isCollapsed ? logo : logoName} alt="Logo" />
       </div>
       <div className='sidebar-content'>
-        <MenuItem to="/"><HomeRounded />Home</MenuItem>
-        <MenuItem to="/about">About</MenuItem>
-        <MenuItem to="/contact">Contact</MenuItem>
+        <MenuItem to="/"><HomeRounded />{!isCollapsed && <span>Home</span>}</MenuItem>
+        <MenuItem to="/about">{!isCollapsed && <span>About</span>}</MenuItem>
+        <MenuItem to="/contact">{!isCollapsed && <span>Contact</span>}</MenuItem>
       </div>
     </div>
   );
