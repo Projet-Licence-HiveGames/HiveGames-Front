@@ -5,6 +5,8 @@
     align-items: center;
     padding: 0 3rem;
     height: var(--header-height);
+    min-height: var(--header-height);
+    max-height: var(--header-height);
 }
 
 .search-bar {
