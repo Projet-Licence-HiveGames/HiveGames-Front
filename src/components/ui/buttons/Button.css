@@ -1,0 +1,11 @@
+.hivegames-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: var(--button-border-radius);
+    text-decoration: none;
+    background-color: var(--primary-color);
+}
+
+.hivegames-button:hover {
+    background-color: var(--secondary-color);
+}

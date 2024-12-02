@@ -1,0 +1,14 @@
+.app-layout {
+  display: flex;
+  background-color: #f5f5f5;
+  color: rgba(0, 0, 0, 0.87);
+  width: 100vw;
+  height: 100vh;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
