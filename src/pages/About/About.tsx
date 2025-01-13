@@ -1,10 +1,7 @@
 import React from 'react';
+import './About.css';
 
-interface AboutProps {
-  // Déclarez les props ici
-}
-
-const About: React.FC<AboutProps> = () => {
+const About: React.FC = () => {
   return (
     <div>
       <h1>About</h1>
