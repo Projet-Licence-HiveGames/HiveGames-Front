@@ -11,7 +11,7 @@ const MainHeader: FC = () => {
             <Search className="search-icon"/>
             <input type="text" className="search-bar-input" placeholder="Search..." />
         </div>
-        <div style={{width: '100%'}}>
+        <div className="groupMenu-Styled">
             <GroupMenu/>
         </div>
     </div>

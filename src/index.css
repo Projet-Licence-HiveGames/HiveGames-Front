@@ -19,26 +19,20 @@
   --bg-color-lighter: #323D4E;
   --bg-color-lightest: #454F5E;
 
+  --button-gradient-orange: linear-gradient(45deg, #F2B705, #F28A07);
+
   --button-border-radius: 4px;
-  
+  --button-border-radius-md: 7px;
+  --button-border-radius-lg: 10px;
+  --button-border-radius-xl: 12px;
+
   --header-height: 64px;
 }
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;  /* Permet de contrôler la taille des éléments plus facilement */
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: light) {

@@ -1,20 +1,62 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './GroupMenu.css';
-import {NotificationBell} from '../../assets/images/notificationBell.tsx'
-import {BasketCart} from "../../assets/images/BasketCart.tsx";
+import { NotificationBell } from '../../assets/icones/NotificationBell.tsx';
+import { BasketCart } from "../../assets/icones/BasketCart.tsx";
+import logoAccount from "../../assets/images/logoAccount.png";
+import { LogoutAccount } from "../../assets/icones/LogoutAccount.tsx";
+import DropdownMenu from "../DropDown/DropDown.tsx";
 
 export const GroupMenu: React.FC = () => {
-  return (
-    <div className="GroupMenu-content">
-        <NotificationBell numberNotif={5}/>
-        <BasketCart/>
-        <div className="GroupMenu-connexion">
-            <img src="https://placehold.co/40x40"/>
-            <div className="GroupMenu-connexion-text">
-                <h4>Pseudo</h4>
-                <p>Administrateur</p>
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null); // Référence pour le menu
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    // Fermer le dropdown en cliquant à l'extérieur
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    return (
+        <div className="group-menu--content" ref={dropdownRef}>
+            <NotificationBell numberNotif={5} />
+            <BasketCart />
+
+            <div className="group-menu--connexion" onClick={toggleDropdown}>
+                <img
+                    alt={"Account logo"}
+                    src={logoAccount}
+                    onError={(e) => {
+                        e.currentTarget.src = 'https://placehold.co/40x40';
+                    }}
+                />
+                <div className="group-menu--connexion-text">
+                    <h4>Pseudo</h4>
+                    <p>Administrateur</p>
+                </div>
+            </div>
+
+            {isDropdownOpen && (
+                <DropdownMenu/>
+            )}
+
+            <div className="group-menu--disconnect">
+                <LogoutAccount />
             </div>
         </div>
-    </div>
-  );
+    );
 };

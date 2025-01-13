@@ -1,6 +1,7 @@
 .hivegames-menuItem {
     display: flex;
-    justify-content: center;
+    gap: 20px;
+    justify-content: flex-start;
     align-items: center;
     padding: 0.5rem 1rem;
     text-decoration: none;
@@ -8,12 +9,17 @@
     color: white;
     border-left: 0.25rem solid transparent;
 }
-
+.hivegames-menuItem.collapsed {
+    gap: 0; /* Pas d'espacement lorsque le menu est "collapsed" */
+}
 .hivegames-menuItem:hover {
     border-left: 0.25rem solid orange;
 }
 
 .hivegames-menuItem.active {
-    background-color: orange;
+    background: var(--button-gradient-orange);
+    width: 90%;
+    margin: 0 auto;
+    border-radius: var(--button-border-radius-md);
     border-left: 0.25rem solid orange;
 }

@@ -43,7 +43,8 @@
 }
 
 .sidebar-content hr {
-  width: 75%;
+  width: 85%;
+  margin: 0 auto;
   border: none;
   border-top: 1px solid #E0E0E0;
 }

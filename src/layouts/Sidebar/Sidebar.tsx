@@ -22,11 +22,11 @@ const Sidebar:React.FC = () => {
         <img src={isCollapsed ? logo : logoName} alt="Logo" />
       </div>
       <div className='sidebar-content'>
-        <MenuItem to="/"><HomeRounded />{!isCollapsed && <span>Accueil</span>}</MenuItem>
-        <MenuItem to="/catalogue"><Shop/>{!isCollapsed && <span>Catalogue</span>}</MenuItem>
+        <MenuItem to="/" isCollapsed={isCollapsed}><HomeRounded />{!isCollapsed && <span>Accueil</span>}</MenuItem>
+        <MenuItem to="/catalogue" isCollapsed={isCollapsed}><Shop/>{!isCollapsed && <span>Catalogue</span>}</MenuItem>
           <hr/>
-        <MenuItem to="/calendar"><CalendarMonth/>{!isCollapsed && <span>Calendrier</span>}</MenuItem>
-        <MenuItem to="/subscription"><Subscriptions/>{!isCollapsed && <span>Abonnement</span>}</MenuItem>
+        <MenuItem to="/calendar" isCollapsed={isCollapsed}><CalendarMonth/>{!isCollapsed && <span>Calendrier</span>}</MenuItem>
+        <MenuItem to="/subscription" isCollapsed={isCollapsed}><Subscriptions/>{!isCollapsed && <span>Abonnement</span>}</MenuItem>
           <hr/>
       </div>
     </div>
