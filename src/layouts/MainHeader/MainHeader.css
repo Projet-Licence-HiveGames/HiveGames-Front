@@ -1,5 +1,5 @@
 .main-header {
-    background-color: var(--background-color-primary);
+    background-color: var(--bg-color-light);
     color: white;
     display: flex;
     align-items: center;
@@ -17,7 +17,7 @@
 }
 
 .search-bar input {
-    background-color: var(--background-color-secondary);
+    background-color: var(--bg-color-lighter);
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     border: none;

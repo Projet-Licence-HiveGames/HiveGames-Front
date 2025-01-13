@@ -1,21 +1,7 @@
-@font-face {
-  font-family: "Nunito";
-  font-weight: 700;
-  src: url('assets/fonts/Nunito-Regular.woff') format('woff2'),
-       url('assets/fonts/Nunito-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: "Nunito";
-  font-weight: 700;
-  font-style: italic;
-  src: url('assets/fonts/Nunito-Italic.woff') format('woff2'),
-       url('assets/fonts/Nunito-Italic.woff') format('woff');
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
-  font-family: "Nunito", sans-serif;
-  line-height: 1.5;
+  font-family: "Nunito", serif;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -26,19 +12,25 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: royalblue;
-  --secondary-color: darkslateblue;
-
-  --background-color-primary: #273142;
-  --background-color-secondary: #323D4E;
+  --bg-color-darker: #1B232E;
+  --bg-color-dark: #212A38;
+  --bg-color-normal: #273142;
+  --bg-color-light: #2D3748;
+  --bg-color-lighter: #323D4E;
+  --bg-color-lightest: #454F5E;
 
   --button-border-radius: 4px;
   
   --header-height: 64px;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  /* Permet de contrôler la taille des éléments plus facilement */
+}
+
 body {
-  font-weight: 700;
   margin: 0;
   display: flex;
   place-items: center;
@@ -48,23 +40,6 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
-/* button {
-  font-weight: bold;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  font-size: 1em;
-  font-weight: 400;
-  font-family: inherit;
-  background-color: var(--background-color-primary);
-  color: white;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  z-index: 1;
-}
-button:hover {
-  border-color: var(--background-color-secondary);
-} */
 
 @media (prefers-color-scheme: light) {
   :root {

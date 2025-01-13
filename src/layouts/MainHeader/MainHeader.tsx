@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Search } from "@mui/icons-material";
 
 import "./MainHeader.css";
+import {GroupMenu} from "../../components/GroupMenu/GroupMenu.tsx";
 
 const MainHeader: FC = () => {
     return (
@@ -9,6 +10,9 @@ const MainHeader: FC = () => {
         <div className="search-bar">
             <Search className="search-icon"/>
             <input type="text" className="search-bar-input" placeholder="Search..." />
+        </div>
+        <div style={{width: '100%'}}>
+            <GroupMenu/>
         </div>
     </div>
     );
