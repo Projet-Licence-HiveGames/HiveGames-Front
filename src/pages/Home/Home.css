@@ -38,6 +38,6 @@
 
 .container {
   height: 100vh;
-  background-color: var(--background-color-secondary);
+  background-color: var(--bg-color-lighter);
   color: white;
 }
