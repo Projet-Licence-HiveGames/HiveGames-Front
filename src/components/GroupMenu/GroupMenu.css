@@ -1,30 +1,45 @@
-.GroupMenu-content {
+.group-menu--content {
+    position: relative;
     display: flex;
-    justify-content: right;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
-.GroupMenu-connexion {
+.group-menu--connexion {
+    cursor: pointer;
     display: flex;
-    width: 150px;
-    background: var(--bg-color-darker);
-    padding: 4px;
-    border-radius: 10px;
-    justify-content: left;
     align-items: center;
     gap: 10px;
-    filter: drop-shadow(0px 3px 4px rgba(0, 0, 0, 0.25));
+    background-color: var(--bg-color-dark);
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
 }
 
-.GroupMenu-connexion>img{
-    border-radius: 25px;
+.group-menu--connexion:hover {
+    background-color: var(--bg-color-darker);
 }
 
-.GroupMenu-connexion-text h4 {
+.group-menu--connexion img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.group-menu--connexion-text h4 {
+    margin: 0;
     font-size: 16px;
+    color: #fff;
 }
 
-.GroupMenu-connexion-text p {
-    font-size: 12px;
+.group-menu--connexion-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.group-menu--disconnect {
+    margin-left: auto;
+    cursor: pointer;
 }

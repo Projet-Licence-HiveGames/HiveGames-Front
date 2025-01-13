@@ -1,8 +1,9 @@
 .main-header {
-    background-color: var(--bg-color-light);
+    background-color: var(--bg-color-normal);
     color: white;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 3rem;
     height: var(--header-height);
     min-height: var(--header-height);
@@ -10,19 +11,18 @@
 }
 
 .search-bar {
-    flex: 1;
+    flex-grow: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
-    max-width: 250px;
+    justify-content: stretch;
     position: relative;
 }
 
 .search-bar input {
     background-color: var(--bg-color-lighter);
-    padding: 0.5rem 1rem;
     border-radius: 1rem;
     border: none;
+    max-width: 250px;
     width: 100%;
     padding: 10px 10px 10px 35px;
 }
@@ -41,4 +41,10 @@
 
 .search-bar input:focus {
     outline: none;
+}
+
+.groupMenu-Styled {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }

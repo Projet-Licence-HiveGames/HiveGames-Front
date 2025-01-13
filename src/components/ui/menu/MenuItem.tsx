@@ -10,11 +10,12 @@ interface MenuItemProps {
     className?: string,
     style?: string,
     disabled?: boolean,
+    isCollapsed?: boolean,
 }
 
-const MenuItem: FC<MenuItemProps> = ({ children, to, className, disabled }) => {
+const MenuItem: FC<MenuItemProps> = ({ children, to, className, disabled, isCollapsed }) => {
     return (
-        <NavLink to={disabled ? '#' : to} className={classNames(className, 'hivegames-menuItem')}>{children}</NavLink>
+        <NavLink to={disabled ? '#' : to} className={classNames(className, 'hivegames-menuItem',{ 'collapsed': isCollapsed })}>{children}</NavLink>
     )
 };
 
