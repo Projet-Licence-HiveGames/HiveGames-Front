@@ -1,25 +1,25 @@
 .hivegames-menuItem {
     display: flex;
     gap: 20px;
+    width: 90%;
+    margin-left: 10px;
     justify-content: flex-start;
     align-items: center;
     padding: 0.5rem 1rem;
     text-decoration: none;
-    background-color: var(--bg-color-normal);
     color: white;
     border-left: 0.25rem solid transparent;
+    overflow: hidden;
 }
 .hivegames-menuItem.collapsed {
-    gap: 0; /* Pas d'espacement lorsque le menu est "collapsed" */
+    gap: 0;
+    margin: 0 auto;
 }
-.hivegames-menuItem:hover {
+.hivegames-menuItem:not(.active):hover {
     border-left: 0.25rem solid orange;
 }
 
 .hivegames-menuItem.active {
     background: var(--button-gradient-orange);
-    width: 90%;
-    margin: 0 auto;
     border-radius: var(--button-border-radius-md);
-    border-left: 0.25rem solid orange;
 }
