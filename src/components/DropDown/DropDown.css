@@ -1,6 +1,7 @@
 .dropdown-menu {
     position: absolute;
-    top: 70px;
+    top: calc(var(--header-height) - 2px);
+    left: 0;
     right: 0;
     background-color: var(--bg-color-dark);
     border-radius: 0 0 10px 10px;
@@ -8,10 +9,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     z-index: 1000;
-    width: 200px;
 }
 
 .dropdown-item {
+    text-decoration: none;
     padding: 15px 20px;
     color: #fff;
     border-radius: 5px;

@@ -10,10 +10,15 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
     background-color: var(--bg-color-dark);
     padding: 10px;
     border-radius: 10px;
     transition: background-color 0.3s;
+}
+
+.group-menu--connexion:has(.dropdown-menu) {
+    border-radius: 10px 10px 0 0;
 }
 
 .group-menu--connexion:hover {
@@ -40,6 +45,14 @@
 }
 
 .group-menu--disconnect {
-    margin-left: auto;
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    background-color: var(--bg-color-dark);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.group-menu--disconnect:hover {
+    background-color: var(--bg-color-darker);
 }

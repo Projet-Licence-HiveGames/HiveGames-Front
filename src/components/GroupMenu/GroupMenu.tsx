@@ -7,7 +7,7 @@ import { LogoutAccount } from "../../assets/icones/LogoutAccount.tsx";
 import DropdownMenu from "../DropDown/DropDown.tsx";
 
 export const GroupMenu: React.FC = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(true);
     const dropdownRef = useRef<HTMLDivElement>(null); // Référence pour le menu
 
     const toggleDropdown = () => {
@@ -32,11 +32,11 @@ export const GroupMenu: React.FC = () => {
     }, []);
 
     return (
-        <div className="group-menu--content" ref={dropdownRef}>
+        <div className="group-menu--content">
             <NotificationBell numberNotif={5} />
             <BasketCart />
 
-            <div className="group-menu--connexion" onClick={toggleDropdown}>
+            <div className="group-menu--connexion" onClick={toggleDropdown} ref={dropdownRef}>
                 <img
                     alt={"Account logo"}
                     src={logoAccount}
@@ -48,11 +48,12 @@ export const GroupMenu: React.FC = () => {
                     <h4>Pseudo</h4>
                     <p>Administrateur</p>
                 </div>
+                {isDropdownOpen && (
+                    <DropdownMenu/>
+                )}
             </div>
 
-            {isDropdownOpen && (
-                <DropdownMenu/>
-            )}
+
 
             <div className="group-menu--disconnect">
                 <LogoutAccount />

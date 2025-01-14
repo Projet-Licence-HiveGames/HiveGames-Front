@@ -19,7 +19,7 @@
   --bg-color-lighter: #323D4E;
   --bg-color-lightest: #454F5E;
 
-  --button-gradient-orange: linear-gradient(45deg, #F2B705, #F28A07);
+  --button-gradient-orange: linear-gradient(0deg, #F2B705, #F28A07);
 
   --button-border-radius: 4px;
   --button-border-radius-md: 7px;
