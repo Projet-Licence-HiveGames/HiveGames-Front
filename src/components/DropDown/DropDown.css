@@ -12,25 +12,25 @@
 }
 
 .dropdown-item {
-    text-decoration: none;
-    padding: 15px 20px;
-    color: #fff;
-    border-radius: 5px;
-    margin-bottom: 2px;
-    background-color: var(--bg-color-light);
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 16px;
-    border-bottom: 1px solid #2c2c2c;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    gap: .5rem;
+  text-decoration: none;
+  padding: 15px 20px;
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  background-color: var(--bg-color-light);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  border-bottom: 1px solid #2c2c2c;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  gap: 0.5rem;
 }
 
 .dropdown-item .material-symbols {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .dropdown-item:last-child {

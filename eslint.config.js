@@ -25,7 +25,7 @@ export default tseslint.config(
                 'warn',
                 { allowConstantExport: true },
             ],
-            'semi': ['error', 'always'],
+            semi: ['error', 'always'],
             'no-console': 'warn',
             '@typescript-eslint/no-explicit-any': 'warn',
             'prettier/prettier': [
@@ -40,11 +40,15 @@ export default tseslint.config(
                     jsxSingleQuote: true,
                 },
             ],
+            'padding-line-between-statements': [
+                'error',
+                { blankLine: 'never', prev: 'import', next: 'import' },
+            ],
         },
         settings: {
             'import/resolver': {
                 node: {
-                    extensions: ['.js', '.jsx', '.ts', '.tsx'],  // Résolution des extensions de fichier
+                    extensions: ['.js', '.jsx', '.ts', '.tsx'],
                 },
             },
         },

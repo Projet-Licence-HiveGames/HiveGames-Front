@@ -1,15 +1,14 @@
-import React from "react";
-import Sidebar from "./Sidebar/Sidebar.tsx";
-import { Outlet } from "react-router-dom";
-
-import "./MainLayout.css";
-import MainHeader from "./MainHeader/MainHeader.tsx";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import MainHeader from './MainHeader/MainHeader.tsx';
+import Sidebar from './Sidebar/Sidebar.tsx';
+import './MainLayout.css';
 
 const MainLayout: React.FC = () => {
   return (
-    <div className="app-layout">
+    <div className='app-layout'>
       <Sidebar />
-      <div className="right-panel">
+      <div className='right-panel'>
         <MainHeader />
         <Outlet />
       </div>

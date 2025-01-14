@@ -1,14 +1,14 @@
 .cookieClicker {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cookieClicker-img {
-    transition: transform 0.3s ease;
-    cursor: pointer;
+  transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .cookieClicker-img--clicked {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
