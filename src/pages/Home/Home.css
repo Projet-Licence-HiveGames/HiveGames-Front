@@ -39,3 +39,11 @@
   background-color: var(--bg-color-lighter);
   color: white;
 }
+
+.cookieClicker {
+  transition: transform 0.3s ease;
+}
+
+.cookieClicker.clicked {
+  transform: scale(1.1);
+}

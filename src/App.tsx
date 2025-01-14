@@ -13,6 +13,7 @@ import { Friend } from "./pages/Friend/Friend.tsx";
 import { Game } from "./pages/Game/Game.tsx";
 import { Library } from "./pages/Library/Library.tsx";
 import { Setting } from "./pages/Setting/Setting.tsx";
+import 'react-material-symbols/rounded';
 import './App.css';
 
 const App: React.FC = () => {
