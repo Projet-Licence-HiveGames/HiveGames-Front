@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { NotificationBell } from "../../assets/icones/NotificationBell.tsx";
-import { BasketCart } from "../../assets/icones/BasketCart.tsx";
-import logoAccount from "../../assets/images/logoAccount.png";
-import DropdownMenu from "../DropDown/DropDown.tsx";
+import React, { useEffect, useRef, useState } from 'react';
 import { MaterialSymbol } from 'react-material-symbols';
-import "./GroupMenu.css";
+import { BasketCart } from '../../assets/icones/BasketCart.tsx';
+import { NotificationBell } from '../../assets/icones/NotificationBell.tsx';
+import logoAccount from '../../assets/images/logoAccount.png';
+import DropdownMenu from '../DropDown/DropDown.tsx';
+import './GroupMenu.css';
 
 export const GroupMenu: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
@@ -25,41 +25,41 @@ export const GroupMenu: React.FC = () => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-    return (
-        <div className="group-menu-content">
-            <div className="group-menu-icones">
-                <NotificationBell numberNotif={5} />
-                <BasketCart />
-            </div>
+  return (
+    <div className='group-menu-content'>
+      <div className='group-menu-icones'>
+        <NotificationBell numberNotif={5} />
+        <BasketCart />
+      </div>
 
-            <div className="group-menu-connexion" onClick={toggleDropdown} ref={dropdownRef}>
-                <img
-                    alt={"Account logo"}
-                    src={logoAccount}
-                    onError={(e) => {
-                        e.currentTarget.src = 'https://placehold.co/40x40';
-                    }}
-                />
-                <div className="group-menu-connexion-text">
-                    <h4>Pseudo</h4>
-                    <p>Administrateur</p>
-                </div>
-                {isDropdownOpen && (
-                    <DropdownMenu/>
-                )}
-            </div>
-
-
-
-            <div className="group-menu--disconnect">
-                <MaterialSymbol icon="logout" size={32}/>
-            </div>
+      <div
+        className='group-menu-connexion'
+        onClick={toggleDropdown}
+        ref={dropdownRef}
+      >
+        <img
+          alt={'Account logo'}
+          src={logoAccount}
+          onError={(e) => {
+            e.currentTarget.src = 'https://placehold.co/40x40';
+          }}
+        />
+        <div className='group-menu-connexion-text'>
+          <h4>Pseudo</h4>
+          <p>Administrateur</p>
         </div>
-    );
+        {isDropdownOpen && <DropdownMenu />}
+      </div>
+
+      <div className='group-menu--disconnect'>
+        <MaterialSymbol icon='logout' size={32} />
+      </div>
+    </div>
+  );
 };

@@ -1,5 +1,5 @@
-import React from "react";
-import "./Catalogue.css";
+import React from 'react';
+import './Catalogue.css';
 
 export const Catalogue: React.FC = () => {
   return (
