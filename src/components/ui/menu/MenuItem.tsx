@@ -1,8 +1,8 @@
-import { FC, ReactNode } from 'react';
-import { NavLink } from 'react-router-dom';
-import classNames from 'classnames';
+import { FC, ReactNode } from "react";
+import { NavLink } from "react-router-dom";
+import classNames from "classnames";
 
-import './MenuItem.css';
+import "./MenuItem.css";
 
 interface MenuItemProps {
   children: ReactNode;
@@ -22,8 +22,8 @@ const MenuItem: FC<MenuItemProps> = ({
 }) => {
   return (
     <NavLink
-      to={disabled ? '#' : to}
-      className={classNames(className, 'hivegames-menuItem', {
+      to={disabled ? "#" : to}
+      className={classNames(className, "hivegames-menuItem", {
         collapsed: isCollapsed,
       })}
     >

@@ -1,5 +1,5 @@
-import React from 'react';
-import './Calendar.css';
+import React from "react";
+import "./Calendar.css";
 
 export const Calendar: React.FC = () => {
   return (
