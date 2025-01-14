@@ -1,8 +1,8 @@
-.group-menu--content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.group-menu-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .group-menu-icones {
@@ -16,43 +16,43 @@
   align-items: center;
 }
 
-.group-menu--connexion {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  position: relative;
-  background-color: var(--bg-color-dark);
-  padding: 10px;
-  border-radius: 10px;
-  transition: background-color 0.3s;
+.group-menu-connexion {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    background-color: var(--bg-color-dark);
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
 }
 
-.group-menu--connexion:has(.dropdown-menu) {
-  border-radius: 10px 10px 0 0;
+.group-menu-connexion:has(.dropdown-menu) {
+    border-radius: 10px 10px 0 0;
 }
 
-.group-menu--connexion:hover {
-  background-color: var(--bg-color-darker);
+.group-menu-connexion:hover {
+    background-color: var(--bg-color-darker);
 }
 
-.group-menu--connexion img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+.group-menu-connexion img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.group-menu--connexion-text h4 {
-  margin: 0;
-  font-size: 16px;
-  color: #fff;
+.group-menu-connexion-text h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
 }
 
-.group-menu--connexion-text p {
-  margin: 0;
-  font-size: 14px;
-  color: #ccc;
+.group-menu-connexion-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #ccc;
 }
 
 .group-menu--disconnect {

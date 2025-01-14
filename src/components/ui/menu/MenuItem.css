@@ -1,25 +1,48 @@
 .hivegames-menuItem {
-  display: flex;
-  gap: 20px;
-  width: 90%;
-  margin-left: 10px;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  color: white;
-  border-left: 0.25rem solid transparent;
-  overflow: hidden;
-}
-.hivegames-menuItem.collapsed {
-  gap: 0;
-  margin: 0 auto;
-}
-.hivegames-menuItem:not(.active):hover {
-  border-left: 0.25rem solid orange;
+    display: flex;
+    padding: 0 10px;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    overflow: hidden;
+    gap: .25rem;
+    width: 100%;
 }
 
-.hivegames-menuItem.active {
-  background: var(--button-gradient-orange);
-  border-radius: var(--button-border-radius-md);
+.hivegames-menuItem > span {
+    height: 100%;
+    width: .25rem;
+    border-radius: 0 10px 10px 0;
+    opacity: 0;
+    background: var(--button-gradient-orange);
+
+}
+
+.hivegames-menuItem > label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: var(--button-border-radius-md);
+    padding: 0.5rem 1rem;
+    width: 100%;
+    cursor: pointer;
+}
+
+.sidebar-container--collapsed {
+    gap: 0;
+    margin: 0 auto;
+}
+
+.hivegames-menuItem:not(.active):hover span {
+    opacity: 1;
+}
+
+.hivegames-menuItem.active > label {
+    background: var(--button-gradient-orange);
+    border-radius: var(--button-border-radius-md);
+}
+
+.sidebar-container--collapsed .hivegames-menuItem > label > span {
+    display: none;
 }

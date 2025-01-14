@@ -13,23 +13,13 @@ interface MenuItemProps {
   isCollapsed?: boolean;
 }
 
-const MenuItem: FC<MenuItemProps> = ({
-  children,
-  to,
-  className,
-  disabled,
-  isCollapsed,
-}) => {
-  return (
-    <NavLink
-      to={disabled ? "#" : to}
-      className={classNames(className, "hivegames-menuItem", {
-        collapsed: isCollapsed,
-      })}
-    >
-      {children}
-    </NavLink>
-  );
+const MenuItem: FC<MenuItemProps> = ({ children, to, className, disabled, isCollapsed }) => {
+    return (
+        <NavLink to={disabled ? '#' : to} className={classNames(className, 'hivegames-menuItem')}>
+            <span/>
+            <label>{children}</label>
+        </NavLink>
+    )
 };
 
 export default MenuItem;
