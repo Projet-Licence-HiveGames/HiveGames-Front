@@ -1,50 +1,50 @@
 .main-header {
-    background-color: var(--bg-color-normal);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 3rem;
-    height: var(--header-height);
-    min-height: var(--header-height);
-    max-height: var(--header-height);
+  background-color: var(--bg-color-normal);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: var(--header-height);
+  min-height: var(--header-height);
+  max-height: var(--header-height);
 }
 
 .search-bar {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: stretch;
-    position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  position: relative;
 }
 
 .search-bar input {
-    background-color: var(--bg-color-lighter);
-    border-radius: 1rem;
-    border: none;
-    max-width: 250px;
-    width: 100%;
-    padding: 10px 10px 10px 35px;
+  background-color: var(--bg-color-lighter);
+  border-radius: 1rem;
+  border: none;
+  max-width: 250px;
+  width: 100%;
+  padding: 10px 10px 10px 35px;
 }
 
 .search-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 8px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 8px;
 }
 
 .search-bar input::placeholder {
-    color: white;
+  color: white;
 }
 
 .search-bar input:focus {
-    outline: none;
+  outline: none;
 }
 
 .groupMenu-Styled {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
