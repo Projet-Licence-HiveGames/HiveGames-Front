@@ -1,6 +1,6 @@
 .app-layout {
   display: flex;
-  background-color: #f5f5f5;
+  background-color: var(--bg-color-lighter);
   color: rgba(0, 0, 0, 0.87);
   width: 100vw;
   height: 100vh;

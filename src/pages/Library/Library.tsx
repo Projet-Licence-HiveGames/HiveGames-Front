@@ -1,5 +1,9 @@
-import React from 'react';
+import React from "react";
 
 export const Library: React.FC = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h1>Library</h1>
+    </div>
+  );
 };

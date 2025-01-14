@@ -1,9 +1,9 @@
-import { FC, ReactNode, useCallback, useId } from 'react';
+import { FC, ReactNode, useCallback, useId } from "react";
 
-import './Button.css';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
-import { noop } from '../../../utils/noop';
+import "./Button.css";
+import { Link } from "react-router-dom";
+import classNames from "classnames";
+import { noop } from "../../../utils/noop";
 
 interface ButtonProps {
   children: ReactNode;
@@ -34,7 +34,7 @@ const Button: FC<ButtonProps> = ({
     return (
       <Link
         id={id}
-        to={disabled ? '#' : to}
+        to={disabled ? "#" : to}
         className={classNames(`hivegames-button`, className)}
       >
         {children}

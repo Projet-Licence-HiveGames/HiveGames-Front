@@ -1,41 +1,42 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout';
-import Home from './pages/Home/Home';
-import Contact from './pages/Contact/Contact.tsx';
-import About from './pages/About/About.tsx';
-import { Catalogue } from './pages/Catalogue/Catalogue.tsx';
-import { Calendar } from './pages/Calendar/Calendar.tsx';
-import { Subscription } from './pages/Subscription/Subscription.tsx';
-import { Profil } from './pages/Profil/Profil.tsx';
-import { Wishlist } from './pages/Wishlist/Wishlist.tsx';
-import { Friend } from './pages/Friend/Friend.tsx';
-import { Game } from './pages/Game/Game.tsx';
-import { Library } from './pages/Library/Library.tsx';
-import { Setting } from './pages/Setting/Setting.tsx';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import Home from "./pages/Home/Home";
+import Contact from "./pages/Contact/Contact.tsx";
+import About from "./pages/About/About.tsx";
+import { Catalogue } from "./pages/Catalogue/Catalogue.tsx";
+import { Calendar } from "./pages/Calendar/Calendar.tsx";
+import { Subscription } from "./pages/Subscription/Subscription.tsx";
+import { Profil } from "./pages/Profil/Profil.tsx";
+import { Wishlist } from "./pages/Wishlist/Wishlist.tsx";
+import { Friend } from "./pages/Friend/Friend.tsx";
+import { Game } from "./pages/Game/Game.tsx";
+import { Library } from "./pages/Library/Library.tsx";
+import { Setting } from "./pages/Setting/Setting.tsx";
+import './App.css';
 
 const App: React.FC = () => {
   return (
     <Routes>
-      <Route path='/' element={<MainLayout />}>
+      <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
-        <Route path='Calendar' element={<Calendar />} />
-        <Route path='Catalogue' element={<Catalogue />} />
-        <Route path='Friend' element={<Friend />} />
-        <Route path='Library' element={<Library />} />
-        <Route path='Setting' element={<Setting />} />
-        <Route path='Subscription' element={<Subscription />} />
-        <Route path='Wishlist' element={<Wishlist />} />
-        <Route path='About' element={<About />} />
-        <Route path='Contact' element={<Contact />} />
+        <Route path="Calendar" element={<Calendar />} />
+        <Route path="Catalogue" element={<Catalogue />} />
+        <Route path="Friend" element={<Friend />} />
+        <Route path="Library" element={<Library />} />
+        <Route path="Setting" element={<Setting />} />
+        <Route path="Subscription" element={<Subscription />} />
+        <Route path="Wishlist" element={<Wishlist />} />
+        <Route path="About" element={<About />} />
+        <Route path="Contact" element={<Contact />} />
 
-        <Route path='Game' element={<Game />}>
-          <Route path=':id' element={<Game />} />
+        <Route path="Game" element={<Game />}>
+          <Route path=":id" element={<Game />} />
         </Route>
 
-        <Route path='Profil' element={<Profil />}>
+        <Route path="Profil" element={<Profil />}>
           <Route index element={<Profil />} />
-          <Route path=':id' element={<Home />} />
+          <Route path=":id" element={<Home />} />
         </Route>
       </Route>
     </Routes>
