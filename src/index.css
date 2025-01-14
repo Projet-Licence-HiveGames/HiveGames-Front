@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
   font-family: "Nunito", serif;
@@ -12,14 +12,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg-color-darker: #1B232E;
-  --bg-color-dark: #212A38;
+  --bg-color-darker: #1b232e;
+  --bg-color-dark: #212a38;
   --bg-color-normal: #273142;
-  --bg-color-light: #2D3748;
-  --bg-color-lighter: #323D4E;
-  --bg-color-lightest: #454F5E;
+  --bg-color-light: #2d3748;
+  --bg-color-lighter: #323d4e;
+  --bg-color-lightest: #454f5e;
 
-  --button-gradient-orange: linear-gradient(0deg, #F2B705, #F28A07);
+  --button-gradient-orange: linear-gradient(0deg, #f2b705, #f28a07);
 
   --button-border-radius: 4px;
   --button-border-radius-md: 7px;
