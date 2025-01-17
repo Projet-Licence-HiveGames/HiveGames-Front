@@ -31,20 +31,20 @@ const Sidebar: React.FC = () => {
         <img src={isCollapsed ? logo : logoName} alt='Logo' />
       </div>
       <div className='sidebar-content'>
-        <MenuItem to='/' isCollapsed={isCollapsed}>
+        <MenuItem to='/'>
           <HomeRounded />
-          <span>Accueil</span>
+          <span>{translate('sidebar_home')}</span>
         </MenuItem>
-        <MenuItem to='/catalogue' isCollapsed={isCollapsed}>
+        <MenuItem to='/catalogue'>
           <StorefrontOutlined />
           <span>Catalogue</span>
         </MenuItem>
         <hr />
-        <MenuItem to='/calendar' isCollapsed={isCollapsed}>
+        <MenuItem to='/calendar'>
           <CalendarMonth />
           <span>Calendrier</span>
         </MenuItem>
-        <MenuItem to='/subscription' isCollapsed={isCollapsed}>
+        <MenuItem to='/subscription'>
           <Subscriptions />
           <span>Abonnement</span>
         </MenuItem>
