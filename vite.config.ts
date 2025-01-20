@@ -18,4 +18,7 @@ export default defineConfig({
       '@utils': '/src/utils',
     },
   },
+  server: {
+    port: 3000,
+  },
 });
