@@ -1,3 +1,11 @@
+.game-session {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color-dark);
+}
+
 .cookieClicker {
   display: flex;
   flex-direction: column;
@@ -11,4 +19,8 @@
 
 .cookieClicker-img--clicked {
   transform: scale(1.1);
+}
+
+.pump-upgrade {
+  rotate: 90deg;
 }
