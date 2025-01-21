@@ -11,7 +11,7 @@ export const GameSession: React.FC = () => {
   const [crankAngle, setCrankAngle] = useState(0); // To track the angle of the crank's rotation
   const crankRef = useRef<HTMLDivElement | null>(null);
   const [upgrades, setUpgrades] = useState({
-    perClick: 1000000,
+    perClick: 1,
     perSecond: 0,
     spinnerMultiplier: 1,
     rangeMultiplier: 1,
@@ -49,13 +49,15 @@ export const GameSession: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const additionalPerSecond =
-        upgradeLevels.perSecond +
-        upgradeLevels.autoClicker1 * 2 +
-        upgradeLevels.autoClicker2 * 5;
-      setCount((prevCount) => prevCount + additionalPerSecond);
-      setTargetValue(Math.random() * 10);
-      handleClick();
+      if (upgrades.perSecond > 0) {
+        const additionalPerSecond =
+          upgradeLevels.perSecond +
+          upgradeLevels.autoClicker1 * 2 +
+          upgradeLevels.autoClicker2 * 5;
+        setCount((prevCount) => prevCount + additionalPerSecond);
+        setTargetValue(Math.random() * 10);
+        handleCookiePressed();
+      }
     }, 1000);
 
     return () => clearInterval(interval);
@@ -64,6 +66,10 @@ export const GameSession: React.FC = () => {
   const handleClick = () => {
     setKeyPress(true);
     setCount((count) => count + upgrades.perClick * upgrades.spinnerMultiplier * upgrades.rangeMultiplier);
+    handleCookiePressed();
+  };
+
+  const handleCookiePressed = () => {
     setClicked(true);
     setTimeout(() => {
       setClicked(false);
