@@ -3,6 +3,7 @@
   top: calc(var(--header-height) - 2px);
   left: 0;
   right: 0;
+  min-width: 154px;
   background-color: var(--bg-color-dark);
   border-radius: 0 0 10px 10px;
   padding: 5px;
