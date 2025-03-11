@@ -29,16 +29,7 @@ export default tseslint.config(
             'no-console': 'warn',
             '@typescript-eslint/no-explicit-any': 'warn',
             'prettier/prettier': [
-                'error',
-                {
-                    singleQuote: true,
-                    semi: true,
-                    trailingComma: 'all',
-                    tabWidth: 2,
-                    printWidth: 80,
-                    quoteProps: 'consistent',
-                    jsxSingleQuote: true,
-                },
+
             ],
             'padding-line-between-statements': [
                 'error',
