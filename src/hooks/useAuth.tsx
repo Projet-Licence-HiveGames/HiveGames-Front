@@ -31,9 +31,6 @@ const useAuth = () => {
 
         checkAuthStatus();
     }, []); // Se déclenche une seule fois au montage du composant
-    useEffect(() => {
-        console.log(user);
-    }, [user]);
     return { isAuthenticated, user };
 };
 
