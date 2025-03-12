@@ -37,7 +37,6 @@ const Login: React.FC = () => {
                 'POST',
                 formData,
             );
-            useAuth();
             console.log('Login success:', response);
         } catch (err) {
             console.error('Login error:', err);

@@ -21,7 +21,6 @@ const useAuth = () => {
             try {
                 // Utilisation de privateApi pour obtenir les informations de l'utilisateur
                 const response = await privateApi<AuthResponse>('/auth/user', 'GET');
-                console.log(response)
                 setIsAuthenticated(true);
                 setUser(response.user); // Stocker l'utilisateur dans le state
             } catch (error) {
@@ -32,7 +31,9 @@ const useAuth = () => {
 
         checkAuthStatus();
     }, []); // Se déclenche une seule fois au montage du composant
-
+    useEffect(() => {
+        console.log(user);
+    }, [user]);
     return { isAuthenticated, user };
 };
 

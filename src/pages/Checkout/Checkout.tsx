@@ -1,38 +1,41 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, {useCallback} from "react";
+import {useNavigate} from "react-router-dom";
 import {loadStripe} from '@stripe/stripe-js';
 import {
-  EmbeddedCheckoutProvider,
-  EmbeddedCheckout
+    EmbeddedCheckoutProvider,
+    EmbeddedCheckout
 } from '@stripe/react-stripe-js';
 import './Checkout.css';
 import {privateApi} from "../../api/privateApi.ts";
 
 const stripePromise = loadStripe(import.meta.env.HIVEGAMES_STRIPE_PUBLISHABLE_KEY);
 
-export const Checkout:React.FC = () => {
-  const fetchClientSecret = useCallback(() => {
-    // Create a Checkout Session
-    return fetch("http://localhost:8000/api/stripe/payment", {
-      method: "POST",
-      body : JSON.stringify({
-        amount: 120,
-        name: "souris",
-      }),
-    })
-        .then((res) => res.json())
-        .then((data) => console.log(data.clientSecret));
-  }, []);
+interface CheckoutData {
+    client_secret: string;
+}
 
-  const options = {fetchClientSecret};
+export const Checkout: React.FC = () => {
+    const navigate = useNavigate();
 
-  return (
-      <div id="checkout">
-        <EmbeddedCheckoutProvider
-            stripe={stripePromise}
-            options={options}
-        >
-          <EmbeddedCheckout/>
-        </EmbeddedCheckoutProvider>
-      </div>
-  );
+    const fetchClientSecret = useCallback(async () => {
+        // Create a Checkout Session
+        const data:CheckoutData = await privateApi("/stripe/payment", 'POST', {
+            amount: 120,
+            name: "souris",
+        })
+        return data?.client_secret;
+    }, []);
+
+    const options = {fetchClientSecret};
+
+    return (
+        <div id="checkout">
+            <EmbeddedCheckoutProvider
+                stripe={stripePromise}
+                options={options}
+            >
+                <EmbeddedCheckout/>
+            </EmbeddedCheckoutProvider>
+        </div>
+    );
 };
