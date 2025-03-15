@@ -44,13 +44,19 @@
   object-fit: cover;
 }
 
-.group-menu-connexion-text h4 {
+.group-menu-connexion-text {
+  text-decoration: none;
+  margin: 0 auto;
+  color: white;
+}
+
+.group-menu-connexion-text .authenticated h4 {
   margin: 0;
   font-size: 16px;
   color: #fff;
 }
 
-.group-menu-connexion-text p {
+.group-menu-connexion-text .authenticated p {
   margin: 0;
   font-size: 14px;
   color: #ccc;
