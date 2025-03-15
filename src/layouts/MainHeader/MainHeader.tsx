@@ -2,7 +2,6 @@ import {Search} from '@mui/icons-material';
 import {FC} from 'react';
 import {GroupMenu} from '../../components/GroupMenu/GroupMenu.tsx';
 import './MainHeader.css';
-import useAuth from "../../hooks/useAuth.tsx";
 
 const MainHeader: FC = () => {
     return (

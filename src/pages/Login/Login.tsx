@@ -1,95 +1,43 @@
-import React, {useState} from 'react';
-import {privateApi} from '../../api/privateApi.ts';
-import useAuth from "../../hooks/useAuth.tsx";
-
-interface LoginData {
-    email: string;
-    password: string;
-}
+import React, { useState } from "react";
+import { useAuth } from "../../context/AuthProvider";
 
 const Login: React.FC = () => {
-    const [formData, setFormData] = useState<LoginData>({
-        email: '',
-        password: '',
-    });
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { login, logout, isAuthenticated, user, loading, error } = useAuth();
 
-    const [error, setError] = useState<string>('');
-    const [loading, setLoading] = useState<boolean>(false);
-    const {isAuthenticated, user} = useAuth();
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        setLoading(true);
-        setError('');
-
-        try {
-            const response = await privateApi<LoginData>(
-                '/auth/login',
-                'POST',
-                formData,
-            );
-            console.log('Login success:', response);
-        } catch (err) {
-            console.error('Login error:', err);
-            setError('Invalid username or password.');
-        } finally {
-            setLoading(false);
-        }
+        await login(email, password);
     };
-
 
     return (
-        <div className='login-form'>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor='email'>Username</label>
+        <div>
+            {!isAuthenticated ? (
+                <form onSubmit={handleLogin}>
                     <input
-                        type='text'
-                        id='email'
-                        name='email'
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
-                </div>
-
-                <div>
-                    <label htmlFor='password'>Password</label>
                     <input
-                        type='password'
-                        id='password'
-                        name='password'
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                </div>
-
+                    <button type="submit">Login</button>
+                </form>
+            ) : (
                 <div>
-                    {loading ? <p>Loading...</p> : <button type='submit'>Login</button>}
+                    <h2>Welcome, {user?.name}</h2>
+                    <button onClick={logout}>Logout</button>
                 </div>
+            )}
 
-                {isAuthenticated ? (
-                    <div>
-                        <p>Welcome, {user?.name}</p>
-                        {/* Vous pouvez ajouter ici un bouton de déconnexion */}
-                    </div>
-                ) : (
-                    <p>Please log in</p>
-                )}
-
-                {error && <p style={{color: 'red'}}>{error}</p>}
-            </form>
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
         </div>
     );
 };
