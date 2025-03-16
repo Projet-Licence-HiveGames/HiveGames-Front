@@ -42,7 +42,7 @@ const HGInputField: React.FC<InputProps> = ({
     <Input
         inputProps={{
             step: step,
-            endAdornment: (
+            endadornment: (
                 <InputAdornment position="end">
                     <img src={icon} alt="icon" />
                 </InputAdornment>

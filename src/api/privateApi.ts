@@ -10,7 +10,6 @@ export const privateApi = async <T>(
         method: method,
         headers: {
             'Content-Type': 'application/json',
-            'ngrok-skip-browser-warning': 'true',
             ...headers,
         },
         credentials: 'include',
