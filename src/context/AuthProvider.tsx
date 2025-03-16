@@ -3,12 +3,10 @@ import {privateApi} from "../api/privateApi.ts";
 
 // Définir le type pour les données utilisateur (à adapter selon vos besoins)
 interface User {
-    user: {
-        name: string,
-        email: string,
-        user_role: string
-    };
-
+    user: {};
+    name: string,
+    email: string,
+    user_role: string
 }
 
 interface AuthContextType {
@@ -18,13 +16,17 @@ interface AuthContextType {
     login: (email: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
     checkUser: () => void;
-    isAuthenticated: boolean; // Ajout de cette variable pour savoir si l'utilisateur est connecté
+    isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+interface AuthProviderProps {
+    children: React.ReactNode;
+}
+
 // Le fournisseur AuthProvider
-export const AuthProvider: React.FC = ({children}) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [user, setUser] = useState<User | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
@@ -33,7 +35,6 @@ export const AuthProvider: React.FC = ({children}) => {
     // Fonction pour récupérer les informations utilisateur (par exemple, après un login)
     const checkUser = async () => {
         const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-
         if (!isAuthenticated) {
             return;
         }
@@ -58,10 +59,11 @@ export const AuthProvider: React.FC = ({children}) => {
         try {
             setLoading(true);
             // Ici, vous devez appeler une API de connexion et obtenir le token ou la session
-            await privateApi('/auth/login', 'POST', {email, password});
-            localStorage.setItem("isAuthenticated", "true");
-
-            await checkUser(); // Une fois connecté, récupérer les données utilisateur
+            const valide = await privateApi('/auth/login', 'POST', {email, password});
+            if (valide) {
+                localStorage.setItem("isAuthenticated", "true");
+                await checkUser();
+            }
         } catch (err) {
             setError('Échec de la connexion.');
         } finally {

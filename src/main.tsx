@@ -10,7 +10,11 @@ import {AuthProvider} from "./context/AuthProvider.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <AuthProvider>
-        <BrowserRouter>
+        <BrowserRouter
+            future={{
+                v7_relativeSplatPath: true,
+                v7_startTransition: true
+            }}>
             <App/>
         </BrowserRouter>
     </AuthProvider>
