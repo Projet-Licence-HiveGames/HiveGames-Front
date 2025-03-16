@@ -25,6 +25,10 @@ export default tseslint.config(
                 'warn',
                 { allowConstantExport: true },
             ],
+            "react/jsx-sort-props": [
+                "error",
+                { "alphabetical": true }
+            ],
             semi: ['error', 'always'],
             'no-console': 'warn',
             '@typescript-eslint/no-explicit-any': 'warn',
