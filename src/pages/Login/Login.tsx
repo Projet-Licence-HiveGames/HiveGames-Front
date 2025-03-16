@@ -30,7 +30,7 @@ const Login: React.FC = () => {
         password: yup
             .string()
             .typeError("Veuillez indiquer un mot de passe")
-            .min(12, "Veuillez indiquer un mot de passe avec minimum 12 caractères")
+            .min(8, "Veuillez indiquer un mot de passe avec minimum 12 caractères")
             .required("Veuillez indiquer un mot de passe"),
     });
 
