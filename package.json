@@ -13,6 +13,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.1.6",
+    "@mui/joy": "^5.0.0-beta.51",
     "@mui/material": "^6.4.7",
     "@stripe/react-stripe-js": "^3.4.0",
     "@stripe/stripe-js": "^6.0.0",
@@ -24,6 +25,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.5.2",
     "react-material-symbols": "^4.4.0",
     "react-router-dom": "^6.27.0",
     "yup": "^1.6.1"

@@ -2,8 +2,8 @@
   display: flex;
   background-color: var(--bg-color-lighter);
   color: rgba(0, 0, 0, 0.87);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   min-height: 100vh;
 }
 

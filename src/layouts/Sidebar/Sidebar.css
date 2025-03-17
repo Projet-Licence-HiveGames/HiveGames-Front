@@ -14,7 +14,7 @@
 
 .sidebar-collapse {
   position: absolute;
-  top: 1rem;
+  top: calc(var(--header-height) / 2 - 1rem);
   right: -2rem;
   width: 2rem;
   height: 2rem;
