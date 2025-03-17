@@ -55,7 +55,7 @@
   --button-border-radius-lg: 10px;
   --button-border-radius-xl: 12px;
 
-  --header-height: 70px;
+  --header-height: 3rem;
 }
 
 * {
