@@ -1,0 +1,22 @@
+.price-box {
+    width: auto;
+}
+
+.price-box-old-price {
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+}
+
+.price-box-price h3 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.125rem;
+    height: fit-content;
+    color: var(--bg-color-green);
+}
+
+.price-box-old-price h3 {
+    color: var(--bg-color-lightest);
+    text-decoration: line-through white 2px;
+}

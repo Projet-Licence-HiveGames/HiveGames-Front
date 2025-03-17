@@ -49,7 +49,7 @@ const HGInputField: React.FC<InputProps> = ({
             )
         }}
         type={type}
-        value={value === 'tel' ? '+33' : value}
+        value={value === 'tel' ? `+33 ${value}` : value}
         onChange={onChange}
         onKeyDown={handleOnKeyDown}
         onInput={handleInput}

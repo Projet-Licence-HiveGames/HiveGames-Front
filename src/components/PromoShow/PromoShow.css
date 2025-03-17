@@ -1,0 +1,12 @@
+.promo-show-box {
+    background: var(--bg-color-green);
+    border-radius: 3px;
+    width: auto;
+    height: 100%;
+}
+
+.promo-show-box h3 {
+    font-weight: 700;
+    font-size: 19px;
+    color: #0E141B;
+}
