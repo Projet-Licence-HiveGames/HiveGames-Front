@@ -1,0 +1,43 @@
+.tag-bloc-tag {
+    display: flex;
+    align-items: center;
+    padding: 8px 13px;
+    gap: 10px;
+    width: fit-content;
+    height: 32px;
+    background: var(--bg-color-darker);
+    border-radius: 3px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.tag-bloc-tag-more {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    gap: 10px;
+    width: fit-content;
+    height: 32px;
+    background: var(--bg-color-darker);
+    border-radius: 3px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.tag-bloc {
+    display: flex;
+    gap: 10px;
+}
+.tag-bloc span {
+    width: 68px;
+    height: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    color:white;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}

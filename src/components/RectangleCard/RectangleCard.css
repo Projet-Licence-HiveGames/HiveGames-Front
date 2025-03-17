@@ -1,0 +1,36 @@
+.rectangle-card {
+    display: flex;
+    padding: 10px;
+    width: 917px;
+    gap: 20px;
+    height: 166px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    background: var(--bg-color-normal);
+    border-radius: 5px;
+}
+
+.rectangle-card-image {
+    border-radius: 3px;
+}
+
+.rectangle-card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.rectangle-card-content-title {
+    height: fit-content;
+}
+
+.rectangle-card-content-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rectangle-card-content-price {
+    height: fit-content;
+}
