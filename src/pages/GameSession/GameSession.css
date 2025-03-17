@@ -1,26 +1,29 @@
-.game-session {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--bg-color-dark);
+.game-session-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 90vw;
+  height: 90vh;
+  z-index: 100;
+  display: none;
 }
 
-.cookieClicker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.game-session-overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.cookieClicker-img {
-  transition: transform 0.3s ease;
-  cursor: pointer;
+.game-session-container--open {
+  display: block;
 }
 
-.cookieClicker-img--clicked {
-  transform: scale(1.1);
-}
-
-.pump-upgrade {
-  rotate: 90deg;
+.game-session-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;  
 }
