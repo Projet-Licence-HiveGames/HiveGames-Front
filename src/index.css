@@ -1,16 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
+
+  /* Font */
+
   font-family: "Nunito", serif;
+
+  /* Color Scheme */
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  /* Typography */
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Colors */
+
+  /* Dark Blue */
 
   --bg-color-darker: #1b232e;
   --bg-color-dark: #212a38;
@@ -19,7 +30,23 @@
   --bg-color-lighter: #323d4e;
   --bg-color-lightest: #454f5e;
 
+  /* Blue */
+
+  --bg-color-blue-darker: #0065D3;
+  --bg-color-blue-dark: #006FE8;
+  --bg-color-blue-normal: #007AFF;
+  --bg-color-blue-light: #1786FF;
+  --bg-color-blue-lighter: #2C91FF;
+
+  /* Green */
+
+  --bg-color-green: #A1CD44;
+
+  /* Gradient */
+
   --button-gradient-orange: linear-gradient(0deg, #f2b705, #f28a07);
+
+  /* Radius */
 
   --button-border-radius: 4px;
   --button-border-radius-md: 7px;
