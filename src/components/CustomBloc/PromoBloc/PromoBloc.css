@@ -1,0 +1,25 @@
+.promo-header {
+    display:flex;
+    position: relative;
+    gap: 20px;
+    align-items: center;
+
+    @media screen and (max-width: 1024px) {
+        flex-wrap: wrap;
+    }
+}
+
+.promo-expiry-date {
+    width: fit-content;
+    height: fit-content;
+}
+
+.promo-price {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    
+    @media screen and (max-width: 1024px) {
+        flex-wrap: wrap;
+    }
+}
