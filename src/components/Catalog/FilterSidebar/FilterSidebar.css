@@ -1,0 +1,20 @@
+.filter-sidebar-container {
+    position: sticky;
+    top: 2rem;
+    width: 15rem;
+    height: fit-content;
+    background-color: var(--bg-color-darker);
+    color: white;
+    padding: 1rem;
+    border-radius: .25rem;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.filter-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

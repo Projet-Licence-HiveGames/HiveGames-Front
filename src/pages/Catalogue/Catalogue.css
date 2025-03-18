@@ -1,14 +1,14 @@
 .catalog-container {
     display: flex;
-    gap: 20px;
-    padding: 18px;
+    gap: 2rem;
+    padding: 2rem;
 }
 
 
 .catalog-container-cards {
     display: flex;
     flex-wrap: wrap;
-    padding: 18px;
     gap: 20px;
-    flex-grow: 1;
+    width: 100%;
+    overflow: hidden;
 }

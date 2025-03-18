@@ -41,7 +41,7 @@ export const GameSession: FC<GameSessionProps> = ({ game, isOpen, isLoading = fa
         </div>
       ) : (
         <div className='game-session-overlay'>
-          {/* <iframe src='hivegames-cloudgaming.com/session/128a8b2e-b647-4d1e-8792-70e8154df585' title='Game title' width={'100%'} height={'100%'} /> */}
+          {/* <iframe src='https://hivegames-cloudgaming.com/session/128a8b2e-b647-4d1e-8792-70e8154df585' title='Game title' width={'100%'} height={'100%'} /> */}
           <iframe src='https://projet-licence-hivegames.github.io/Cookie-Clicker-Source-Code/' title='Cookie Clicker' width={'100%'} height={'100%'} />
           <MaterialSymbol icon='close' onClick={handleGameSessionClose} className='game-session-close'/>
         </div>
