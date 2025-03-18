@@ -10,7 +10,9 @@ const MainLayout: React.FC = () => {
       <Sidebar />
       <div className='right-panel'>
         <MainHeader />
-        <Outlet />
+        <div className='main-content'>
+          <Outlet />
+        </div>
       </div>
     </div>
   );
