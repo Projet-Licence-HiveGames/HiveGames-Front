@@ -1,7 +1,7 @@
 .rectangle-card {
     display: flex;
     padding: 10px;
-    width: 917px;
+    width: calc(100% - 240px);
     gap: 20px;
     height: 166px;
     flex: none;
@@ -13,7 +13,12 @@
 }
 
 .rectangle-card-image {
+    display: flex;
     border-radius: 3px;
+}
+
+.rectangle-card-image img {
+    width: 250px;
 }
 
 .rectangle-card-content {
@@ -26,11 +31,24 @@
     height: fit-content;
 }
 
+.rectangle-card-content-title {
+    color: white;
+}
+
 .rectangle-card-content-data {
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width: 1024px) {
+        flex-wrap: wrap;
+    }
 }
 
 .rectangle-card-content-price {
     height: fit-content;
+}
+
+.rectangle-card-content-progress-bar {
+    display: flex;
+    align-items: center;
 }

@@ -19,11 +19,13 @@ const PromoBloc: React.FC<PromoBlocProps> = ({expiryDate, discount, originalPric
                 <span className="promo-expiry-date">
                   Until <strong>{expiryDate}</strong> :
                 </span>
-                <PromoShow discount={discount}/>
-                <PriceBox
-                    oldPrice={originalPrice}
-                    price={discountedPrice}/>
-                <CartButton onClick={onAddToCart}/>
+                <div className="promo-price">
+                    <PromoShow discount={discount}/>
+                    <PriceBox
+                        oldPrice={originalPrice}
+                        price={discountedPrice}/>
+                    <CartButton onClick={onAddToCart}/>
+                </div>
             </div>
         </div>
     );

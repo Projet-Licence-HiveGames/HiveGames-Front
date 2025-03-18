@@ -3,7 +3,7 @@ import {MaterialSymbol} from 'react-material-symbols';
 import {BasketCart} from '../../assets/icones/BasketCart.tsx';
 import {NotificationBell} from '../../assets/icones/NotificationBell.tsx';
 import logoAccount from '../../assets/images/logoAccount.png';
-import DropdownMenu from '../DropDown/DropDown.tsx';
+import DropdownMenu from '../ui/DropDown/DropDown.tsx';
 import './GroupMenu.css';
 import {useAuth} from "../../context/AuthProvider.tsx";
 import {NavLink} from 'react-router-dom';

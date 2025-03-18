@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import * as yup from "yup";
-import HGInputField from "../../components/Input/HGInputField.tsx";
+import HGInputField from "../../components/ui/Input/HGInputField.tsx";
 
 interface FormData {
     email: string;

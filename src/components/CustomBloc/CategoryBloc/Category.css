@@ -1,4 +1,4 @@
-.tag-bloc-tag {
+.category-bloc-category {
     display: flex;
     align-items: center;
     padding: 8px 13px;
@@ -12,7 +12,7 @@
     flex-grow: 0;
 }
 
-.tag-bloc-tag-more {
+.category-bloc-category-more {
     display: flex;
     align-items: center;
     padding: 4px;
@@ -26,11 +26,11 @@
     flex-grow: 0;
 }
 
-.tag-bloc {
+.category-bloc {
     display: flex;
     gap: 10px;
 }
-.tag-bloc span {
+.category-bloc span {
     width: 68px;
     height: 16px;
     font-weight: 400;

@@ -1,31 +1,32 @@
 import React from 'react';
 import './RectangleCard.css';
-import TagBloc from "../TagBloc/TagBloc.tsx";
-import PromoBloc from "../PromoBloc/PromoBloc.tsx";
+import Category from "../CustomBloc/CategoryBloc/Category.tsx";
+import PromoBloc from "../CustomBloc/PromoBloc/PromoBloc.tsx";
 import ProgressBar from "../ui/progressBar/ProgressBar.tsx";
 import image from '@assets/images/image 49.png';
+import {Game} from "../../types/Game.ts";
 
 interface RectangleCardProps {
-    title: string;
+    game: Game;
 }
 
-const RectangleCard: React.FC<RectangleCardProps> = ({title}) => {
+const RectangleCard: React.FC<RectangleCardProps> = ({game}) => {
     // TODO: Modifier le useState
     const [data] = React.useState<{tag: string[]}>({
-        tag: ['New']
+        tag: ['New', 'Action', 'Adventure', 'Indie']
     });
 
     return (
         <div className={'rectangle-card'}>
             <div className={'rectangle-card-image'}>
-                <img src={image} alt={title}/>
+                <img src={image} alt={game.name}/>
             </div>
             <div className={'rectangle-card-content'}>
                 <div className={'rectangle-card-content-title'}>
-                    <h1>{title}</h1>
+                    <h1>{game.name}</h1>
                 </div>
                 <div className={'rectangle-card-content-tag'}>
-                    <TagBloc tag={data.tag}/>
+                    <Category category={data.tag}/>
                 </div>
                 <div className={'rectangle-card-content-data'}>
                     <div className={'rectangle-card-content-progress-bar'}>
