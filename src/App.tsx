@@ -20,6 +20,7 @@ import {Checkout} from "./pages/Checkout/Checkout.tsx";
 import {PaymentSuccess} from "./pages/PaymentSuccess/PaymentSuccess.tsx";
 import {Cart} from "./pages/Cart/Cart.tsx";
 import {PaymentFailed} from "./pages/PaymentFailed/PaymentFailed.tsx";
+import Register from "./pages/Register/Register.tsx";
 
 const App: React.FC = () => {
     return (
@@ -36,6 +37,7 @@ const App: React.FC = () => {
                 <Route path='About' element={<About/>}/>
                 <Route path='Contact' element={<Contact/>}/>
                 <Route path='Login' element={<Login/>}/>
+                <Route path='Register' element={<Register/>}/>
 
                 <Route path='Game' element={<Game/>}>
                     <Route path=':id' element={<Game/>}/>

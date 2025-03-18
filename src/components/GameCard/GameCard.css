@@ -1,4 +1,4 @@
-.rectangle-card {
+.game-card {
     display: flex;
     padding: 10px;
     width: calc(100% - 240px);
@@ -12,30 +12,30 @@
     border-radius: 5px;
 }
 
-.rectangle-card-image {
+.game-card-image {
     display: flex;
     border-radius: 3px;
 }
 
-.rectangle-card-image img {
+.game-card-image img {
     width: 250px;
 }
 
-.rectangle-card-content {
+.game-card-content {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.rectangle-card-content-title {
+.game-card-content-title {
     height: fit-content;
 }
 
-.rectangle-card-content-title {
+.game-card-content-title {
     color: white;
 }
 
-.rectangle-card-content-data {
+.game-card-content-data {
     display: flex;
     justify-content: space-between;
 
@@ -44,11 +44,11 @@
     }
 }
 
-.rectangle-card-content-price {
+.game-card-content-price {
     height: fit-content;
 }
 
-.rectangle-card-content-progress-bar {
+.game-card-content-progress-bar {
     display: flex;
     align-items: center;
 }
