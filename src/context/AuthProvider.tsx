@@ -6,6 +6,7 @@ interface AuthContextType {
     user: User | null;
     loading: boolean;
     error: string | null;
+    register: (name: string, email: string, password: string) => Promise<void>;
     login: (email: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
     checkUser: () => void;
@@ -16,6 +17,7 @@ export const AuthContext = createContext<AuthContextType>({
     user: null,
     loading: false,
     error: null,
+    register: async () => {},
     login: async () => {},
     logout: async () => {},
     checkUser: () => {},
@@ -46,6 +48,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             setUser(null); // Si une erreur survient, il n'y a pas d'utilisateur connecté
             setIsAuthenticated(false);
             setError('Utilisateur non trouvé ou non authentifié.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Fonction pour se créer un compte (par exemple, envoyer les informations de connexion)
+    const register = async (name: string, email: string, password: string) => {
+        try {
+            setLoading(true);
+            // Ici, vous devez appeler une API de connexion et obtenir le token ou la session
+            const valide = await privateApi('/auth/register', 'POST', {name, email, password});
+            if (valide) {
+                localStorage.setItem("isAuthenticated", "true");
+                await checkUser();
+            }
+        } catch (err) {
+            setError('Échec de la connexion.');
         } finally {
             setLoading(false);
         }
@@ -93,6 +112,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             user,
             loading,
             error,
+            register,
             login,
             logout,
             checkUser,
@@ -107,7 +127,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         </AuthContext.Provider>
     );
 };
-
 // Hook pour utiliser le AuthContext dans vos composants
 export const useAuth = (): AuthContextType => {
     const context = useContext(AuthContext);

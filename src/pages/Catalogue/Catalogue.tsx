@@ -1,6 +1,6 @@
 import React from 'react';
 import './Catalogue.css';
-import RectangleCard from "../../components/RectangleCatalogueCard/RectangleCard.tsx";
+import GameCard from "../../components/GameCard/GameCard.tsx";
 import {Game} from "../../types/Game.ts";
 
 export const Catalogue: React.FC = () => {
@@ -18,7 +18,7 @@ export const Catalogue: React.FC = () => {
         <div className="catalog-container">
             <div className="catalog-container-cards">
                 {gameList.map((game, index) => (
-                    <RectangleCard key={index} game={game} />
+                    <GameCard key={index} game={game} />
                 ))}
             </div>
         </div>

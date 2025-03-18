@@ -44,7 +44,6 @@ export const useFetch = () => {
     const wrapFetch = ({ headers, ...requestOptions }: RequestInit) => {
       return async (
         path: string,
-        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
         body?: any,
         { withAuth, ...options }: APIOptions = { withAuth: true },
       ) => {

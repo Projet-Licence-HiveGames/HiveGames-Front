@@ -24,7 +24,7 @@
   gap: 10px;
   position: relative;
   background-color: var(--bg-color-dark);
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   transition: background-color 0.3s;
 }
@@ -50,15 +50,15 @@
   color: white;
 }
 
-.group-menu-connexion-text .authenticated h4 {
+.group-menu-connexion-text.authenticated h4 {
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
 }
 
-.group-menu-connexion-text .authenticated p {
+.group-menu-connexion-text.authenticated p {
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   color: #ccc;
 }
 
