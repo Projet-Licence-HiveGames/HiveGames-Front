@@ -26,7 +26,7 @@ const GameCard: React.FC<RectangleCardProps> = ({game}) => {
             </div>
             <div className={'game-card-content'}>
                 <div className={'game-card-content-title'}>
-                    <h1>Fallout 4</h1>
+                    <h1>{game.name}</h1>
 
                 </div>
 
@@ -37,7 +37,7 @@ const GameCard: React.FC<RectangleCardProps> = ({game}) => {
                     <div className={'game-card-content-price'}>
                         <PromoBloc
                             discount={10}
-                            originalPrice={100}
+                            originalPrice={game.price || 0}
                             discountedPrice={90}
                         />
                     </div>

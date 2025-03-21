@@ -6,19 +6,27 @@ export interface Game {
     short_description?: string;
     description?: string;
     image?: string[];
-    current_price?: number;
+    price?: number;
     current_version?: string;
     categories?: GameCategory[];
-    languages?: string[];
+    languages?: GameLanguage[];
 }
 
 export interface Language {
     id: number;
-    name: string;
-    lang_code: string;
+    label: string;
+    code: string;
+}
+
+export interface GameLanguage extends Language {
     has_subtitle: boolean;
     has_voice: boolean;
     has_interface: boolean;
+}
+
+export interface GameFeature {
+    id: number;
+    label: string;
 }
 
 export interface GameSession {

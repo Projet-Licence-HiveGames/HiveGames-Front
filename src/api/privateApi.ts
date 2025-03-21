@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../context/AuthProvider";
 
@@ -32,96 +32,59 @@ export const privateApi = async <T>(
     return await response.json() as T;
 };
 
-export type APIOptions = { withAuth?: boolean } & RequestInit;
-export type RequestInitWithHeaders = RequestInit & {
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  headers?: { [key: string]: any };
-};
+
+export type APIOptions = RequestInit & { withAuth?: boolean };
 
 export const useFetch = () => {
-    const { logout } = useContext(AuthContext);
-  
-    const wrapFetch = ({ headers, ...requestOptions }: RequestInit) => {
-      return async (
-        path: string,
-        body?: any,
-        { withAuth, ...options }: APIOptions = { withAuth: true },
-      ) => {
-        const buildOptions: RequestInitWithHeaders = {
-          ...options,
-          ...requestOptions,
-        };
-        buildOptions.headers = { ...buildOptions.headers, ...headers };
-        if (body) {
-          if (body instanceof FormData) {
-            buildOptions.body = body;
-          } else {
-            buildOptions.body = JSON.stringify(body);
-            buildOptions.headers = {
-              ...buildOptions.headers,
-              ...{
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-              },
-              credentials: 'include'
-            };
-          }
-        }
-        const url = `${import.meta.env.HIVEGAMES_BACKEND_API}${path}`;
-  
-        if (withAuth ?? true) {
-          // const token =
-          //   access_token == null || tokenHasExpired(access_token)
-          //     ? await refresh()
-          //     : access_token;
-  
-          // if (token == null) {
-          //   return new Response(null, { status: 401 });
-          // }
-          // buildOptions.headers.Authorization = `Bearer ${token}`;
-  
-          return fetch(url, buildOptions).then((res) =>
-            handleResponse(res, async () => {
-              // if (buildOptions?.headers?.Authorization) {
-              //   buildOptions.headers.Authorization = `Bearer ${await refresh()}`;
-              // }
-              return fetch(url, buildOptions).then(handleResponse);
-            }),
-          );
-        }
-  
-        return fetch(url, buildOptions).then(handleResponse);
+  const { logout } = useContext(AuthContext);
+
+  const fetchData = async <T>(
+      path: string,
+      { withAuth = true, headers = {}, body, ...options }: APIOptions = {}
+  ): Promise<T> => {
+      const url = `${import.meta.env.HIVEGAMES_BACKEND_API}${path}`;
+
+      const requestHeaders: HeadersInit = {
+          'Content-Type': 'application/json',
+          ...headers,
       };
-    };
-  
-    const handleResponse = async (
-      response: Response,
-      retry?: () => Promise<Response>,
-    ) => {
-      if (!response.ok) {
-        if (response.status == 401) {
-          if (retry) {
-            return await retry();
-          }
-          logout();
-        } else if (response.status >= 500) {
-          toast.error(
-            'Service momentanément indisponible. Veuillez réessayer plus tard',
-          );
-        }
-        throw new Error(await response.text());
+
+      if (withAuth) {
+          // Ajouter l'auth si nécessaire
+          // requestHeaders.Authorization = `Bearer ${token}`;
       }
-      return response;
-    };
-  
-    return useMemo(
-      () => ({
-        get: wrapFetch({ method: 'GET' }),
-        post: wrapFetch({ method: 'POST' }),
-        put: wrapFetch({ method: 'PUT' }),
-        patch: wrapFetch({ method: 'PATCH' }),
-        delete: wrapFetch({ method: 'DELETE' }),
-      }),
-      [], // eslint-disable-line  react-hooks/exhaustive-deps
-    );
+
+      const fetchOptions: RequestInit = {
+          ...options,
+          headers: requestHeaders,
+          credentials: 'include',
+      };
+
+      if (body) {
+          fetchOptions.body = body instanceof FormData ? body : JSON.stringify(body);
+      }
+
+      const response = await fetch(url, fetchOptions);
+      return handleResponse<T>(response);
   };
+
+  const handleResponse = async <T>(response: Response): Promise<T> => {
+      if (!response.ok) {
+          if (response.status === 401) {
+              logout();
+          } else if (response.status >= 500) {
+              toast.error('Service momentanément indisponible. Veuillez réessayer plus tard');
+          }
+          throw new Error(await response.text());
+      }
+      return response.json();
+  };
+
+  return {
+      get: <T>(path: string, options?: APIOptions) => fetchData<T>(path, { method: 'GET', ...options }),
+      post: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'POST', body, ...options }),
+      put: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'PUT', body, ...options }),
+      patch: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'PATCH', body, ...options }),
+      delete: <T>(path: string, options?: APIOptions) => fetchData<T>(path, { method: 'DELETE', ...options }),
+  };
+};
