@@ -12,6 +12,10 @@
     flex-direction: column;
     overflow: hidden;
     gap: .5rem;
+    
+    @media screen and (max-width: 1024px) {
+        display: none;
+    }
 }
 
 .filter-sidebar-header {

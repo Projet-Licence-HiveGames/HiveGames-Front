@@ -4,7 +4,7 @@
     width: 100%;
     min-width: 240px;
     gap: 20px;
-    height: auto;
+    min-height: 150px;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -22,6 +22,7 @@
 
 .game-card-image {
     display: flex;
+    position: relative;
     margin: 0 auto;
     border-radius: 3px;
 }
@@ -50,9 +51,9 @@
 
 .game-card-content-data {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 30px;
+    gap: 10px;
 
     @media screen and (max-width: 1024px) {
         gap: 10px;
@@ -63,6 +64,7 @@
 
 .game-card-content-price {
     height: fit-content;
+    align-self: flex-end;
 
     @media screen and (max-width: 1024px) {
         width: 100%;
@@ -70,6 +72,14 @@
 }
 
 .game-card-content-progress-bar {
-    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 150px;
+    padding: 0 8px;
+    border-radius: 0 3px 0 0;
+    background: rgb(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
     align-items: center;
 }

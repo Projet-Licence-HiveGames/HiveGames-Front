@@ -13,7 +13,7 @@ const Category: React.FC<CategoryProps> = ({category=['test']}) => {
 
     return (
         <div className={'category-bloc'}>
-            {category.slice(0,showAll ? -1 : 4).map((category, index) => {
+            {category.slice(0,showAll ? -1 : 3).map((category, index) => {
                 return (
                     <div key={index} className={'category-bloc-category'}>
                         <span>{category}</span>

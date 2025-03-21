@@ -2,6 +2,10 @@
   margin-top: 10px;
 }
 
+.main-progress-bar p {
+  font-size: 14px;
+}
+
 .progress-bar-container {
     position: relative;
     width: 100px;

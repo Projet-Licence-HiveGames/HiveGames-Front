@@ -15,7 +15,7 @@ const useWindowSize = () => {
             setWindowSize({
                 isLaptop: width >= 1024 && width <= 1440,
                 isTablet: width >= 768 && width <= 1024,
-                isDesktop: width >= 1024,
+                isDesktop: width >= 1440,
                 isMobile: width < 768
             });
         };
