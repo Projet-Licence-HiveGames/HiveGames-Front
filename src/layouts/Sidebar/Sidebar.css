@@ -5,6 +5,7 @@
   background: var(--bg-color-normal);
   position: relative;
   transition: width 500ms;
+  flex-shrink: 0;
 }
 
 .sidebar-container--collapsed {
