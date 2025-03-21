@@ -5,6 +5,13 @@
   background: var(--bg-color-normal);
   position: relative;
   transition: width 500ms;
+  z-index: 2;
+
+  @media screen and (max-width: 1024px) {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  }
 }
 
 .sidebar-container--collapsed {

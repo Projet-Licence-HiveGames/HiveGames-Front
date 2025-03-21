@@ -51,8 +51,8 @@ const App: React.FC = () => {
                 <Route path='Cart'>
                     <Route index element={<Cart/>}/>
                     <Route path='Checkout' element={<Checkout/>}/>
-                    <Route path='Payment-success' element={<PaymentSuccess/>}/>
-                    <Route path='Payment-failed' element={<PaymentFailed/>}/>
+                    <Route path='Order' element={<PaymentSuccess/>}/>
+                    <Route path='Payment-success' element={<PaymentFailed/>}/>
                 </Route>
             </Route>
         </Routes>

@@ -9,14 +9,14 @@ interface PromoBlocProps {
     discount: number;
     originalPrice: number;
     discountedPrice: number;
-    onAddToCart: () => void;
+    onAddToCart?: () => void;
 }
 
 const PromoBloc: React.FC<PromoBlocProps> = ({expiryDate, discount, originalPrice, discountedPrice, onAddToCart}) => {
     return (
         <div className="promotion-card">
             <div className="promo-header">
-                <span className="promo-expiry-date">
+                <span className="promo-expiry-date" style={{color: "white"}}>
                   Until <strong>{expiryDate}</strong> :
                 </span>
                 <div className="promo-price">

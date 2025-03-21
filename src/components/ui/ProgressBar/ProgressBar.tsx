@@ -11,8 +11,8 @@ interface ProgressBarProps {
 const ProgressBar: FC<ProgressBarProps> = ({className, leftPercentValue = 0}) => {
     const leftChunkPercent = leftPercentValue < 0 ? 0 : leftPercentValue > 100 ? 100 : leftPercentValue
     return (
-        <div className={"main-progress-bar"} style={{color: "white"}}>
-            <div style={{display: "flex", justifyContent: "space-between", color: "white"}}>
+        <div className={"main-progress-bar"}>
+            <div style={{display: "flex", justifyContent: "space-between"}}>
                 <p>{leftChunkPercent}%</p>
                 <p>{leftChunkPercent}%</p>
             </div>

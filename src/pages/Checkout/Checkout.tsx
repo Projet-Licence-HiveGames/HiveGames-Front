@@ -18,14 +18,8 @@ interface CheckoutData {
 
 export const Checkout: React.FC = () => {
     const [options, setOptions] = useState<CheckoutData | null>(null);
-    const {isAuthenticated} = useAuth();
+    const {isAuthenticated, checkUser} = useAuth();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!isAuthenticated) {
-            navigate('/login');
-        }
-    }, [isAuthenticated, navigate]);
 
     const fetchClientSecret = useCallback(async () => {
         // Create a Checkout Session
@@ -42,7 +36,7 @@ export const Checkout: React.FC = () => {
         const fetchSecret = async () => {
             const clientSecret = await fetchClientSecret();
             if (clientSecret) {
-                setOptions({ client_secret: clientSecret });
+                setOptions({ clientSecret: clientSecret });
             }
         };
 

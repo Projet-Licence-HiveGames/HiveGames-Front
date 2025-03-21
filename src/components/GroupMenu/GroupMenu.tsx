@@ -11,7 +11,7 @@ import {NavLink} from 'react-router-dom';
 export const GroupMenu: React.FC = () => {
     const {isAuthenticated, user, logout} = useAuth();
     const [isDropdownOpen, setIsDropdownOpen] = useState(true);
-    const dropdownRef = useRef<HTMLDivElement>(null); // Référence pour le menu
+    const dropdownRef = useRef<HTMLDivElement>(null); // Référence pour le Menu
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -69,11 +69,13 @@ export const GroupMenu: React.FC = () => {
                 </div>
             )}
 
-            {isAuthenticated && (<div className='group-menu--disconnect'>
-                <MaterialSymbol icon='logout' size={32}>
-                    <button onClick={logout}/>
-                </MaterialSymbol>
-            </div>)}
+            {isAuthenticated && (
+                <div className='group-menu--disconnect'>
+                    <button onClick={logout}>
+                        <MaterialSymbol icon='logout' size={32}/>
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

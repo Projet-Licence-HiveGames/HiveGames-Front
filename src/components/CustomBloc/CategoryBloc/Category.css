@@ -28,6 +28,7 @@
 
 .category-bloc {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 .category-bloc span {

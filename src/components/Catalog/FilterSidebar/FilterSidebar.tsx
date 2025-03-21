@@ -58,8 +58,8 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ className, filters, setFilters 
         defaultValue={['dog', 'cat']}
         renderValue={(selected) => (
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem' }}>
-            {selected.map((selectedOption) => (
-              <Chip variant="soft" color="primary">
+            {selected.map((selectedOption, index) => (
+              <Chip key={index} variant="soft" color="primary">
                 {selectedOption.label}
               </Chip>
             ))}

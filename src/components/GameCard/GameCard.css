@@ -2,23 +2,36 @@
     display: flex;
     padding: 10px;
     width: 100%;
+    min-width: 240px;
     gap: 20px;
-    height: 166px;
+    height: auto;
     flex: none;
     order: 0;
     align-self: stretch;
     flex-grow: 0;
     background: var(--bg-color-normal);
     border-radius: 5px;
+
+    @media screen and (max-width: 1024px) {
+        flex-direction: column;
+        max-height: unset;
+        max-width: 300px;
+        margin: 0 auto;
+    }
 }
 
 .game-card-image {
     display: flex;
+    margin: 0 auto;
     border-radius: 3px;
 }
 
 .game-card-image img {
     width: 250px;
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+    }
 }
 
 .game-card-content {
@@ -37,15 +50,23 @@
 
 .game-card-content-data {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 30px;
 
     @media screen and (max-width: 1024px) {
-        flex-wrap: wrap;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 
 .game-card-content-price {
     height: fit-content;
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+    }
 }
 
 .game-card-content-progress-bar {

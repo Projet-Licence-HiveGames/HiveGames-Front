@@ -9,6 +9,7 @@
     height: 44px;
     background: #007AFF;
     border-radius: 3px;
+    border: none;
     flex: none;
     order: 2;
     flex-grow: 0;

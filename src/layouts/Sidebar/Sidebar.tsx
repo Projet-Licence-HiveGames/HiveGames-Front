@@ -10,7 +10,7 @@ import {
 } from '@mui/icons-material';
 import classNames from 'classnames';
 import React, { useState } from 'react';
-import MenuItem from '../../components/ui/menu/MenuItem';
+import MenuItem from '../../components/ui/Menu/MenuItem';
 import './Sidebar.css';
 
 const Sidebar: React.FC = () => {
