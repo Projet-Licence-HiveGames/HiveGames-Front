@@ -1,21 +1,24 @@
-import {Search} from '@mui/icons-material';
-import {FC} from 'react';
+import React from 'react';
+import {Search, MenuRounded} from '@mui/icons-material';
 import {GroupMenu} from '../../components/GroupMenu/GroupMenu.tsx';
 import './MainHeader.css';
 
-const MainHeader: FC = () => {
+interface MainHeaderProps {
+    onSidebarToggle: () => void;
+}
+
+const MainHeader: React.FC<MainHeaderProps> = ({onSidebarToggle}) => {
     return (
         <div className='main-header'>
+            <button className='sidebar-toggle' onClick={onSidebarToggle}>
+                <MenuRounded/>
+            </button>
             <div className='search-bar'>
                 <Search className='search-icon'/>
-                <input
-                    type='text'
-                    className='search-bar-input'
-                    placeholder='Search...'
-                />
+                <input type='text' className='search-bar-input' placeholder='Search...'/>
             </div>
             <div className='groupMenu-Styled'>
-                <GroupMenu />
+                <GroupMenu/>
             </div>
         </div>
     );

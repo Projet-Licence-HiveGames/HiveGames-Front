@@ -5,20 +5,16 @@ import PromoShow from "../PromoShow/PromoShow.tsx";
 import CartButton from "../CartButton/CartButton.tsx";
 
 interface PromoBlocProps {
-    expiryDate: string;
     discount: number;
     originalPrice: number;
     discountedPrice: number;
     onAddToCart?: () => void;
 }
 
-const PromoBloc: React.FC<PromoBlocProps> = ({expiryDate, discount, originalPrice, discountedPrice, onAddToCart}) => {
+const PromoBloc: React.FC<PromoBlocProps> = ({discount, originalPrice, discountedPrice, onAddToCart}) => {
     return (
         <div className="promotion-card">
             <div className="promo-header">
-                <span className="promo-expiry-date" style={{color: "white"}}>
-                  Until <strong>{expiryDate}</strong> :
-                </span>
                 <div className="promo-price">
                     <PromoShow discount={discount}/>
                     <PriceBox

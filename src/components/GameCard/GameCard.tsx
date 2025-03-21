@@ -20,21 +20,22 @@ const GameCard: React.FC<RectangleCardProps> = ({game}) => {
         <div className={'game-card'}>
             <div className={'game-card-image'}>
                 <img src={image} alt={game.name}/>
+                <div className={'game-card-content-progress-bar'}>
+                    <ProgressBar leftPercentValue={50}/>
+                </div>
             </div>
             <div className={'game-card-content'}>
                 <div className={'game-card-content-title'}>
                     <h1>Fallout 4</h1>
+
                 </div>
-                <div className={'game-card-content-tag'}>
-                    <Category category={data.tag}/>
-                </div>
+
                 <div className={'game-card-content-data'}>
-                    <div className={'game-card-content-progress-bar'}>
-                        <ProgressBar leftPercentValue={50} />
+                    <div className={'game-card-content-tag'}>
+                        <Category category={data.tag}/>
                     </div>
                     <div className={'game-card-content-price'}>
                         <PromoBloc
-                            expiryDate={'2022-12-31'}
                             discount={10}
                             originalPrice={100}
                             discountedPrice={90}

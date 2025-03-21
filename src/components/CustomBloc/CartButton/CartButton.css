@@ -3,9 +3,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 16px 66px;
+    padding: 16px;
     gap: 10px;
-    width: 122px;
     height: 44px;
     background: #007AFF;
     border-radius: 3px;
