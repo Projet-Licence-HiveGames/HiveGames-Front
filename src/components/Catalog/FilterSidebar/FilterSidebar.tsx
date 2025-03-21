@@ -1,13 +1,12 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import './FilterSidebar.css';
 import { MaterialSymbol } from 'react-material-symbols';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import { Box, Chip, Slider } from '@mui/joy';
+import { Slider } from '@mui/joy';
 import Dropdown, { DropdownOption } from './Dropdown/Dropdown';
-import { GameCategory } from '../../../types/Game';
+import { GameCategory, GameFeature, Language } from '../../../types/Game';
+import { useFetch } from '../../../api/privateApi';
 
 export interface GameFilter {
   search: string;
@@ -27,16 +26,38 @@ interface FilterSidebarProps {
 }
 
 const FilterSidebar: FC<FilterSidebarProps> = ({ className, filters, setFilters }) => {
-  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
-  const [categories, setCategories] = useState<GameCategory[]>([
-    {id: 1, label: "rpg"},
-    {id: 2, label: "sandbox"},
-    {id: 3, label: "fps"},
-    {id: 4, label: "pvp"},
-    {id: 5, label: "pve"},
-    {id: 6, label: "shooter"},
-    {id: 7, label: "rogue_like"},
-  ]);
+  const fetchAPI = useFetch();
+  // const [categories, setCategories] = useState<GameCategory[]>([
+  //   {id: 1, label: "rpg"},
+  //   {id: 2, label: "sandbox"},
+  //   {id: 3, label: "fps"},
+  //   {id: 4, label: "pvp"},
+  //   {id: 5, label: "pve"},
+  //   {id: 6, label: "shooter"},
+  //   {id: 7, label: "rogue_like"},
+  // ]);
+
+  const [categories, setCategories] = useState<GameCategory[]>([]);
+  const [features, setFeatures] = useState<GameFeature[]>([]);
+  const [languages, setLanguages] = useState<Language[]>([]);
+
+  useEffect(() => {
+    const fetchFilters = async () => {
+      try {
+        const categoriesRes = await fetchAPI.get<GameCategory[]>("/categories");
+        const featuresRes = await fetchAPI.get<GameFeature[]>("/features");
+        const languagesRes = await fetchAPI.get<Language[]>("/languages");
+
+        setCategories(categoriesRes);
+        setFeatures(featuresRes);
+        setLanguages(languagesRes);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des filtres", error);
+      }
+    };
+
+    fetchFilters();
+  }, []);
 
   const priceLabel = (() => {
     const min = filters.prices.min === 0 ? 'Gratuit' : `${filters.prices.min} €`
@@ -83,7 +104,9 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ className, filters, setFilters 
       />
       <span>{priceLabel}</span>
 
-      <Dropdown title='Categories' options={categories.map((category) => ({ label: category.label, value: category.id } as DropdownOption))} selected={selectedCategories} setSelected={(selected) => setSelectedCategories(selected as number[])}/>
+      <Dropdown title='Categories' options={categories.map((category) => ({ label: category.label, value: category.id } as DropdownOption))} selected={filters.categories} setSelected={(selected) => setFilters({ ...filters, categories: selected as number[] })}/>
+      <Dropdown title='Languages' options={languages.map((language) => ({ label: language.label, value: language.id } as DropdownOption))} selected={filters.languages} setSelected={(selected) => setFilters({ ...filters, languages: selected as number[] })}/>
+      <Dropdown title='Features' options={features.map((feature) => ({ label: feature.label, value: feature.id } as DropdownOption))} selected={filters.features} setSelected={(selected) => setFilters({ ...filters, features: selected as number[] })}/>
     </div>
   );
 };
