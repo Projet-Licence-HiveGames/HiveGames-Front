@@ -16,8 +16,6 @@ const Sidebar: React.FC<SidebarProps> = ({isOpen, setIsOpen}) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const {isMobile, isTablet} = useWindowSize();
 
-  console.log(isMobile);
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
