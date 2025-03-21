@@ -8,7 +8,7 @@ export interface Game {
     image?: string[];
     current_price?: number;
     current_version?: string;
-    categories?: string[];
+    categories?: GameCategory[];
     languages?: string[];
 }
 
@@ -27,4 +27,9 @@ export interface GameSession {
     user: User;
     start_date: Date;
     end_date?: Date;
+}
+
+export interface GameCategory {
+    id: number;
+    label: string;
 }
