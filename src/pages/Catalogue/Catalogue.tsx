@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Catalogue.css';
 import GameCard from "../../components/GameCard/GameCard.tsx";
 import FilterSidebar, { GameFilter } from '../../components/Catalog/FilterSidebar/FilterSidebar.tsx';
 import { Game } from '../../types/Game.ts';
+import FilterModal from "../../components/Modal/FilterModal.tsx";
+import useWindowSize from "../../utils/useWindowSize.ts";
 
 export const Catalogue: React.FC = () => {
+    const { isMobile, isDesktop, isTablet } = useWindowSize();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
   const [filters, setFilters] = React.useState<GameFilter>({
     search: '',
     categories: [],
@@ -32,7 +40,14 @@ export const Catalogue: React.FC = () => {
                 <GameCard key={index} game={game} />
             ))}
         </div>
-        <FilterSidebar filters={filters} setFilters={setFilters}/>
+        {(isDesktop || isTablet) && <FilterSidebar filters={filters} setFilters={setFilters}/>}
+        {isMobile && (
+            <button className="filter-button" onClick={toggleModal}>
+                Filtres
+            </button>
+        )}
+
+    {isModalOpen && <FilterModal onClose={toggleModal} />}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import './GameCard.css';
 import Category from "../CustomBloc/CategoryBloc/Category.tsx";
 import PromoBloc from "../CustomBloc/PromoBloc/PromoBloc.tsx";
-import ProgressBar from "../ui/progressBar/ProgressBar.tsx";
+import ProgressBar from "../ui/ProgressBar/ProgressBar.tsx";
 import image from '@assets/images/image 49.png';
 import {Game} from "../../types/Game.ts";
 
@@ -13,7 +13,7 @@ interface RectangleCardProps {
 const GameCard: React.FC<RectangleCardProps> = ({game}) => {
     // TODO: Modifier le useState
     const [data] = React.useState<{tag: string[]}>({
-        tag: ['New', 'Action', 'Adventure', 'Indie']
+        tag: ['New', 'Action', 'Adventure', 'Indie', 'RPG', 'Strategy', 'Simulation', 'Casual']
     });
 
     return (
@@ -23,7 +23,7 @@ const GameCard: React.FC<RectangleCardProps> = ({game}) => {
             </div>
             <div className={'game-card-content'}>
                 <div className={'game-card-content-title'}>
-                    <h1>{game.name}</h1>
+                    <h1>Fallout 4</h1>
                 </div>
                 <div className={'game-card-content-tag'}>
                     <Category category={data.tag}/>
@@ -38,7 +38,6 @@ const GameCard: React.FC<RectangleCardProps> = ({game}) => {
                             discount={10}
                             originalPrice={100}
                             discountedPrice={90}
-                            onAddToCart={() => console.log('Add to cart')}
                         />
                     </div>
                 </div>

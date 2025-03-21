@@ -1,14 +1,45 @@
 .catalog-container {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     padding: 2rem;
 }
 
 
 .catalog-container-cards {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    width: 100%;
-    overflow: hidden;
+    flex-grow: 1;
+}
+
+.catalog-container-filter-button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--bg-color-darker);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #0056b3;
 }
