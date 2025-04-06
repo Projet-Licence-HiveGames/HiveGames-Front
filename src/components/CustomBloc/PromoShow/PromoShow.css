@@ -1,13 +1,15 @@
 .promo-show-box {
     background: var(--bg-color-green);
     border-radius: 3px;
-    width: auto;
     height: 100%;
+    min-width: 50px;
     padding: 5px;
+    text-align: center;
+    width: auto;
 }
 
 .promo-show-box h3 {
-    font-weight: 700;
-    font-size: 19px;
     color: #0E141B;
+    font-size: 19px;
+    font-weight: 700;
 }

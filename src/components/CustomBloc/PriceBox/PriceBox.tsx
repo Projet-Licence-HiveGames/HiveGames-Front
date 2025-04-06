@@ -9,10 +9,10 @@ interface PriceBoxProps {
 const PriceBox: React.FC<PriceBoxProps> = ({price, oldPrice}) => {
     return (
         <div className={'price-box'}>
-            {oldPrice && <div className={'price-box-old-price'}>
+            {(oldPrice || oldPrice !== 0) && <div className={'price-box-old-price'}>
                 <h3>{`${oldPrice}€`}</h3>
             </div>}
-            <div className={'price-box-price'}>
+            <div className={`price-box-price ${oldPrice && oldPrice !== 0 ? 'green' : ''}`}>
                 <h3>{price}€</h3>
             </div>
         </div>

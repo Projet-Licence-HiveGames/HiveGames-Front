@@ -6,7 +6,8 @@ export interface Game {
     short_description?: string;
     description?: string;
     image?: string[];
-    price?: number;
+    price: number;
+    oldPrice?: number;
     current_version?: string;
     categories?: GameCategory[];
     languages?: GameLanguage[];
