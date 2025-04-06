@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import * as yup from "yup";
 import HGInputField from "../../components/ui/Input/HGInputField.tsx";
@@ -16,7 +16,10 @@ interface Errors {
 }
 
 const Register: React.FC = () => {
-    const { register, logout, isAuthenticated, user, loading, error } = useAuth();
+    // On extrait une seule fois les valeurs de useAuth
+    const auth = useAuth();
+    const { register, logout, isAuthenticated, user, loading, error } = auth;
+
     const [errors, setErrors] = useState<Errors>({});
     const [formData, setFormData] = useState<FormData>({
         name: "",
@@ -24,8 +27,8 @@ const Register: React.FC = () => {
         password: "",
     });
 
-    // Validation schema with Yup
-    const schema = yup.object().shape({
+    // Validation schema avec Yup (mémorisé pour éviter les recréations)
+    const schema = useMemo(() => yup.object().shape({
         name: yup
             .string()
             .required("Veuillez indiquer un nom"),
@@ -38,25 +41,27 @@ const Register: React.FC = () => {
             .typeError("Veuillez indiquer un mot de passe")
             .min(8, "Veuillez indiquer un mot de passe avec minimum 12 caractères")
             .required("Veuillez indiquer un mot de passe"),
-    });
+    }), []);
 
-    // Form validation function
+    // Fonction de validation du formulaire
     const validateForm = async (): Promise<boolean> => {
         try {
             await schema.validate(formData, { abortEarly: false });
-            setErrors({}); // Clear errors if validation is successful
+            setErrors({});
             return true;
-        } catch (validationError: yup.ValidationError) {
+        } catch (validationError: unknown) {
             const newErrors: Errors = {};
-            validationError.inner.forEach((err: any) => {
-                newErrors[err.path as keyof Errors] = err.message;
-            });
+            if (validationError instanceof yup.ValidationError) {
+                validationError.inner.forEach((err: any) => {
+                    newErrors[err.path as keyof Errors] = err.message;
+                });
+            }
             setErrors(newErrors);
             return false;
         }
     };
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const isValid = await validateForm();
         if (isValid) {
@@ -64,61 +69,66 @@ const Register: React.FC = () => {
         }
     };
 
+    // Si l'utilisateur est déjà authentifié, on affiche le message de bienvenue
+    if (isAuthenticated) {
+        return (
+            <div>
+                <h2>Bienvenue, {user?.name}</h2>
+                <button onClick={logout}>Se déconnecter</button>
+            </div>
+        );
+    }
+
+    // Formulaire d'inscription
     return (
         <div>
-            {!isAuthenticated ? (
-                <form onSubmit={handleLogin}>
-                    {/* Name Input */}
-                    <div>
-                        {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
-                        <HGInputField
-                            type="text"
-                            placeholder="name"
-                            value={formData.name}
-                            onChange={(e) =>
-                                setFormData({ ...formData, name: e.target.value })
-                            }
-                        />
-                    </div>
-
-                    {/* Email Input */}
-                    <div>
-                        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-                        <HGInputField
-                            type="email"
-                            placeholder="Email"
-                            value={formData.email}
-                            onChange={(e) =>
-                                setFormData({ ...formData, email: e.target.value })
-                            }
-                        />
-                    </div>
-
-                    {/* Password Input */}
-                    <div>
-                        {errors.password && (
-                            <p style={{ color: "red" }}>{errors.password}</p>
-                        )}
-                        <HGInputField
-                            type="password"
-                            placeholder="Password"
-                            value={formData.password}
-                            onChange={(e) =>
-                                setFormData({ ...formData, password: e.target.value })
-                            }
-                        />
-                    </div>
-
-                    <button type="submit">Register</button>
-                </form>
-            ) : (
+            <form onSubmit={handleSubmit}>
+                {/* Champ Nom */}
                 <div>
-                    <h2>Welcome, {user?.name}</h2>
-                    <button onClick={logout}>Logout</button>
+                    {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+                    <HGInputField
+                        type="text"
+                        placeholder="Nom"
+                        value={formData.name}
+                        onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                        }
+                    />
                 </div>
-            )}
 
-            {loading && <p>Loading...</p>}
+                {/* Champ Email */}
+                <div>
+                    {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+                    <HGInputField
+                        type="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                        }
+                    />
+                </div>
+
+                {/* Champ Mot de passe */}
+                <div>
+                    {errors.password && (
+                        <p style={{ color: "red" }}>{errors.password}</p>
+                    )}
+                    <HGInputField
+                        type="password"
+                        placeholder="Mot de passe"
+                        value={formData.password}
+                        onChange={(e) =>
+                            setFormData({ ...formData, password: e.target.value })
+                        }
+                    />
+                </div>
+
+                <button type="submit" disabled={loading}>
+                    {loading ? "Inscription en cours..." : "S'inscrire"}
+                </button>
+            </form>
+
             {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     );

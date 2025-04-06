@@ -64,7 +64,6 @@ const Login: React.FC = () => {
                 <form onSubmit={handleLogin}>
                     {/* Email Input */}
                     <div>
-                        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
                         <HGInputField
                             type="email"
                             placeholder="Email"
@@ -73,13 +72,11 @@ const Login: React.FC = () => {
                                 setFormData({ ...formData, email: e.target.value })
                             }
                         />
+                        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
                     </div>
 
                     {/* Password Input */}
                     <div>
-                        {errors.password && (
-                            <p style={{ color: "red" }}>{errors.password}</p>
-                        )}
                         <HGInputField
                             type="password"
                             placeholder="Password"
@@ -88,6 +85,9 @@ const Login: React.FC = () => {
                                 setFormData({ ...formData, password: e.target.value })
                             }
                         />
+                        {errors.password && (
+                            <p style={{ color: "red" }}>{errors.password}</p>
+                        )}
                     </div>
 
                     <button type="submit">Login</button>
