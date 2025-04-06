@@ -1,22 +1,22 @@
 .filter-sidebar-container {
-    position: sticky;
-    top: 2rem;
-    width: 15rem;
     background-color: var(--bg-color-darker);
-    color: white;
-    padding: 1rem;
     border-radius: .25rem;
-    flex-shrink: 0;
+    color: white;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     gap: .5rem;
-    overflow: auto;
     max-height: calc(100vh - var(--header-height) * 2);
+    overflow: auto;
+    padding: 1rem;
+    position: sticky;
     scrollbar-width: thin;
+    top: 2rem;
+    width: 15rem;
 }
 
 .filter-sidebar-header {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: space-between;
 }

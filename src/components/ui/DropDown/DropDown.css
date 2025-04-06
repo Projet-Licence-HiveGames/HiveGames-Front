@@ -1,33 +1,33 @@
 .dropdown-menu {
-  position: absolute;
-  top: calc(var(--header-height) - 2px);
-  left: 0;
-  right: 0;
-  min-width: 154px;
   background-color: var(--bg-color-dark);
   border-radius: 0 0 10px 10px;
-  padding: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  left: 0;
+  min-width: 154px;
   overflow: hidden;
+  padding: 5px;
+  position: absolute;
+  right: 0;
+  top: calc(var(--header-height) - 2px);
   z-index: 1000;
 }
 
 .dropdown-item {
-  text-decoration: none;
-  padding: 15px 20px;
-  color: #fff;
-  border-radius: 5px;
-  margin-bottom: 2px;
-  background-color: var(--bg-color-light);
-  text-align: left;
-  display: flex;
   align-items: center;
-  justify-content: flex-start;
-  font-size: 16px;
+  background-color: var(--bg-color-light);
   border-bottom: 1px solid #2c2c2c;
+  border-radius: 5px;
+  color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s;
+  display: flex;
+  font-size: 16px;
   gap: 0.5rem;
+  justify-content: flex-start;
+  margin-bottom: 2px;
+  padding: 15px 20px;
+  text-align: left;
+  text-decoration: none;
+  transition: background-color 0.3s;
 }
 
 .dropdown-item .material-symbols {
