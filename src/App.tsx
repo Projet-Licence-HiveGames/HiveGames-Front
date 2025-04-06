@@ -21,19 +21,20 @@ import {PaymentSuccess} from "./pages/PaymentSuccess/PaymentSuccess.tsx";
 import {Cart} from "./pages/Cart/Cart.tsx";
 import {PaymentFailed} from "./pages/PaymentFailed/PaymentFailed.tsx";
 import Register from "./pages/Register/Register.tsx";
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App: React.FC = () => {
     return (
         <Routes>
             <Route path='/' element={<MainLayout/>}>
                 <Route index element={<Home/>}/>
-                <Route path='Calendar' element={<Calendar/>}/>
+                <Route path='Calendar' element={<ProtectedRoute><Calendar/></ProtectedRoute>}/>
                 <Route path='Catalogue' element={<Catalogue/>}/>
-                <Route path='Friend' element={<Friend/>}/>
-                <Route path='Library' element={<Library/>}/>
-                <Route path='Setting' element={<Setting/>}/>
-                <Route path='Subscription' element={<Subscription/>}/>
-                <Route path='Wishlist' element={<Wishlist/>}/>
+                <Route path='Friend' element={<ProtectedRoute><Friend/></ProtectedRoute>}/>
+                <Route path='Library' element={<ProtectedRoute><Library/></ProtectedRoute>}/>
+                <Route path='Setting' element={<ProtectedRoute><Setting/></ProtectedRoute>}/>
+                <Route path='Subscription' element={<ProtectedRoute><Subscription/></ProtectedRoute>}/>
+                <Route path='Wishlist' element={<ProtectedRoute><Wishlist/></ProtectedRoute>}/>
                 <Route path='About' element={<About/>}/>
                 <Route path='Contact' element={<Contact/>}/>
                 <Route path='Login' element={<Login/>}/>
@@ -44,15 +45,15 @@ const App: React.FC = () => {
                 </Route>
 
                 <Route path='Profil'>
-                    <Route index element={<Profil/>}/>
+                    <Route index element={<ProtectedRoute><Profil/></ProtectedRoute>}/>
                     <Route path=':id' element={<Home/>}/>
                 </Route>
 
                 <Route path='Cart'>
-                    <Route index element={<Cart/>}/>
-                    <Route path='Checkout' element={<Checkout/>}/>
-                    <Route path='Order' element={<PaymentSuccess/>}/>
-                    <Route path='Payment-success' element={<PaymentFailed/>}/>
+                    <Route index element={<ProtectedRoute><Cart/></ProtectedRoute>}/>
+                    <Route path='Checkout' element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
+                    <Route path='Order' element={<ProtectedRoute><PaymentSuccess/></ProtectedRoute>}/>
+                    <Route path='Payment-success' element={<ProtectedRoute><PaymentFailed/></ProtectedRoute>}/>
                 </Route>
             </Route>
         </Routes>
