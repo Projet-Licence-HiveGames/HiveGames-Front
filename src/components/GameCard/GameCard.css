@@ -1,30 +1,31 @@
 .game-card {
-    display: flex;
-    padding: 10px;
-    width: 100%;
-    min-width: 240px;
-    gap: 20px;
-    min-height: 150px;
-    flex: none;
-    order: 0;
     align-self: stretch;
-    flex-grow: 0;
     background: var(--bg-color-normal);
     border-radius: 5px;
+    display: flex;
+    flex: none;
+    flex-grow: 0;
+    gap: 20px;
+    height: fit-content;
+    min-height: 150px;
+    min-width: 240px;
+    order: 0;
+    padding: 10px;
+    width: 100%;
 
     @media screen and (max-width: 1024px) {
         flex-direction: column;
+        margin: 0 auto;
         max-height: unset;
         max-width: 300px;
-        margin: 0 auto;
     }
 }
 
 .game-card-image {
-    display: flex;
-    position: relative;
-    margin: 0 auto;
     border-radius: 3px;
+    display: flex;
+    margin: 0 auto;
+    position: relative;
 }
 
 .game-card-image img {
@@ -42,29 +43,26 @@
 }
 
 .game-card-content-title {
-    height: fit-content;
-}
-
-.game-card-content-title {
     color: white;
+    height: fit-content;
 }
 
 .game-card-content-data {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 10px;
+    justify-content: space-between;
 
     @media screen and (max-width: 1024px) {
-        gap: 10px;
-        flex-direction: column;
         align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
 .game-card-content-price {
-    height: fit-content;
     align-self: flex-end;
+    height: fit-content;
 
     @media screen and (max-width: 1024px) {
         width: 100%;
@@ -72,14 +70,14 @@
 }
 
 .game-card-content-progress-bar {
-    position: absolute;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    background: rgb(0, 0, 0, 0.5);
+    border-radius: 0 3px 0 0;
     bottom: 0;
     left: 0;
+    padding: 0 8px;
+    position: absolute;
     right: 0;
     width: 150px;
-    padding: 0 8px;
-    border-radius: 0 3px 0 0;
-    background: rgb(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
-    align-items: center;
 }

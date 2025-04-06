@@ -16,7 +16,7 @@ const PromoBloc: React.FC<PromoBlocProps> = ({discount, originalPrice, discounte
         <div className="promotion-card">
             <div className="promo-header">
                 <div className="promo-price">
-                    <PromoShow discount={discount}/>
+                    {(originalPrice || originalPrice !== 0) && <PromoShow discount={discount}/>}
                     <PriceBox
                         oldPrice={originalPrice}
                         price={discountedPrice}/>

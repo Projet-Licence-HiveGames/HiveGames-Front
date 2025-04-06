@@ -3,20 +3,20 @@
 }
 
 .price-box-old-price {
+    height: fit-content;
     position: relative;
-    height: fit-content;
     width: fit-content;
-}
-
-.price-box-price h3 {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1.125rem;
-    height: fit-content;
-    color: var(--bg-color-green);
 }
 
 .price-box-old-price h3 {
     color: var(--bg-color-lightest);
     text-decoration: line-through white 2px;
+}
+
+.price-box-price.green h3 {
+    color: var(--bg-color-green);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    height: fit-content;
 }

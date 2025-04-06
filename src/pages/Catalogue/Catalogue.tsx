@@ -7,11 +7,10 @@ import FilterSidebar, {
 import { Game } from "../../types/Game.ts";
 import FilterModal from "../../components/Modal/FilterModal.tsx";
 import useWindowSize from "../../utils/useWindowSize.ts";
-import { useFetch } from "../../api/privateApi.ts";
+import { privateApi } from "../../api/privateApi.ts";
 
 export const Catalogue: React.FC = () => {
-  const fetchAPI = useFetch();
-  const { isMobile, isDesktop, isTablet } = useWindowSize();
+  const { isMobile, isLaptop, isDesktop, isTablet } = useWindowSize();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -65,7 +64,7 @@ export const Catalogue: React.FC = () => {
           <GameCard key={index} game={game} />
         ))}
       </div>
-      {(isDesktop || isTablet) && (
+      {(isDesktop || isLaptop || isTablet) && (
         <FilterSidebar filters={filters} setFilters={setFilters} />
       )}
       {isMobile && (
