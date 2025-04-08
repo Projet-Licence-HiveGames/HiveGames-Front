@@ -2,18 +2,19 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    height: 32px;
+    overflow: hidden;
 }
 
 .category-bloc span {
     color: white;
     flex: none;
     flex-grow: 0;
-    font-size: 12px;
+    font-size: .75rem;
     font-weight: 400;
     height: 16px;
     order: 0;
     text-align: center;
-    width: 68px;
 }
 
 .category-bloc-category {

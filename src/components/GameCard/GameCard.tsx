@@ -15,6 +15,7 @@ const GameCard: React.FC<RectangleCardProps> = ({ game }) => {
     const [data] = React.useState<{ tag: string[] }>({
         tag: ['New', 'Action', 'Adventure', 'Indie', 'RPG', 'Strategy', 'Simulation', 'Casual']
     });
+    console.log(game);
 
     const calculateDiscount = (originalPrice: number, discountedPrice: number) => {
         return Math.round(((originalPrice - discountedPrice) / originalPrice) * 100);
@@ -30,13 +31,13 @@ const GameCard: React.FC<RectangleCardProps> = ({ game }) => {
             </div>
             <div className={'game-card-content'}>
                 <div className={'game-card-content-title'}>
-                    <h1>{game.name}</h1>
+                    <a href={`/game/${game.id}`}><h3>{game.name}</h3></a>
 
                 </div>
 
                 <div className={'game-card-content-data'}>
                     <div className={'game-card-content-tag'}>
-                        <Category category={data.tag} />
+                        <Category category={game.categories?.map(category => category.label) || []} />
                     </div>
                     <div className={'game-card-content-price'}>
                         <PromoBloc
