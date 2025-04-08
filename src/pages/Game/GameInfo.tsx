@@ -3,11 +3,8 @@ import { privateApi } from '../../api/privateApi.ts';
 import { Game } from "../../types/Game.ts";
 import { useParams } from 'react-router-dom';
 
-interface GameInfoProps {
-  id: string;
-}
 
-export const GameInfo: React.FC<GameInfoProps> = () => {
+export const GameInfo: React.FC = () => {
   const { id } = useParams();
   const [gameData, setGameData] = useState<Game | null>(null);
   
@@ -19,7 +16,7 @@ export const GameInfo: React.FC<GameInfoProps> = () => {
 
     fetchGame();
   }, [id]);
-  console.log
+  console.log(gameData);
   
   return (
   <div>

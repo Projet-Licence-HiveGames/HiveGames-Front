@@ -43,6 +43,7 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
         setGame({
           id: 1,
           name: 'Cookie Clicker',
+          price: 0,
         });
       }
     });

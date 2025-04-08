@@ -1,12 +1,11 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { loadStripe } from '@stripe/stripe-js';
 import {
     EmbeddedCheckoutProvider,
     EmbeddedCheckout
 } from '@stripe/react-stripe-js';
-import {privateApi} from "../../api/privateApi.ts";
-import {useAuth} from "../../context/AuthProvider.tsx";
-import {useNavigate} from "react-router-dom";
+import { privateApi } from "../../api/privateApi.ts";
+import { useAuth } from "../../context/AuthProvider.tsx";
 import './Checkout.css';
 
 const stripePromise = loadStripe(import.meta.env.HIVEGAMES_STRIPE_PUBLISHABLE_KEY);
@@ -18,15 +17,14 @@ interface CheckoutData {
 
 export const Checkout: React.FC = () => {
     const [options, setOptions] = useState<CheckoutData | null>(null);
-    const {isAuthenticated, checkUser} = useAuth();
-    const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
 
     const fetchClientSecret = useCallback(async () => {
         // Create a Checkout Session
         const data: CheckoutData = await privateApi("/stripe/payment", 'POST', {
             products: [
-                {name: 'Souris', amount: 120, currency: 'eur'},
-                {name: 'Clavier', amount: 200, currency: 'eur'},
+                { name: 'Souris', amount: 120, currency: 'eur' },
+                { name: 'Clavier', amount: 200, currency: 'eur' },
             ],
         })
         return data.client_secret;
@@ -36,7 +34,7 @@ export const Checkout: React.FC = () => {
         const fetchSecret = async () => {
             const clientSecret = await fetchClientSecret();
             if (clientSecret) {
-                setOptions({ clientSecret: clientSecret });
+                setOptions({ client_secret: clientSecret });
             }
         };
 
@@ -55,7 +53,7 @@ export const Checkout: React.FC = () => {
                 stripe={stripePromise}
                 options={options}
             >
-                <EmbeddedCheckout/>
+                <EmbeddedCheckout />
             </EmbeddedCheckoutProvider>
         </div>
     );
