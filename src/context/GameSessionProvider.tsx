@@ -4,7 +4,6 @@ import { GameSession } from '../pages/GameSession/GameSession';
 import { AuthContext } from './AuthProvider';
 import { Game } from '../types/Game';
 import { useFetch } from '../api/privateApi';
-import toast from 'react-hot-toast';
 
 interface GameSessionContextProps {
   isOpen: boolean;
