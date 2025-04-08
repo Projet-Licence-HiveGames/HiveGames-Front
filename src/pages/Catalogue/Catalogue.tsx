@@ -7,10 +7,11 @@ import FilterSidebar, {
 import { Game } from "../../types/Game.ts";
 import FilterModal from "../../components/Modal/FilterModal.tsx";
 import useWindowSize from "../../utils/useWindowSize.ts";
-import { privateApi } from "../../api/privateApi.ts";
+import { useFetch } from "../../api/privateApi.ts";
 import GameCardSkeleton from "../../components/GameCard/GameCardSkeleton.tsx";
 
 export const Catalogue: React.FC = () => {
+  const fetchAPI = useFetch();
   const { isMobile, isLaptop, isDesktop, isTablet } = useWindowSize();
   const [isModalOpen, setIsModalOpen] = useState(false);
 

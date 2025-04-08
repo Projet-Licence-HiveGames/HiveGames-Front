@@ -1,7 +1,6 @@
-import { useState, useContext, useCallback } from "react";
+import { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../context/AuthProvider";
-import { useNavigate } from "react-router-dom";
 
 export const privateApi = async <T>(
     endpoint: string,
@@ -33,23 +32,11 @@ export const privateApi = async <T>(
     return await response.json() as T;
 };
 
+
 export type APIOptions = RequestInit & { withAuth?: boolean };
 
 export const useFetch = () => {
-    const { logout } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const [isLoggingOut, setIsLoggingOut] = useState(false);
-
-    const handleLogout = useCallback(async () => {
-        if (isLoggingOut) return;
-        setIsLoggingOut(true);
-        try {
-            await logout();
-            navigate('/login');
-        } finally {
-            setIsLoggingOut(false);
-        }
-    }, [logout, navigate, isLoggingOut]);
+  const { logout } = useContext(AuthContext);
 
   const fetchData = async <T>(
       path: string,
@@ -63,26 +50,19 @@ export const useFetch = () => {
           ...headers,
       };
 
-        const fetchOptions: RequestInit = {
-            ...options,
-            headers: requestHeaders,
-            credentials: 'include',
-        };
+      const fetchOptions: RequestInit = {
+          ...options,
+          headers: requestHeaders,
+          credentials: 'include',
+      };
 
-        if (body) {
-            fetchOptions.body = body instanceof FormData ? body : JSON.stringify(body);
-        }
+      if (body) {
+          fetchOptions.body = body instanceof FormData ? body : JSON.stringify(body);
+      }
 
-        try {
-            const response = await fetch(url, fetchOptions);
-            return await handleResponse<T>(response);
-        } catch (error) {
-            if (error instanceof Error) {
-                toast.error(error.message);
-            }
-            throw error;
-        }
-    };
+      const response = await fetch(url, fetchOptions);
+      return handleResponse<T>(response);
+  };
 
   const handleResponse = async <T>(response: Response): Promise<T> => {
       if (!response.ok) {
@@ -96,11 +76,11 @@ export const useFetch = () => {
       return response.json();
   };
 
-    return {
-        get: <T>(path: string, options?: APIOptions) => fetchData<T>(path, { method: 'GET', ...options }),
-        post: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'POST', body, ...options }),
-        put: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'PUT', body, ...options }),
-        patch: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'PATCH', body, ...options }),
-        delete: <T>(path: string, options?: APIOptions) => fetchData<T>(path, { method: 'DELETE', ...options }),
-    };
+  return {
+      get: <T>(path: string, options?: APIOptions) => fetchData<T>(path, { method: 'GET', ...options }),
+      post: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'POST', body, ...options }),
+      put: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'PUT', body, ...options }),
+      patch: <T>(path: string, body?: any, options?: APIOptions) => fetchData<T>(path, { method: 'PATCH', body, ...options }),
+      delete: <T>(path: string, options?: APIOptions) => fetchData<T>(path, { method: 'DELETE', ...options }),
+  };
 };
