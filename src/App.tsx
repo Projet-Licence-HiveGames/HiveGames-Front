@@ -7,7 +7,7 @@ import {Calendar} from './pages/Calendar/Calendar.tsx';
 import {Catalogue} from './pages/Catalogue/Catalogue.tsx';
 import Contact from './pages/Contact/Contact.tsx';
 import {Friend} from './pages/Friend/Friend.tsx';
-import {Game} from './pages/Game/Game.tsx';
+import {GameInfo} from './pages/Game/GameInfo.tsx';
 import Home from './pages/Home/Home';
 import {Library} from './pages/Library/Library.tsx';
 import {Profil} from './pages/Profil/Profil.tsx';
@@ -40,8 +40,8 @@ const App: React.FC = () => {
                 <Route path='Login' element={<Login/>}/>
                 <Route path='Register' element={<Register/>}/>
 
-                <Route path='Game' element={<Game/>}>
-                    <Route path=':id' element={<Game/>}/>
+                <Route path='Game' element={<GameInfo/>}>
+                    <Route path=':id' element={<GameInfo/>}/>
                 </Route>
 
                 <Route path='Profil'>
