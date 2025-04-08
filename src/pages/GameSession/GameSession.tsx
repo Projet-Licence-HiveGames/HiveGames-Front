@@ -18,7 +18,9 @@ export const GameSession: FC<GameSessionProps> = ({ game, isOpen, isLoading = fa
   const { user } = useContext(AuthContext);
   const isOpenable = game && isOpen;
   useEffect(() => {
-    setupConnection();
+    if (user && game) {
+      setupConnection();
+    }
   }, [game, user]);
 
   const setupConnection = () => {
