@@ -11,12 +11,6 @@ interface RectangleCardProps {
 }
 
 const GameCard: React.FC<RectangleCardProps> = ({ game }) => {
-    // TODO: Modifier le useState
-    const [data] = React.useState<{ tag: string[] }>({
-        tag: ['New', 'Action', 'Adventure', 'Indie', 'RPG', 'Strategy', 'Simulation', 'Casual']
-    });
-    console.log(game);
-
     const calculateDiscount = (originalPrice: number, discountedPrice: number) => {
         return Math.round(((originalPrice - discountedPrice) / originalPrice) * 100);
     }

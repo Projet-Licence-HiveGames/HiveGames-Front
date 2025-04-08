@@ -40,11 +40,13 @@ const Login: React.FC = () => {
             await schema.validate(formData, { abortEarly: false });
             setErrors({}); // Clear errors if validation is successful
             return true;
-        } catch (validationError: yup.ValidationError) {
+        } catch (validationError: unknown) {
             const newErrors: Errors = {};
-            validationError.inner.forEach((err: any) => {
-                newErrors[err.path as keyof Errors] = err.message;
-            });
+            if (validationError instanceof yup.ValidationError) {
+                validationError.inner.forEach((err: any) => {
+                    newErrors[err.path as keyof Errors] = err.message;
+                });
+            }
             setErrors(newErrors);
             return false;
         }

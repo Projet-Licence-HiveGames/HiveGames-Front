@@ -1,6 +1,6 @@
 import './FilterModal.css';
 
-const FilterModal = ({ onClose }) => {
+const FilterModal = ({ onClose }: { onClose: () => void }) => {
     return (
         <div className="filter-modal">
             <div className="modal-content">
