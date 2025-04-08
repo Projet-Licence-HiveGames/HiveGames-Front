@@ -81,3 +81,20 @@
     right: 0;
     width: 150px;
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton-image,
+.skeleton-text {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, var(--bg-color-light) 4%, var(--bg-color-normal) 25%, var(--bg-color-light) 36%);
+  background-size: 1000px 100%;
+  border-radius: 4px;
+}
