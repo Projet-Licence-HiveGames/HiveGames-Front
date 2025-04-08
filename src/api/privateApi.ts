@@ -40,19 +40,15 @@ export const useFetch = () => {
 
   const fetchData = async <T>(
       path: string,
-      { withAuth = true, headers = {}, body, ...options }: APIOptions = {}
+      { headers = {}, body, ...options }: APIOptions = {}
   ): Promise<T> => {
       const url = `${import.meta.env.HIVEGAMES_BACKEND_API}${path}`;
 
       const requestHeaders: HeadersInit = {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
           ...headers,
       };
-
-      if (withAuth) {
-          // Ajouter l'auth si nécessaire
-          // requestHeaders.Authorization = `Bearer ${token}`;
-      }
 
       const fetchOptions: RequestInit = {
           ...options,
@@ -70,12 +66,12 @@ export const useFetch = () => {
 
   const handleResponse = async <T>(response: Response): Promise<T> => {
       if (!response.ok) {
-          if (response.status === 401) {
-              logout();
-          } else if (response.status >= 500) {
-              toast.error('Service momentanément indisponible. Veuillez réessayer plus tard');
-          }
-          throw new Error(await response.text());
+        if (response.status === 401) {
+            logout();
+        } else if (response.status >= 500) {
+            toast.error('Service momentanément indisponible. Veuillez réessayer plus tard');
+        }
+        throw response;
       }
       return response.json();
   };

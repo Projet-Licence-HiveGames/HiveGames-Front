@@ -41,21 +41,17 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ className, filters, setFilters 
   const [features, setFeatures] = useState<GameFeature[]>([]);
   const [languages, setLanguages] = useState<Language[]>([]);
 
+  const fetchFilters = async () => {
+    try {
+      await fetchAPI.get<GameCategory[]>("/categories").then(setCategories);
+      await fetchAPI.get<GameFeature[]>("/features").then(setFeatures);
+      await fetchAPI.get<Language[]>("/languages").then(setLanguages);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des filtres", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchFilters = async () => {
-      try {
-        const categoriesRes = await fetchAPI.get<GameCategory[]>("/categories");
-        const featuresRes = await fetchAPI.get<GameFeature[]>("/features");
-        const languagesRes = await fetchAPI.get<Language[]>("/languages");
-
-        setCategories(categoriesRes);
-        setFeatures(featuresRes);
-        setLanguages(languagesRes);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des filtres", error);
-      }
-    };
-
     fetchFilters();
   }, []);
 

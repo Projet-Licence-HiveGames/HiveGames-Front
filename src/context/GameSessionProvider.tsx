@@ -3,6 +3,8 @@ import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 import { GameSession } from '../pages/GameSession/GameSession';
 import { AuthContext } from './AuthProvider';
 import { Game } from '../types/Game';
+import { useFetch } from '../api/privateApi';
+import toast from 'react-hot-toast';
 
 interface GameSessionContextProps {
   isOpen: boolean;
@@ -25,19 +27,27 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [game, setGame] = useState<Game | null>(null);
+  const fetchAPI = useFetch();
 
   const { isAuthenticated } = useContext(AuthContext);
 
-  const startGameSession = (gameId: number) => {
+  const startGameSession = async (gameId: number) => {
     setIsLoading(true);
     setIsOpen(true);
     // get game data from API with gameId
-    const gameFromApi: Game = {
-      id: 1,
-      name: 'Cookie Clicker',
-    };
+    await fetchAPI.get<Game>(`/games/${gameId}`).then((data) => {
+      if (data) {
+        setGame(data);
+      }
+    }).catch((response) => {
+      if (response?.status === 404) {
+        setGame({
+          id: 1,
+          name: 'Cookie Clicker',
+        });
+      }
+    });
     // get uuid pour gameSession
-    setGame(gameFromApi);
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
