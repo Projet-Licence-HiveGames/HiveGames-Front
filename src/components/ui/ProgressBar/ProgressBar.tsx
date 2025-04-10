@@ -20,7 +20,6 @@ const ProgressBar: FC<ProgressBarProps> = ({className, leftPercentValue = 0}) =>
                 <span className="progress-bar-chunk progress-bar-chunk-left"/>
                 <span className="progress-bar-chunk progress-bar-chunk-right"/>
             </div>
-            <p>207K User reviews</p>
         </div>
     );
 };

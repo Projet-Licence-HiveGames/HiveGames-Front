@@ -9,21 +9,23 @@ interface CategoryProps {
 const Category: React.FC<CategoryProps> = ({category=['test']}) => {
     const [showAll, setShowAll] = React.useState(false);
 
-
+    const capitalizeFirstLetter = (string: string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     return (
         <div className={'category-bloc'}>
-            {category.slice(0,showAll ? -1 : 3).map((category, index) => {
+            {category.slice(0, showAll ? category.length : 3).map((category, index) => {
                 return (
                     <div key={index} className={'category-bloc-category'}>
-                        <span>{category}</span>
+                        <span>{capitalizeFirstLetter(category)}</span>
                     </div>
                 )
             })}
-            {!showAll && <div
+            {!showAll && category.length > 3 && <div
                 className={'category-bloc-category-more'}
                 onClick={() => setShowAll(true)}>
-                <MoreHorizRoundedIcon/>
+                <MoreHorizRoundedIcon sx={{ color: 'white' }} />
             </div>}
         </div>
     );
