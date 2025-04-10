@@ -7,6 +7,7 @@ import App from './App.tsx';
 import './index.css';
 import {AuthProvider} from "./context/AuthProvider.tsx";
 import { GameSessionProvider } from './context/GameSessionProvider.tsx';
+import { Toaster } from 'react-hot-toast';
 
 (window as any).translate = translate;
 
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                         v7_startTransition: true
                     }}>
                     <App/>
+                    <Toaster/>
                 </BrowserRouter>
             </GameSessionProvider>
         </AuthProvider>

@@ -4,6 +4,7 @@ import { GameSession } from '../pages/GameSession/GameSession';
 import { AuthContext } from './AuthProvider';
 import { Game } from '../types/Game';
 import { useFetch } from '../api/privateApi';
+import toast from 'react-hot-toast';
 
 interface GameSessionContextProps {
   isOpen: boolean;
@@ -34,19 +35,15 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(true);
     setIsOpen(true);
     // get game data from API with gameId
-    await fetchAPI.get<Game>(`/games/${gameId}`).then((data) => {
-      if (data) {
-        setGame(data);
-      }
-    }).catch((response) => {
-      if (response?.status === 404) {
-        setGame({
-          id: 1,
-          name: 'Cookie Clicker',
-          price: 0,
-        });
-      }
-    });
+    let gameData = await fetchAPI.get<Game>(`/games/${gameId}`).catch(() => null);
+    if (!gameData) {
+      toast.error('Une erreur est survenue lors de la récupération du jeu.');
+      setIsLoading(false);
+      setIsOpen(false);
+      return;
+    }
+
+    setGame(gameData);
     // get uuid pour gameSession
     setTimeout(() => {
       setIsLoading(false);
