@@ -11,10 +11,11 @@
     flex: none;
     flex-grow: 0;
     font-size: .75rem;
-    font-weight: 400;
-    height: 16px;
-    order: 0;
-    text-align: center;
+    user-select: none;
+}
+
+.category-bloc span:hover {
+    cursor: pointer;
 }
 
 .category-bloc-category {

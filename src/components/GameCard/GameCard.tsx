@@ -1,16 +1,20 @@
 import React from 'react';
 import './GameCard.css';
-import Category from "../CustomBloc/CategoryBloc/Category.tsx";
-import PromoBloc from "../CustomBloc/PromoBloc/PromoBloc.tsx";
-import ProgressBar from "../ui/ProgressBar/ProgressBar.tsx";
+import {Game} from '../../types/Game';
+import Category from '../CustomBloc/CategoryBloc/Category';
+import PromoBloc from "../CustomBloc/PromoBloc/PromoBloc";
+import ProgressBar from "../ui/ProgressBar/ProgressBar";
 import image from '@assets/images/image 49.png';
-import { Game } from "../../types/Game.ts";
 
-interface RectangleCardProps {
+interface GameCardProps {
     game: Game;
 }
 
-const GameCard: React.FC<RectangleCardProps> = ({ game }) => {
+const GameCard: React.FC<GameCardProps> = ({game}) => {
+    const capitalizeFirstLetter = (string: string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     const calculateDiscount = (originalPrice: number, discountedPrice: number) => {
         return Math.round(((originalPrice - discountedPrice) / originalPrice) * 100);
     }
@@ -18,28 +22,24 @@ const GameCard: React.FC<RectangleCardProps> = ({ game }) => {
     return (
         <div className={'game-card'}>
             <div className={'game-card-image'}>
-                <img src={image} alt={game.name} />
+                <img src={game.image?.[0] || image} alt={game.name} />
                 <div className={'game-card-content-progress-bar'}>
                     <ProgressBar leftPercentValue={50} />
                 </div>
             </div>
             <div className={'game-card-content'}>
                 <div className={'game-card-content-title'}>
-                    <a href={`/game/${game.id}`}><h3>{game.name}</h3></a>
-
+                    <a href={`/game/${game.id}`}><h3>{capitalizeFirstLetter(game.name)}</h3></a>
                 </div>
-
-                <div className={'game-card-content-data'}>
-                    <div className={'game-card-content-tag'}>
-                        <Category category={game.categories?.map(category => category.label) || []} />
-                    </div>
-                    <div className={'game-card-content-price'}>
-                        <PromoBloc
-                            discount={calculateDiscount(game.oldPrice || 0, game.price)}
-                            originalPrice={game.oldPrice || 0}
-                            discountedPrice={game.price}
-                        />
-                    </div>
+                <div className={'game-card-content-category'}>
+                    <Category category={game.categories?.map(category => category.label) || []} />
+                </div>
+                <div className={'game-card-content-price'}>
+                    <PromoBloc
+                        discount={calculateDiscount(game.oldPrice || 0, game.price)}
+                        originalPrice={game.oldPrice || 0}
+                        discountedPrice={game.price}
+                    />
                 </div>
             </div>
         </div>
