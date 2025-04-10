@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
+    --mobile-width-size: 768px;
+    --tablet-width-size: 1024px;
+    --laptop-width-size: 1440px;
+
     /* Colors */
     --bg-color-blue-darker: #0065D3;
     --bg-color-blue-dark: #006FE8;
@@ -59,4 +63,14 @@
     button {
         background-color: #f9f9f9;
     }
+}
+
+.regular-16 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.regular-12 {
+    font-size: 0.75rem;
+    font-weight: 400;
 }

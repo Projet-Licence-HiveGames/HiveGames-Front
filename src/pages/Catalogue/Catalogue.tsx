@@ -1,23 +1,15 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect } from "react";
 import "./Catalogue.css";
 import GameCard from "../../components/GameCard/GameCard.tsx";
 import FilterSidebar, {
   GameFilter,
 } from "../../components/Catalog/FilterSidebar/FilterSidebar.tsx";
 import { Game } from "../../types/Game.ts";
-import FilterModal from "../../components/Modal/FilterModal.tsx";
-import useWindowSize from "../../utils/useWindowSize.ts";
 import { useFetch } from "../../api/privateApi.ts";
 import GameCardSkeleton from "../../components/GameCard/GameCardSkeleton.tsx";
 
 export const Catalogue: React.FC = () => {
   const fetchAPI = useFetch();
-  const { isMobile, isLaptop, isDesktop, isTablet } = useWindowSize();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
   const [filters, setFilters] = React.useState<GameFilter>({
     search: "",
     categories: [],
@@ -60,7 +52,7 @@ export const Catalogue: React.FC = () => {
   }, [filters]);
 
   return (
-    <span className="catalog-container">
+    <div className="catalog-container">
       <div className="catalog-container-cards">
         <Suspense fallback={<GameCardSkeleton />}>
           {gameList.map((game, index) => (
@@ -68,16 +60,7 @@ export const Catalogue: React.FC = () => {
           ))}
         </Suspense>
       </div>
-      {(isDesktop || isLaptop || isTablet) && (
-        <FilterSidebar filters={filters} setFilters={setFilters} />
-      )}
-      {isMobile && (
-        <button className="filter-button" onClick={toggleModal}>
-          Filtres
-        </button>
-      )}
-
-      {isModalOpen && <FilterModal onClose={toggleModal} />}
-    </span>
+      <FilterSidebar filters={filters} setFilters={setFilters} />
+    </div>
   );
 };

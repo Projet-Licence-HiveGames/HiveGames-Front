@@ -30,3 +30,7 @@
     opacity: 50%;
   }
 }
+
+.app-layout > * {
+  height: 100%;
+}
