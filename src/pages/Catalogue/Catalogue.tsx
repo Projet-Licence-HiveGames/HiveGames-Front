@@ -47,7 +47,7 @@ export const Catalogue: React.FC = () => {
     <div className="catalog-container">
       <div className="catalog-container-cards">
         {isLoading ? (
-          Array(20).fill(0).map((_, index) => (
+          Array(10).fill(0).map((_, index) => (
             <GameCardSkeleton key={index} />
           ))
         ) : (
