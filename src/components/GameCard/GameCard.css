@@ -29,7 +29,7 @@
     position: relative;
 }
 
-.game-card-image:hover::after {
+.game-card-image::after {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
     bottom: 0;
     content: "";
@@ -41,7 +41,7 @@
     z-index: 1;
 }
 
-.game-card-image:hover .game-card-content-progress-bar {
+.game-card:hover .game-card-content-progress-bar {
     bottom: 0;
     opacity: 1;
     z-index: 2;
@@ -95,7 +95,7 @@
     align-items: center;
     backdrop-filter: blur(2px);
     border-radius: 0 3px 0 0;
-    bottom: -10px;
+    bottom: 0px;
     left: 0;
     padding: 0 8px;
     position: absolute;
