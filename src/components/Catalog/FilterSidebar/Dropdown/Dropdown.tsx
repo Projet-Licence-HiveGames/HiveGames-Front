@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import './Dropdown.css';
 import { MaterialSymbol } from 'react-material-symbols';
 import { useOutsideClick } from '../../../../hooks/useOutsideClick';
-import useWindowSize from '../../../../utils/useWindowSize';
 
 export interface DropdownOption {
 	label: string | number;
@@ -21,8 +20,7 @@ interface DropdownProps {
 }
 
 const Dropdown: FC<DropdownProps> = ({ className, title, options, selected, setSelected }) => {
-	const { isMobile } = useWindowSize();
-	const ref = useOutsideClick<HTMLDivElement>(() => isMobile && setIsExpanded(false));
+	const ref = useOutsideClick<HTMLDivElement>(() => setIsExpanded(false));
     const [isExpanded, setIsExpanded] = useState(false);
 	  
 	const handleClick = (item: DropdownOption) => {

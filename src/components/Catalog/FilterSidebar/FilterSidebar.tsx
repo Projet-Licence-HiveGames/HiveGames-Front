@@ -37,6 +37,9 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
   const [features, setFeatures] = useState<GameFeature[]>([]);
   const [languages, setLanguages] = useState<Language[]>([]);
 
+  const defaultFilters: GameFilter = { search: '', categories: [], languages: [], features: [], prices: { min: 0, max: 101 } };
+  const isDefaultFilters = JSON.stringify(filters) === JSON.stringify(defaultFilters);
+
   const fetchFilters = async () => {
     try {
       await fetchAPI.get<GameCategory[]>("/categories").then(setCategories);
@@ -51,21 +54,6 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
     fetchFilters();
   }, []);
 
-  const priceLabel = (() => {
-    const min = filters.prices.min === 0 ? 'Gratuit' : `${filters.prices.min} €`
-    const max = filters.prices.max === 101 ? '+100 €' : `${filters.prices.max} €`
-    if (filters.prices.min == filters.prices.max) {
-      if (filters.prices.min === 0) {
-        return 'Gratuit';
-      } else if (filters.prices.min === 101) {
-        return '+100 €';
-      } else {
-        return `${filters.prices.min} €`;
-      }
-    } else {
-      return `Entre ${min} et ${max}`;
-    }
-  })();
   return (
     <div className={classNames('filter-sidebar',
         { 'filter-sidebar--open': isOpen, }
@@ -76,7 +64,16 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
         <div className='filter-sidebar-top'>
           <div className='filter-sidebar-header'>
             <span>FILTRES</span>
-            <MaterialSymbol icon='filter_alt_off' />
+            <MaterialSymbol icon='filter_alt_off' 
+              size={17}
+              disabled={isDefaultFilters}
+              className='filter-sidebar-clear-filters'
+              onClick={() => !isDefaultFilters && setFilters(defaultFilters)}
+            />
+          </div>
+          <div className='filter-item search-bar'>
+            <MaterialSymbol icon='search' size={24} className='search-bar-icon'/>
+            <input type='text' value={filters.search} onChange={(e) => setFilters({ ...filters, search: e.target.value })} className='search-bar-input' placeholder='Rechercher un nom...'/>
           </div>
           <div className='filter-item'>
             <span className='filter-item-title'>Prix</span>
@@ -84,7 +81,6 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
               sx={{ margin: '1rem', width: 'auto', '& .MuiSlider-markLabel': {
                 color: 'white',
               }}}
-              getAriaLabel={() => 'Temperature range'}
               value={[filters.prices.min, filters.prices.max]}
               onChange={(_, value) => setFilters({ ...filters, prices: { min: (value as number[])[0], max: (value as number[])[1] } })}
               valueLabelDisplay="auto"
