@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { privateApi } from "../../api/privateApi.ts";
+import { GameBuyCard } from "../../components/GameInfo/GameBuyCard/GameBuyCard.tsx";
+import { GameFeatures } from "../../components/GameInfo/GameFeatures/GameFeatures.tsx";
+import { GameLanguages } from "../../components/GameInfo/GameLanguages/GameLanguages.tsx";
 import { GameDescription } from "../../components/GameInfo/GameDescription/GameDescription.tsx";
 import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.tsx";
 import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx";
 import { Loader } from "../../components/Loader/Loader.tsx";
 import { Game } from "../../types/Game.ts";
 import { getGameThumbnail } from "../../utils/gameUtils.ts";
-import { GameBuyCard } from '../../components/GameInfo/GameBuyCard/GameBuyCard.tsx';
-import { GameFeatures } from '../../components/GameInfo/GameFeatures/GameFeatures.tsx';
-import { GameLanguages } from '../../components/GameInfo/GameLanguages/GameLanguages.tsx';
-
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
 
 import "./GameInfo.css";
