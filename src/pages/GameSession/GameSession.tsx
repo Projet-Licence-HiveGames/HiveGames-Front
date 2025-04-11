@@ -8,15 +8,15 @@ import { AuthContext } from '../../context/AuthProvider';
 import CircularProgress from '@mui/joy/CircularProgress';
 
 interface GameSessionProps {
+  tempGameName: string | null;
   game: Game | null;
   isOpen: boolean
   isLoading: boolean;
   onCloseGameSession: () => void;
 }
 
-export const GameSession: FC<GameSessionProps> = ({ game, isOpen, isLoading = false, onCloseGameSession}) => {
+export const GameSession: FC<GameSessionProps> = ({ tempGameName, game, isOpen, isLoading = false, onCloseGameSession}) => {
   const { user } = useContext(AuthContext);
-  const isOpenable = game && isOpen;
   useEffect(() => {
     if (user && game) {
       setupConnection();
@@ -34,11 +34,11 @@ export const GameSession: FC<GameSessionProps> = ({ game, isOpen, isLoading = fa
   };
 
   return (
-    <div className={classNames('game-session-container', { 'game-session-container--open': isOpenable })}>
+    <div className={classNames('game-session-container', { 'game-session-container--open': isOpen && ((!isLoading && game) || isLoading) })}>
       {isLoading ? (
         <div className='game-session-loading'>
-          <span className='game-session-loading-title'><MaterialSymbol icon='gamepad' /> {game?.name}</span>
-          <span>Lancement en cours...</span>
+          <span className='game-session-loading-title'><MaterialSymbol icon='gamepad' /> {game?.name ?? tempGameName}</span>
+          <span>{game ? "Lancement en cours..." : "Récupération des informations du jeu..."}</span>
           <CircularProgress variant='soft' size='md'/>
         </div>
       ) : (

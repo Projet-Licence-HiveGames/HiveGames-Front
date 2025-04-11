@@ -17,7 +17,7 @@ const Home: FC = () => {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <button onClick={() => startGameSession(1)}>Start</button>
+      <button onClick={() => startGameSession(1, "Cookie Clicker")}>Start</button>
     </div>
   );
 };

@@ -10,7 +10,7 @@ interface GameSessionContextProps {
   isOpen: boolean;
   game: Game | null;
   setIsOpen: (isOpen: boolean) => void;
-  startGameSession: (gameId: number) => void;
+  startGameSession: (gameId: number, gameName: string) => void;
   endGameSession: () => void;
 }
 
@@ -26,12 +26,14 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [tempGameName, setTempGameName] = useState<string | null>(null);
   const [game, setGame] = useState<Game | null>(null);
   const fetchAPI = useFetch();
 
   const { isAuthenticated } = useContext(AuthContext);
 
-  const startGameSession = async (gameId: number) => {
+  const startGameSession = async (gameId: number, gameName: string) => {
+    setTempGameName(gameName);
     setIsLoading(true);
     setIsOpen(true);
     // get game data from API with gameId
@@ -60,20 +62,23 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
   const contextValue = useMemo(
     () => ({
       isOpen,
+      tempGameName,
       game,
       setIsOpen,
       startGameSession,
       endGameSession,
     }),
-    [isOpen,
-    game,
+    [
+      isOpen,
+      game,
+      tempGameName,
     ]
   );
     
   return (
     <GameSessionContext.Provider value={contextValue}>
       {children}
-      {!isAuthenticated && <GameSession game={game} isOpen={isOpen} isLoading={isLoading} onCloseGameSession={endGameSession} />}
+      {!isAuthenticated && <GameSession tempGameName={tempGameName} game={game} isOpen={isOpen} isLoading={isLoading} onCloseGameSession={endGameSession} />}
     </GameSessionContext.Provider>
   );
 };
