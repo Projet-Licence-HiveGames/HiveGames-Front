@@ -5,12 +5,14 @@ export interface Game {
     name: string;
     short_description?: string;
     description?: string;
-    image?: string[];
+    images?: string[];
     price: number;
     oldPrice?: number;
     current_version?: string;
     categories?: GameCategory[];
     languages?: GameLanguage[];
+    studios?: GameStudio[];
+    release_date?: string;
 }
 
 export interface Language {
@@ -41,4 +43,9 @@ export interface GameSession {
 export interface GameCategory {
     id: number;
     label: string;
+}
+
+export interface GameStudio {
+    id: number;
+    name: string;
 }
