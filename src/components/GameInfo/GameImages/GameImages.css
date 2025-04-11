@@ -1,0 +1,18 @@
+.game-images {
+  justify-content: center;
+  width: 100%;
+  height: 250px;
+}
+
+.image-panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-panel img {
+  max-height: 100%;
+  border-radius: 5px;
+}

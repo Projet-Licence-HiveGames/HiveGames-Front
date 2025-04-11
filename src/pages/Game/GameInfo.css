@@ -1,0 +1,22 @@
+.game-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--bg-color-normal);
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+.game-info-container {
+  align-items: self-end;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.game-info-container-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

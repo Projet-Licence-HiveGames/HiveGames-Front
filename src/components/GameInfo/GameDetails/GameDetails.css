@@ -1,0 +1,31 @@
+.game-details {
+  background: var(--bg-color-light);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.game-details h2 {
+  color: white;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.details-container {
+    
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-label {
+  color: var(--text-color-secondary);
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  color: white;
+  font-weight: 500;
+} 
