@@ -48,4 +48,5 @@ export interface GameCategory {
 export interface GameStudio {
     id: number;
     name: string;
+    logo_path: string;
 }

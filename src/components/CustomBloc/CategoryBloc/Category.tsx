@@ -1,6 +1,7 @@
 import React from 'react';
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import './Category.css';
+import { capitalizeFirstLetter } from '../../../utils/capitalizeFirstLetter';
 
 interface CategoryProps {
     category: string[];
@@ -8,11 +9,7 @@ interface CategoryProps {
 
 const Category: React.FC<CategoryProps> = ({category=['test']}) => {
     const [showAll, setShowAll] = React.useState(false);
-
-    const capitalizeFirstLetter = (string: string) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
+    
     return (
         <div className={'category-bloc'}>
             {category.slice(0, showAll ? category.length : 3).map((category, index) => {

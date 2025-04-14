@@ -20,6 +20,7 @@
   transition: margin-left 0.3s ease;
 
   @media screen and (width <= 1024px) {
+    margin: 1rem;
     opacity: 100%;
   }
 }
