@@ -3,6 +3,7 @@ import React from "react";
 import { GameCategory, GameStudio } from "../../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter.ts";
 import Category from "../../CustomBloc/CategoryBloc/Category.tsx";
+import "./GameDetails.css";
 
 import "./GameDetails.css";
 

@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import { useFetch } from "../../../api/privateApi";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
-import useWindowSize from "../../../hooks/useWindowSize";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 import { GameCategory, GameFeature, Language } from "../../../types/Game";
 
 import Dropdown, { DropdownOption } from "./Dropdown/Dropdown";

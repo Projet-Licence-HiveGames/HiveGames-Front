@@ -13,11 +13,11 @@ export interface DropdownOption {
 }
 
 interface DropdownProps {
-  className?: string;
-  title: string;
-  options: DropdownOption[];
-  selected: (string | number)[];
-  setSelected: (selected: (string | number)[]) => void;
+	className?: string;
+	title: string;
+	options: DropdownOption[];
+	selected: (string | number)[];
+	setSelected: (selected: (string | number)[]) => void;
 }
 
 const Dropdown: FC<DropdownProps> = ({

@@ -10,7 +10,7 @@ import classNames from "classnames";
 import MenuItem from "../../components/ui/Menu/MenuItem";
 import TLabel from "../../components/ui/TranslationLabel/TLabel.tsx";
 import { TranslationContext } from "../../context/TranslationProvider.tsx";
-import useWindowSize from "../../hooks/useWindowSize.ts";
+import { useWindowSize } from "../../hooks/useWindowSize.ts";
 
 import logo from "@assets/images/logo.svg";
 import logoName from "@assets/images/logo-name.svg";

@@ -2,6 +2,8 @@ import React from "react";
 
 import { GameImage } from "../../../types/Game";
 
+import image from "@assets/images/defaultGameThumbnail.png";
+
 import "./GameDescription.css";
 
 interface GameDescriptionProps {
@@ -15,8 +17,8 @@ export const GameDescription: React.FC<GameDescriptionProps> = ({
 }) => {
   return (
     <div className="game-description-container">
-      <div className="game-images">
-        <img src={thumbnail?.file_url} alt={thumbnail?.alt} />
+      <div className="game-description-image">
+        <img src={thumbnail?.file_url ?? image} alt={thumbnail?.alt} />
       </div>
       <div className="game-description">
         <p>{description}</p>
