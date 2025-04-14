@@ -29,7 +29,7 @@ const isDifferentWindowSize = (
   );
 };
 
-const useWindowSize = (
+export const useWindowSize = (
   onResizeCallback?: (info: {
     size: WindowSize;
     isDifferentSize: boolean;

@@ -1,0 +1,18 @@
+.loader-container {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+  }
+  
+  .logo {
+    animation: rotateLogo 2s linear infinite;
+    height: auto;
+    width: 100px;
+  }
+  
+  @keyframes rotateLogo {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

@@ -6,8 +6,8 @@ import FilterSidebar, {
   GameFilter,
 } from "../../components/Catalog/FilterSidebar/FilterSidebar.tsx";
 import GameCard from "../../components/GameCard/GameCard.tsx";
-import GameCardSkeleton from "../../components/GameCard/GameCardSkeleton.tsx";
-import { useAuth } from "../../context/AuthProvider.tsx";
+import { GameCardSkeleton } from "../../components/Skeleton/GameCard/GameCardSkeleton.tsx";
+import { useAuth } from "../../context/AuthProvider";
 import { Game } from "../../types/Game.ts";
 
 import "./Catalogue.css";

@@ -25,7 +25,6 @@
 }
 
 .main-content--collapsed {
-
   @media screen and (width <= 1024px) {
     opacity: .5;
   }

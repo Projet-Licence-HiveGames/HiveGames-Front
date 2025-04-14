@@ -1,20 +1,55 @@
-.game-images {
-  justify-content: center;
+.game-images-wrapper {
+  position: relative;
   width: 100%;
 }
 
-.flicking-panel {
-  width: 300px;
+.big-image-swiper {
+  margin-bottom: 20px;
 }
 
-.flicking-panel img {
-  border-radius: 5px;
-  height: 150px;
-  max-height: 100%;
-  object-fit: cover;
+.big-image-swiper.swiper-slide {
+  height: 400px;
+}
 
-  @media (max-width: 768px) {
+.swiper-wrapper {
+  height: 550px;
+}
+
+.panel-image {
+  height: 100%;
+}
+
+.swiper-thumbs {
+  height: 100px;
+}
+
+.thumb-image {
+  height: 100%;
+}
+
+.thumbs-swiper .swiper-slide-thumb-active img {
+  transform: scale(1.1)
+}
+
+.swiper-thumbs .swiper-slide {
+  height: 100px;
+  padding: 5px;
+}
+
+@media (width <= 1200px) {
+  .swiper-wrapper {
+    height: 400px;
+  }
+
+  .panel-image {
     height: 100%;
-    width: 100%;
+  }
+
+  .swiper-thumbs {
+    height: 100px;
+  }
+
+  .swiper-thumbs .swiper-slide {
+    height: 80px;
   }
 }
