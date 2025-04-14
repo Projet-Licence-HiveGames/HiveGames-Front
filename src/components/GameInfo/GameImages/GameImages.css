@@ -1,18 +1,20 @@
 .game-images {
   justify-content: center;
   width: 100%;
-  height: 250px;
 }
 
-.image-panel {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.flicking-panel {
+  width: 300px;
 }
 
-.image-panel img {
+.flicking-panel img {
+  height: 150px;
   max-height: 100%;
+  object-fit: cover;
   border-radius: 5px;
+
+  @media (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
 }
