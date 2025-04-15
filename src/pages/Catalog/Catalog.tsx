@@ -10,9 +10,9 @@ import { GameCardSkeleton } from "../../components/Skeleton/GameCard/GameCardSke
 import { useAuth } from "../../context/AuthProvider";
 import { Game } from "../../types/Game.ts";
 
-import "./Catalogue.css";
+import "./Catalog.css";
 
-export const Catalogue: React.FC = () => {
+export const Catalog: React.FC = () => {
   const { isAuthenticated, user } = useAuth();
   const fetchAPI = useFetch();
   const [isLoading, setIsLoading] = useState(true);

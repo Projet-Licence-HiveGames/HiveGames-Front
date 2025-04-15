@@ -9,8 +9,8 @@ import MainLayout from './layouts/MainLayout';
 import About from './pages/About/About.tsx';
 import {Calendar} from './pages/Calendar/Calendar.tsx';
 import {Cart} from "./pages/Cart/Cart.tsx";
-import {Catalogue} from './pages/Catalogue/Catalogue.tsx';
 import {Checkout} from "./pages/Checkout/Checkout.tsx";
+import {Catalog} from './pages/Catalog/Catalog.tsx';
 import Contact from './pages/Contact/Contact.tsx';
 import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx';
 import {Friend} from './pages/Friend/Friend.tsx';
@@ -34,7 +34,7 @@ const App: React.FC = () => {
             <Route path='/' element={<MainLayout/>}>
                 <Route index element={<Home/>}/>
                 <Route path='Calendar' element={<ProtectedRoute><Calendar/></ProtectedRoute>}/>
-                <Route path='Catalogue' element={<Catalogue/>}/>
+                <Route path='Catalog' element={<Catalog/>}/>
                 <Route path='Friend' element={<ProtectedRoute><Friend/></ProtectedRoute>}/>
                 <Route path='Library' element={<ProtectedRoute><Library/></ProtectedRoute>}/>
                 <Route path='Setting' element={<ProtectedRoute><Setting/></ProtectedRoute>}/>
