@@ -75,6 +75,21 @@
     padding: 0.1rem .25rem;
 }
 
+.filter-item-sort {
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+}
+
+.filter-item-select {
+    background-color: var(--bg-color-dark);
+    border-radius: .25rem;
+    cursor: pointer;
+    gap: .5rem;
+    padding: .5rem;
+    border: none;
+}
+
 .filter-item .search-bar {
     width: 100%;
     position: relative;
