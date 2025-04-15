@@ -19,14 +19,14 @@
   overflow: auto;
   transition: margin-left 0.3s ease;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (width <= 1024px) {
     opacity: 100%;
   }
 }
 
 .main-content--collapsed {
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (width <= 1024px) {
     opacity: 50%;
   }
 }
