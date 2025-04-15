@@ -35,9 +35,6 @@ export const GameInfo: React.FC = () => {
 
   return (
     <div className="game-info">
-      <div className="game-info-title">
-        <h2>{capitalizeFirstLetter(gameData?.name || "")}</h2>
-      </div>
       <div className="game-info-container">
         {!isMobile && (
           <div className="game-info-container-left">
@@ -65,7 +62,7 @@ export const GameInfo: React.FC = () => {
             />
           )}
           <GameDetails
-            studio={gameData?.studios || []}
+            title={gameData?.name || ""} studio={gameData?.studios || []}
             release_date={gameData?.release_date || ""}
             categories={gameData?.categories || []}
             description={gameData?.description || ""}
