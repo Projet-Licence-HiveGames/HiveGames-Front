@@ -6,6 +6,7 @@ import Category from "../../CustomBloc/CategoryBloc/Category.tsx";
 import { useWindowSize } from "../../../utils/useWindowSize.ts";
 
 import "./GameDetails.css";
+import { useWindowSize } from "../../../utils/useWindowSize.ts";
 
 interface GameDetailsProps {
   title: string;
