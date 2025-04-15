@@ -12,7 +12,7 @@
 }
 
 .swiper-wrapper {
-  height: 550px;
+  height: 500px;
 }
 
 .panel-image {
@@ -20,7 +20,7 @@
 }
 
 .swiper-thumbs {
-  height: 100px;
+  height: 110px;
 }
 
 .thumb-image {
@@ -28,7 +28,42 @@
 }
 
 .thumbs-swiper .swiper-slide-thumb-active img {
-  transform: scale(1.1)
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.swiper-slide-thumb-active {
+  position: relative;
+}
+
+.swiper-slide-thumb-active .progress-bar {
+  content: "";
+  border: 2px solid var(--bg-color-orange);
+  height: 4px;
+  width: 0%;
+  position: absolute;
+  border-radius: 10px;
+  left: 0;
+  bottom: -10px;
+  animation: progressBarAnimation 2s forwards;
+}
+
+@keyframes progressBarAnimation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.swiper-slide-thumb {
+  position: relative;
+}
+
+.swiper-slide-thumb:not(.swiper-slide-thumb-active) .progress-bar {
+  width: 0%;
+  animation: none;
 }
 
 .swiper-thumbs .swiper-slide {

@@ -40,17 +40,20 @@ export const GameImages: React.FC<GameImagesProps> = ({
             <img
               className="panel-image"
               src={image.file_url}
+              srcSet={`${image.file_name} 1x, ${image.file_name} 2x`}
               alt={image.alt}
+              loading="lazy"
+              decoding="async"
             />
           </SwiperSlide>
         ))}
       </Swiper>
-
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
         slidesPerView={5}
         freeMode={true}
+        loop={true}
         watchSlidesProgress={true}
         modules={[Thumbs]}
         className="thumbs-swiper"
@@ -61,7 +64,10 @@ export const GameImages: React.FC<GameImagesProps> = ({
               className="thumb-image"
               src={image.file_url}
               alt={image.alt || "Thumbnail"}
+              loading="lazy"
+              decoding="async"
             />
+            <div className="progress-bar"></div>
           </SwiperSlide>
         ))}
       </Swiper>

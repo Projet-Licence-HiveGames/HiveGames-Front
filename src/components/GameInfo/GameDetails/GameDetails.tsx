@@ -3,11 +3,12 @@ import React from "react";
 import { GameCategory, GameStudio } from "../../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter.ts";
 import Category from "../../CustomBloc/CategoryBloc/Category.tsx";
-import "./GameDetails.css";
+import { useWindowSize } from "../../../utils/useWindowSize.ts";
 
 import "./GameDetails.css";
 
 interface GameDetailsProps {
+  title: string;
   studio: GameStudio[];
   release_date: string;
   categories: GameCategory[];
@@ -15,17 +16,24 @@ interface GameDetailsProps {
 }
 
 export const GameDetails: React.FC<GameDetailsProps> = ({
+  title,
   studio,
   release_date,
   categories,
   description,
 }) => {
+  const { isLaptop, isDesktop } = useWindowSize();
+
   return (
     <div className="game-details">
-      <h2>Détails du jeu</h2>
+      {(isLaptop || isDesktop) && <hr />}
       <div className="details-container">
         <div className="detail-item-description">
           <span className="detail-value">{description}</span>
+        </div>
+        <div className="detail-item">
+          <span className="detail-label">Titre :</span>
+          <span className="detail-value">{capitalizeFirstLetter(title || "")}</span>
         </div>
         <div className="detail-item">
           <span className="detail-label">Date de sortie :</span>
