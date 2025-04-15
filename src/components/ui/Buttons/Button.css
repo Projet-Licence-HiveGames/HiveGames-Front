@@ -1,6 +1,6 @@
 .hivegames-button {
   background-color: var(--primary-color);
-  border-radius: var(--button-border-radius);
+  border-radius: var(--button-border-radius-small);
   display: inline-block;
   padding: 0.5rem 1rem;
   text-decoration: none;

@@ -29,7 +29,7 @@
     --button-gradient-orange: linear-gradient(0deg, #f2b705, #f28a07);
 
     /* Radius */
-    --button-border-radius: 4px;
+    --button-border-radius-small: 4px;
     --button-border-radius-lg: 10px;
     --button-border-radius-md: 7px;
     --button-border-radius-xl: 12px;

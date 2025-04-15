@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthProvider";
 
 export const privateApi = async <T>(
     endpoint: string,
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' = 'GET',
     body: any = null,
     headers: Record<string, string> = {}
 ): Promise<T> => {

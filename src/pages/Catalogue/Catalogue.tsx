@@ -7,9 +7,11 @@ import FilterSidebar, {
 import { Game } from "../../types/Game.ts";
 import { useFetch } from "../../api/privateApi.ts";
 import GameCardSkeleton from "../../components/GameCard/GameCardSkeleton.tsx";
+import { useAuth } from "../../context/AuthProvider";
 
 export const Catalogue: React.FC = () => {
   const fetchAPI = useFetch();
+  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<GameFilter>({
     search: "",
@@ -43,7 +45,7 @@ export const Catalogue: React.FC = () => {
 
     return () => clearTimeout(timeoutId);
   }, [filters]);
-
+  
   return (
     <div className="catalog-container">
       <div className="catalog-container-cards">
