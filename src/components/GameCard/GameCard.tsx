@@ -11,11 +11,12 @@ import { privateApi } from '../../api/privateApi';
 
 interface GameCardProps {
     game: Game;
+    isAuthenticated: boolean;
 }
 
-const GameCard: React.FC<GameCardProps> = ({ game }) => {
+const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
     const auth = useAuth();
-    const { isAuthenticated, user } = auth;
+    const { user } = auth;
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
     const isFavoriteRef = useRef(isFavorite);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -62,7 +63,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
                 </div>
             </div>
             <div className={'game-card-content'}>
-                <HeartButton isFavorite={isFavorite} onClick={handleFavoriteToggle} />
+                {isAuthenticated && <HeartButton isFavorite={isFavorite} onClick={handleFavoriteToggle} />}
                 <div className={'game-card-content-title'}>
                     <a href={`/game/${game.id}`}><h3>{capitalizeFirstLetter(game.name)}</h3></a>
                 </div>
