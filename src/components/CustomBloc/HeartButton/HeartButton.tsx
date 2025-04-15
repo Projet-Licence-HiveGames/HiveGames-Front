@@ -12,4 +12,3 @@ export const HeartButton: React.FC<{ isFavorite: boolean, onClick: () => void }>
         </div>
     );
 };
-
