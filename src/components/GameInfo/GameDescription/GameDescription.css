@@ -32,8 +32,8 @@
   flex-direction: row;
   gap: 1rem;
   height: fit-content;
-  max-width: 900px;
   max-height: 280px;
+  max-width: 900px;
 
   @media (width <= 1200px) {
     max-height: 100%;
@@ -41,8 +41,8 @@
 }
 
 .game-description-image img {
-  height: 100%;
   border-radius: 8px;
+  height: 100%;
   object-fit: contain;
   width: 100%;
 }
