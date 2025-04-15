@@ -19,6 +19,7 @@ export interface GameFilter {
     min: number;
     max: number;
   };
+  order_by?: string;
 }
 
 interface FilterSidebarProps {
@@ -37,7 +38,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
   const [features, setFeatures] = useState<GameFeature[]>([]);
   const [languages, setLanguages] = useState<Language[]>([]);
 
-  const defaultFilters: GameFilter = { search: '', categories: [], languages: [], features: [], prices: { min: 0, max: 101 } };
+  const defaultFilters: GameFilter = { search: '', categories: [], languages: [], features: [], prices: { min: 0, max: 101 }, order_by: filters.order_by };
   const isDefaultFilters = JSON.stringify(filters) === JSON.stringify(defaultFilters);
 
   const fetchFilters = async () => {
@@ -70,6 +71,19 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
               className='filter-sidebar-clear-filters'
               onClick={() => !isDefaultFilters && setFilters(defaultFilters)}
             />
+          </div>
+          <div className='filter-item filter-item-sort'>
+            <span className='filter-item-title'>Trier par</span>
+            <select className='filter-item-select' value={filters.order_by} onChange={(e) => setFilters({ ...filters, order_by: e.target.value })}>
+              <option value='rating-desc' selected>Avis (+ / -)</option>
+              <option value='rating-asc'>Avis (- / +)</option>
+              <option value='name-asc'>Nom (A-Z)</option>
+              <option value='name-desc'>Nom (Z-A)</option>
+              <option value='price-asc'>Prix (- / +)</option>
+              <option value='price-desc'>Prix (+ / -)</option>
+              <option value='release_date-desc'>Sortie récente</option>
+              <option value='release_date-asc'>Sortie ancienne</option>
+            </select>
           </div>
           <div className='filter-item search-bar'>
             <MaterialSymbol icon='search' size={24} className='search-bar-icon'/>

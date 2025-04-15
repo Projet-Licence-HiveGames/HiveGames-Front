@@ -17,6 +17,7 @@ export const Catalogue: React.FC = () => {
     languages: [],
     features: [],
     prices: { min: 0, max: 101 },
+    order_by: 'rating-desc',
   });
   const [gameList, setGameList] = useState<Game[]>([]);
 
