@@ -45,7 +45,7 @@ export const Catalogue: React.FC = () => {
 
     return () => clearTimeout(timeoutId);
   }, [filters]);
-  
+
   return (
     <div className="catalog-container">
       <div className="catalog-container-cards">
