@@ -1,0 +1,20 @@
+.heart-button-container {
+    position: absolute;
+    right: 0;
+}
+
+.heart-button {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color-dark);
+    border: none;
+    border-radius: var(--button-border-radius-small);
+    padding: 5px;
+    cursor: pointer;
+}
+
+.heart-button svg {
+    align-self: center;
+}
+
+
