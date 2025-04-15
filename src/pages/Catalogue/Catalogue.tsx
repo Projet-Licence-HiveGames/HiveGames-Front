@@ -11,7 +11,7 @@ import { useAuth } from "../../context/AuthProvider";
 
 export const Catalogue: React.FC = () => {
   const fetchAPI = useFetch();
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<GameFilter>({
     search: "",
@@ -55,7 +55,7 @@ export const Catalogue: React.FC = () => {
           ))
         ) : (
           gameList.map((game, index) => (
-            <GameCard key={index} game={game} />
+            <GameCard key={index} game={game} isAuthenticated={isAuthenticated} />
           ))
         )}
       </div>
