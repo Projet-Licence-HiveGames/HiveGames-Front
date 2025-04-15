@@ -7,7 +7,6 @@ import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.t
 import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx";
 import { Loader } from "../../components/Loader/Loader.tsx";
 import { Game } from "../../types/Game.ts";
-import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter.ts";
 import { getGameThumbnail } from "../../utils/gameUtils.ts";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
 
