@@ -54,7 +54,7 @@ export const GroupMenu: React.FC = () => {
                     }}
                 />
                 <div className='group-menu-connexion-text authenticated'>
-                    <h4>{user?.name}</h4>
+                    <h4>{user?.pseudo}</h4>
                     <p>{user?.user_role}</p>
                 </div>
                 {isDropdownOpen && <DropdownMenu/>}

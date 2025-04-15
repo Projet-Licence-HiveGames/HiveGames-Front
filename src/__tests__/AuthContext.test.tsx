@@ -6,9 +6,9 @@ const TestComponent = () => {
   const { user, isAuthenticated, login, logout } = useAuth();
   return (
     <div>
-      <div data-testid="user">{user?.username || 'non connecté'}</div>
+      <div data-testid="user">{user?.pseudo || 'non connecté'}</div>
       <div data-testid="isAuthenticated">{isAuthenticated.toString()}</div>
-      <button onClick={() => login({ id: '1', email: 'test@test.com', username: 'testuser' })}>
+      <button onClick={() => login({pseudo: 'testuser', email: 'test@test.com', password: 'testuser'})}>
         Se connecter
       </button>
       <button onClick={logout}>Se déconnecter</button>

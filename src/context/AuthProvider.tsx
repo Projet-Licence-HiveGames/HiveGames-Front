@@ -54,11 +54,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     // Fonction pour se créer un compte (par exemple, envoyer les informations de connexion)
-    const register = async (name: string, email: string, password: string) => {
+    const register = async (pseudo: string, email: string, password: string) => {
         try {
             setLoading(true);
             // Ici, vous devez appeler une API de connexion et obtenir le token ou la session
-            const valide = await privateApi('/auth/register', 'POST', {name, email, password});
+            const valide = await privateApi('/auth/register', 'POST', {pseudo, email, password});
             if (valide) {
                 localStorage.setItem("isAuthenticated", "true");
                 await checkUser();

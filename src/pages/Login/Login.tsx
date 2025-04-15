@@ -30,7 +30,6 @@ const Login: React.FC = () => {
         password: yup
             .string()
             .typeError("Veuillez indiquer un mot de passe")
-            .min(8, "Veuillez indiquer un mot de passe avec minimum 12 caractères")
             .required("Veuillez indiquer un mot de passe"),
     });
 
@@ -96,7 +95,7 @@ const Login: React.FC = () => {
                 </form>
             ) : (
                 <div>
-                    <h2>Welcome, {user?.name}</h2>
+                    <h2>Welcome, {user?.pseudo}</h2>
                     <button onClick={logout}>Logout</button>
                 </div>
             )}

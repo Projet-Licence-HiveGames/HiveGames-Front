@@ -2,36 +2,27 @@ import React, { useState, useMemo } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import * as yup from "yup";
 import HGInputField from "../../components/ui/Input/HGInputField.tsx";
+import { UserForm } from "../../types/User.ts";
 
-interface FormData {
-    name: string;
-    email: string;
-    password: string;
-}
-
-interface Errors {
-    name?: string;
-    email?: string;
-    password?: string;
-}
+type UserErrorsMsg = Partial<UserForm>;
 
 const Register: React.FC = () => {
     // On extrait une seule fois les valeurs de useAuth
     const auth = useAuth();
     const { register, logout, isAuthenticated, user, loading, error } = auth;
 
-    const [errors, setErrors] = useState<Errors>({});
-    const [formData, setFormData] = useState<FormData>({
-        name: "",
+    const [errors, setErrors] = useState<UserErrorsMsg>({});
+    const [formData, setFormData] = useState<UserForm>({
+        pseudo: "",
         email: "",
         password: "",
     });
 
     // Validation schema avec Yup (mémorisé pour éviter les recréations)
     const schema = useMemo(() => yup.object().shape({
-        name: yup
+        pseudo: yup
             .string()
-            .required("Veuillez indiquer un nom"),
+            .required("Veuillez indiquer un pseudo"),
         email: yup
             .string()
             .email("Veuillez indiquer un mail valide")
@@ -50,10 +41,10 @@ const Register: React.FC = () => {
             setErrors({});
             return true;
         } catch (validationError: unknown) {
-            const newErrors: Errors = {};
+            const newErrors: UserErrorsMsg = {};
             if (validationError instanceof yup.ValidationError) {
                 validationError.inner.forEach((err: any) => {
-                    newErrors[err.path as keyof Errors] = err.message;
+                    newErrors[err.path as keyof UserErrorsMsg] = err.message;
                 });
             }
             setErrors(newErrors);
@@ -65,7 +56,7 @@ const Register: React.FC = () => {
         e.preventDefault();
         const isValid = await validateForm();
         if (isValid) {
-            await register(formData.name, formData.email, formData.password);
+            await register(formData.pseudo, formData.email, formData.password);
         }
     };
 
@@ -73,7 +64,7 @@ const Register: React.FC = () => {
     if (isAuthenticated) {
         return (
             <div>
-                <h2>Bienvenue, {user?.name}</h2>
+                <h2>Bienvenue, {user?.pseudo}</h2>
                 <button onClick={logout}>Se déconnecter</button>
             </div>
         );
@@ -83,20 +74,17 @@ const Register: React.FC = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                {/* Champ Nom */}
                 <div>
-                    {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+                    {errors.pseudo && <p style={{ color: "red" }}>{errors.pseudo}</p>}
                     <HGInputField
                         type="text"
-                        placeholder="Nom"
-                        value={formData.name}
+                        placeholder="Pseudo"
+                        value={formData.pseudo}
                         onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
+                            setFormData({ ...formData, pseudo: e.target.value })
                         }
                     />
                 </div>
-
-                {/* Champ Email */}
                 <div>
                     {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
                     <HGInputField
@@ -108,8 +96,6 @@ const Register: React.FC = () => {
                         }
                     />
                 </div>
-
-                {/* Champ Mot de passe */}
                 <div>
                     {errors.password && (
                         <p style={{ color: "red" }}>{errors.password}</p>
@@ -123,12 +109,10 @@ const Register: React.FC = () => {
                         }
                     />
                 </div>
-
                 <button type="submit" disabled={loading}>
                     {loading ? "Inscription en cours..." : "S'inscrire"}
                 </button>
             </form>
-
             {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     );
