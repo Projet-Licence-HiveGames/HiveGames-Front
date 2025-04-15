@@ -37,15 +37,15 @@
 }
 
 .swiper-slide-thumb-active .progress-bar {
-  content: "";
-  border: 2px solid var(--bg-color-orange);
-  height: 4px;
-  width: 0%;
-  position: absolute;
-  border-radius: 10px;
-  left: 0;
-  bottom: -10px;
   animation: progressBarAnimation 2s forwards;
+  border: 2px solid var(--bg-color-orange);
+  border-radius: 10px;
+  bottom: -10px;
+  content: "";
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 0%;
 }
 
 @keyframes progressBarAnimation {
@@ -62,8 +62,8 @@
 }
 
 .swiper-slide-thumb:not(.swiper-slide-thumb-active) .progress-bar {
-  width: 0%;
   animation: none;
+  width: 0%;
 }
 
 .swiper-thumbs .swiper-slide {
