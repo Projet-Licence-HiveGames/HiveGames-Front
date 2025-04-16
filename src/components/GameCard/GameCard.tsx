@@ -22,15 +22,14 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
     useEffect(() => {
-        if (isAuthenticated && user?.game_collection?.find(collection => collection.game_id === game.id)) {
-            setIsFavorite(user?.game_collection?.find(collection => collection.game_id === game.id)?.is_wished || false);
+        if (isAuthenticated && user?.game_collections?.find(collection => collection.game_id === game.id)) {
+            setIsFavorite(user?.game_collections?.find(collection => collection.game_id === game.id)?.is_wished || false);
         }
     }, [user, game.id]);
 
     useEffect(() => {
         isFavoriteRef.current = isFavorite;
     }, [isFavorite]);
-
 
     const handleFavoriteToggle = async () => {
         if (timeoutRef.current) {
