@@ -8,6 +8,10 @@ import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx"
 import { Loader } from "../../components/Loader/Loader.tsx";
 import { Game } from "../../types/Game.ts";
 import { getGameThumbnail } from "../../utils/gameUtils.ts";
+import { GameBuyCard } from '../../components/GameInfo/GameBuyCard/GameBuyCard.tsx';
+import { GameFeatures } from '../../components/GameInfo/GameFeatures/GameFeatures.tsx';
+import { GameLanguages } from '../../components/GameInfo/GameLanguages/GameLanguages.tsx';
+
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
 
 import "./GameInfo.css";
@@ -34,9 +38,9 @@ export const GameInfo: React.FC = () => {
 
   return (
     <div className="game-info">
-      <div className="game-info-container">
+      <div className="game-info__container">
         {!isMobile && (
-          <div className="game-info-container-left">
+          <div className="game-info__left">
             <GameImages
               images={gameData?.images}
               thumbnail={getGameThumbnail(gameData)}
@@ -48,7 +52,7 @@ export const GameInfo: React.FC = () => {
             <p>{gameData?.description}</p>
           </div>
         )}
-        <div className="game-info-container-right">
+        <div className="game-info__right">
           {!isMobile ? (
             <GameDescription
               description={gameData?.description || ""}
@@ -61,11 +65,27 @@ export const GameInfo: React.FC = () => {
             />
           )}
           <GameDetails
-            title={gameData?.name || ""} studio={gameData?.studios || []}
+            title={gameData?.name || ""}
+            studio={gameData?.studios || []}
             release_date={gameData?.release_date || ""}
             categories={gameData?.categories || []}
             description={gameData?.description || ""}
           />
+        </div>
+      </div>
+      <div className='game-info__content'>
+        <div className='game-buy-card'>
+          <GameBuyCard game={gameData} />
+        </div>
+        <div className='game-details'>
+          <div className='game-features-languages'>
+            <div className='game-features'>
+              <GameFeatures game={gameData} />
+            </div>
+            <div className='game-languages'>
+              <GameLanguages game={gameData} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

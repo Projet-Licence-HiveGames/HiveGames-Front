@@ -96,7 +96,6 @@
 }
 
 .game-card-content-price {
-    align-self: flex-end;
     height: fit-content;
 
     @media screen and (width <= 1024px) {
