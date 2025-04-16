@@ -6,13 +6,13 @@
 }
 
 .game-features__title {
+    color: #fff;
     font-size: 1rem;
     font-weight: 600;
-    color: #fff;
     margin: 10px 0;
 
     @media screen and (width <= 768px) {
-        font-size: 0.8rem;
+        font-size: .8rem;
     }
 }
 
@@ -39,14 +39,14 @@
 }
 
 .game-features__list-item__icon {
-    display: flex;
     color: #fff;
+    display: flex;
 }
 
 .game-features__list-item__title {
+    color: #fff;
     font-size: .8rem;
     font-weight: 600;
-    color: #fff;
 
     @media screen and (width <= 768px) {
         font-size: .7rem;

@@ -89,8 +89,8 @@
   flex-direction: column;
   gap: 2rem;
   height: 100%;
-  padding: 1rem;
   max-width: 900px;
+  padding: 1rem;
   width: 90%;
 
   @media screen and (width <= 1200px) {
@@ -105,7 +105,7 @@
   max-width: 900px;
   width: 35%;
 
-  @media screen and (width <=1200px) {
+  @media screen and (width <= 1200px) {
     width: 100%;
   }
 }
