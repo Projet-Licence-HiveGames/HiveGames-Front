@@ -75,15 +75,15 @@ export const GameInfo: React.FC = () => {
       </div>
       <div className='game-info__content'>
         <div className='game-buy-card'>
-          <GameBuyCard game={gameData} />
+          <GameBuyCard name={gameData?.name || ""} oldPrice={gameData?.oldPrice || 0} price={gameData?.price || 0} />
         </div>
         <div className='game-details'>
           <div className='game-features-languages'>
             <div className='game-features'>
-              <GameFeatures game={gameData} />
+              <GameFeatures game={gameData?.features || []} />
             </div>
             <div className='game-languages'>
-              <GameLanguages game={gameData} />
+              <GameLanguages game={gameData?.languages || []} />
             </div>
           </div>
         </div>

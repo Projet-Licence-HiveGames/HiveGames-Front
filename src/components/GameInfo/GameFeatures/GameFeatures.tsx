@@ -4,7 +4,7 @@ import './GameFeatures.css';
 import { translate } from '../../../utils/translations';
 import { translateFeature, featureIcons } from '../../../constants/FeaturesDict';
 interface GameFeaturesProps {
-    game: Game;
+    game: Game['features'];
 }
 
 export const GameFeatures: React.FC<GameFeaturesProps> = ({ game }) => {
@@ -15,8 +15,8 @@ export const GameFeatures: React.FC<GameFeaturesProps> = ({ game }) => {
                 <h2>{translate('features')}</h2>
             </div>
             <div className='game-features__list'>
-                {game.features?.map((feature) => (
-                    <div className='game-features__list-item'>
+                {game?.map((feature, index) => (
+                    <div className='game-features__list-item' key={index}>
                         <div className='game-features__list-item__icon'>
                             {featureIcons[feature.label as keyof typeof featureIcons]}
                         </div>

@@ -18,14 +18,14 @@
 }
 
 .game-buy-card__title {
+    color: #fff;
     font-size: 1rem;
     font-weight: 600;
-    color: #fff;
 }
 
 .game-buy-card__description {
     color: var(--bg-color-blue-lighter);
-    font-size: 0.8rem;
+    font-size: .8rem;
 }
 
 .game-buy-card-content__price {

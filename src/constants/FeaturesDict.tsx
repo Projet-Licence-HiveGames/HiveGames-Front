@@ -35,7 +35,7 @@ export const featureIcons: { [key in Label]: JSX.Element } = {
     early_access: <SettingsApplicationsRounded />,
     free_to_play: <LocalMallRounded />,
     in_app_purchases: <StoreRounded />,
-    vr_support: <ViewInArRounded />,  // Pour le support VR
+    vr_support: <ViewInArRounded />,
     ray_tracing: <FlashOnRounded />,
     photo_mode: <PhotoCameraRounded />,
     haptic_feedback: <VibrationRounded />,
@@ -46,7 +46,7 @@ export const featureIcons: { [key in Label]: JSX.Element } = {
     sandbox_mode: <ExtensionRounded />,
     steam_workshop_support: <CloudDoneRounded />,
     roguelike_elements: <LocalFireDepartmentRounded />,
-    permadeath: <SportsEsportsRounded />,  // Utilisation d'une icône existante, comme `SportsEsportsRounded` pour l'instant
+    permadeath: <SportsEsportsRounded />,
 };
 const labelList = [
     'singleplayer',
