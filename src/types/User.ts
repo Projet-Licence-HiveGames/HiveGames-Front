@@ -11,10 +11,10 @@ export interface User {
     user_tag: string;
     email: string;
     user_role: string;
-    game_collection?: UserGameCollection[];
+    game_collections?: UserGameCollections[];
 }
 
-interface UserGameCollection {
+interface UserGameCollections {
     game_id: number;
     is_wished: boolean;
     is_owned: boolean;
