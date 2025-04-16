@@ -1,8 +1,14 @@
 {
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-prettier"
+    ],
     "plugins": [
         "stylelint-order"
     ],
     "rules": {
-        "order/properties-alphabetical-order": true
+        "order/properties-alphabetical-order": true,
+        "number-leading-zero": "never",
+        "no-empty-source": true
     }
 }
