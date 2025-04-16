@@ -5,6 +5,7 @@ export interface Game {
   name: string;
   short_description?: string;
   description?: string;
+  features?: GameFeature[];
   images?: GameImage[];
   price: number;
   oldPrice?: number;
@@ -60,4 +61,10 @@ export interface GameImage {
   file_url?: string;
   game: Game;
   alt: string;
+}
+
+export interface GameFeature {
+    id: number;
+    description: string;
+    label: string;
 }

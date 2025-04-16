@@ -7,6 +7,8 @@ import Category from "../CustomBloc/CategoryBloc/Category";
 import PromoBloc from "../CustomBloc/PromoBloc/PromoBloc";
 import { WishButton } from "../CustomBloc/WishButton/WishButton";
 import ProgressBar from "../ui/ProgressBar/ProgressBar";
+import { calculateDiscount } from "../../utils/calculateDiscount";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 import "./GameCard.css";
 
@@ -17,18 +19,6 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
   const navigate = useNavigate();
-  const capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
-  const calculateDiscount = (
-    originalPrice: number,
-    discountedPrice: number,
-  ) => {
-    return Math.round(
-      ((originalPrice - discountedPrice) / originalPrice) * 100,
-    );
-  };
 
   return (
     <div className={"game-card"} onClick={() => navigate(`/game/${game.id}`)}>
