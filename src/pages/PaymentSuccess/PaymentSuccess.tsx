@@ -1,21 +1,23 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import './PaymentSuccess.css';
-import { useAuth } from "../../context/AuthProvider.tsx";
-import { privateApi } from "../../api/privateApi.ts";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-export const PaymentSuccess: React.FC = ({ }) => {
+import { privateApi } from "../../api/privateApi.ts";
+import { useAuth } from "../../context/AuthProvider.tsx";
+
+import "./PaymentSuccess.css";
+
+export const PaymentSuccess: React.FC = ({}) => {
   const { user } = useAuth();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const sessionId = queryParams.get('session_id');
+  const sessionId = queryParams.get("session_id");
   const [paymentData, setPaymentData] = React.useState<any>(null);
   const [error, setError] = React.useState<any>(null);
 
   const fetchData = async () => {
-    await privateApi<any>(`/stripe/order/${sessionId}`, 'GET')
+    await privateApi<any>(`/stripe/order/${sessionId}`, "GET")
       .then((response) => {
-        const {data} = response;
+        const { data } = response;
         setPaymentData(data);
       })
       .catch((_error) => {
@@ -36,9 +38,5 @@ export const PaymentSuccess: React.FC = ({ }) => {
   //   }
   // }, []);
 
-  return (
-    <div>
-      {paymentData}
-    </div>
-  );
+  return <div>{paymentData}</div>;
 };

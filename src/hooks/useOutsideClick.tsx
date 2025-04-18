@@ -1,4 +1,4 @@
-import { LegacyRef, useEffect, useRef } from 'react';
+import { LegacyRef, useEffect, useRef } from "react";
 
 export type useOutsideClickCallback = (
   event?: MouseEvent,
@@ -19,14 +19,14 @@ export function useOutsideClick<T extends HTMLElement>(
       }
     };
 
-    document.addEventListener('click', handleClick);
+    document.addEventListener("click", handleClick);
     if (!options.disableContextMenu) {
-      document.addEventListener('contextmenu', handleClick);
+      document.addEventListener("contextmenu", handleClick);
     }
     return () => {
-      document.removeEventListener('click', handleClick);
+      document.removeEventListener("click", handleClick);
       if (!options.disableContextMenu) {
-        document.removeEventListener('contextmenu', handleClick);
+        document.removeEventListener("contextmenu", handleClick);
       }
     };
   }, [ref, callback, options]);

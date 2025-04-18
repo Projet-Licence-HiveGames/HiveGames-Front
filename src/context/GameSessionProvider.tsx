@@ -1,10 +1,11 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import toast from "react-hot-toast";
 
-import { GameSession } from '../pages/GameSession/GameSession';
-import { AuthContext } from './AuthProvider';
-import { Game } from '../types/Game';
-import { useFetch } from '../api/privateApi';
-import toast from 'react-hot-toast';
+import { useFetch } from "../api/privateApi";
+import { GameSession } from "../pages/GameSession/GameSession";
+import { Game } from "../types/Game";
+
+import { AuthContext } from "./AuthProvider";
 
 interface GameSessionContextProps {
   isOpen: boolean;
@@ -37,9 +38,11 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(true);
     setIsOpen(true);
     // get game data from API with gameId
-    let gameData = await fetchAPI.get<Game>(`/games/${gameId}`).catch(() => null);
+    let gameData = await fetchAPI
+      .get<Game>(`/games/${gameId}`)
+      .catch(() => null);
     if (!gameData) {
-      toast.error('Une erreur est survenue lors de la récupération du jeu.');
+      toast.error("Une erreur est survenue lors de la récupération du jeu.");
       setIsLoading(false);
       setIsOpen(false);
       return;
@@ -54,7 +57,7 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
 
   const endGameSession = () => {
     // put end date to game session
-    console.log('endGameSession', game, user?.id);
+    console.log("endGameSession", game, user?.id);
     setIsOpen(false);
     setGame(null);
   };
@@ -68,17 +71,21 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
       startGameSession,
       endGameSession,
     }),
-    [
-      isOpen,
-      game,
-      tempGameName,
-    ]
+    [isOpen, game, tempGameName],
   );
-    
+
   return (
     <GameSessionContext.Provider value={contextValue}>
       {children}
-      {!isAuthenticated && <GameSession tempGameName={tempGameName} game={game} isOpen={isOpen} isLoading={isLoading} onCloseGameSession={endGameSession} />}
+      {!isAuthenticated && (
+        <GameSession
+          tempGameName={tempGameName}
+          game={game}
+          isOpen={isOpen}
+          isLoading={isLoading}
+          onCloseGameSession={endGameSession}
+        />
+      )}
     </GameSessionContext.Provider>
   );
 };

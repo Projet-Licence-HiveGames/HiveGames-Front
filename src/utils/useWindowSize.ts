@@ -1,33 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 const useWindowSize = () => {
-    const [windowSize, setWindowSize] = useState({
-        isLaptop: false,
-        isTablet: false,
-        isDesktop: false,
-        isMobile: false
-    });
+  const [windowSize, setWindowSize] = useState({
+    isLaptop: false,
+    isTablet: false,
+    isDesktop: false,
+    isMobile: false,
+  });
 
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
 
-            setWindowSize({
-                isLaptop: width >= 1024 && width <= 1440,
-                isTablet: width >= 768 && width <= 1024,
-                isDesktop: width >= 1440,
-                isMobile: width < 768
-            });
-        };
+      setWindowSize({
+        isLaptop: width >= 1024 && width <= 1440,
+        isTablet: width >= 768 && width <= 1024,
+        isDesktop: width >= 1440,
+        isMobile: width < 768,
+      });
+    };
 
-        handleResize();
+    handleResize();
 
-        window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    return windowSize;
+  return windowSize;
 };
 
 export default useWindowSize;
