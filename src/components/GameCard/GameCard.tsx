@@ -4,7 +4,7 @@ import { Game } from '../../types/Game';
 import Category from '../CustomBloc/CategoryBloc/Category';
 import PromoBloc from "../CustomBloc/PromoBloc/PromoBloc";
 import ProgressBar from "../ui/ProgressBar/ProgressBar";
-import image from '@assets/images/image 49.png';
+import image from '@assets/images/image_49.png';
 import { HeartButton } from '../CustomBloc/HeartButton/HeartButton';
 import { useAuth } from '../../context/AuthProvider';
 import { privateApi } from '../../api/privateApi';
@@ -56,7 +56,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
     return (
         <div className={'game-card'}>
             <div className={'game-card-image'}>
-                <img src={game.image?.[0] || image} alt={game.name} />
+                <img src={game.images?.find(i=>i.file_name.startsWith('thumbnail'))?.file_url ?? image} alt={game.name} />
                 <div className={'game-card-content-progress-bar'}>
                     <ProgressBar leftPercentValue={50} />
                 </div>

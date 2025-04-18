@@ -47,10 +47,12 @@
 }
 
 .game-card-image img {
+    border-radius: var(--button-border-radius-small);
+    height: 140px;
     width: 250px;
-    
 
     @media screen and (width <= 1024px) {
+        height: 100%;
         width: 100%;
     }
 }
