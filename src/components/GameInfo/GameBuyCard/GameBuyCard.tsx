@@ -1,5 +1,4 @@
 import React from 'react';
-import { Game } from '../../../types/Game';
 import PromoBloc from '../../CustomBloc/PromoBloc/PromoBloc';
 import { calculateDiscount } from '../../../utils/calculateDiscount';
 import { capitalizeFirstLetter } from '../../../utils/capitalizeFirstLetter';
@@ -20,7 +19,7 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({ name, oldPrice, price 
                 <div className='game-buy-card__title'>
                     <h3>{capitalizeFirstLetter(name)}</h3>
                 </div>
-                {oldPrice && oldPrice !== 0 && (
+                {oldPrice !== 0 && (
                     <div className='game-buy-card__description'>
                         <p>{translate('weekend_deal')}</p>
                     </div>
