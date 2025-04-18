@@ -34,11 +34,9 @@ export const GameInfo: React.FC = () => {
       <div className="game-info-container">
         {!isMobile && (
           <div className="game-info-container-left">
-            <img src={gameData?.images?.[0]?.file_name} alt={gameData?.name} />
+            {/* <img src={gameData?.images?.find(i=>i.file_name.startsWith('slide'))} alt={gameData?.name} /> */}
             <GameImages
-              images={
-                gameData?.images ? gameData.images.map((image) => image) : []
-              }
+              images={gameData?.images}
             />
           </div>
         )}
@@ -51,9 +49,7 @@ export const GameInfo: React.FC = () => {
           {!isMobile ? (
             <GameDescription
               description={gameData?.description || ""}
-              images={
-                gameData?.images ? gameData.images.map((image) => image) : []
-              }
+              thumbnail={gameData?.images?.find(i => i.file_name.startsWith('thumbnail'))}
             />
           ) : (
             <img src={gameData?.images?.[0]?.file_name} alt={gameData?.name} />
