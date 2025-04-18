@@ -5,12 +5,16 @@ export interface Game {
   name: string;
   short_description?: string;
   description?: string;
-  images?: GameImage[];
+  image?: string[];
   price: number;
   oldPrice?: number;
   current_version?: string;
   categories?: GameCategory[];
   languages?: GameLanguage[];
+  is_wished?: boolean;
+  is_owned?: boolean;
+  be_notified?: boolean;
+  images?: GameImage[];
   studios?: GameStudio[];
   release_date?: string;
 }

@@ -1,9 +1,9 @@
-.heart-button-container {
+.wish-button-container {
     position: absolute;
     right: 0;
 }
 
-.heart-button {
+.wish-button {
     display: flex;
     align-items: center;
     background-color: var(--bg-color-dark);
@@ -13,6 +13,6 @@
     cursor: pointer;
 }
 
-.heart-button svg {
+.wish-button svg {
     align-self: center;
 }
