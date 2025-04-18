@@ -5,7 +5,7 @@ export interface Game {
     name: string;
     short_description?: string;
     description?: string;
-    images?: string[];
+    images?: GameImage[];
     price: number;
     oldPrice?: number;
     current_version?: string;
@@ -49,4 +49,12 @@ export interface GameStudio {
     id: number;
     name: string;
     logo_path: string;
+}
+
+export interface GameImage {
+    id: number;
+    file_name: string;
+    file_url?: string;
+    game: Game;
+    alt: string;
 }
