@@ -1,6 +1,9 @@
 import React from "react";
+
 import { GameImage } from "../../../types/Game";
+
 import image from "@assets/images/image_49.png";
+
 import "./GameDescription.css";
 
 interface GameDescriptionProps {
