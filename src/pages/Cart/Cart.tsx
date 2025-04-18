@@ -1,10 +1,7 @@
-import React from 'react';
-import './Cart.css';
+import React from "react";
 
-export const Cart:React.FC = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+import "./Cart.css";
+
+export const Cart: React.FC = () => {
+  return <div></div>;
 };

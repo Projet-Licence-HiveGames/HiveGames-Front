@@ -15,13 +15,14 @@ import {Setting} from './pages/Setting/Setting.tsx';
 import {Subscription} from './pages/Subscription/Subscription.tsx';
 import {Wishlist} from './pages/Wishlist/Wishlist.tsx';
 import Login from './pages/Login/Login.tsx';
-import './App.css';
 import {Checkout} from "./pages/Checkout/Checkout.tsx";
 import {PaymentSuccess} from "./pages/PaymentSuccess/PaymentSuccess.tsx";
 import {Cart} from "./pages/Cart/Cart.tsx";
 import {PaymentFailed} from "./pages/PaymentFailed/PaymentFailed.tsx";
 import Register from "./pages/Register/Register.tsx";
 import ProtectedRoute from './components/ProtectedRoute';
+import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx';
+import './App.css';
 
 const App: React.FC = () => {
     return (
@@ -55,7 +56,9 @@ const App: React.FC = () => {
                     <Route path='Order' element={<ProtectedRoute><PaymentSuccess/></ProtectedRoute>}/>
                     <Route path='Payment-success' element={<ProtectedRoute><PaymentFailed/></ProtectedRoute>}/>
                 </Route>
+                <Route path='404' element={<ErrorPage/>}/>
             </Route>
+            <Route path='*' element={<Home/>}/>
         </Routes>
     );
 };

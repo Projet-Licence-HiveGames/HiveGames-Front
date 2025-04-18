@@ -1,14 +1,23 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { AuthProvider, useAuth } from '../context/AuthContext';
+import { fireEvent, render, screen } from "@testing-library/react";
+
+import { AuthProvider, useAuth } from "../context/AuthContext";
 
 // Composant de test pour accéder au contexte
 const TestComponent = () => {
   const { user, isAuthenticated, login, logout } = useAuth();
   return (
     <div>
-      <div data-testid="user">{user?.pseudo || 'non connecté'}</div>
+      <div data-testid="user">{user?.pseudo || "non connecté"}</div>
       <div data-testid="isAuthenticated">{isAuthenticated.toString()}</div>
-      <button onClick={() => login({pseudo: 'testuser', email: 'test@test.com', password: 'testuser'})}>
+      <button
+        onClick={() =>
+          login({
+            pseudo: "testuser",
+            email: "test@test.com",
+            password: "testuser",
+          })
+        }
+      >
         Se connecter
       </button>
       <button onClick={logout}>Se déconnecter</button>
@@ -16,57 +25,57 @@ const TestComponent = () => {
   );
 };
 
-describe('AuthContext', () => {
+describe("AuthContext", () => {
   beforeEach(() => {
     localStorage.clear();
   });
 
-  it('devrait initialiser avec un utilisateur non connecté', () => {
+  it("devrait initialiser avec un utilisateur non connecté", () => {
     render(
       <AuthProvider>
         <TestComponent />
-      </AuthProvider>
+      </AuthProvider>,
     );
 
-    expect(screen.getByTestId('user').textContent).toBe('non connecté');
-    expect(screen.getByTestId('isAuthenticated').textContent).toBe('false');
+    expect(screen.getByTestId("user").textContent).toBe("non connecté");
+    expect(screen.getByTestId("isAuthenticated").textContent).toBe("false");
   });
 
-  it('devrait permettre la connexion', () => {
+  it("devrait permettre la connexion", () => {
     render(
       <AuthProvider>
         <TestComponent />
-      </AuthProvider>
+      </AuthProvider>,
     );
 
-    fireEvent.click(screen.getByText('Se connecter'));
-    expect(screen.getByTestId('user').textContent).toBe('testuser');
-    expect(screen.getByTestId('isAuthenticated').textContent).toBe('true');
+    fireEvent.click(screen.getByText("Se connecter"));
+    expect(screen.getByTestId("user").textContent).toBe("testuser");
+    expect(screen.getByTestId("isAuthenticated").textContent).toBe("true");
   });
 
-  it('devrait permettre la déconnexion', () => {
+  it("devrait permettre la déconnexion", () => {
     render(
       <AuthProvider>
         <TestComponent />
-      </AuthProvider>
+      </AuthProvider>,
     );
 
-    fireEvent.click(screen.getByText('Se connecter'));
-    fireEvent.click(screen.getByText('Se déconnecter'));
-    expect(screen.getByTestId('user').textContent).toBe('non connecté');
-    expect(screen.getByTestId('isAuthenticated').textContent).toBe('false');
+    fireEvent.click(screen.getByText("Se connecter"));
+    fireEvent.click(screen.getByText("Se déconnecter"));
+    expect(screen.getByTestId("user").textContent).toBe("non connecté");
+    expect(screen.getByTestId("isAuthenticated").textContent).toBe("false");
   });
 
-  it('devrait persister l\'état de connexion dans le localStorage', () => {
+  it("devrait persister l'état de connexion dans le localStorage", () => {
     render(
       <AuthProvider>
         <TestComponent />
-      </AuthProvider>
+      </AuthProvider>,
     );
 
-    fireEvent.click(screen.getByText('Se connecter'));
-    const storedUser = localStorage.getItem('user');
+    fireEvent.click(screen.getByText("Se connecter"));
+    const storedUser = localStorage.getItem("user");
     expect(storedUser).toBeTruthy();
-    expect(JSON.parse(storedUser!).username).toBe('testuser');
+    expect(JSON.parse(storedUser!).username).toBe("testuser");
   });
-}); 
+});

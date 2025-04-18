@@ -1,10 +1,7 @@
-import React from 'react';
-import './PaymentFailed.css';
+import React from "react";
 
-export const PaymentFailed:React.FC = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+import "./PaymentFailed.css";
+
+export const PaymentFailed: React.FC = () => {
+  return <div></div>;
 };

@@ -1,14 +1,18 @@
-import React from 'react';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import './HeartButton.css';
+import React from "react";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-export const HeartButton: React.FC<{ isFavorite: boolean, onClick: () => void }> = ({ isFavorite, onClick }) => {
-    return (
-        <div className='heart-button-container'>
-            <button className='heart-button' onClick={onClick}>
-                {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            </button>
-        </div>
-    );
+import "./HeartButton.css";
+
+export const HeartButton: React.FC<{
+  isFavorite: boolean;
+  onClick: () => void;
+}> = ({ isFavorite, onClick }) => {
+  return (
+    <div className="heart-button-container">
+      <button className="heart-button" onClick={onClick}>
+        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+      </button>
+    </div>
+  );
 };
