@@ -37,12 +37,12 @@
 }
 
 .swiper-slide-thumb-active .progress-bar {
-  animation: progressBarAnimation 2s forwards;
-  border: 2px solid var(--bg-color-orange);
+  animation: progressBarAnimation 5.2s linear;
+  background-color: var(--bg-color-orange);
   border-radius: 10px;
-  bottom: -10px;
+  bottom: -5px;
   content: "";
-  height: 4px;
+  height: 2px;
   left: 0;
   position: absolute;
   width: 0%;

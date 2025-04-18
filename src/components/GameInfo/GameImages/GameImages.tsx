@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Thumbs } from "swiper/modules";
+import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { GameImage } from "../../../types/Game";
 
 import "swiper/swiper-bundle.css";
@@ -26,46 +26,48 @@ export const GameImages: React.FC<GameImagesProps> = ({
   return (
     <div className="game-images-wrapper">
       <Swiper
-        spaceBetween={10}
-        slidesPerView={1}
-        loop={true}
-        navigation={true}
-        pagination={{ clickable: true }}
-        modules={[Navigation, Thumbs]}
-        thumbs={{ swiper: thumbsSwiper }}
+        autoplay={{ delay: 5000 }}
         className="big-image-swiper"
+        loop={true}
+        modules={[Navigation, Thumbs, Autoplay]}
+        navigation
+        pagination={{ clickable: true }}
+        slidesPerView={1}
+        spaceBetween={10}
+        thumbs={{ swiper: thumbsSwiper }}
       >
         {_images.map((image, index) => (
           <SwiperSlide key={index}>
             <img
+              alt={image.alt || "Game Image"}
               className="panel-image"
-              src={image.file_url}
-              srcSet={`${image.file_name} 1x, ${image.file_name} 2x`}
-              alt={image.alt}
-              loading="lazy"
               decoding="async"
+              loading="lazy"
+              src={image.file_name}
+              srcSet={`${image.file_name} 1x, ${image.file_name} 2x`}
             />
           </SwiperSlide>
         ))}
       </Swiper>
       <Swiper
-        onSwiper={setThumbsSwiper}
-        spaceBetween={10}
-        slidesPerView={5}
+        autoplay={{ delay: 5000 }}
+        className="thumbs-swiper"
         freeMode={true}
         loop={true}
-        watchSlidesProgress={true}
         modules={[Thumbs]}
-        className="thumbs-swiper"
+        onSwiper={setThumbsSwiper}
+        slidesPerView={5}
+        spaceBetween={10}
+        watchSlidesProgress={true}
       >
         {_images.map((image, index) => (
           <SwiperSlide key={index}>
             <img
-              className="thumb-image"
-              src={image.file_url}
               alt={image.alt || "Thumbnail"}
-              loading="lazy"
+              className="thumb-image"
               decoding="async"
+              loading="lazy"
+              src={image.file_url}
             />
             <div className="progress-bar"></div>
           </SwiperSlide>
