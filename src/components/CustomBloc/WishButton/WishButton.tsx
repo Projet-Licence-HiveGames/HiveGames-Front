@@ -3,7 +3,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import './WishButton.css';
 import { Game } from '../../../types/Game';
-import { privateApi } from '../../../api/privateApi';
+import { useFetch } from '../../../api/privateApi';
 import { useAuth } from '../../../context/AuthProvider';
 
 interface WishButtonProps {
@@ -11,11 +11,11 @@ interface WishButtonProps {
 }
 
 export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
+    const fetchAPI = useFetch();
     const auth = useAuth();
     const { user } = auth;
     const [isFavorite, setIsFavorite] = useState<boolean>(game.is_wished || false);
     const isFavoriteRef = useRef(game.is_wished || false);
-    const lastSentValue = useRef(game.is_wished || false);
     const cooldownRef = useRef(false);
     const pendingChange = useRef<boolean | null>(null);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -29,19 +29,10 @@ export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
     }, [isFavorite]);
 
     const sendToAPI = async (value: boolean) => {
-        isFavoriteRef.current = value;
-        const response: { ok: boolean } = await privateApi(
-            `/games/${game.id}`,
-            "PATCH",
-            { is_wished: isFavoriteRef.current }
-        );
-        if (!response.ok) {
-            console.warn("❌ Erreur API, rollback état local");
-            setIsFavorite(isFavoriteRef.current); // rollback UI
-        } else {
-            console.log("✅ Changement envoyé:", value);
-            lastSentValue.current = value;
-        }
+        console.log("Changement d'état, envoi à l'API");
+        await fetchAPI.patch(`/games/${game.id}`, { is_wished: value }).catch(() => {
+            setIsFavorite(!value);
+        });
     };
 
     const handleFavoriteToggle = async () => {
@@ -57,15 +48,13 @@ export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
             timeoutRef.current = setTimeout(() => {
                 cooldownRef.current = false;
                 if (
-                    pendingChange.current !== null &&
-                    pendingChange.current !== lastSentValue.current
+                    pendingChange.current !== null
                 ) {
                     sendToAPI(pendingChange.current);
                 }
                 pendingChange.current = null;
-            }, 5000);
+            }, 1000);
         } else {
-            // ⏳ on est en cooldown, on stocke le dernier état
             pendingChange.current = newState;
             console.log("Cooldown actif, changement en attente");
         }
@@ -73,29 +62,16 @@ export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
 
     useEffect(() => {
         return () => {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
         };
     }, []);
 
-    useEffect(() => {
-        const handleUnload = () => {
-        if (
-            pendingChange.current !== null &&
-            pendingChange.current !== lastSentValue.current
-        ) {
-            navigator.sendBeacon(
-            `/api/games/${game.id}`,
-            JSON.stringify({ is_wished: pendingChange.current })
-            );
-        }
-        };
-        window.addEventListener("beforeunload", handleUnload);
-        return () => window.removeEventListener("beforeunload", handleUnload);
-    }, [game.id]);
-
     return (
         <div className='wish-button-container'>
-            <button className='wish-button' onClick={handleFavoriteToggle}>
+            <button className='wish-button' onClick={(e) => {
+                e.stopPropagation();
+                handleFavoriteToggle();
+            }}>
                 {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </button>
         </div>

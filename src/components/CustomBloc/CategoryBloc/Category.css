@@ -4,6 +4,7 @@
     gap: 10px;
     height: 32px;
     overflow: hidden;
+    width: fit-content;
 }
 
 .category-bloc span {

@@ -70,3 +70,7 @@
     margin: 0 auto;
   }
 }
+
+.game-info-container-right img {
+  border-radius: 8px;
+}

@@ -2,6 +2,8 @@
     align-self: stretch;
     background: var(--bg-color-normal);
     border-radius: 5px;
+    color: white;
+    cursor: pointer;
     display: flex;
     flex: none;
     flex-grow: 0;
@@ -20,6 +22,11 @@
         max-height: unset;
         max-width: 300px;
     }
+}
+
+.game-card:hover {
+    background: var(--bg-color-dark);
+    box-shadow: 0 0 10px var(--bg-color-light);
 }
 
 .game-card-image {

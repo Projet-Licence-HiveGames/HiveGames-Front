@@ -77,7 +77,7 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
   return (
     <GameSessionContext.Provider value={contextValue}>
       {children}
-      {!isAuthenticated && (
+      {isAuthenticated && (
         <GameSession
           tempGameName={tempGameName}
           game={game}
