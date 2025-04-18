@@ -75,7 +75,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
           <div className='filter-item filter-item-sort'>
             <span className='filter-item-title'>Trier par</span>
             <select className='filter-item-select' value={filters.order_by} onChange={(e) => setFilters({ ...filters, order_by: e.target.value })}>
-              <option value='rating-desc' selected>Avis (+ / -)</option>
+              <option value='rating-desc'>Avis (+ / -)</option>
               <option value='rating-asc'>Avis (- / +)</option>
               <option value='name-asc'>Nom (A-Z)</option>
               <option value='name-desc'>Nom (Z-A)</option>
