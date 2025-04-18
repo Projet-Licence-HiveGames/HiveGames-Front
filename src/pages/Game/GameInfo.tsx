@@ -10,17 +10,18 @@ import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter.ts";
 import useWindowSize from "../../utils/useWindowSize.ts";
 
 import "./GameInfo.css";
+import { getGameThumbnail } from "../../utils/gameUtils.ts";
 export const GameInfo: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [gameData, setGameData] = useState<Game | null>(null);
+  const [gameData, setGameData] = useState<Game>();
   const { isMobile, isTablet } = useWindowSize();
 
   useEffect(() => {
     const fetchGame = async () => {
       await privateApi<Game>(`/games/${id}`, "GET")
         .then(setGameData)
-        .catch((_) => navigate("/404", { state: { error_status: 404 } }));
+        .catch(() => navigate("/404", { state: { error_status: 404 } }));
     };
 
     fetchGame();
@@ -35,7 +36,7 @@ export const GameInfo: React.FC = () => {
         {!isMobile && (
           <div className="game-info-container-left">
             {/* <img src={gameData?.images?.find(i=>i.file_name.startsWith('slide'))} alt={gameData?.name} /> */}
-            <GameImages images={gameData?.images} />
+            <GameImages images={gameData?.images} thumbnail={getGameThumbnail(gameData)} />
           </div>
         )}
         {isTablet && (
@@ -47,12 +48,10 @@ export const GameInfo: React.FC = () => {
           {!isMobile ? (
             <GameDescription
               description={gameData?.description || ""}
-              thumbnail={gameData?.images?.find((i) =>
-                i.file_name.startsWith("thumbnail"),
-              )}
+              thumbnail={getGameThumbnail(gameData)}
             />
           ) : (
-            <img src={gameData?.images?.[0]?.file_name} alt={gameData?.name} />
+            <img src={getGameThumbnail(gameData)?.file_url} alt={gameData?.name} />
           )}
           <GameDetails
             studio={gameData?.studios || []}

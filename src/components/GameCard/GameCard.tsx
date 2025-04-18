@@ -4,9 +4,10 @@ import { Game } from '../../types/Game';
 import Category from '../CustomBloc/CategoryBloc/Category';
 import PromoBloc from "../CustomBloc/PromoBloc/PromoBloc";
 import ProgressBar from "../ui/ProgressBar/ProgressBar";
-import image from '@assets/images/image 49.png';
 import { WishButton } from '../CustomBloc/WishButton/WishButton';
 import { useAuth } from '../../context/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+import { getGameThumbnail } from '../../utils/gameUtils';
 
 interface GameCardProps {
     game: Game;
@@ -14,6 +15,7 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = ({ game }) => {
     const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
     const capitalizeFirstLetter = (string: string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -23,9 +25,11 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
     }
 
     return (
-        <div className={'game-card'}>
+        <div className={'game-card'} onClick={() => navigate(`/game/${game.id}`)}>
             <div className={'game-card-image'}>
-                <img src={game.image?.[0] || image} alt={game.name} />
+                <img src={getGameThumbnail(game).file_url} 
+                  alt={game.name}
+                />
                 <div className={'game-card-content-progress-bar'}>
                     <ProgressBar leftPercentValue={50} />
                 </div>
@@ -33,7 +37,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
             <div className={'game-card-content'}>
                 {isAuthenticated && <WishButton game={game} />}
                 <div className={'game-card-content-title'}>
-                    <a href={`/game/${game.id}`}><h3>{capitalizeFirstLetter(game.name)}</h3></a>
+                    <h3>{capitalizeFirstLetter(game.name)}</h3>
                 </div>
                 <div className={'game-card-content-category'}>
                     <Category category={game.categories?.map(category => category.label) || []} />

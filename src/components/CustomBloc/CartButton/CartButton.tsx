@@ -8,7 +8,10 @@ interface CartButtonProps {
 
 const CartButton: React.FC<CartButtonProps> = ({ onClick }) => {
   return (
-    <button className={"cart-button"} onClick={onClick}>
+    <button className={"cart-button"} onClick={(e) => {
+      e.stopPropagation();
+      onClick?.();
+    }}>
       <span>Acheter</span>
     </button>
   );
