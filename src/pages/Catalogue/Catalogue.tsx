@@ -31,10 +31,15 @@ export const Catalogue: React.FC = () => {
       setIsLoading(true);
       await fetchAPI.post<Game[]>("/games", filters)
       .then(
-        (games) => setGameList(games.map((game) => (
-          { ...game, 
-            is_wished: user?.game_collections?.find((collection) => collection.game_id === game.id)?.is_wished || false
-          })))
+        (games) => setGameList(games.map((game) => {
+          const collection = user?.game_collections?.find((c) => c.game_id === game.id);
+          return {
+            ...game,
+            is_wished: collection?.is_wished || false,
+            is_owned: collection?.is_owned || false,
+            be_notified: collection?.be_notified || false,
+          };
+        }))
       ).catch(() => toast.error("Erreur lors de la récupération des jeux"));
     } catch (error) {
       console.error("Erreur lors de la récupération des jeux :", error);
