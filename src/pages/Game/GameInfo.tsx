@@ -47,11 +47,6 @@ export const GameInfo: React.FC = () => {
             />
           </div>
         )}
-        {isTablet && (
-          <div className="game-description">
-            <p>{gameData?.description}</p>
-          </div>
-        )}
         <div className="game-info__right">
           {!isMobile ? (
             <GameDescription

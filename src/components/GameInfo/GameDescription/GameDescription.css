@@ -1,11 +1,7 @@
 .game-description {
   background: var(--bg-color-light);
-  padding: 1.5rem;
   border-radius: 8px;
-
-  @media (width <= 1200px) {
-    display: none;
-  }
+  padding: 1.5rem;
 }
 
 .game-description h2 {
@@ -45,14 +41,6 @@
 }
 
 .game-description-image img {
-  height: 100%;
-}
-
-.game-images img {
-  width: 100%;
-  height: 70%;
-  object-fit: cover;
-  border-radius: 8px;
   height: 100%;
   object-fit: contain;
   width: 100%;

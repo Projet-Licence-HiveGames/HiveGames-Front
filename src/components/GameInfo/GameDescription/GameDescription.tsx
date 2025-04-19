@@ -19,9 +19,9 @@ export const GameDescription: React.FC<GameDescriptionProps> = ({
     <div className="game-description-container">
       <div className="game-description-image">
         <img 
-                src={thumbnail?.file_url ?? image}
-                srcSet={`${thumbnail?.file_url} 1x, ${thumbnail?.file_url} 2x`}
-                alt={thumbnail?.alt} />
+          src={thumbnail?.file_url ?? image}
+          srcSet={`${thumbnail?.file_url} 1x, ${thumbnail?.file_url} 2x`}
+          alt={thumbnail?.alt} />
       </div>
       <div className="game-description">
         <p>{description}</p>
