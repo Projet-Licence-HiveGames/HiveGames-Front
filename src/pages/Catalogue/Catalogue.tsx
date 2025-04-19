@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 import { useFetch } from "../../api/privateApi.ts";
 import FilterSidebar, {
@@ -10,7 +11,6 @@ import { useAuth } from "../../context/AuthProvider.tsx";
 import { Game } from "../../types/Game.ts";
 
 import "./Catalogue.css";
-import toast from "react-hot-toast";
 
 export const Catalogue: React.FC = () => {
   const { isAuthenticated, user } = useAuth();
@@ -28,18 +28,24 @@ export const Catalogue: React.FC = () => {
 
   const fetchGames = async () => {
     setIsLoading(true);
-    await fetchAPI.post<Game[]>("/games", filters)
-    .then(
-      (games) => setGameList(games.map((game) => {
-        const collection = user?.game_collections?.find((c) => c.game_id === game.id);
-        return {
-          ...game,
-          is_wished: collection?.is_wished || false,
-          is_owned: collection?.is_owned || false,
-          be_notified: collection?.be_notified || false,
-        };
-      }))
-    ).catch(() => toast.error("Erreur lors de la récupération des jeux"));
+    await fetchAPI
+      .post<Game[]>("/games", filters)
+      .then((games) =>
+        setGameList(
+          games.map((game) => {
+            const collection = user?.game_collections?.find(
+              (c) => c.game_id === game.id,
+            );
+            return {
+              ...game,
+              is_wished: collection?.is_wished || false,
+              is_owned: collection?.is_owned || false,
+              be_notified: collection?.be_notified || false,
+            };
+          }),
+        ),
+      )
+      .catch(() => toast.error("Erreur lors de la récupération des jeux"));
     setIsLoading(false);
   };
 

@@ -8,7 +8,7 @@
   padding: 5px;
   position: absolute;
   right: 0;
-  top: calc(var(--header-height) - 2px);
+  top: 100%;
   z-index: 1000;
 }
 

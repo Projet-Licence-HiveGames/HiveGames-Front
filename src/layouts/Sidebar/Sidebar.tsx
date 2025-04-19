@@ -8,7 +8,7 @@ import {
 import classNames from "classnames";
 
 import MenuItem from "../../components/ui/Menu/MenuItem";
-import useWindowSize from "../../utils/useWindowSize.ts";
+import useWindowSize from "../../hooks/useWindowSize.ts";
 
 import logo from "@assets/images/logo.svg";
 import logoName from "@assets/images/logo-name.svg";

@@ -5,8 +5,8 @@ import classNames from "classnames";
 
 import { useFetch } from "../../../api/privateApi";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import useWindowSize from "../../../hooks/useWindowSize";
 import { GameCategory, GameFeature, Language } from "../../../types/Game";
-import useWindowSize from "../../../utils/useWindowSize";
 
 import Dropdown, { DropdownOption } from "./Dropdown/Dropdown";
 
@@ -31,7 +31,15 @@ interface FilterSidebarProps {
 
 const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
   const fetchAPI = useFetch();
-  const { isMobile } = useWindowSize();
+  const { isMobile } = useWindowSize(({ isDifferentSize }) => {
+    if (isDifferentSize) {
+      setIsOpen(false);
+      ref.current?.classList.add("no-transition");
+      setTimeout(() => {
+        ref.current?.classList.remove("no-transition");
+      }, 300);
+    }
+  });
   const ref = useOutsideClick<HTMLDivElement>(
     () => isMobile && setIsOpen(false),
   );
@@ -50,6 +58,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
     prices: { min: 0, max: 101 },
     order_by: filters.order_by,
   };
+
   const isDefaultFilters =
     JSON.stringify(filters) === JSON.stringify(defaultFilters);
 
@@ -74,7 +83,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
       })}
       ref={ref}
     >
-      <div className="filter-sidebar-container">
+      <div className="filter-sidebar-container" ref={ref}>
         <div className="filter-sidebar-top">
           <div className="filter-sidebar-header">
             <span>FILTRES</span>

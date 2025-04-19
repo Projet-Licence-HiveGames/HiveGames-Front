@@ -37,7 +37,6 @@ export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
   }, [isFavorite]);
 
   const sendToAPI = async (value: boolean) => {
-    console.log("Changement d'état, envoi à l'API");
     await fetchAPI
       .patch(`/games/${game.id}`, { is_wished: value })
       .catch(() => {
@@ -64,7 +63,6 @@ export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
       }, 1000);
     } else {
       pendingChange.current = newState;
-      console.log("Cooldown actif, changement en attente");
     }
   };
 
