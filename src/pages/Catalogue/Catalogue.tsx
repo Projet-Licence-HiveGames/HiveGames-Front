@@ -10,9 +10,10 @@ import { useAuth } from "../../context/AuthProvider.tsx";
 import { Game } from "../../types/Game.ts";
 
 import "./Catalogue.css";
+import toast from "react-hot-toast";
 
 export const Catalogue: React.FC = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const fetchAPI = useFetch();
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<GameFilter>({
@@ -28,7 +29,13 @@ export const Catalogue: React.FC = () => {
   const fetchGames = async () => {
     try {
       setIsLoading(true);
-      await fetchAPI.post<Game[]>("/games", filters).then(setGameList);
+      await fetchAPI.post<Game[]>("/games", filters)
+      .then(
+        (games) => setGameList(games.map((game) => (
+          { ...game, 
+            is_wished: user?.game_collections?.find((collection) => collection.game_id === game.id)?.is_wished || false
+          })))
+      ).catch(() => toast.error("Erreur lors de la récupération des jeux"));
     } catch (error) {
       console.error("Erreur lors de la récupération des jeux :", error);
     } finally {

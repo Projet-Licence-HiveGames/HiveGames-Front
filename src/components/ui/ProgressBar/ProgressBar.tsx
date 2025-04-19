@@ -22,8 +22,6 @@ const ProgressBar: FC<ProgressBarProps> = ({
         style={
           {
             "--left-chunk-percent": `${leftChunkPercent}%`,
-            width: "100%",
-            margin: "5px 0",
           } as React.CSSProperties
         }
       >

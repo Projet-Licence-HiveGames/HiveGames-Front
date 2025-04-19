@@ -9,9 +9,9 @@
 .progress-bar-container {
   border-radius: 5px;
   display: flex;
-  height: 6px;
+  height: 4px;
   position: relative;
-  width: 100px;
+  width: 100%;
 }
 
 .progress-bar-container:not([data-left-chunk-percent="0"], [data-left-chunk-percent="100"]) {
