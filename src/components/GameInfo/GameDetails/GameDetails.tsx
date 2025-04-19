@@ -28,9 +28,6 @@ export const GameDetails: React.FC<GameDetailsProps> = ({
     <div className="game-details">
       {(isLaptop || isDesktop) && <hr />}
       <div className="details-container">
-        <div className="detail-item-description">
-          <span className="detail-value">{description}</span>
-        </div>
         <div className="detail-item">
           <span className="detail-label">Titre :</span>
           <span className="detail-value">{capitalizeFirstLetter(title || "")}</span>
