@@ -33,16 +33,6 @@
   }
 }
 
-.detail-item-description {
-  display: none;
-
-  @media (width <= 1200px) {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
 .detail-label {
   color: white;
   font-size: .9rem;
