@@ -1,46 +1,46 @@
 .catalog-container {
     display: flex;
     gap: 1rem;
-    padding: 1rem;
     height: 100%;
     overflow-y: auto;
+    padding: 1rem;
 }
 
 
 .catalog-container-cards {
+    align-content: flex-start;
     display: flex;
-    justify-content: center;
+    flex-grow: 1;
     flex-wrap: wrap;
     gap: 20px;
-    flex-grow: 1;
-    align-content: flex-start;
+    justify-content: center;
 }
 
 .catalog-container-filter-button {
-    position: absolute;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
     background: var(--bg-color-darker);
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+    position: absolute;
 }
 
 .filter-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 15px 30px;
     background-color: #007bff;
-    color: white;
     border: none;
     border-radius: 50px;
-    font-size: 16px;
+    bottom: 20px;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+    color: white;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    padding: 15px 30px;
+    position: fixed;
+    right: 20px;
+    transition: background-color .3s ease;
 }
 
 .filter-button:hover {

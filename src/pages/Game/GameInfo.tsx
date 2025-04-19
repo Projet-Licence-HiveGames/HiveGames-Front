@@ -7,10 +7,10 @@ import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.t
 import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx";
 import { Game } from "../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter.ts";
+import { getGameThumbnail } from "../../utils/gameUtils.ts";
 import useWindowSize from "../../utils/useWindowSize.ts";
 
 import "./GameInfo.css";
-import { getGameThumbnail } from "../../utils/gameUtils.ts";
 export const GameInfo: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -36,7 +36,10 @@ export const GameInfo: React.FC = () => {
         {!isMobile && (
           <div className="game-info-container-left">
             {/* <img src={gameData?.images?.find(i=>i.file_name.startsWith('slide'))} alt={gameData?.name} /> */}
-            <GameImages images={gameData?.images} thumbnail={getGameThumbnail(gameData)} />
+            <GameImages
+              images={gameData?.images}
+              thumbnail={getGameThumbnail(gameData)}
+            />
           </div>
         )}
         {isTablet && (
@@ -51,7 +54,10 @@ export const GameInfo: React.FC = () => {
               thumbnail={getGameThumbnail(gameData)}
             />
           ) : (
-            <img src={getGameThumbnail(gameData)?.file_url} alt={gameData?.name} />
+            <img
+              src={getGameThumbnail(gameData)?.file_url}
+              alt={gameData?.name}
+            />
           )}
           <GameDetails
             studio={gameData?.studios || []}

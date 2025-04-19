@@ -11,16 +11,14 @@ interface GameImagesProps {
   thumbnail: GameImage;
 }
 
-export const GameImages: React.FC<GameImagesProps> = ({ 
+export const GameImages: React.FC<GameImagesProps> = ({
   images,
   thumbnail,
- }) => {
+}) => {
   const slides = images?.filter(
     (i) => i.file_name.startsWith("slide") && i.file_url,
   );
-  const _images = slides?.length
-    ? slides
-    : [thumbnail];
+  const _images = slides?.length ? slides : [thumbnail];
 
   return (
     <Flicking

@@ -13,9 +13,7 @@ const Category: React.FC<CategoryProps> = ({ category = ["test"] }) => {
   const [showAll, setShowAll] = React.useState(false);
 
   return (
-    <div className={"category-bloc"}
-      onClick={(e) => e.stopPropagation()}
-    >
+    <div className={"category-bloc"} onClick={(e) => e.stopPropagation()}>
       {category
         .slice(0, showAll ? category.length : 3)
         .map((category, index) => {

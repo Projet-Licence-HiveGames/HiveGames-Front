@@ -4,13 +4,13 @@
 }
 
 .wish-button {
-    display: flex;
     align-items: center;
     background-color: var(--bg-color-dark);
     border: none;
     border-radius: var(--button-border-radius-small);
-    padding: 5px;
     cursor: pointer;
+    display: flex;
+    padding: 5px;
 }
 
 .wish-button svg {
