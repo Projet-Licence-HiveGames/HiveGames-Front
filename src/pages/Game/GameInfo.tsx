@@ -15,6 +15,7 @@ import { useWindowSize } from "../../hooks/useWindowSize.ts";
 
 import "./GameInfo.css";
 
+
 export const GameInfo: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
