@@ -22,12 +22,15 @@ export const GameDetails: React.FC<GameDetailsProps> = ({
   categories,
   description,
 }) => {
-  const { isLaptop, isDesktop } = useWindowSize();
+  const { isMobile, isLaptop, isDesktop } = useWindowSize();
 
   return (
     <div className="game-details">
       {(isLaptop || isDesktop) && <hr />}
       <div className="details-container">
+        {isMobile && (<div className="detail-item-description">
+          <span className="detail-value">{description}</span>
+        </div>)}
         <div className="detail-item">
           <span className="detail-label">Titre :</span>
           <span className="detail-value">{capitalizeFirstLetter(title || "")}</span>
