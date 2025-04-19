@@ -43,8 +43,8 @@ export const GameImages: React.FC<GameImagesProps> = ({
               className="panel-image"
               decoding="async"
               loading="lazy"
-              src={image.file_name}
-              srcSet={`${image.file_name} 1x, ${image.file_name} 2x`}
+              src={image.file_url}
+              srcSet={`${image.file_url} 1x, ${image.file_url} 2x`}
             />
           </SwiperSlide>
         ))}
@@ -68,6 +68,7 @@ export const GameImages: React.FC<GameImagesProps> = ({
               decoding="async"
               loading="lazy"
               src={image.file_url}
+              srcSet={`${image.file_url} 1x, ${image.file_url} 2x`}
             />
             <div className="progress-bar"></div>
           </SwiperSlide>
