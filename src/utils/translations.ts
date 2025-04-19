@@ -14,13 +14,13 @@ const labelList = [
   "subscription_3",
 ] as const;
 
-type Label = (typeof labelList)[number];
+type TranslationLabelType = (typeof labelList)[number];
 
-export const translate = (label: Label): string =>
+export const translate = (label: TranslationLabelType): string =>
   translationDictionnaries[currentLanguage][label];
 
 export const translationDictionnaries: {
-  [language: string]: { [label in Label]: string };
+  [language: string]: { [label in TranslationLabelType]: string };
 } = {
   // -------------------- English --------------------
   en: {
