@@ -5,10 +5,10 @@ import { privateApi } from "../../api/privateApi.ts";
 import { GameDescription } from "../../components/GameInfo/GameDescription/GameDescription.tsx";
 import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.tsx";
 import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx";
+import useWindowSize from "../../hooks/useWindowSize.ts";
 import { Game } from "../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter.ts";
 import { getGameThumbnail } from "../../utils/gameUtils.ts";
-import useWindowSize from "../../utils/useWindowSize.ts";
 
 import "./GameInfo.css";
 export const GameInfo: React.FC = () => {
