@@ -22,8 +22,19 @@
     --bg-color-orange: #FFA500;
     --bg-color-red: #CD5444;
 
+    /* Color Scheme */
+    background-color: #242424;
+    color: rgb(255 255 255 / 87%);
+    color-scheme: light dark;
+
     /* Font */
-    font-family: "Nunito", serif;
+    font-family: Nunito, serif;
+
+    /* Typography */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-synthesis: none;
+    text-rendering: optimizelegibility;
 
     /* Gradient */
     --button-gradient-orange: linear-gradient(0deg, #f2b705, #f28a07);
@@ -34,17 +45,6 @@
     --button-border-radius-md: 7px;
     --button-border-radius-xl: 12px;
     --header-height: 3.5rem;
-
-    /* Color Scheme */
-    background-color: #242424;
-    color: rgba(255, 255, 255, 0.87);
-    color-scheme: light dark;
-
-    /* Typography */
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
 }
 
 * {
@@ -55,12 +55,14 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        background-color: #ffffff;
+        background-color: #fff;
         color: #213547;
     }
+
     a:hover {
         color: #747bff;
     }
+
     button {
         background-color: #f9f9f9;
     }
@@ -72,6 +74,6 @@
 }
 
 .regular-12 {
-    font-size: 0.75rem;
+    font-size: .75rem;
     font-weight: 400;
 }

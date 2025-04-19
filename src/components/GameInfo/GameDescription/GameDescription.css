@@ -6,14 +6,14 @@
 
 .game-description h2 {
   color: white;
-  margin-bottom: 1rem;
   font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .game-description p {
   color: white;
-  text-align: justify;
   line-height: 1.6;
+  text-align: justify;
 } 
 
 .game-description-container {
@@ -34,7 +34,7 @@
 }
 
 .game-images img {
-  width: 100%;
-  object-fit: contain;
   border-radius: 8px;
+  object-fit: contain;
+  width: 100%;
 }

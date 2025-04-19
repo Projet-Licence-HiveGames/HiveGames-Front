@@ -5,7 +5,7 @@ export interface Game {
   name: string;
   short_description?: string;
   description?: string;
-  image?: string[];
+  images?: GameImage[];
   price: number;
   oldPrice?: number;
   current_version?: string;
@@ -14,7 +14,6 @@ export interface Game {
   is_wished?: boolean;
   is_owned?: boolean;
   be_notified?: boolean;
-  images?: GameImage[];
   studios?: GameStudio[];
   release_date?: string;
 }

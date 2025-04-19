@@ -17,7 +17,7 @@
 .cart-button:hover {
     background: var(--bg-color-blue-lighter);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color .3s ease;
 }
 
 .cart-button span {

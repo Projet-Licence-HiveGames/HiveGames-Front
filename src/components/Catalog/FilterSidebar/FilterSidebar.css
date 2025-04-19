@@ -1,12 +1,12 @@
 .filter-sidebar {
     color: white;
     flex-shrink: 0;
+    justify-content: space-between;
     max-height: calc(100vh - var(--header-height) * 2);
     overflow: auto;
     position: sticky;
-    top: 1rem;
     scrollbar-width: thin;
-    justify-content: space-between;
+    top: 1rem;
 }
 
 .filter-sidebar-container {
@@ -18,13 +18,13 @@
     flex-shrink: 0;
     gap: .5rem;
     height: 100%;
+    justify-content: space-between;
     max-height: calc(100vh - var(--header-height) * 2);
     overflow: auto;
     padding: 1rem;
     position: sticky;
     scrollbar-width: thin;
     width: 15rem;
-    justify-content: space-between;
 }
 
 .filter-sidebar-header {
@@ -69,39 +69,39 @@
 }
 
 .filter-sidebar-close {
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 0.1rem .25rem;
+    padding: .1rem .25rem;
 }
 
 .filter-item-sort {
-    flex-direction: row;
     align-items: center;
+    flex-direction: row;
     gap: .5rem;
 }
 
 .filter-item-select {
     background-color: var(--bg-color-dark);
+    border: none;
     border-radius: .25rem;
     cursor: pointer;
     gap: .5rem;
     padding: .5rem;
-    border: none;
 }
 
 .filter-item .search-bar {
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
 .filter-item .search-bar-input {
-    width: 100%;
+    background-color: var(--bg-color-dark);
+    border-radius: .25rem;
+    color: white;
     padding: .75rem;
     padding-right: 2.5rem;
-    border-radius: .25rem;
-    background-color: var(--bg-color-dark);
-    color: white;
+    width: 100%;
 }
 
 .filter-item .search-bar-input::placeholder {
@@ -109,11 +109,11 @@
 }
 
 .filter-item .search-bar-icon {
+    color: var(--bg-color-brightest);
     position: absolute;
     right: .5rem;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--bg-color-brightest);
 }
 
 
@@ -123,19 +123,19 @@
     }
 
     .filter-sidebar-container {
-        position: fixed;
-        top: auto;
         bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 2rem;
-        margin: 0 3rem;
-        width: auto;
         flex-shrink: 0;
-        overflow: auto;
+        left: 0;
+        margin: 0 3rem;
         max-height: calc(100vh - var(--header-height) - 2 * 1rem);
+        overflow: auto;
+        padding: 2rem;
+        position: fixed;
+        right: 0;
+        top: auto;
         transform: translateY(100%);
         transition: transform .3s ease-in-out;
+        width: auto;
     }
 
     .filter-sidebar--open .filter-sidebar-container {
@@ -153,16 +153,16 @@
 }
 
 .filter-sidebar-button-opener {
-    position: fixed;
-    display: none;
-    top: calc(var(--header-height) + .5rem);
-    right: 1.5rem;
-    z-index: 100;
     background-color: var(--bg-color-darker);
     border: none;
     border-radius: .25rem;
-    padding: .25rem;
     cursor: pointer;
+    display: none;
+    padding: .25rem;
+    position: fixed;
+    right: 1.5rem;
+    top: calc(var(--header-height) + .5rem);
+    z-index: 100;
 }
 
 .filter-sidebar--open .filter-sidebar-button-opener {

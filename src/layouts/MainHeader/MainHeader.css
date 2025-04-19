@@ -1,39 +1,39 @@
 .main-header {
+  align-items: center;
   background-color: var(--bg-color-normal);
   color: white;
   display: flex;
-  align-items: center;
   gap: 20px;
-  justify-content: space-between;
-  padding: 0 1rem;
   height: var(--header-height);
-  min-height: var(--header-height);
+  justify-content: space-between;
   max-height: var(--header-height);
+  min-height: var(--header-height);
+  padding: 0 1rem;
 }
 
 .search-bar {
-  flex-grow: 1;
-  display: flex;
   align-items: center;
+  display: flex;
+  flex-grow: 1;
   justify-content: stretch;
   position: relative;
 }
 
 .search-bar input {
   background-color: var(--bg-color-lighter);
-  border-radius: 1rem;
   border: none;
+  border-radius: 1rem;
   max-width: 250px;
-  width: 100%;
   padding: 10px 10px 10px 35px;
+  width: 100%;
 }
 
 .search-icon {
-  position: absolute;
+  height: 8px;
   left: 10px;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 8px;
 }
 
 .search-bar input::placeholder {
@@ -45,18 +45,18 @@
 }
 
 .groupMenu-Styled {
+  align-items: center;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
 }
 
 .sidebar-toggle {
+  align-items: center;
   background: none;
   border: none;
-  cursor: pointer;
   color: inherit;
-  font-size: 1.5rem;
+  cursor: pointer;
   display: flex;
-  align-items: center;
+  font-size: 1.5rem;
   justify-content: center;
 }
