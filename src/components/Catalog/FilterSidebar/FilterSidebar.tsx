@@ -40,9 +40,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
       }, 300);
     }
   });
-  const ref = useOutsideClick<HTMLDivElement>(
-    () => setIsOpen(false),
-  );
+  const ref = useOutsideClick<HTMLDivElement>(() => setIsOpen(false));
 
   const [isOpen, setIsOpen] = useState(false);
 

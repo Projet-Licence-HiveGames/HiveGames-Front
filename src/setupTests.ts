@@ -1,13 +1,14 @@
-import '@testing-library/jest-dom';
-import { configure } from '@testing-library/react';
+import { configure } from "@testing-library/react";
+
+import "@testing-library/jest-dom";
 
 // Configuration de testing-library
-configure({ testIdAttribute: 'data-testid' });
+configure({ testIdAttribute: "data-testid" });
 
 // Mock pour window.matchMedia
-Object.defineProperty(window, 'matchMedia', {
+Object.defineProperty(window, "matchMedia", {
   writable: true,
-  value: jest.fn().mockImplementation(query => ({
+  value: jest.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,
@@ -17,4 +18,4 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
   })),
-}); 
+});

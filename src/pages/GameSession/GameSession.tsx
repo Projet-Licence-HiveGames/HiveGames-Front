@@ -31,7 +31,7 @@ export const GameSession: FC<GameSessionProps> = ({
   }, [game, user]);
 
   const setupConnection = () => {
-    console.log("setupConnection", game, user?.id);
+    console.log("setupConnection", game, user?.id); // eslint-disable-line
   };
 
   const handleGameSessionClose = () => {

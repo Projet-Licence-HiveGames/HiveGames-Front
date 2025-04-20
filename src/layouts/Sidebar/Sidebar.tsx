@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import {
   CalendarMonth,
   HomeRounded,
@@ -8,6 +8,8 @@ import {
 import classNames from "classnames";
 
 import MenuItem from "../../components/ui/Menu/MenuItem";
+import TLabel from "../../components/ui/TranslationLabel/TLabel.tsx";
+import { TranslationContext } from "../../context/TranslationProvider.tsx";
 import useWindowSize from "../../hooks/useWindowSize.ts";
 
 import logo from "@assets/images/logo.svg";
@@ -21,6 +23,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
+  const { selectedLanguage, setSelectedLanguage } =
+    useContext(TranslationContext);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const { isMobile, isTablet } = useWindowSize();
 
@@ -55,24 +59,39 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       </div>
 
       <div className="sidebar-content">
-        <MenuItem to="/">
-          <HomeRounded />
-          <span>Home</span>
-        </MenuItem>
-        <MenuItem to="/catalogue">
-          <StorefrontOutlined />
-          <span>Catalogue</span>
-        </MenuItem>
-        <hr />
-        <MenuItem to="/calendar">
-          <CalendarMonth />
-          <span>Calendrier</span>
-        </MenuItem>
-        <MenuItem to="/subscription">
-          <Subscriptions />
-          <span>Abonnement</span>
-        </MenuItem>
-        <hr />
+        <div className="sidebar-content-top">
+          <MenuItem to="/">
+            <HomeRounded />
+            <TLabel label="sidebar.home" />
+          </MenuItem>
+          <MenuItem to="/catalogue">
+            <StorefrontOutlined />
+            <TLabel label="sidebar.catalog" />
+          </MenuItem>
+          <hr />
+          <MenuItem to="/calendar">
+            <CalendarMonth />
+            <TLabel label="sidebar.calendar" />
+          </MenuItem>
+          <MenuItem to="/subscription">
+            <Subscriptions />
+            <TLabel label="sidebar.subscription" />
+          </MenuItem>
+        </div>
+        <div className="sidebar-content-bottom">
+          <select
+            onChange={(e) => {
+              setSelectedLanguage(e.target.value as "fr" | "en");
+            }}
+          >
+            <option value="fr" selected={selectedLanguage === "fr"}>
+              Français
+            </option>
+            <option value="en" selected={selectedLanguage === "en"}>
+              English
+            </option>
+          </select>
+        </div>
       </div>
     </div>
   );

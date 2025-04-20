@@ -1,54 +1,58 @@
-export const currentLanguage: "fr" | "en" = "fr";
-
 const labelList = [
-  "sidebar_home",
-  "navitem_about",
-  "footer_contact",
-  "navitem_profil",
-  "navitem_friend",
-  "navitem_library",
-  "navitem_setting",
+  "sidebar.home",
+  "sidebar.catalog",
+  "sidebar.calendar",
+  "sidebar.subscription",
+  "navitem.about",
+  "footer.contact",
+  "navitem.profil",
+  "navitem.friend",
+  "navitem.library",
+  "navitem.setting",
   "logout",
-  "subscription_1",
-  "subscription_2",
-  "subscription_3",
+  "subscription.classic",
+  "subscription.premium",
+  "subscription.ultimate",
 ] as const;
 
-type TranslationLabelType = (typeof labelList)[number];
-
-export const translate = (label: TranslationLabelType): string =>
-  translationDictionnaries[currentLanguage][label];
+export type TranslationLabelType = (typeof labelList)[number];
 
 export const translationDictionnaries: {
   [language: string]: { [label in TranslationLabelType]: string };
 } = {
   // -------------------- English --------------------
   en: {
-    sidebar_home: "Home",
-    navitem_about: "About",
-    footer_contact: "Contact",
-    navitem_profil: "Profil",
-    navitem_friend: "Friends",
-    navitem_library: "Library",
-    navitem_setting: "Settings",
+    "sidebar.home": "Home",
+    "sidebar.catalog": "Catalog",
+    "sidebar.calendar": "Calendar",
+    "sidebar.subscription": "Subscription",
+    "navitem.about": "About",
+    "footer.contact": "Contact",
+    "navitem.profil": "Profil",
+    "navitem.friend": "Friends",
+    "navitem.library": "Library",
+    "navitem.setting": "Settings",
     logout: "Logout",
-    subscription_1: "Subscription 1",
-    subscription_2: "Subscription 2",
-    subscription_3: "Subscription 3",
+    "subscription.classic": "Subscription 1",
+    "subscription.premium": "Subscription 2",
+    "subscription.ultimate": "Subscription 3",
   },
 
   // -------------------- French --------------------
   fr: {
-    sidebar_home: "Accueil",
-    navitem_about: "A propos",
-    footer_contact: "Contact",
-    navitem_profil: "Profil",
-    navitem_friend: "Amis",
-    navitem_library: "Bibliothèque",
-    navitem_setting: "Paramètres",
+    "sidebar.home": "Accueil",
+    "sidebar.catalog": "Catalogue",
+    "sidebar.calendar": "Calendrier",
+    "sidebar.subscription": "Abonnement",
+    "navitem.about": "A propos",
+    "footer.contact": "Contact",
+    "navitem.profil": "Profil",
+    "navitem.friend": "Amis",
+    "navitem.library": "Bibliothèque",
+    "navitem.setting": "Paramètres",
     logout: "Déconnexion",
-    subscription_1: "Abonnement 1",
-    subscription_2: "Abonnement 2",
-    subscription_3: "Abonnement 3",
+    "subscription.classic": "Abonnement 1",
+    "subscription.premium": "Abonnement 2",
+    "subscription.ultimate": "Abonnement 3",
   },
 };
