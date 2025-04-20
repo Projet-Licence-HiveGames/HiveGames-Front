@@ -57,7 +57,7 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
 
   const endGameSession = () => {
     // put end date to game session
-    console.log("endGameSession", game, user?.id);
+    console.log("endGameSession", game, user?.id); // eslint-disable-line
     setIsOpen(false);
     setGame(null);
   };

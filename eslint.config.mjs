@@ -67,8 +67,6 @@ export default defineConfig([
         version: "detect",
       },
     },
-    ignores: [
-      "src/*"
-    ],
+    ignores: [],
   },
 ]);

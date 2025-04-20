@@ -1,27 +1,31 @@
-import 'react-material-symbols/rounded';
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
+
+import 'react-material-symbols/rounded';
+
+import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './layouts/MainLayout';
 import About from './pages/About/About.tsx';
 import {Calendar} from './pages/Calendar/Calendar.tsx';
+import {Cart} from "./pages/Cart/Cart.tsx";
 import {Catalogue} from './pages/Catalogue/Catalogue.tsx';
+import {Checkout} from "./pages/Checkout/Checkout.tsx";
 import Contact from './pages/Contact/Contact.tsx';
+import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx';
 import {Friend} from './pages/Friend/Friend.tsx';
 import {GameInfo} from './pages/Game/GameInfo.tsx';
 import Home from './pages/Home/Home';
 import {Library} from './pages/Library/Library.tsx';
+import Login from './pages/Login/Login.tsx';
+import {PaymentFailed} from "./pages/PaymentFailed/PaymentFailed.tsx";
+import {PaymentSuccess} from "./pages/PaymentSuccess/PaymentSuccess.tsx";
 import {Profil} from './pages/Profil/Profil.tsx';
+import Register from "./pages/Register/Register.tsx";
 import {Setting} from './pages/Setting/Setting.tsx';
 import {Subscription} from './pages/Subscription/Subscription.tsx';
 import {Wishlist} from './pages/Wishlist/Wishlist.tsx';
-import Login from './pages/Login/Login.tsx';
-import {Checkout} from "./pages/Checkout/Checkout.tsx";
-import {PaymentSuccess} from "./pages/PaymentSuccess/PaymentSuccess.tsx";
-import {Cart} from "./pages/Cart/Cart.tsx";
-import {PaymentFailed} from "./pages/PaymentFailed/PaymentFailed.tsx";
-import Register from "./pages/Register/Register.tsx";
-import ProtectedRoute from './components/ProtectedRoute';
-import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx';
+
 import './App.css';
 
 const App: React.FC = () => {

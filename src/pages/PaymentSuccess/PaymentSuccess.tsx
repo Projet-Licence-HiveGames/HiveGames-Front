@@ -24,7 +24,7 @@ export const PaymentSuccess: React.FC = ({}) => {
         setError({ ...error, _error });
       });
   };
-  console.log(paymentData);
+  console.log(paymentData); // eslint-disable-line
 
   useEffect(() => {
     if (user) {

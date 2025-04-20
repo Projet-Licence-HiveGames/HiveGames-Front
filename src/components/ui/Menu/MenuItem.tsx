@@ -18,7 +18,6 @@ const MenuItem: FC<MenuItemProps> = ({ children, to, className, disabled }) => {
       to={disabled ? "#" : to}
       className={classNames(className, "hivegames-menuItem")}
     >
-      <span />
       <label>{children}</label>
     </NavLink>
   );

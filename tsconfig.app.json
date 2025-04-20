@@ -21,5 +21,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "globals.d.ts", "module-patch.d.ts"],
+  "include": ["src", "module-patch.d.ts"],
 }
