@@ -31,7 +31,7 @@ interface FilterSidebarProps {
 
 const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
   const fetchAPI = useFetch();
-  const { isMobile } = useWindowSize(({ isDifferentSize }) => {
+  useWindowSize(({ isDifferentSize }) => {
     if (isDifferentSize) {
       setIsOpen(false);
       ref.current?.classList.add("no-transition");
@@ -41,7 +41,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
     }
   });
   const ref = useOutsideClick<HTMLDivElement>(
-    () => isMobile && setIsOpen(false),
+    () => setIsOpen(false),
   );
 
   const [isOpen, setIsOpen] = useState(false);
@@ -83,7 +83,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
       })}
       ref={ref}
     >
-      <div className="filter-sidebar-container" ref={ref}>
+      <div className="filter-sidebar-container">
         <div className="filter-sidebar-top">
           <div className="filter-sidebar-header">
             <span>FILTRES</span>
