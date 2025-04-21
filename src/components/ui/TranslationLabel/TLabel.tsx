@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import React, { FC, useContext } from "react";
 
 import { TranslationContext } from "../../../context/TranslationProvider";
 import {
@@ -8,17 +8,20 @@ import {
 
 interface TLabelProps {
   label: TranslationLabelType;
-  BaliseType?: React.ElementType;
+  baliseType?: React.ElementType;  // Prop avec camelCase
   className?: string;
 }
 
-const TLabel: FC<TLabelProps> = ({ label, BaliseType = "span", className }) => {
+export const TLabel: FC<TLabelProps> = ({ label, baliseType = "span", className }) => {
   const { selectedLanguage } = useContext(TranslationContext);
-  return (
-    <BaliseType className={className}>
-      {translationDictionnaries[selectedLanguage][label]}
-    </BaliseType>
+
+  // Récupère le texte traduit
+  const translatedText = translationDictionnaries[selectedLanguage][label];
+
+  // Retourne la balise dynamique avec le texte traduit
+  return React.createElement(
+    baliseType,
+    { className },
+    translatedText
   );
 };
-
-export default TLabel;
