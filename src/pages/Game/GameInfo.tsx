@@ -75,10 +75,10 @@ export const GameInfo: React.FC = () => {
         <div className='game-details'>
           <div className='game-features-languages'>
             <div className='game-features'>
-              <GameFeatures game={gameData?.features || []} />
+              <GameFeatures features={gameData?.features || []} />
             </div>
             <div className='game-languages'>
-              <GameLanguages game={gameData?.languages || []} />
+              <GameLanguages languages={gameData?.languages || []} />
             </div>
           </div>
         </div>

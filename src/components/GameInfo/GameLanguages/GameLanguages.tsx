@@ -1,15 +1,18 @@
+import React from "react";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import { Game } from "../../../types/Game";
+import { GameLanguage } from "../../../types/Game";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 import { translateLanguage } from "../../../constants/LanguagesDict.tsx";
 
 import './GameLanguages.css';
 
 interface GameLanguagesProps {
-    game: Game['languages'];
+    languages: GameLanguage[];
 }
 
-export const GameLanguages = ({ game }: GameLanguagesProps) => {
+export const GameLanguages:React.FC<GameLanguagesProps> = ({ languages }) => {
+    const [showAll, setShowAll] = React.useState(false);
+
     return (
         <div className='game-languages-container'>
             <div className='game-languages__title'>
@@ -29,16 +32,28 @@ export const GameLanguages = ({ game }: GameLanguagesProps) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {game?.map((language, index) => (
-                        <tr key={index}>
-                            <td>{translateLanguage(language.label as keyof typeof translateLanguage)}</td>
-                            <td>{!!language.has_interface && <CheckRoundedIcon/>}</td>
-                            <td>{!!language.has_subtitles && <CheckRoundedIcon/>}</td>
-                            <td>{!!language.has_voice_over && <CheckRoundedIcon/>}</td>
-                        </tr>
-                    ))}
+                        {languages?.slice(0, showAll ? languages.length : 1)
+                            .map((language, index) => (
+                            <tr key={index}>
+                                <td>{translateLanguage(language.label as keyof typeof translateLanguage)}</td>
+                                <td>{!!language.has_interface && <CheckRoundedIcon/>}</td>
+                                <td>{!!language.has_subtitles && <CheckRoundedIcon/>}</td>
+                                <td>{!!language.has_voice_over && <CheckRoundedIcon/>}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
+                {!showAll && languages?.length > 1 && (
+                    <div
+                        className={"languages-see-more"}
+                        onClick={() => setShowAll(true)}
+                    >
+                        <TLabel
+                            baliseType={"span"}
+                            className={"languages-see-more__label"}
+                            label={"see_more"} />
+                    </div>
+                )}
             </div>
         </div>
     );
