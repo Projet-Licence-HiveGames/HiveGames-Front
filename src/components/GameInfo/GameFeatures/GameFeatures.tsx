@@ -1,8 +1,11 @@
 import React from 'react';
 import { Game } from '../../../types/Game';
-import './GameFeatures.css';
-import { translate } from '../../../utils/translations';
+
 import { translateFeature, featureIcons } from '../../../constants/FeaturesDict';
+import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
+
+import './GameFeatures.css';
+
 interface GameFeaturesProps {
     game: Game['features'];
 }
@@ -12,7 +15,10 @@ export const GameFeatures: React.FC<GameFeaturesProps> = ({ game }) => {
     return (
         <div className='game-features-container'>
             <div className='game-features__title'>
-                <h2>{translate('features')}</h2>
+                <TLabel
+                    baliseType={"h2"}
+                    label="features"
+                />
             </div>
             <div className='game-features__list'>
                 {game?.map((feature, index) => (

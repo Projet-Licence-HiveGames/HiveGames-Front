@@ -14,6 +14,8 @@ const labelList = [
   "subscription.premium",
   "subscription.ultimate",
   "features",
+  "languages",
+  "weekend_deal",
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -38,6 +40,8 @@ export const translationDictionnaries: {
     "subscription.premium": "Subscription 2",
     "subscription.ultimate": "Subscription 3",
     features: "Features",
+    languages: "Languages",
+    weekend_deal: "WEEKEND DEAL! Offer ends",
   },
 
   // -------------------- French --------------------
@@ -57,5 +61,7 @@ export const translationDictionnaries: {
     "subscription.premium": "Abonnement 2",
     "subscription.ultimate": "Abonnement 3",
     features: "Caractéristiques",
+    languages: "Langues",
+    weekend_deal: "DEAL DE LA SEMAINE! Offre terminée le ",
   },
 };

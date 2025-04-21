@@ -20,7 +20,7 @@ export const GameInfo: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [gameData, setGameData] = useState<Game>();
-  const { isMobile, isTablet } = useWindowSize();
+  const { isMobile } = useWindowSize();
 
   useEffect(() => {
     const fetchGame = async () => {

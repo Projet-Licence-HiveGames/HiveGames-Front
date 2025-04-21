@@ -26,8 +26,8 @@ export interface Language {
 }
 
 export interface GameLanguage extends Language {
-  has_subtitle: boolean;
-  has_voice: boolean;
+  has_subtitles: boolean;
+  has_voice_over: boolean;
   has_interface: boolean;
 }
 

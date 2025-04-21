@@ -1,10 +1,10 @@
 import React from 'react';
-import PromoBloc from '../../CustomBloc/PromoBloc/PromoBloc';
+import { PromoBloc } from '../../CustomBloc/PromoBloc/PromoBloc';
 import { calculateDiscount } from '../../../utils/calculateDiscount';
 import { capitalizeFirstLetter } from '../../../utils/capitalizeFirstLetter';
-import { translate } from '../../../utils/translations';
-import './GameBuyCard.css';
+import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
+import './GameBuyCard.css';
 
 interface GameBuyCardProps {
     name: string;
@@ -21,7 +21,7 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({ name, oldPrice, price 
                 </div>
                 {oldPrice !== 0 && (
                     <div className='game-buy-card__description'>
-                        <p>{translate('weekend_deal')}</p>
+                        <TLabel label="weekend_deal" />
                     </div>
                 )}
             </div>

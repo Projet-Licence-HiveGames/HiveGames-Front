@@ -8,7 +8,7 @@ import {
 import classNames from "classnames";
 
 import MenuItem from "../../components/ui/Menu/MenuItem";
-import TLabel from "../../components/ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "../../components/ui/TranslationLabel/TLabel.tsx";
 import { TranslationContext } from "../../context/TranslationProvider.tsx";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
 
@@ -64,7 +64,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
             <HomeRounded />
             <TLabel label="sidebar.home" />
           </MenuItem>
-          <MenuItem to="/catalogue">
+          <MenuItem to="/catalog">
             <StorefrontOutlined />
             <TLabel label="sidebar.catalog" />
           </MenuItem>
