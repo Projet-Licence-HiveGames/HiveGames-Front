@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./CartButton.css";
+import {TLabel} from "../../ui/TranslationLabel/TLabel.tsx";
 
 interface CartButtonProps {
   onClick?: () => void;
@@ -15,7 +16,9 @@ const CartButton: React.FC<CartButtonProps> = ({ onClick }) => {
         onClick?.();
       }}
     >
-      <span>Acheter</span>
+      <TLabel
+        baliseType={"span"}
+        label={"buy"} />
     </button>
   );
 };

@@ -10,6 +10,7 @@ const labelList = [
   "navitem.library",
   "navitem.setting",
   "logout",
+  "login",
   "subscription.classic",
   "subscription.premium",
   "subscription.ultimate",
@@ -17,6 +18,10 @@ const labelList = [
   "languages",
   "weekend_deal",
   "see_more",
+  "interfaces",
+  "subtitles",
+  "audio",
+  "buy"
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -37,6 +42,7 @@ export const translationDictionnaries: {
     "navitem.library": "Library",
     "navitem.setting": "Settings",
     logout: "Logout",
+    login: "Login",
     "subscription.classic": "Subscription 1",
     "subscription.premium": "Subscription 2",
     "subscription.ultimate": "Subscription 3",
@@ -44,6 +50,10 @@ export const translationDictionnaries: {
     languages: "Languages",
     weekend_deal: "WEEKEND DEAL! Offer ends",
     see_more: "See more",
+    interfaces: "Interfaces",
+    subtitles: "Subtitles",
+    audio: "Audio",
+    buy: "Buy",
   },
 
   // -------------------- French --------------------
@@ -59,6 +69,7 @@ export const translationDictionnaries: {
     "navitem.library": "Bibliothèque",
     "navitem.setting": "Paramètres",
     logout: "Déconnexion",
+    login: "Connexion",
     "subscription.classic": "Abonnement 1",
     "subscription.premium": "Abonnement 2",
     "subscription.ultimate": "Abonnement 3",
@@ -66,5 +77,9 @@ export const translationDictionnaries: {
     languages: "Langues",
     weekend_deal: "DEAL DE LA SEMAINE! Offre terminée le ",
     see_more: "Voir plus",
+    interfaces: "Interfaces",
+    subtitles: "Sous-titres",
+    audio: "Audio",
+    buy: "Acheter",
   },
 };

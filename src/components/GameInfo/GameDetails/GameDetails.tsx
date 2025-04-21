@@ -6,6 +6,7 @@ import { Category } from "../../CustomBloc/CategoryBloc/Category.tsx";
 import { useWindowSize } from "../../../hooks/useWindowSize.ts";
 
 import "./GameDetails.css";
+import ReactMarkdown from "react-markdown";
 
 interface GameDetailsProps {
   title: string;
@@ -29,7 +30,7 @@ export const GameDetails: React.FC<GameDetailsProps> = ({
       {(isLaptop || isDesktop) && <hr />}
       <div className="details-container">
         {isMobile && (<div className="detail-item-description">
-          <span className="detail-value">{description}</span>
+          <ReactMarkdown>{description}</ReactMarkdown>
         </div>)}
         <div className="detail-item">
           <span className="detail-label">Titre :</span>

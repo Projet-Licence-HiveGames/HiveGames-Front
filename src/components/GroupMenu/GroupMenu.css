@@ -30,6 +30,14 @@
   transition: background-color .3s;
 }
 
+.mobile {
+    min-width: 0;
+}
+
+.mobile .dropdown-menu {
+  left: -50px;
+}
+
 .group-menu-connexion:has(.dropdown-menu) {
   border-radius: 10px 10px 0 0;
 }

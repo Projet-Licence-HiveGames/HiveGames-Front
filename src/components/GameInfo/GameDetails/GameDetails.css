@@ -24,6 +24,13 @@
   gap: 1rem;
 }
 
+.detail-item-description {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .detail-item {
   display: flex;
 
