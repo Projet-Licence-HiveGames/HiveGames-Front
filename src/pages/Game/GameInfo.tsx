@@ -5,16 +5,16 @@ import { privateApi } from "../../api/privateApi.ts";
 import { GameBuyCard } from "../../components/GameInfo/GameBuyCard/GameBuyCard.tsx";
 import { GameFeatures } from "../../components/GameInfo/GameFeatures/GameFeatures.tsx";
 import { GameLanguages } from "../../components/GameInfo/GameLanguages/GameLanguages.tsx";
-import { GameDescription } from "../../components/GameInfo/GameDescription/GameDescription.tsx";
+import { GameShortDescription } from "../../components/GameInfo/GameShortDescription/GameShortDescription.tsx";
 import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.tsx";
 import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx";
 import { Loader } from "../../components/Loader/Loader.tsx";
 import { Game } from "../../types/Game.ts";
 import { getGameThumbnail } from "../../utils/gameUtils.ts";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
+import {GameLongDescription} from "../../components/GameInfo/GameLongDescription/GameLongDescription.tsx";
 
 import "./GameInfo.css";
-
 
 export const GameInfo: React.FC = () => {
   const { id } = useParams();
@@ -37,26 +37,27 @@ export const GameInfo: React.FC = () => {
   }
 
   return (
-    <div className="game-info">
-      <div className="game-info__container">
+    <div className="game-details-container">
+      <div className="game-details__header">
         {!isMobile && (
-          <div className="game-info__left">
+          <div className="game-details__gallery">
             <GameImages
               images={gameData?.images}
               thumbnail={getGameThumbnail(gameData)}
             />
           </div>
         )}
-        <div className="game-info__right">
+        <div className="game-details__overview">
           {!isMobile ? (
-            <GameDescription
-              description={gameData?.description || ""}
+            <GameShortDescription
+              description={gameData?.short_description || ""}
               thumbnail={getGameThumbnail(gameData)}
             />
           ) : (
             <img
               src={getGameThumbnail(gameData)?.file_url}
               alt={gameData?.name}
+              className="game-details__thumbnail"
             />
           )}
           <GameDetails
@@ -64,21 +65,26 @@ export const GameInfo: React.FC = () => {
             studio={gameData?.studios || []}
             release_date={gameData?.release_date || ""}
             categories={gameData?.categories || []}
-            description={gameData?.description || ""}
+            description={gameData?.short_description || ""}
           />
         </div>
       </div>
-      <div className='game-info__content'>
-        <div className='game-buy-card'>
-          <GameBuyCard name={gameData?.name || ""} oldPrice={gameData?.oldPrice || 0} price={gameData?.price || 0} />
+      <div className="game-details__main">
+        <div className="game-details__primary">
+          <div className="game-details__purchase">
+            <GameBuyCard name={gameData?.name || ""} oldPrice={gameData?.oldPrice || 0} price={gameData?.price || 0}/>
+          </div>
+          <div className="game-details__description">
+            <GameLongDescription description={gameData?.long_description || ""}/>
+          </div>
         </div>
-        <div className='game-details'>
-          <div className='game-features-languages'>
-            <div className='game-features'>
-              <GameFeatures features={gameData?.features || []} />
+        <div className="game-details__secondary">
+          <div className="game-details__info">
+            <div className="game-details__features">
+              <GameFeatures features={gameData?.features || []}/>
             </div>
-            <div className='game-languages'>
-              <GameLanguages languages={gameData?.languages || []} />
+            <div className="game-details__languages">
+              <GameLanguages languages={gameData?.languages || []}/>
             </div>
           </div>
         </div>

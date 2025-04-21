@@ -4,7 +4,7 @@ export interface Game {
   id: number;
   name: string;
   short_description?: string;
-  description?: string;
+  long_description?: string;
   features?: GameFeature[];
   images?: GameImage[];
   price: number;

@@ -1,22 +1,26 @@
-.game-description {
+.game-short-description {
   background: var(--bg-color-light);
   border-radius: 8px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding: 1.5rem;
 }
 
-.game-description h2 {
+.game-short-description h2 {
   color: white;
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.game-description p {
+.game-short-description p {
   color: white;
   line-height: 1.6;
   text-align: justify;
 } 
 
-.game-description-container {
+.game-short-description-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -27,7 +31,7 @@
   }
 }
 
-.game-description-image {
+.game-short-description-image {
   display: flex;
   flex-direction: row;
   gap: 1rem;
@@ -40,7 +44,7 @@
   }
 }
 
-.game-description-image img {
+.game-short-description-image img {
   height: 100%;
   object-fit: contain;
   width: 100%;

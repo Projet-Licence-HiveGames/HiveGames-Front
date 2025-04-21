@@ -1,5 +1,5 @@
 import React from "react";
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import {CheckRounded, CloseRounded} from "@mui/icons-material";
 import { GameLanguage } from "../../../types/Game";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 import { translateLanguage } from "../../../constants/LanguagesDict.tsx";
@@ -26,24 +26,39 @@ export const GameLanguages:React.FC<GameLanguagesProps> = ({ languages }) => {
                     <thead>
                     <tr>
                         <th/>
-                        <th>Interface</th>
-                        <th>Subtitles</th>
-                        <th>Audio</th>
+                        <th>
+                            <TLabel
+                              baliseType={"span"}
+                              label="interfaces"
+                            />
+                        </th>
+                        <th>
+                            <TLabel
+                              baliseType={"span"}
+                              label="subtitles"
+                            />
+                        </th>
+                        <th>
+                            <TLabel
+                              baliseType={"span"}
+                              label="audio"
+                            />
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                        {languages?.slice(0, showAll ? languages.length : 1)
+                        {languages?.slice(0, showAll ? languages.length : 6)
                             .map((language, index) => (
                             <tr key={index}>
                                 <td>{translateLanguage(language.label as keyof typeof translateLanguage)}</td>
-                                <td>{!!language.has_interface && <CheckRoundedIcon/>}</td>
-                                <td>{!!language.has_subtitles && <CheckRoundedIcon/>}</td>
-                                <td>{!!language.has_voice_over && <CheckRoundedIcon/>}</td>
+                                <td>{language.has_interface ? <CheckRounded/> : <CloseRounded/>}</td>
+                                <td>{language.has_subtitles ? <CheckRounded/> : <CloseRounded/>}</td>
+                                <td>{language.has_voice_over ? <CheckRounded/> : <CloseRounded/>}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                {!showAll && languages?.length > 1 && (
+                {!showAll && languages?.length > 6 && (
                     <div
                         className={"languages-see-more"}
                         onClick={() => setShowAll(true)}
