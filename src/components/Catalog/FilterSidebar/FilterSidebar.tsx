@@ -80,6 +80,11 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
         "filter-sidebar--open": isOpen,
       })}
       ref={ref}
+      onClick={(e) => {
+        if (e.target === ref.current) {
+          setIsOpen(false);
+        }
+      }}
     >
       <div className="filter-sidebar-container">
         <div className="filter-sidebar-top">
@@ -93,138 +98,142 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
               onClick={() => !isDefaultFilters && setFilters(defaultFilters)}
             />
           </div>
-          <div className="filter-item filter-item-sort">
-            <span className="filter-item-title">Trier par</span>
-            <select
-              className="filter-item-select"
-              value={filters.order_by}
-              onChange={(e) =>
-                setFilters({ ...filters, order_by: e.target.value })
-              }
-            >
-              <option value="rating-desc">Avis (+ / -)</option>
-              <option value="rating-asc">Avis (- / +)</option>
-              <option value="name-asc">Nom (A-Z)</option>
-              <option value="name-desc">Nom (Z-A)</option>
-              <option value="price-asc">Prix (- / +)</option>
-              <option value="price-desc">Prix (+ / -)</option>
-              <option value="release_date-desc">Sortie récente</option>
-              <option value="release_date-asc">Sortie ancienne</option>
-            </select>
-          </div>
-          <div className="filter-item search-bar">
-            <MaterialSymbol
-              icon="search"
-              size={24}
-              className="search-bar-icon"
-            />
-            <input
-              type="text"
-              value={filters.search}
-              onChange={(e) =>
-                setFilters({ ...filters, search: e.target.value })
-              }
-              className="search-bar-input"
-              placeholder="Rechercher un nom..."
-            />
-          </div>
-          <div className="filter-item">
-            <span className="filter-item-title">Prix</span>
-            <Slider
-              sx={{
-                margin: "1rem",
-                width: "auto",
-                "& .MuiSlider-markLabel": {
-                  color: "white",
-                },
-              }}
-              value={[filters.prices.min, filters.prices.max]}
-              onChange={(_, value) =>
-                setFilters({
-                  ...filters,
-                  prices: {
-                    min: (value as number[])[0],
-                    max: (value as number[])[1],
+          <div className="filter-sidebar-top-content">
+            <div className="filter-item filter-item-sort">
+              <span className="filter-item-title">Trier par</span>
+              <select
+                className="filter-item-select"
+                value={filters.order_by}
+                onChange={(e) =>
+                  setFilters({ ...filters, order_by: e.target.value })
+                }
+              >
+                <option value="rating-desc">Avis (+ / -)</option>
+                <option value="rating-asc">Avis (- / +)</option>
+                <option value="name-asc">Nom (A-Z)</option>
+                <option value="name-desc">Nom (Z-A)</option>
+                <option value="price-asc">Prix (- / +)</option>
+                <option value="price-desc">Prix (+ / -)</option>
+                <option value="release_date-desc">Sortie récente</option>
+                <option value="release_date-asc">Sortie ancienne</option>
+              </select>
+            </div>
+            <div className="filter-item search-bar">
+              <MaterialSymbol
+                icon="search"
+                size={24}
+                className="search-bar-icon"
+              />
+              <input
+                type="text"
+                value={filters.search}
+                onChange={(e) =>
+                  setFilters({ ...filters, search: e.target.value })
+                }
+                className="search-bar-input"
+                placeholder="Rechercher un nom..."
+              />
+            </div>
+            <div className="filter-item">
+              <span className="filter-item-title">Prix</span>
+              <Slider
+                sx={{
+                  margin: "1rem",
+                  width: "auto",
+                  "& .MuiSlider-markLabel": {
+                    color: "white",
                   },
-                })
+                }}
+                value={[filters.prices.min, filters.prices.max]}
+                onChange={(_, value) =>
+                  setFilters({
+                    ...filters,
+                    prices: {
+                      min: (value as number[])[0],
+                      max: (value as number[])[1],
+                    },
+                  })
+                }
+                valueLabelDisplay="auto"
+                valueLabelFormat={(value) =>
+                  value > 0 ? `${value > 100 ? "+100" : value} €` : "gratuit"
+                }
+                getAriaValueText={(value) =>
+                  value > 0 ? `${value > 100 ? "+100" : value} €` : "gratuit"
+                }
+                max={101}
+                marks={[
+                  {
+                    value: 0,
+                    label:
+                      filters.prices.min == 0
+                        ? "Gratuit"
+                        : filters.prices.min == 101
+                          ? "+100 €"
+                          : `${filters.prices.min} €`,
+                  },
+                  {
+                    value: 101,
+                    label:
+                      filters.prices.max == 0
+                        ? "Gratuit"
+                        : filters.prices.max == 101
+                          ? "+100 €"
+                          : `${filters.prices.max} €`,
+                  },
+                ]}
+              />
+            </div>
+            <Dropdown
+              title="Categories"
+              options={categories.map(
+                (category) =>
+                  ({
+                    label: category.label,
+                    value: category.id,
+                  }) as DropdownOption,
+              )}
+              selected={filters.categories}
+              setSelected={(selected) =>
+                setFilters({ ...filters, categories: selected as number[] })
               }
-              valueLabelDisplay="auto"
-              valueLabelFormat={(value) =>
-                value > 0 ? `${value > 100 ? "+100" : value} €` : "gratuit"
+            />
+            <Dropdown
+              title="Languages"
+              options={languages.map(
+                (language) =>
+                  ({
+                    label: language.label,
+                    value: language.id,
+                  }) as DropdownOption,
+              )}
+              selected={filters.languages}
+              setSelected={(selected) =>
+                setFilters({ ...filters, languages: selected as number[] })
               }
-              getAriaValueText={(value) =>
-                value > 0 ? `${value > 100 ? "+100" : value} €` : "gratuit"
+            />
+            <Dropdown
+              title="Features"
+              options={features.map(
+                (feature) =>
+                  ({
+                    label: feature.label,
+                    value: feature.id,
+                  }) as DropdownOption,
+              )}
+              selected={filters.features}
+              setSelected={(selected) =>
+                setFilters({ ...filters, features: selected as number[] })
               }
-              max={101}
-              marks={[
-                {
-                  value: 0,
-                  label:
-                    filters.prices.min == 0
-                      ? "Gratuit"
-                      : filters.prices.min == 101
-                        ? "+100 €"
-                        : `${filters.prices.min} €`,
-                },
-                {
-                  value: 101,
-                  label:
-                    filters.prices.max == 0
-                      ? "Gratuit"
-                      : filters.prices.max == 101
-                        ? "+100 €"
-                        : `${filters.prices.max} €`,
-                },
-              ]}
             />
           </div>
-
-          <Dropdown
-            title="Categories"
-            options={categories.map(
-              (category) =>
-                ({
-                  label: category.label,
-                  value: category.id,
-                }) as DropdownOption,
-            )}
-            selected={filters.categories}
-            setSelected={(selected) =>
-              setFilters({ ...filters, categories: selected as number[] })
-            }
-          />
-          <Dropdown
-            title="Languages"
-            options={languages.map(
-              (language) =>
-                ({
-                  label: language.label,
-                  value: language.id,
-                }) as DropdownOption,
-            )}
-            selected={filters.languages}
-            setSelected={(selected) =>
-              setFilters({ ...filters, languages: selected as number[] })
-            }
-          />
-          <Dropdown
-            title="Features"
-            options={features.map(
-              (feature) =>
-                ({ label: feature.label, value: feature.id }) as DropdownOption,
-            )}
-            selected={filters.features}
-            setSelected={(selected) =>
-              setFilters({ ...filters, features: selected as number[] })
-            }
-          />
         </div>
         <div className="filter-sidebar-bottom">
           <button
             className="filter-sidebar-close"
             onClick={() => setIsOpen(false)}
           >
-            <MaterialSymbol icon="close" size={24} />
+            <MaterialSymbol icon="vertical_align_bottom" size={24} />
             <span>Fermer</span>
           </button>
         </div>

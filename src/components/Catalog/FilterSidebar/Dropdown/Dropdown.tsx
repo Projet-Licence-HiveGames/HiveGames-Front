@@ -66,7 +66,10 @@ const Dropdown: FC<DropdownProps> = ({
                     <div
                       key={index}
                       className="dropdown-content-item dropdown-content-item--selected"
-                      onClick={() => handleClick(value)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleClick(value);
+                      }}
                     >
                       <span>{value.label}</span>
                       <div className="dropdown-content-item-right">
