@@ -10,10 +10,6 @@
     z-index: 100;
 }
 
-.filter-sidebar.no-transition .filter-sidebar-container {
-    transition: none;
-}
-
 .filter-sidebar-container {
     background-color: var(--bg-color-darker);
     border-radius: .25rem;
@@ -30,6 +26,10 @@
     position: sticky;
     scrollbar-width: thin;
     width: 17rem;
+}
+
+.filter-sidebar.no-transition .filter-sidebar-container {
+    transition: none;
 }
 
 .filter-sidebar-header {
