@@ -13,7 +13,7 @@ interface PromoBlocProps {
   onAddToCart?: () => void;
 }
 
-const PromoBloc: React.FC<PromoBlocProps> = ({
+export const PromoBloc: React.FC<PromoBlocProps> = ({
   discount,
   originalPrice,
   discountedPrice,
@@ -33,5 +33,3 @@ const PromoBloc: React.FC<PromoBlocProps> = ({
     </div>
   );
 };
-
-export default PromoBloc;
