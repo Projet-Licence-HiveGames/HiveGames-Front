@@ -22,8 +22,7 @@
     gap: 1rem;
 
     @media screen and (width <= 1200px) {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
     }
     
 }
@@ -31,7 +30,7 @@
 .game-features__list-item {
     align-items: center;
     background-color: var(--bg-color-normal);
-    border-radius: var(--button-border-radius);
+    border-radius: var(--button-border-radius-small);
     display: flex;
     flex-direction: row;
     gap: 1rem;

@@ -30,26 +30,25 @@
 
 @media screen and (max-width: 1200px) {
     .game-languages__list {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
     }
 }
 
 .game-languages__list table {
-    width: 100%;
     border-collapse: collapse;
+    width: 100%;
 }
 
 .game-languages__list th,
 .game-languages__list td {
+    border-bottom: 1px solid #333;
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #333;
 }
 
 .game-languages__list th {
-    font-weight: bold;
     color: #fff;
+    font-weight: bold;
 
     @media (width <= 768px) {
         font-size: .8rem;
@@ -71,7 +70,7 @@
 .game-languages__list-item {
     align-items: center;
     background-color: var(--bg-color-normal);
-    border-radius: var(--button-border-radius);
+    border-radius: var(--button-border-radius-small);
     display: flex;
     flex-direction: row;
     gap: 1rem;

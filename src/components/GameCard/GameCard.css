@@ -47,6 +47,24 @@
     z-index: 1;
 }
 
+.game-card-content-progress-bar {
+    align-items: center;
+    backdrop-filter: blur(2px);
+    background-color: rgb(0 0 0 / 60%);
+    border-radius: 4px 4px 0 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    padding: 4px;
+    position: absolute;
+    right: 0;
+    transition: opacity .3s ease;
+
+    @media screen and (width <= 1024px) {
+        opacity: 1;
+    }
+}
+
 .game-card:hover .game-card-content-progress-bar {
     bottom: 0;
     opacity: 1;
@@ -100,24 +118,6 @@
 
     @media screen and (width <= 1024px) {
         width: 100%;
-    }
-}
-
-.game-card-content-progress-bar {
-    align-items: center;
-    backdrop-filter: blur(2px);
-    background-color: rgb(0 0 0 / 60%);
-    border-radius: 4px 4px 0 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    padding: 4px;
-    position: absolute;
-    right: 0;
-    transition: opacity .3s ease;
-
-    @media screen and (width <= 1024px) {
-        opacity: 1;
     }
 }
 
