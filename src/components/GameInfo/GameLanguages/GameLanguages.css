@@ -10,6 +10,7 @@
     font-size: 1rem;
     font-weight: 600;
     margin: 10px 0;
+    width: fit-content;
 }
 
 .game-languages__title h2 {
@@ -42,21 +43,23 @@
 .game-languages__list th,
 .game-languages__list td {
     border-bottom: 1px solid #333;
-    padding: 8px;
-    text-align: left;
-}
-
-.game-languages__list th {
     color: #fff;
     font-weight: bold;
+    padding: 8px;
+    text-align: left;
 
     @media (width <= 768px) {
         font-size: .8rem;
     }
 }
 
+.game-languages__list thead {
+    width: fit-content;
+}
+
 .game-languages__list td {
     color: #fff;
+    text-align: center;
 
     @media (width <= 768px) {
         font-size: .8rem;
@@ -92,4 +95,16 @@
     .game-languages__list-item__title {
         font-size: .7rem;
     }
+}
+
+.languages-see-more {
+    margin-left: 8px;
+}
+
+.languages-see-more__label {
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 10px;
 }

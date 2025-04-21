@@ -16,6 +16,7 @@ const labelList = [
   "features",
   "languages",
   "weekend_deal",
+  "see_more",
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -42,6 +43,7 @@ export const translationDictionnaries: {
     features: "Features",
     languages: "Languages",
     weekend_deal: "WEEKEND DEAL! Offer ends",
+    see_more: "See more",
   },
 
   // -------------------- French --------------------
@@ -63,5 +65,6 @@ export const translationDictionnaries: {
     features: "Caractéristiques",
     languages: "Langues",
     weekend_deal: "DEAL DE LA SEMAINE! Offre terminée le ",
+    see_more: "Voir plus",
   },
 };
