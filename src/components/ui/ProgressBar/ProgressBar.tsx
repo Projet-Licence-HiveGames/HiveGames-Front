@@ -8,7 +8,7 @@ interface ProgressBarProps {
   leftPercentValue: number;
 }
 
-const ProgressBar: FC<ProgressBarProps> = ({
+export const ProgressBar: FC<ProgressBarProps> = ({
   className,
   leftPercentValue = 0,
 }) => {
@@ -31,5 +31,3 @@ const ProgressBar: FC<ProgressBarProps> = ({
     </div>
   );
 };
-
-export default ProgressBar;

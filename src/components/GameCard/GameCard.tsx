@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import { Game } from "../../types/Game";
 import { getGameThumbnail } from "../../utils/gameUtils";
-import Category from "../CustomBloc/CategoryBloc/Category";
-import PromoBloc from "../CustomBloc/PromoBloc/PromoBloc";
+import { Category } from "../CustomBloc/CategoryBloc/Category";
+import { PromoBloc } from "../CustomBloc/PromoBloc/PromoBloc";
 import { WishButton } from "../CustomBloc/WishButton/WishButton";
-import ProgressBar from "../ui/ProgressBar/ProgressBar";
+import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
 import { calculateDiscount } from "../../utils/calculateDiscount";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
