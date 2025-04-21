@@ -9,7 +9,7 @@ interface CategoryProps {
   category: string[];
 }
 
-const Category: React.FC<CategoryProps> = ({ category = ["test"] }) => {
+export const Category: React.FC<CategoryProps> = ({ category = ["test"] }) => {
   const [showAll, setShowAll] = React.useState(false);
 
   return (
@@ -34,5 +34,3 @@ const Category: React.FC<CategoryProps> = ({ category = ["test"] }) => {
     </div>
   );
 };
-
-export default Category;
