@@ -1,0 +1,8 @@
+name: hivegames-frontend
+services:
+  main:
+    build: .
+    environment:
+      - HIVEGAMES_BACKEND_API=https://api.hivegames.modcraftmc.fr
+    ports:
+      - 3000:80
