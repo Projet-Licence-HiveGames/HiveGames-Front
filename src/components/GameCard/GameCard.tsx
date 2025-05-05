@@ -29,7 +29,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
         </div>
       </div>
       <div className={"game-card-content"}>
-        {isAuthenticated && <WishButton game={game} />}
+        <WishButton game={game} isAuthenticated={isAuthenticated}/>
         <div className={"game-card-content-title"}>
           <h3>{capitalizeFirstLetter(game.name)}</h3>
         </div>

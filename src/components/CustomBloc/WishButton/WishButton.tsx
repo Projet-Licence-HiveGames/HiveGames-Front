@@ -5,14 +5,16 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useFetch } from "../../../api/privateApi";
 import { useAuth } from "../../../context/AuthProvider";
 import { Game } from "../../../types/Game";
+import { toast } from "react-hot-toast";
 
 import "./WishButton.css";
 
 interface WishButtonProps {
   game: Game;
+  isAuthenticated: boolean;
 }
 
-export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
+export const WishButton: React.FC<WishButtonProps> = ({ game, isAuthenticated }) => {
   const fetchAPI = useFetch();
   const auth = useAuth();
   const { user } = auth;
@@ -45,6 +47,11 @@ export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
   };
 
   const handleFavoriteToggle = async () => {
+    if (!isAuthenticated) {
+      toast.error("Vous devez être connecté pour ajouter un jeu à votre liste de souhaits.");
+      return;
+    }
+
     const newState = !isFavorite;
     setIsFavorite(newState);
     isFavoriteRef.current = newState;
@@ -75,7 +82,7 @@ export const WishButton: React.FC<WishButtonProps> = ({ game }) => {
   return (
     <div className="wish-button-container">
       <button
-        className="wish-button"
+        className={`wish-button ${isAuthenticated ? "" : "disabled"}`}
         onClick={(e) => {
           e.stopPropagation();
           handleFavoriteToggle();
