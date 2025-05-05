@@ -1,0 +1,26 @@
+.game-of-the-week-container {
+    border-radius: var(--button-border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.game-of-the-week-title {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 10px 0;
+    text-align: left;
+    width: fit-content;
+}
+
+.game-of-the-week-header {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 20px;
+  width: 90%;
+}

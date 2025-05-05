@@ -2,7 +2,6 @@ import React from "react";
 
 import CartButton from "../CartButton/CartButton.tsx";
 import PriceBox from "../PriceBox/PriceBox.tsx";
-import PromoShow from "../PromoShow/PromoShow.tsx";
 
 import "./PromoBloc.css";
 
@@ -24,7 +23,9 @@ export const PromoBloc: React.FC<PromoBlocProps> = ({
       <div className="promo-header">
         <div className="promo-price">
           {(originalPrice || originalPrice !== 0) && (
-            <PromoShow discount={discount} />
+            <div className={"promo-show-box"}>
+              <h3>{discount}%</h3>
+            </div>
           )}
           <PriceBox oldPrice={originalPrice} price={discountedPrice} />
           <CartButton onClick={onAddToCart} />

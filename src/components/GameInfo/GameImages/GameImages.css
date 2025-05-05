@@ -9,10 +9,15 @@
 
 .big-image-swiper .swiper-wrapper {
   height: 500px;
+
+  & .large {
+    height: 900px;
+  }
 }
 
 .panel-image {
   height: 100%;
+  width: 100%;
 }
 
 .swiper-thumbs {

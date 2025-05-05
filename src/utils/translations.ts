@@ -60,6 +60,8 @@ const labelList = [
   "category.world_builder",
   "category.zombie",
   "free",
+  "games_of_the_week",
+  "add_to_favorite"
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -130,6 +132,8 @@ export const translationDictionnaries: {
     "category.world_builder": "World Builder",
     "category.zombie": "Zombie",
     free: "Free",
+    games_of_the_week: "Games of the week",
+    "add_to_favorite": "Add to favorite",
   },
 
   // -------------------- French --------------------
@@ -195,5 +199,7 @@ export const translationDictionnaries: {
     "category.world_builder": "Constructeur de monde",
     "category.zombie": "Zombie",
     free: "Gratuit",
+    games_of_the_week: "Jeux de la semaine",
+    "add_to_favorite": "Ajouter aux favoris",
   },
 };

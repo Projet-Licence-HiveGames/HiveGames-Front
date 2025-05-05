@@ -21,3 +21,23 @@
 .wish-button svg {
     align-self: center;
 }
+
+.wish-button-container-large .wish-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 200px;
+    padding: 8px 12px;
+    background-color: var(--bg-color-blue-normal);
+    color: white;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.wish-button-container-large .wish-button:hover {
+    background-color: var(--bg-color-blue-lighter);
+}
