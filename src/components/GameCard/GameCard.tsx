@@ -2,13 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Game } from "../../types/Game";
+import { calculateDiscount } from "../../utils/calculateDiscount";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { getGameThumbnail } from "../../utils/gameUtils";
 import { Category } from "../CustomBloc/CategoryBloc/Category";
 import { PromoBloc } from "../CustomBloc/PromoBloc/PromoBloc";
 import { WishButton } from "../CustomBloc/WishButton/WishButton";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
-import { calculateDiscount } from "../../utils/calculateDiscount";
-import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 import "./GameCard.css";
 
@@ -29,7 +29,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
         </div>
       </div>
       <div className={"game-card-content"}>
-        <WishButton game={game} isAuthenticated={isAuthenticated}/>
+        <WishButton game={game} isAuthenticated={isAuthenticated} />
         <div className={"game-card-content-title"}>
           <h3>{capitalizeFirstLetter(game.name)}</h3>
         </div>

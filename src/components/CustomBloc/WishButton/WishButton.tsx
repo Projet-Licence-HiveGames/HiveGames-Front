@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-hot-toast";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 import { useFetch } from "../../../api/privateApi";
 import { useAuth } from "../../../context/AuthProvider";
 import { Game } from "../../../types/Game";
-import { toast } from "react-hot-toast";
 
 import "./WishButton.css";
 
@@ -14,7 +14,10 @@ interface WishButtonProps {
   isAuthenticated: boolean;
 }
 
-export const WishButton: React.FC<WishButtonProps> = ({ game, isAuthenticated }) => {
+export const WishButton: React.FC<WishButtonProps> = ({
+  game,
+  isAuthenticated,
+}) => {
   const fetchAPI = useFetch();
   const auth = useAuth();
   const { user } = auth;
@@ -48,7 +51,9 @@ export const WishButton: React.FC<WishButtonProps> = ({ game, isAuthenticated })
 
   const handleFavoriteToggle = async () => {
     if (!isAuthenticated) {
-      toast.error("Vous devez être connecté pour ajouter un jeu à votre liste de souhaits.");
+      toast.error(
+        "Vous devez être connecté pour ajouter un jeu à votre liste de souhaits.",
+      );
       return;
     }
 
