@@ -1,26 +1,27 @@
 .game-image-hp-wrapper {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
   position: relative;
+  width: 100%;
 }
+
 .main-image-wrapper {
+  height: 100%;
   position: relative;
   width: 100%;
-  height: 100%;
 }
 
 .game-image-hp-wishlist-button {
+  left: 0;
   position: absolute;
   top: 40px;
-  left: 0;
   z-index: 2;
 }
 
 .game-image-hp-button-wrapper {
-  position: absolute;
   bottom: 20px;
+  position: absolute;
   right: 20px;
   z-index: 2;
 
@@ -49,9 +50,9 @@
 }
 
 .big-image-swiper {
-  width: 100%;
   height: 450px;
   margin-bottom: 1rem;
+  width: 100%;
 
   & .swiper-wrapper {
     height: 100%;
@@ -59,36 +60,36 @@
 }
 
 .panel-image {
-  width: 100%;
+  border-radius: 8px;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  width: 100%;
 }
 
 .swiper-slide {
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .game-thumbs-swiper {
-  width: 90%;
   max-width: 1000px;
+  width: 90%;
 }
 
 .thumb-image {
-  width: 150px;
-  height: 80px;
-  object-fit: cover;
   border-radius: 6px;
   cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.3s, transform 0.3s;
+  height: 80px;
+  object-fit: cover;
+  opacity: .6;
+  transition: opacity .3s, transform .3s;
+  width: 150px;
 }
 
 .thumb-image.active,
 .thumb-image:hover {
+  border: 2px solid #fff;
   opacity: 1;
   transform: scale(1.05);
-  border: 2px solid #ffffff;
 }
