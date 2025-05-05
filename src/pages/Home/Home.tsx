@@ -5,23 +5,25 @@ import viteLogo from "../../assets/vite.svg";
 import { GameSessionContext } from "../../context/GameSessionProvider";
 
 import "./Home.css";
+import { GameOfTheWeek } from "../../components/Home/GameOfTheWeek/GameOfTheWeek.tsx";
 
 const Home: FC = () => {
   const { startGameSession } = useContext(GameSessionContext);
   return (
     <div className="container">
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+      {/*<div>*/}
+      {/*  <a href="https://vite.dev" target="_blank">*/}
+      {/*    <img src={viteLogo} className="logo" alt="Vite logo" />*/}
+      {/*  </a>*/}
+      {/*  <a href="https://react.dev" target="_blank">*/}
+      {/*    <img src={reactLogo} className="logo react" alt="React logo" />*/}
+      {/*  </a>*/}
+      {/*</div>*/}
+      {/*<h1>Vite + React</h1>*/}
       <button onClick={() => startGameSession(1, "Cookie Clicker")}>
         Start
       </button>
+      <GameOfTheWeek/>
     </div>
   );
 };

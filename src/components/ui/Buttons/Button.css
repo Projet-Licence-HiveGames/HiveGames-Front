@@ -1,11 +1,30 @@
 .hivegames-button {
-  background-color: var(--primary-color);
-  border-radius: var(--button-border-radius-small);
-  display: inline-block;
-  padding: .5rem 1rem;
-  text-decoration: none;
+  align-items: center;
+  background: var(--bg-color-blue-normal);
+  border: none;
+  border-radius: 3px;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-grow: 0;
+  gap: 10px;
+  height: 44px;
+  justify-content: center;
+  order: 2;
+  padding: 16px;
+
+  &:hover {
+    background: var(--bg-color-blue-lighter);
+    cursor: pointer;
+    transition: background-color .3s ease;
+  }
 }
 
-.hivegames-button:hover {
-  background-color: var(--secondary-color);
+.hivegames-button span {
+  color: white;
+  flex: none;
+  flex-grow: 0;
+  font-size: 16px;
+  font-weight: 400;
+  order: 0;
 }

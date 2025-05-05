@@ -24,3 +24,19 @@
         flex-wrap: wrap;
     }
 }
+
+.promo-show-box {
+    background: var(--bg-color-green);
+    border-radius: 3px;
+    height: 100%;
+    min-width: 50px;
+    padding: 5px;
+    text-align: center;
+    width: auto;
+
+    & h3 {
+        color: #0E141B;
+        font-size: 19px;
+        font-weight: 700;
+    }
+}

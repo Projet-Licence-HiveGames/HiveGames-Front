@@ -9,11 +9,13 @@ import "./GameImages.css";
 
 interface GameImagesProps {
   images?: GameImage[];
+  large?: boolean;
   thumbnail: GameImage;
 }
 
 export const GameImages: React.FC<GameImagesProps> = ({
   images,
+  large = false,
   thumbnail,
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
@@ -24,7 +26,7 @@ export const GameImages: React.FC<GameImagesProps> = ({
   const _images = slides?.length ? slides : [thumbnail];
 
   return (
-    <div className="game-images-wrapper">
+    <div className={`game-images-wrapper ${large ? "large" : ""}`}>
       <Swiper
         autoplay={{ delay: 5000 }}
         className="big-image-swiper"
@@ -37,7 +39,7 @@ export const GameImages: React.FC<GameImagesProps> = ({
         thumbs={{ swiper: thumbsSwiper }}
       >
         {_images.map((image, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className={large ? "large": ""}>
             <img
               alt={image.alt || "Game Image"}
               className="panel-image"

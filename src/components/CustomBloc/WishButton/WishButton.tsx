@@ -8,23 +8,26 @@ import { useAuth } from "../../../context/AuthProvider";
 import { Game } from "../../../types/Game";
 
 import "./WishButton.css";
+import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 interface WishButtonProps {
   game: Game;
   isAuthenticated: boolean;
+  large: boolean;
 }
 
 export const WishButton: React.FC<WishButtonProps> = ({
   game,
   isAuthenticated,
+  large = false
 }) => {
   const fetchAPI = useFetch();
   const auth = useAuth();
   const { user } = auth;
   const [isFavorite, setIsFavorite] = useState<boolean>(
-    game.is_wished || false,
+    !!game?.is_wished,
   );
-  const isFavoriteRef = useRef(game.is_wished || false);
+  const isFavoriteRef = useRef(!!game?.is_wished || false);
   const cooldownRef = useRef(false);
   const pendingChange = useRef<boolean | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -85,20 +88,36 @@ export const WishButton: React.FC<WishButtonProps> = ({
   }, []);
 
   return (
-    <div className="wish-button-container">
-      <button
-        className={`wish-button ${isAuthenticated ? "" : "disabled"}`}
-        onClick={(e) => {
-          e.stopPropagation();
-          handleFavoriteToggle();
-        }}
-      >
-        {isFavorite ? (
-          <BookmarkRemoveRoundedIcon />
-        ) : (
-          <BookmarkAddRoundedIcon />
-        )}
-      </button>
-    </div>
+    <>
+      {large ? (
+        <div className="wish-button-container-large">
+          <button
+            className={`wish-button`}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFavoriteToggle();
+            }}
+          >
+            {isFavorite ? (
+              <BookmarkAddRoundedIcon/>
+            ) : (
+              <TLabel
+                label={"add_to_favorite"}/>
+            )}
+          </button>
+        </div>
+      ) : (
+        <div className="wish-button-container">
+          <button
+            className={`wish-button ${isAuthenticated ? "" : "disabled"}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleFavoriteToggle();
+            }}
+          >
+            {isFavorite ? <BookmarkRemoveRoundedIcon /> : <BookmarkAddRoundedIcon />}
+          </button>
+        </div>)}
+    </>
   );
 };
