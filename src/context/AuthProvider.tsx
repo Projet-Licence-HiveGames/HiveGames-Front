@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(userData.user);
       setIsAuthenticated(true); // Si l'utilisateur est récupéré, il est authentifié
     } catch (err) {
-      localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem("isAuthenticated");
       setUser(null); // Si une erreur survient, il n'y a pas d'utilisateur connecté
       setIsAuthenticated(false);
       setError("Utilisateur non trouvé ou non authentifié.");
