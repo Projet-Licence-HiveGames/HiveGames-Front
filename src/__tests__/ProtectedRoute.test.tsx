@@ -1,58 +1,71 @@
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import ProtectedRoute from "../components/ProtectedRoute";
-import { AuthContext } from "../context/AuthProvider"; // Import du context directement
+import { AuthContext } from "../context/AuthProvider"; // Ton context Auth
 
+// Composant de test protégé
 const TestComponent = () => <div data-testid="protected">Contenu protégé</div>;
 
-// Créer un mock de AuthProvider en utilisant le Context.Provider
-const MockAuthProvider = ({ children, isAuthenticated }) => {
-  return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, login: jest.fn(), logout: jest.fn() }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+// Fournisseur de contexte mock
+const MockAuthProvider: React.FC<{ children: React.ReactNode; isAuthenticated?: boolean }> = ({
+                                                                                                children,
+                                                                                                isAuthenticated = false,
+                                                                                              }) => {
+  const mockContextValue = {
+    user: isAuthenticated
+        ? {
+          id: 1,
+          email: "test@example.com",
+          user: "testuser",
+          pseudo: "Test",
+          user_tag: "test#1234",
+          user_role: "admin",
+        }
+        : null,
+    loading: false,
+    error: null,
+    isAuthenticated,
+    login: jest.fn(),
+    logout: jest.fn(),
+    register: jest.fn(),
+    checkUser: jest.fn(),
+  };
+
+  return <AuthContext.Provider value={mockContextValue}>{children}</AuthContext.Provider>;
 };
 
 describe("ProtectedRoute", () => {
-  beforeEach(() => {
-    localStorage.clear();
-    jest.restoreAllMocks();
-  });
-
-  it("devrait rediriger vers /Login si non authentifié", async () => {
+  it("affiche le contenu si l'utilisateur est authentifié", async () => {
     render(
-      <MockAuthProvider isAuthenticated={false}>
-        <MemoryRouter initialEntries={["/protected"]}>
-          <Routes>
-            <Route path="/protected" element={<ProtectedRoute><TestComponent /></ProtectedRoute>} />
-            <Route path="/login" element={<div>Page de connexion</div>} />
-          </Routes>
-        </MemoryRouter>
-      </MockAuthProvider>
-    );
-
-    await waitFor(() => {
-      expect(screen.getByText("Page de connexion")).toBeInTheDocument();
-    });
-  });
-
-  it("devrait afficher le contenu si authentifié", async () => {
-    render(
-      <MockAuthProvider isAuthenticated={true}>
-        <MemoryRouter initialEntries={["/protected"]}>
-          <Routes>
-            <Route path="/protected" element={<ProtectedRoute><TestComponent /></ProtectedRoute>} />
-            <Route path="/login" element={<div>Page de connexion</div>} />
-          </Routes>
-        </MemoryRouter>
-      </MockAuthProvider>
+        <MockAuthProvider isAuthenticated={true}>
+          <MemoryRouter initialEntries={["/protected"]} future={{v7_relativeSplatPath: true, v7_startTransition: true}}>
+            <Routes>
+              <Route path="/protected" element={<ProtectedRoute><TestComponent /></ProtectedRoute>} />
+              <Route path="/login" element={<div>Page de connexion</div>} />
+            </Routes>
+          </MemoryRouter>
+        </MockAuthProvider>
     );
 
     await waitFor(() => {
       expect(screen.getByTestId("protected")).toBeInTheDocument();
+    });
+  });
+
+  it("redirige vers /login si l'utilisateur n'est pas authentifié", async () => {
+    render(
+        <MockAuthProvider isAuthenticated={false}>
+          <MemoryRouter initialEntries={["/protected"]} future={{v7_relativeSplatPath: true, v7_startTransition: true}}>
+            <Routes>
+              <Route path="/protected" element={<ProtectedRoute><TestComponent /></ProtectedRoute>} />
+              <Route path="/login" element={<div>Page de connexion</div>} />
+            </Routes>
+          </MemoryRouter>
+        </MockAuthProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("Page de connexion")).toBeInTheDocument();
     });
   });
 });
