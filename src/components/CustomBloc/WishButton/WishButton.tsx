@@ -93,7 +93,7 @@ export const WishButton: React.FC<WishButtonProps> = ({
           handleFavoriteToggle();
         }}
       >
-        {isFavorite ? <BookmarkAddRoundedIcon /> : <BookmarkRemoveRoundedIcon />}
+        {isFavorite ? <BookmarkRemoveRoundedIcon /> : <BookmarkAddRoundedIcon />}
       </button>
     </div>
   );
