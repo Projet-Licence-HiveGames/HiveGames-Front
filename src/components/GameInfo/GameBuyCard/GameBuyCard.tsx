@@ -2,7 +2,7 @@ import React from "react";
 
 import { calculateDiscount } from "../../../utils/calculateDiscount";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
-import { PromoBloc } from "../../CustomBloc/PromoBloc/PromoBloc";
+import { PromoBloc } from "../../GameCard/PromoBloc/PromoBloc";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameBuyCard.css";

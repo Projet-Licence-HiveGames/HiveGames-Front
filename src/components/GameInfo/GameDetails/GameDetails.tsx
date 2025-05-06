@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { useWindowSize } from "../../../hooks/useWindowSize.ts";
 import { GameCategory, GameStudio } from "../../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter.ts";
-import { Category } from "../../CustomBloc/CategoryBloc/Category.tsx";
+import { Category } from "../../ui/CategoryBloc/Category.tsx";
 
 import "./GameDetails.css";
 

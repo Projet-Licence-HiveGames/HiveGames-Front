@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs, Autoplay, Navigation } from "swiper/modules";
-import { Game } from "../../../types/Game";
-import { getGameThumbnail } from "../../../utils/gameUtils";
+import { Game } from "../../../../types/Game.ts";
+import { getGameThumbnail } from "../../../../utils/gameUtils.ts";
 
 import "swiper/swiper-bundle.css";
 import "./GameImageHP.css";
-import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
-import { WishButton } from "../../CustomBloc/WishButton/WishButton.tsx";
-import PriceBox from "../../CustomBloc/PriceBox/PriceBox.tsx";
+import { TLabel } from "../../../ui/TranslationLabel/TLabel.tsx";
+import { WishButton } from "../../../ui/WishButton/WishButton.tsx";
+import PriceBox from "../../../GameCard/PriceBox/PriceBox.tsx";
 
 interface GameImageHPProps {
   games: Game[];

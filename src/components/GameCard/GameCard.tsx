@@ -5,9 +5,9 @@ import { Game } from "../../types/Game";
 import { calculateDiscount } from "../../utils/calculateDiscount";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { getGameThumbnail } from "../../utils/gameUtils";
-import { Category } from "../CustomBloc/CategoryBloc/Category";
-import { PromoBloc } from "../CustomBloc/PromoBloc/PromoBloc";
-import { WishButton } from "../CustomBloc/WishButton/WishButton";
+import { Category } from "../ui/CategoryBloc/Category";
+import { PromoBloc } from "./PromoBloc/PromoBloc";
+import { WishButton } from "../ui/WishButton/WishButton";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
 
 import "./GameCard.css";
@@ -23,13 +23,16 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
   return (
     <div className={"game-card"} onClick={() => navigate(`/game/${game.id}`)}>
       <div className={"game-card-image"}>
-        <img src={getGameThumbnail(game).file_url} alt={game.name} />
+        <img src={getGameThumbnail(game).file_url} alt={game.name}/>
         <div className={"game-card-content-progress-bar"}>
-          <ProgressBar leftPercentValue={50} />
+          <ProgressBar leftPercentValue={50}/>
         </div>
       </div>
       <div className={"game-card-content"}>
-        <WishButton game={game} isAuthenticated={isAuthenticated} />
+        <WishButton
+          game={game}
+          isAuthenticated={isAuthenticated}
+        />
         <div className={"game-card-content-title"}>
           <h3>{capitalizeFirstLetter(game.name)}</h3>
         </div>
