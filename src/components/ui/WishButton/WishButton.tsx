@@ -3,24 +3,24 @@ import { toast } from "react-hot-toast";
 import BookmarkAddRoundedIcon from "@mui/icons-material/BookmarkAddRounded";
 import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded";
 
-import { useFetch } from "../../../api/privateApi";
-import { useAuth } from "../../../context/AuthProvider";
-import { Game } from "../../../types/Game";
+import { useFetch } from "../../../api/privateApi.ts";
+import { useAuth } from "../../../context/AuthProvider.tsx";
+import { Game } from "../../../types/Game.ts";
 
 import "./WishButton.css";
-import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
 interface WishButtonProps {
   game: Game;
   isAuthenticated: boolean;
-  large: boolean;
+  large?: boolean;
 }
 
-export const WishButton: React.FC<WishButtonProps> = ({
+export const WishButton = ({
   game,
   isAuthenticated,
   large = false
-}) => {
+}: WishButtonProps) => {
   const fetchAPI = useFetch();
   const auth = useAuth();
   const { user } = auth;

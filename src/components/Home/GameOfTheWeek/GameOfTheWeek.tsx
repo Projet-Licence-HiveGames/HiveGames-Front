@@ -4,7 +4,7 @@ import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 import "./GameOfTheWeek.css";
 import { privateApi } from "../../../api/privateApi.ts";
 import { Game } from "../../../types/Game.ts";
-import { GameImageHP } from '../GameImageHP/GameImageHP.tsx';
+import { GameImageHP } from './GameImageHP/GameImageHP.tsx';
 import { useAuth } from "../../../context/AuthProvider.tsx";
 
 

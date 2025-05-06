@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import { toast } from "react-hot-toast";
-
+import { API_URL } from "../config/env";
 import { AuthContext } from "../context/AuthProvider";
 
-export const privateApi = async <T>(
-  endpoint: string,
-  method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" = "GET",
-  body: any = null,
-  headers: Record<string, string> = {},
-): Promise<T> => {
-  const url = `${import.meta.env.HIVEGAMES_BACKEND_API}${endpoint}`;
+  export const privateApi = async <T>(
+    endpoint: string,
+    method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" = "GET",
+    body: any = null,
+    headers: Record<string, string> = {},
+  ): Promise<T> => {
+    const url = `${API_URL}${endpoint}`;
 
   const defaultOptions: RequestInit = {
     method: method,
@@ -42,7 +42,7 @@ export const useFetch = () => {
     path: string,
     { headers = {}, body, ...options }: APIOptions = {},
   ): Promise<T> => {
-    const url = `${import.meta.env.HIVEGAMES_BACKEND_API}${path}`;
+    const url = `${API_URL}${path}`;
 
     const requestHeaders: HeadersInit = {
       "Content-Type": "application/json",

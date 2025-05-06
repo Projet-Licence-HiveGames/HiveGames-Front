@@ -13,8 +13,8 @@ const TestComponent = () => {
         onClick={() =>
           login({
             pseudo: "testuser",
-            email: "test@test.com",
-            password: "testuser",
+            email: "user@test.com",
+            password: "pwd",
           })
         }
       >
@@ -28,6 +28,7 @@ const TestComponent = () => {
 describe("AuthContext", () => {
   beforeEach(() => {
     localStorage.clear();
+    jest.restoreAllMocks();
   });
 
   it("devrait initialiser avec un utilisateur non connecté", () => {
@@ -76,6 +77,18 @@ describe("AuthContext", () => {
     fireEvent.click(screen.getByText("Se connecter"));
     const storedUser = localStorage.getItem("user");
     expect(storedUser).toBeTruthy();
-    expect(JSON.parse(storedUser!).username).toBe("testuser");
+    expect(JSON.parse(storedUser!).pseudo).toBe("testuser");
+  });
+
+  it("doit passer isAuthenticated à true après la connexion", () => {
+    render(
+      <AuthProvider>
+        <TestComponent />
+      </AuthProvider>
+    );
+
+    fireEvent.click(screen.getByText("Se connecter"));
+
+    expect(screen.getByTestId("isAuthenticated").textContent).toBe("true");
   });
 });

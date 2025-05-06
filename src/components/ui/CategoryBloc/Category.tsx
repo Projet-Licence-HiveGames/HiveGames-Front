@@ -1,7 +1,7 @@
 import React from "react";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
-import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter.ts";
 
 import "./Category.css";
 
