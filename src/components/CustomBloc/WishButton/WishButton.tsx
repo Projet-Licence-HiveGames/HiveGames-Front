@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
+import BookmarkRemoveRoundedIcon from '@mui/icons-material/BookmarkRemoveRounded';
 
 import { useFetch } from "../../../api/privateApi";
 import { useAuth } from "../../../context/AuthProvider";
@@ -93,7 +93,7 @@ export const WishButton: React.FC<WishButtonProps> = ({
           handleFavoriteToggle();
         }}
       >
-        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        {isFavorite ? <BookmarkAddRoundedIcon /> : <BookmarkRemoveRoundedIcon />}
       </button>
     </div>
   );
