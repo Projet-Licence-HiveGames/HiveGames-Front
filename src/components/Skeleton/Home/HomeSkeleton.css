@@ -1,0 +1,67 @@
+/* HomeSkeleton.css */
+.home-skeleton {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.skeleton-header,
+.skeleton-image,
+.skeleton-little-image,
+.skeleton-price,
+.skeleton-button {
+  animation: shimmer 1.5s infinite linear;
+  background: #e0e0e0;
+  background: linear-gradient(to right, var(--bg-color-light) 4%, var(--bg-color-normal) 25%, var(--bg-color-light) 36%);
+  background-size: 1000px 100%;
+  border-radius: 8px;
+}
+
+.skeleton-header {
+  height: 24px;
+  margin-bottom: 10px;
+  width: 120px;
+}
+
+.skeleton-image {
+  border-radius: 8px;
+  height: 250px;
+  width: 100%;
+}
+
+.skeleton-images {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skeleton-little-image {
+  height: 75px;
+  width: 125px;
+}
+
+.skeleton-price {
+  height: 20px;
+  margin-top: 10px;
+  width: 80px;
+}
+
+.skeleton-button {
+  height: 44px;
+  margin-top: 20px;
+  width: 240px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
