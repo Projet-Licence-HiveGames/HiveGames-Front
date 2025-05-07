@@ -84,11 +84,10 @@ describe("AuthContext", () => {
     render(
       <AuthProvider>
         <TestComponent />
-      </AuthProvider>
+      </AuthProvider>,
     );
 
     fireEvent.click(screen.getByText("Se connecter"));
-
     expect(screen.getByTestId("isAuthenticated").textContent).toBe("true");
   });
 });
