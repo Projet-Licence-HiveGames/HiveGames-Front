@@ -13,7 +13,6 @@
     }
 
     @media (width <= 768px) {
-        max-width: 500px;
         min-width: 240px;
     }
 }
@@ -87,7 +86,6 @@
     gap: 2rem;
     height: 100%;
     max-width: 900px;
-    width: 90%;
 }
 
 .game-details__purchase {
