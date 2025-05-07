@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import BookmarkAddRoundedIcon from "@mui/icons-material/BookmarkAddRounded";
 import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded";
@@ -6,9 +6,9 @@ import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded
 import { useFetch } from "../../../api/privateApi.ts";
 import { useAuth } from "../../../context/AuthProvider.tsx";
 import { Game } from "../../../types/Game.ts";
+import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
 import "./WishButton.css";
-import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
 interface WishButtonProps {
   game: Game;
@@ -19,14 +19,12 @@ interface WishButtonProps {
 export const WishButton = ({
   game,
   isAuthenticated,
-  large = false
+  large = false,
 }: WishButtonProps) => {
   const fetchAPI = useFetch();
   const auth = useAuth();
   const { user } = auth;
-  const [isFavorite, setIsFavorite] = useState<boolean>(
-    !!game?.is_wished,
-  );
+  const [isFavorite, setIsFavorite] = useState<boolean>(!!game?.is_wished);
   const isFavoriteRef = useRef(!!game?.is_wished || false);
   const cooldownRef = useRef(false);
   const pendingChange = useRef<boolean | null>(null);
@@ -99,10 +97,9 @@ export const WishButton = ({
             }}
           >
             {isFavorite ? (
-              <BookmarkAddRoundedIcon/>
+              <BookmarkAddRoundedIcon />
             ) : (
-              <TLabel
-                label={"add_to_favorite"}/>
+              <TLabel label={"add_to_favorite"} />
             )}
           </button>
         </div>
@@ -115,9 +112,14 @@ export const WishButton = ({
               handleFavoriteToggle();
             }}
           >
-            {isFavorite ? <BookmarkRemoveRoundedIcon /> : <BookmarkAddRoundedIcon />}
+            {isFavorite ? (
+              <BookmarkRemoveRoundedIcon />
+            ) : (
+              <BookmarkAddRoundedIcon />
+            )}
           </button>
-        </div>)}
+        </div>
+      )}
     </>
   );
 };
