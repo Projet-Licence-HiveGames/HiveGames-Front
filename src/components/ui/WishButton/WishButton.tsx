@@ -33,7 +33,7 @@ export const WishButton = ({
   useEffect(() => {
     setIsFavorite(
       user?.game_collections?.find(
-        (collection) => collection.game_id === game.id,
+        (collection) => collection.game_id === game?.id,
       )?.is_wished ?? false,
     );
   }, [user?.game_collections]);
@@ -97,7 +97,7 @@ export const WishButton = ({
             }}
           >
             {isFavorite ? (
-              <BookmarkAddRoundedIcon />
+              <BookmarkRemoveRoundedIcon />
             ) : (
               <TLabel label={"add_to_favorite"} />
             )}

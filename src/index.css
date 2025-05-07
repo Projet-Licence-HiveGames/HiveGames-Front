@@ -37,7 +37,7 @@
     text-rendering: optimizelegibility;
 
     /* Gradient */
-    --button-gradient-orange: linear-gradient(0deg, #f2b705, #f28a07);
+    --button-gradient-orange: linear-gradient(-125deg, #f2b705, #f28a07);
 
     /* Radius */
     --button-border-radius-small: 4px;

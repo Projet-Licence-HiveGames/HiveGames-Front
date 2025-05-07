@@ -5,15 +5,19 @@ type WindowSize = {
   isTablet: boolean;
   isDesktop: boolean;
   isMobile: boolean;
+  isMobileL: boolean;
+  isMobileM: boolean;
 };
 
 const getWindowSize = (): WindowSize => {
   const width = window.innerWidth;
   return {
+    isDesktop: width >= 1440,
     isLaptop: width >= 1024 && width <= 1440,
     isTablet: width >= 768 && width <= 1024,
-    isDesktop: width >= 1440,
-    isMobile: width < 768,
+    isMobileL: width >= 540 && width <= 768,
+    isMobileM: width >= 368 && width <= 540,
+    isMobile: width <= 768,
   };
 };
 
@@ -38,7 +42,14 @@ export const useWindowSize = (
   const [windowSize, setWindowSize] = useState<WindowSize>(() =>
     window
       ? getWindowSize()
-      : { isLaptop: false, isTablet: false, isDesktop: false, isMobile: false },
+      : {
+          isLaptop: false,
+          isTablet: false,
+          isDesktop: false,
+          isMobile: false,
+          isMobileL: false,
+          isMobileM: false,
+        },
   );
 
   const prevSizeRef = useRef(windowSize);
