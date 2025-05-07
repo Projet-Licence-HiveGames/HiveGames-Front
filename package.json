@@ -15,6 +15,13 @@
     "test:coverage": "jest --coverage",
     "prepare": "husky"
   },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.jsx": "eslint --fix",
+    "*.ts": "eslint --fix",
+    "*.tsx": "eslint --fix",
+    "*.css": "stylelint --fix"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
