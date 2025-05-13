@@ -1,7 +1,9 @@
 import React from "react";
-import { GameImage } from "../../../types/Game";
-import image from "@assets/images/defaultGameThumbnail.png";
 import ReactMarkdown from "react-markdown";
+
+import { GameImage } from "../../../types/Game";
+
+import image from "@assets/images/defaultGameThumbnail.png";
 
 import "./GameShortDescription.css";
 
@@ -17,16 +19,18 @@ export const GameShortDescription: React.FC<GameDescriptionProps> = ({
   return (
     <div className="game-short-description-container">
       <div className="game-short-description-image">
-        <img 
+        <img
           src={thumbnail?.file_url ?? image}
           srcSet={`${thumbnail?.file_url} 1x, ${thumbnail?.file_url} 2x`}
-          alt={thumbnail?.alt} />
+          alt={thumbnail?.alt}
+        />
       </div>
       <div className="game-short-description">
-          <ReactMarkdown
-            allowedElements={["p", "strong", "em", "ul", "ol", "li", "br"]}
-          >
-              {description}</ReactMarkdown>
+        <ReactMarkdown
+          allowedElements={["p", "strong", "em", "ul", "ol", "li", "br"]}
+        >
+          {description}
+        </ReactMarkdown>
       </div>
     </div>
   );

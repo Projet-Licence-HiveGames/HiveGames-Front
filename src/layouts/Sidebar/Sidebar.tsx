@@ -83,13 +83,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
             onChange={(e) => {
               setSelectedLanguage(e.target.value as "fr" | "en");
             }}
+            value={selectedLanguage}
           >
-            <option value="fr" selected={selectedLanguage === "fr"}>
-              Français
-            </option>
-            <option value="en" selected={selectedLanguage === "en"}>
-              English
-            </option>
+            <option value="fr">Français</option>
+            <option value="en">English</option>
           </select>
         </div>
       </div>

@@ -1,5 +1,6 @@
-import logo from '../../assets/images/logo.svg';
-import './Loader.css';
+import logo from "../../assets/images/logo.svg";
+
+import "./Loader.css";
 
 export const Loader = () => {
   return (

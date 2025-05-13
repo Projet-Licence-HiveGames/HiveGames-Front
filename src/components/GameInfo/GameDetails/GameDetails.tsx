@@ -1,12 +1,12 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
+import { useWindowSize } from "../../../hooks/useWindowSize.ts";
 import { GameCategory, GameStudio } from "../../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter.ts";
 import { Category } from "../../CustomBloc/CategoryBloc/Category.tsx";
-import { useWindowSize } from "../../../hooks/useWindowSize.ts";
 
 import "./GameDetails.css";
-import ReactMarkdown from "react-markdown";
 
 interface GameDetailsProps {
   title: string;
@@ -29,12 +29,16 @@ export const GameDetails: React.FC<GameDetailsProps> = ({
     <div className="game-details">
       {(isLaptop || isDesktop) && <hr />}
       <div className="details-container">
-        {isMobile && (<div className="detail-item-description">
-          <ReactMarkdown>{description}</ReactMarkdown>
-        </div>)}
+        {isMobile && (
+          <div className="detail-item-description">
+            <ReactMarkdown>{description}</ReactMarkdown>
+          </div>
+        )}
         <div className="detail-item">
           <span className="detail-label">Titre :</span>
-          <span className="detail-value">{capitalizeFirstLetter(title || "")}</span>
+          <span className="detail-value">
+            {capitalizeFirstLetter(title || "")}
+          </span>
         </div>
         <div className="detail-item">
           <span className="detail-label">Date de sortie :</span>

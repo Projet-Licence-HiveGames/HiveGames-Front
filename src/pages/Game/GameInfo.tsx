@@ -3,16 +3,16 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { privateApi } from "../../api/privateApi.ts";
 import { GameBuyCard } from "../../components/GameInfo/GameBuyCard/GameBuyCard.tsx";
-import { GameFeatures } from "../../components/GameInfo/GameFeatures/GameFeatures.tsx";
-import { GameLanguages } from "../../components/GameInfo/GameLanguages/GameLanguages.tsx";
-import { GameShortDescription } from "../../components/GameInfo/GameShortDescription/GameShortDescription.tsx";
 import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.tsx";
+import { GameFeatures } from "../../components/GameInfo/GameFeatures/GameFeatures.tsx";
 import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx";
+import { GameLanguages } from "../../components/GameInfo/GameLanguages/GameLanguages.tsx";
+import { GameLongDescription } from "../../components/GameInfo/GameLongDescription/GameLongDescription.tsx";
+import { GameShortDescription } from "../../components/GameInfo/GameShortDescription/GameShortDescription.tsx";
 import { Loader } from "../../components/Loader/Loader.tsx";
+import { useWindowSize } from "../../hooks/useWindowSize.ts";
 import { Game } from "../../types/Game.ts";
 import { getGameThumbnail } from "../../utils/gameUtils.ts";
-import { useWindowSize } from "../../hooks/useWindowSize.ts";
-import {GameLongDescription} from "../../components/GameInfo/GameLongDescription/GameLongDescription.tsx";
 
 import "./GameInfo.css";
 
@@ -72,19 +72,25 @@ export const GameInfo: React.FC = () => {
       <div className="game-details__main">
         <div className="game-details__primary">
           <div className="game-details__purchase">
-            <GameBuyCard name={gameData?.name || ""} oldPrice={gameData?.oldPrice || 0} price={gameData?.price || 0}/>
+            <GameBuyCard
+              name={gameData?.name || ""}
+              oldPrice={gameData?.oldPrice || 0}
+              price={gameData?.price || 0}
+            />
           </div>
           <div className="game-details__description">
-            <GameLongDescription description={gameData?.long_description || ""}/>
+            <GameLongDescription
+              description={gameData?.long_description || ""}
+            />
           </div>
         </div>
         <div className="game-details__secondary">
           <div className="game-details__info">
             <div className="game-details__features">
-              <GameFeatures features={gameData?.features || []}/>
+              <GameFeatures features={gameData?.features || []} />
             </div>
             <div className="game-details__languages">
-              <GameLanguages languages={gameData?.languages || []}/>
+              <GameLanguages languages={gameData?.languages || []} />
             </div>
           </div>
         </div>

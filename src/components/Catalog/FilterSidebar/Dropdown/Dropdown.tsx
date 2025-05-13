@@ -7,17 +7,17 @@ import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import "./Dropdown.css";
 
 export interface DropdownOption {
-  label: string | number;
+  label: string | number | JSX.Element;
   value: string | number;
   additionalValue?: string | number;
 }
 
 interface DropdownProps {
-	className?: string;
-	title: string;
-	options: DropdownOption[];
-	selected: (string | number)[];
-	setSelected: (selected: (string | number)[]) => void;
+  className?: string;
+  title: string | JSX.Element;
+  options: DropdownOption[];
+  selected: (string | number)[];
+  setSelected: (selected: (string | number)[]) => void;
 }
 
 const Dropdown: FC<DropdownProps> = ({
@@ -71,7 +71,12 @@ const Dropdown: FC<DropdownProps> = ({
                         handleClick(value);
                       }}
                     >
-                      <span>{value.label}</span>
+                      {typeof value.label === "string" ||
+                      typeof value.label === "number" ? (
+                        <span>{value.label}</span>
+                      ) : (
+                        value.label
+                      )}
                       <div className="dropdown-content-item-right">
                         {value.additionalValue && (
                           <span>{value.additionalValue}</span>
@@ -97,7 +102,12 @@ const Dropdown: FC<DropdownProps> = ({
                       className="dropdown-content-item"
                       onClick={() => handleClick(value)}
                     >
-                      <span>{value.label}</span>
+                      {typeof value.label === "string" ||
+                      typeof value.label === "number" ? (
+                        <span>{value.label}</span>
+                      ) : (
+                        value.label
+                      )}
                       {value.additionalValue && (
                         <span>{value.additionalValue}</span>
                       )}

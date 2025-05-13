@@ -64,7 +64,7 @@ export interface GameImage {
 }
 
 export interface GameFeature {
-    id: number;
-    description: string;
-    label: string;
+  id: number;
+  description: string;
+  label: string;
 }

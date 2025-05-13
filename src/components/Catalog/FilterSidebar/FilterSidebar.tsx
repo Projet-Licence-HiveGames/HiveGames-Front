@@ -4,9 +4,13 @@ import { Slider } from "@mui/joy";
 import classNames from "classnames";
 
 import { useFetch } from "../../../api/privateApi";
+import { TranslationFeatureLabelType } from "../../../constants/FeaturesDict";
+import { TranslationLanguageLabelType } from "../../../constants/LanguagesDict";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import { GameCategory, GameFeature, Language } from "../../../types/Game";
+import { TranslationLabelType } from "../../../utils/translations";
+import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
 import Dropdown, { DropdownOption } from "./Dropdown/Dropdown";
 
@@ -185,11 +189,17 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
               />
             </div>
             <Dropdown
-              title="Categories"
+              title={<TLabel label="categories" noBalise />}
               options={categories.map(
                 (category) =>
                   ({
-                    label: category.label,
+                    label: (
+                      <TLabel
+                        label={
+                          `category.${category.label}` as TranslationLabelType
+                        }
+                      />
+                    ),
                     value: category.id,
                   }) as DropdownOption,
               )}
@@ -199,11 +209,16 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
               }
             />
             <Dropdown
-              title="Languages"
+              title={<TLabel label="languages" noBalise />}
               options={languages.map(
                 (language) =>
                   ({
-                    label: language.label,
+                    label: (
+                      <TLabel
+                        translationType="language"
+                        label={language.label as TranslationLanguageLabelType}
+                      />
+                    ),
                     value: language.id,
                   }) as DropdownOption,
               )}
@@ -213,11 +228,16 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
               }
             />
             <Dropdown
-              title="Features"
+              title={<TLabel label="features" noBalise />}
               options={features.map(
                 (feature) =>
                   ({
-                    label: feature.label,
+                    label: (
+                      <TLabel
+                        translationType="feature"
+                        label={feature.label as TranslationFeatureLabelType}
+                      />
+                    ),
                     value: feature.id,
                   }) as DropdownOption,
               )}

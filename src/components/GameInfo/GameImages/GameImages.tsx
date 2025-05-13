@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import { GameImage } from "../../../types/Game";
 
 import "swiper/swiper-bundle.css";
 import "./GameImages.css";
-
 
 interface GameImagesProps {
   images?: GameImage[];

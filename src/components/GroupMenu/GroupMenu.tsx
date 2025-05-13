@@ -1,24 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
 import { NavLink } from "react-router-dom";
+import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
 
 import { BasketCart } from "../../assets/icones/BasketCart.tsx";
 import { NotificationBell } from "../../assets/icones/NotificationBell.tsx";
 import logoAccount from "../../assets/images/logoAccount.png";
 import { useAuth } from "../../context/AuthProvider.tsx";
+import useWindowSize from "../../hooks/useWindowSize.ts";
 import DropdownMenu from "../ui/DropDown/DropDown.tsx";
-
-import Person4RoundedIcon from '@mui/icons-material/Person4Rounded';
+import { TLabel } from "../ui/TranslationLabel/TLabel.tsx";
 
 import "./GroupMenu.css";
-import useWindowSize from "../../hooks/useWindowSize.ts";
-import {TLabel} from "../ui/TranslationLabel/TLabel.tsx";
 
 export const GroupMenu: React.FC = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   const dropdownRef = useRef<HTMLDivElement>(null); // Référence pour le Menu
-  const {isMobile} = useWindowSize();
+  const { isMobile } = useWindowSize();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -48,41 +47,41 @@ export const GroupMenu: React.FC = () => {
         <BasketCart />
       </div>
 
-      {!isMobile ? (isAuthenticated ? (
-        <>
-          <div
-            className="group-menu-connexion"
-            onClick={toggleDropdown}
-            ref={dropdownRef}
-          >
-            <img
-              alt={"Account logo"}
-              src={logoAccount}
-              onError={(e) => {
-                e.currentTarget.src = "https://placehold.co/40x40";
-              }}
-            />
-            <div className="group-menu-connexion-text authenticated">
-              <h4>{user?.pseudo}</h4>
-              <p>{user?.user_role}</p>
+      {!isMobile ? (
+        isAuthenticated ? (
+          <>
+            <div
+              className="group-menu-connexion"
+              onClick={toggleDropdown}
+              ref={dropdownRef}
+            >
+              <img
+                alt={"Account logo"}
+                src={logoAccount}
+                onError={(e) => {
+                  e.currentTarget.src = "https://placehold.co/40x40";
+                }}
+              />
+              <div className="group-menu-connexion-text authenticated">
+                <h4>{user?.pseudo}</h4>
+                <p>{user?.user_role}</p>
+              </div>
+              {isDropdownOpen && <DropdownMenu />}
             </div>
-            {isDropdownOpen && <DropdownMenu/>}
+            <div className="group-menu--disconnect">
+              <button onClick={logout}>
+                <MaterialSymbol icon="logout" size={32} />
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="group-menu-connexion">
+            <NavLink className={"group-menu-connexion-text"} to={"login"}>
+              <TLabel baliseType={"h4"} label={"login"} />
+            </NavLink>
           </div>
-          <div className="group-menu--disconnect">
-            <button onClick={logout}>
-              <MaterialSymbol icon="logout" size={32}/>
-            </button>
-          </div>
-        </>
-      ) : (
-        <div className="group-menu-connexion">
-          <NavLink className={"group-menu-connexion-text"} to={"login"}>
-            <TLabel
-              baliseType={"h4"}
-              label={"login"}/>
-          </NavLink>
-        </div>
-      )): isAuthenticated ? (
+        )
+      ) : isAuthenticated ? (
         <>
           <div
             className="group-menu-connexion mobile"
@@ -96,17 +95,17 @@ export const GroupMenu: React.FC = () => {
                 e.currentTarget.src = "https://placehold.co/40x40";
               }}
             />
-            {isDropdownOpen && <DropdownMenu/>}
+            {isDropdownOpen && <DropdownMenu />}
           </div>
           <div className="group-menu--disconnect">
             <button onClick={logout}>
-              <MaterialSymbol icon="logout" size={32}/>
+              <MaterialSymbol icon="logout" size={32} />
             </button>
           </div>
         </>
       ) : (
         <NavLink className={"group-menu-connexion-text"} to={"login"}>
-          <Person4RoundedIcon/>
+          <Person4RoundedIcon />
         </NavLink>
       )}
     </div>
