@@ -27,4 +27,4 @@ jobs:
         run: npm ci
 
       - name: Run tests
-        run: npm test -- --ci --reporters=default
+        run: npm test -- --reporters=default
