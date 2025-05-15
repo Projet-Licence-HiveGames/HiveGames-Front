@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { privateApi } from "../../api/privateApi.ts";
@@ -22,15 +22,15 @@ export const GameInfo: React.FC = () => {
   const [gameData, setGameData] = useState<Game>();
   const { isMobile } = useWindowSize();
 
-  useEffect(() => {
-    const fetchGame = async () => {
-      await privateApi<Game>(`/games/${id}`, "GET")
-        .then(setGameData)
-        .catch(() => navigate("/404", { state: { error_status: 404 } }));
-    };
+  const fetchGame = useCallback(async () => {
+    await privateApi<Game>(`/games/${id}`, "GET")
+      .then(setGameData)
+      .catch(() => navigate("/404", { state: { error_status: 404 } }));
+  }, [id, navigate]);
 
+  useEffect(() => {
     fetchGame();
-  }, [id]);
+  }, [fetchGame]);
 
   if (!gameData) {
     return <Loader />;

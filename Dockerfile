@@ -5,8 +5,7 @@ COPY package*.json ./
 COPY tsconfig*.json ./
 COPY tsconfig.node.json ./
 COPY tsconfig.app.json ./
-COPY tsconfig.jest.json ./
-COPY vite.config.ts ./
+COPY vite.config.mts ./
 COPY index.html ./
 COPY src src
 COPY module-patch.d.ts ./

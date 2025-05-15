@@ -94,11 +94,10 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
               <img
                 src={thumb.file_url}
                 alt={game.name}
-                className={`thumb-image ${
-                  game.id === selectedGame?.id ? "active" : ""
-                }`}
+                decoding="async"
+                loading="lazy"
+                className={`thumb-image ${game.id === selectedGame?.id ? "active" : ""}`}
               />
-              <div className="progress-bar"></div>
             </SwiperSlide>
           );
         })}

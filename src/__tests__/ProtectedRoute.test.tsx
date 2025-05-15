@@ -1,6 +1,7 @@
 import React from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { render, screen, waitFor } from "@testing-library/react";
+import { describe, it, vi } from "vitest";
 
 import ProtectedRoute from "../components/ProtectedRoute";
 import { AuthContext } from "../context/AuthProvider";
@@ -27,10 +28,10 @@ const MockAuthProvider: React.FC<{
     loading: false,
     error: null,
     isAuthenticated,
-    login: jest.fn(),
-    logout: jest.fn(),
-    register: jest.fn(),
-    checkUser: jest.fn(),
+    login: vi.fn(),
+    logout: vi.fn(),
+    register: vi.fn(),
+    checkUser: vi.fn(),
   };
 
   return (
@@ -46,7 +47,10 @@ describe("ProtectedRoute", () => {
       <MockAuthProvider isAuthenticated={true}>
         <MemoryRouter
           initialEntries={["/protected"]}
-          future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+          future={{
+            v7_relativeSplatPath: true,
+            v7_startTransition: true,
+          }}
         >
           <Routes>
             <Route
@@ -73,7 +77,10 @@ describe("ProtectedRoute", () => {
       <MockAuthProvider isAuthenticated={false}>
         <MemoryRouter
           initialEntries={["/protected"]}
-          future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+          future={{
+            v7_relativeSplatPath: true,
+            v7_startTransition: true,
+          }}
         >
           <Routes>
             <Route

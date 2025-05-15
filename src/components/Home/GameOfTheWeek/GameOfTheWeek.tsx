@@ -40,8 +40,6 @@ export const GameOfTheWeek: React.FC = () => {
           ) : (
             <GameImageHP games={gameData} isAuthenticated={isAuthenticated} />
           )}
-          {/*<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg?t=1697038822"*/}
-          {/*     alt="Game of the Week"/>*/}
         </div>
       </div>
     </div>

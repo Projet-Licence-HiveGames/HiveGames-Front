@@ -85,9 +85,11 @@
 }
 
 .thumb-image {
+  background: var(--bg-color-dark);
   border-radius: 6px;
   cursor: pointer;
   height: 80px;
+  margin: 5px;
   object-fit: cover;
   opacity: .6;
   transition: opacity .3s, transform .3s;
@@ -101,29 +103,27 @@
   transform: scale(1.05);
 }
 
-.swiper-slide-thumb-active .progress-bar {
-  animation: progressBarAnimation 5.2s linear;
-  background-color: var(--bg-color-orange);
+.progress-bar {
+  background-color: transparent;
   border-radius: 10px;
   bottom: -5px;
-  content: "";
   height: 2px;
   left: 0;
   position: absolute;
   width: 0;
 }
 
+.progress-bar.active {
+  animation: progressBarAnimation 5.2s linear forwards;
+  background-color: var(--bg-color-orange);
+}
+
 @keyframes progressBarAnimation {
   0% {
-    width: 0;
+    width: 0%;
   }
 
   100% {
     width: 100%;
   }
-}
-
-.swiper-slide-thumb:not(.swiper-slide-thumb-active) .progress-bar {
-  animation: none;
-  width: 0;
 }

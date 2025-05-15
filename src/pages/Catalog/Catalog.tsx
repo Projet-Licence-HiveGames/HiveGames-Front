@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 import { useFetch } from "../../api/privateApi.ts";
@@ -26,7 +26,7 @@ export const Catalog: React.FC = () => {
   });
   const [gameList, setGameList] = useState<Game[]>([]);
 
-  const fetchGames = async () => {
+  const fetchGames = useCallback(async () => {
     setIsLoading(true);
     await fetchAPI
       .post<Game[]>("/games", filters)
@@ -47,7 +47,7 @@ export const Catalog: React.FC = () => {
       )
       .catch(() => toast.error("Erreur lors de la récupération des jeux"));
     setIsLoading(false);
-  };
+  }, [filters, fetchAPI, user?.game_collections]);
 
   useEffect(() => {
     fetchGames();
@@ -61,21 +61,19 @@ export const Catalog: React.FC = () => {
     return () => clearTimeout(timeoutId);
   }, [filters]);
 
+  const renderedGames = useMemo(() => {
+    return isLoading
+      ? Array(10)
+          .fill(0)
+          .map((_, index) => <GameCardSkeleton key={index} />)
+      : gameList.map((game, index) => (
+          <GameCard key={index} game={game} isAuthenticated={isAuthenticated} />
+        ));
+  }, [isLoading, gameList, isAuthenticated]);
+
   return (
     <div className="catalog-container">
-      <div className="catalog-container-cards">
-        {isLoading
-          ? Array(10)
-              .fill(0)
-              .map((_, index) => <GameCardSkeleton key={index} />)
-          : gameList.map((game, index) => (
-              <GameCard
-                key={index}
-                game={game}
-                isAuthenticated={isAuthenticated}
-              />
-            ))}
-      </div>
+      <div className="catalog-container-cards">{renderedGames}</div>
       <FilterSidebar filters={filters} setFilters={setFilters} />
     </div>
   );
