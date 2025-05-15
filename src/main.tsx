@@ -2,9 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Toaster } from 'react-hot-toast';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import {AuthProvider} from "./context/AuthProvider.tsx";
+import { AuthProvider } from "./context/AuthProvider.tsx";
 import { GameSessionProvider } from './context/GameSessionProvider.tsx';
 import TranslationProvider from './context/TranslationProvider.tsx';
 import App from './App.tsx';
@@ -12,20 +12,20 @@ import App from './App.tsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <AuthProvider>
-            <TranslationProvider>
-                <GameSessionProvider>
-                    <BrowserRouter
-                        future={{
-                            v7_relativeSplatPath: true,
-                            v7_startTransition: true
-                        }}>
-                        <App/>
-                        <Toaster/>
-                    </BrowserRouter>
-                </GameSessionProvider>
-            </TranslationProvider>
-        </AuthProvider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <AuthProvider>
+      <TranslationProvider>
+        <GameSessionProvider>
+          <BrowserRouter
+            future={{
+              v7_relativeSplatPath: true,
+              v7_startTransition: true
+            }}>
+            <App/>
+            <Toaster/>
+          </BrowserRouter>
+        </GameSessionProvider>
+      </TranslationProvider>
+    </AuthProvider>
+  </React.StrictMode>
 );

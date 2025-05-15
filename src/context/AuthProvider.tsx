@@ -107,7 +107,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = async () => {
     try {
       // Appel à l'API pour supprimer le token de session
-      await privateApi("/auth/logout", "GET");
+      await privateApi("/auth/logout", "POST");
       localStorage.removeItem("isAuthenticated");
       setUser(null);
       setIsAuthenticated(false);

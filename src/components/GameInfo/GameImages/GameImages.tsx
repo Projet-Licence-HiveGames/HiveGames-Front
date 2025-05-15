@@ -30,7 +30,6 @@ export const GameImages: React.FC<GameImagesProps> = ({
       <Swiper
         autoplay={{ delay: 5000 }}
         className="big-image-swiper"
-        loop={true}
         modules={[Navigation, Thumbs, Autoplay]}
         navigation
         pagination={{ clickable: true }}
@@ -39,7 +38,7 @@ export const GameImages: React.FC<GameImagesProps> = ({
         thumbs={{ swiper: thumbsSwiper }}
       >
         {_images.map((image, index) => (
-          <SwiperSlide key={index} className={large ? "large": ""}>
+          <SwiperSlide key={index} className={large ? "large" : ""}>
             <img
               alt={image.alt || "Game Image"}
               className="panel-image"
@@ -58,7 +57,7 @@ export const GameImages: React.FC<GameImagesProps> = ({
         loop={true}
         modules={[Thumbs]}
         onSwiper={setThumbsSwiper}
-        slidesPerView={5}
+        slidesPerView={4}
         spaceBetween={10}
         watchSlidesProgress={true}
       >
@@ -72,7 +71,7 @@ export const GameImages: React.FC<GameImagesProps> = ({
               src={image.file_url}
               srcSet={`${image.file_url} 1x, ${image.file_url} 2x`}
             />
-            <div className="progress-bar"></div>
+            <div className="progress-bar" />
           </SwiperSlide>
         ))}
       </Swiper>
