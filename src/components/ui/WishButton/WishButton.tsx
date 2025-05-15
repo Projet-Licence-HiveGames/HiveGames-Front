@@ -5,6 +5,7 @@ import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded
 
 import { useFetch } from "../../../api/privateApi.ts";
 import { useAuth } from "../../../context/AuthProvider.tsx";
+import { useWindowSize } from "../../../hooks/useWindowSize.ts";
 import { Game } from "../../../types/Game.ts";
 import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
@@ -14,12 +15,14 @@ interface WishButtonProps {
   game: Game;
   isAuthenticated: boolean;
   large?: boolean;
+  homeP?: boolean;
 }
 
 export const WishButton = ({
   game,
   isAuthenticated,
   large = false,
+  homeP = false,
 }: WishButtonProps) => {
   const fetchAPI = useFetch();
   const auth = useAuth();
@@ -29,6 +32,7 @@ export const WishButton = ({
   const cooldownRef = useRef(false);
   const pendingChange = useRef<boolean | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const { isMobileS, isMobileM } = useWindowSize();
 
   useEffect(() => {
     setIsFavorite(
@@ -87,8 +91,8 @@ export const WishButton = ({
 
   return (
     <>
-      {large ? (
-        <div className="wish-button-container-large">
+      {large && homeP ? (
+        <div className="wish-button-container large">
           <button
             className={`wish-button`}
             onClick={(e) => {
@@ -99,7 +103,13 @@ export const WishButton = ({
             {isFavorite ? (
               <BookmarkRemoveRoundedIcon />
             ) : (
-              <TLabel label={"add_to_favorite"} />
+              <>
+                {isMobileS || isMobileM ? (
+                  <BookmarkAddRoundedIcon />
+                ) : (
+                  <TLabel label={"add_to_favorite"} />
+                )}
+              </>
             )}
           </button>
         </div>
