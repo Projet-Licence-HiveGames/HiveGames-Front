@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import BookmarkAddRoundedIcon from "@mui/icons-material/BookmarkAddRounded";
 import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded";
@@ -18,12 +18,12 @@ interface WishButtonProps {
   homeP?: boolean;
 }
 
-export const WishButton = ({
+export const WishButton: React.FC<WishButtonProps> = ({
   game,
   isAuthenticated,
   large = false,
   homeP = false,
-}: WishButtonProps) => {
+}) => {
   const fetchAPI = useFetch();
   const auth = useAuth();
   const { user } = auth;
@@ -89,47 +89,48 @@ export const WishButton = ({
     };
   }, []);
 
+  if (large && homeP) {
+    return (
+      <div className="wish-button-container large">
+        <button
+          className="wish-button"
+          aria-label={
+            isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"
+          }
+          onClick={(e) => {
+            e.stopPropagation();
+            handleFavoriteToggle();
+          }}
+        >
+          {isFavorite ? (
+            <BookmarkRemoveRoundedIcon />
+          ) : isMobileS || isMobileM ? (
+            <BookmarkAddRoundedIcon />
+          ) : (
+            <TLabel label="add_to_favorite" />
+          )}
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <>
-      {large && homeP ? (
-        <div className="wish-button-container large">
-          <button
-            className={`wish-button`}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleFavoriteToggle();
-            }}
-          >
-            {isFavorite ? (
-              <BookmarkRemoveRoundedIcon />
-            ) : (
-              <>
-                {isMobileS || isMobileM ? (
-                  <BookmarkAddRoundedIcon />
-                ) : (
-                  <TLabel label={"add_to_favorite"} />
-                )}
-              </>
-            )}
-          </button>
-        </div>
-      ) : (
-        <div className="wish-button-container">
-          <button
-            className={`wish-button ${isAuthenticated ? "" : "disabled"}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleFavoriteToggle();
-            }}
-          >
-            {isFavorite ? (
-              <BookmarkRemoveRoundedIcon />
-            ) : (
-              <BookmarkAddRoundedIcon />
-            )}
-          </button>
-        </div>
-      )}
-    </>
+    <div className="wish-button-container">
+      <button
+        className={`wish-button ${!isAuthenticated ? "disabled" : ""}`}
+        aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleFavoriteToggle();
+        }}
+        disabled={!isAuthenticated}
+      >
+        {isFavorite ? (
+          <BookmarkRemoveRoundedIcon />
+        ) : (
+          <BookmarkAddRoundedIcon />
+        )}
+      </button>
+    </div>
   );
 };
