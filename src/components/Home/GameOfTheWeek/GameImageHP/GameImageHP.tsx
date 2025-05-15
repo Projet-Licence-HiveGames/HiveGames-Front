@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import useWindowSize from "../../../../hooks/useWindowSize.ts";
 import { Game } from "../../../../types/Game.ts";
-import { getGameThumbnail } from "../../../../utils/gameUtils.ts";
+import {
+  getGameHeader,
+  getGameThumbnail,
+} from "../../../../utils/gameUtils.ts";
 import { PriceTag } from "../../../ui/PriceTag/PriceTag.tsx";
 import { TLabel } from "../../../ui/TranslationLabel/TLabel.tsx";
 import { WishButton } from "../../../ui/WishButton/WishButton.tsx";
@@ -23,7 +27,8 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [selectedGame, setSelectedGame] = useState<Game>(games[0]);
-  const { isMobileL, isMobileM, isTablet } = useWindowSize();
+  const { isMobileL, isMobileM, isMobileS, isTablet } = useWindowSize();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSelectedGame(games[0]);
@@ -33,16 +38,14 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
     (i) => i.file_name.startsWith("header") && i.file_url,
   );
 
-  const mainImages = _images?.length
-    ? _images
-    : [getGameThumbnail(selectedGame)];
+  const mainImages = _images?.length ? _images : [getGameHeader(selectedGame)];
 
   return (
     <div className="game-image-hp-wrapper">
       <Swiper
         className="big-image-swiper"
         modules={[Navigation, Thumbs, Autoplay]}
-        autoplay={{ delay: 5000 }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         thumbs={{ swiper: thumbsSwiper }}
         slidesPerView={1}
         spaceBetween={10}
@@ -50,17 +53,24 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
         {mainImages.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="main-image-wrapper">
-              <img
-                src={image.file_url}
-                alt={image.alt || "Game Image"}
-                className="panel-image"
-              />
+              <a
+                onClick={() => navigate(`/game/${selectedGame.id}`)}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={image.file_url}
+                  alt={image.alt || "Game Image"}
+                  loading={"eager"}
+                  className="panel-image"
+                />
+              </a>
             </div>
             <div className={"game-image-hp-wishlist-button"}>
               <WishButton
                 game={selectedGame}
                 isAuthenticated={isAuthenticated}
                 large={true}
+                homeP={true}
               />
             </div>
             <div className={"game-image-hp-price"}>
@@ -84,7 +94,9 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
         modules={[Thumbs]}
         onSwiper={setThumbsSwiper}
         spaceBetween={11}
-        slidesPerView={isMobileM ? 2 : isMobileL ? 3 : isTablet ? 4 : 7}
+        slidesPerView={
+          isMobileS || isMobileM ? 2 : isMobileL ? 3 : isTablet ? 4 : 7
+        }
         watchSlidesProgress={true}
       >
         {games.map((game, index) => {

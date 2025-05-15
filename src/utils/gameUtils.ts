@@ -16,3 +16,17 @@ export const getGameThumbnail = (game?: Game) => {
     ) ?? defaultGameThumbnail
   );
 };
+
+export const getGameHeader = (game?: Game) => {
+  const defaultGameHeader = {
+    id: 0,
+    file_name: "header",
+    alt: "Header de jeu",
+    file_url: defaultGameThumbnailImage,
+  } as GameImage;
+  if (!game) return defaultGameHeader;
+  return (
+    game.images?.find((i) => i.file_name.startsWith("header") && i.file_url) ??
+    defaultGameHeader
+  );
+};

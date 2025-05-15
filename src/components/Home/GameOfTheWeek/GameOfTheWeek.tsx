@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { privateApi } from "../../../api/privateApi.ts";
 import { useAuth } from "../../../context/AuthProvider.tsx";
@@ -14,7 +14,7 @@ export const GameOfTheWeek: React.FC = () => {
   const [gameData, setGameData] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const { isAuthenticated } = useAuth();
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response: Game[] = await privateApi("/games/week", "GET");
       setGameData(response);
@@ -22,7 +22,7 @@ export const GameOfTheWeek: React.FC = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();

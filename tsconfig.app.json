@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2020",  // Cette ligne est correcte pour `import.meta`
-    "module": "ESNext",  // Assurez-vous d'utiliser "ESNext" ou "ES2020"
+    "target": "ES2020",
+    "module": "ESNext",
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
@@ -10,6 +10,6 @@
   "include": [
     "src",
     "module-patch.d.ts",
-    "node_modules/vitest/globals.d.ts" // On le garde ici car tu utilises Vitest
+    "node_modules/vitest/globals.d.ts"
   ]
 }

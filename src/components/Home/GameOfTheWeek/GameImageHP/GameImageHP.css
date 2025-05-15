@@ -18,6 +18,10 @@
   position: absolute;
   top: 40px;
   z-index: 2;
+
+  @media screen and (width <= 540px) {
+    top: 20px;
+  }
 }
 
 .game-image-hp-price {
@@ -32,6 +36,10 @@
   position: absolute;
   right: 20px;
   z-index: 2;
+  @media screen and (width <= 540px) {
+    bottom: 10px;
+    right: 10px;
+  }
 
   & .game-image-hp-button {
     align-items: center;
@@ -39,15 +47,18 @@
     border: none;
     border-radius: 3px;
     display: flex;
-    flex: none;
     flex-direction: row;
-    flex-grow: 0;
     gap: 10px;
     height: 44px;
     justify-content: center;
-    order: 2;
     padding: 16px;
     width: 240px;
+    @media screen and (width <= 540px) {
+      width: 100%;
+    }
+    @media screen and (width <= 368px) {
+        width: 100%;
+    }
 
     &:hover {
       background: var(--bg-color-blue-lighter);
@@ -58,9 +69,17 @@
 }
 
 .big-image-swiper {
-  height: 450px;
+  height: 100%;
   margin-bottom: 1rem;
   width: 100%;
+
+  @media screen and (width <= 540px) {
+    height: unset;
+  }
+
+  @media screen and (width <= 368px) {
+    aspect-ratio: 1/1;
+  }
 
   & .swiper-wrapper {
     height: 100%;
@@ -68,8 +87,10 @@
 }
 
 .panel-image {
+  aspect-ratio: 16/9;
   border-radius: 8px;
-  height: 100%;
+  max-height: 450px;
+  min-height: 150px;
   object-fit: cover;
   width: 100%;
 }

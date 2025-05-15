@@ -32,7 +32,9 @@
 .game-card-image {
     border-radius: 3px;
     display: flex;
+    height: 140px;
     margin: 0 auto;
+    max-width: 250px;
     position: relative;
 }
 
@@ -72,9 +74,9 @@
 }
 
 .game-card-image img {
+    aspect-ratio: 16/9;
     border-radius: var(--button-border-radius-small);
-    height: 140px;
-    width: 250px;
+    object-fit: cover;
 
     @media screen and (width <= 1024px) {
         height: 100%;

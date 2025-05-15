@@ -7,6 +7,7 @@ type WindowSize = {
   isMobile: boolean;
   isMobileL: boolean;
   isMobileM: boolean;
+  isMobileS: boolean;
 };
 
 const getWindowSize = (): WindowSize => {
@@ -17,6 +18,7 @@ const getWindowSize = (): WindowSize => {
     isTablet: width >= 768 && width <= 1024,
     isMobileL: width >= 540 && width <= 768,
     isMobileM: width >= 368 && width <= 540,
+    isMobileS: width >= 0 && width <= 368,
     isMobile: width <= 768,
   };
 };
@@ -29,6 +31,9 @@ const isDifferentWindowSize = (
     newSize.isLaptop !== previousSize.isLaptop ||
     newSize.isTablet !== previousSize.isTablet ||
     newSize.isDesktop !== previousSize.isDesktop ||
+    newSize.isMobileL !== previousSize.isMobileL ||
+    newSize.isMobileM !== previousSize.isMobileM ||
+    newSize.isMobileS !== previousSize.isMobileS ||
     newSize.isMobile !== previousSize.isMobile
   );
 };
@@ -49,6 +54,7 @@ export const useWindowSize = (
           isMobile: false,
           isMobileL: false,
           isMobileM: false,
+          isMobileS: false,
         },
   );
 
