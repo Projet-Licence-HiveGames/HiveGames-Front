@@ -15,6 +15,7 @@ interface GameSessionContextProps {
   endGameSession: () => void;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const GameSessionContext = createContext<GameSessionContextProps>({
   isOpen: false,
   game: null,

@@ -21,6 +21,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: false,
@@ -138,7 +139,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
-// Hook pour utiliser le AuthContext dans vos composants
+
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {

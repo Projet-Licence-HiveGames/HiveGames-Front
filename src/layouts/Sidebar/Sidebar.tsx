@@ -81,7 +81,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         <div className="sidebar-content-bottom">
           <select
             onChange={(e) => {
-              setSelectedLanguage(e.target.value as "fr" | "en");
+              setSelectedLanguage(e.target.value);
             }}
             value={selectedLanguage}
           >

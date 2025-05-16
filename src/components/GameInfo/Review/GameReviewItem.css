@@ -1,0 +1,92 @@
+.game-review-container {
+  background-color: var(--bg-color-darker);
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.game-review-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-review-user-info {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.game-review-content-user-avatar {
+  border-radius: 50%;
+  height: 42px;
+  object-fit: cover;
+  width: 42px;
+}
+
+.game-review-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.game-review-commentary {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.game-review-content-rating {
+  align-items: flex-end;
+  background-color: var(--bg-color-dark);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin: auto;
+  padding: .5rem;
+}
+
+.game-review-content-rating-title {
+  align-self: self-start;
+}
+
+.game-review-content-rating-values {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.game-review-content-rating-label {
+  align-items: center;
+  display: flex;
+  gap: .5rem;
+}
+
+.game-review-date {
+  text-align: right;
+}
+
+@media screen and (max-width: 768px) {
+  .game-review-content {
+    flex-direction: column;
+  }
+
+  .game-review-content-rating-values {
+    align-items: center;
+    margin: 0;
+    padding: 0 5rem;
+  }
+
+  .game-review-content-rating-label {
+    flex-direction: column;
+    gap: 0;
+  }
+}

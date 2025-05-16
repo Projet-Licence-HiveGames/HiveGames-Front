@@ -139,7 +139,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
               />
             </div>
             <div className="filter-item">
-              <span className="filter-item-title">Prix</span>
+              <TLabel label="price" className="filter-item-title" />
               <Slider
                 sx={{
                   margin: "1rem",

@@ -9,6 +9,7 @@ import {
   TranslationLanguageLabelType,
 } from "../../../constants/LanguagesDict";
 import { TranslationContext } from "../../../context/TranslationProvider";
+import { capitalizeFirstLetter as _capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
 import {
   translationDictionnaries,
   TranslationLabelType,
@@ -23,6 +24,7 @@ interface TLabelProps {
   translationType?: "app" | "category" | "feature" | "language"; // Type de la clé de traduction
   className?: string;
   noBalise?: boolean; // Prop pour ne pas utiliser de balise
+  capitalizeFirstLetter?: boolean; // Prop pour capitaliser la première lettre
 }
 
 export const TLabel: FC<TLabelProps> = ({
@@ -31,6 +33,7 @@ export const TLabel: FC<TLabelProps> = ({
   translationType = "app",
   className,
   noBalise = false,
+  capitalizeFirstLetter = false,
 }) => {
   const { selectedLanguage } = useContext(TranslationContext);
 
@@ -72,9 +75,21 @@ export const TLabel: FC<TLabelProps> = ({
 
   // Si noBalise est vrai, retourne juste le texte traduit
   if (noBalise) {
-    return <>{translatedText}</>;
+    return (
+      <>
+        {capitalizeFirstLetter
+          ? _capitalizeFirstLetter(translatedText)
+          : translatedText}
+      </>
+    );
   }
 
   // Retourne la balise dynamique avec le texte traduit
-  return React.createElement(baliseType, { className }, translatedText);
+  return React.createElement(
+    baliseType,
+    { className },
+    capitalizeFirstLetter
+      ? _capitalizeFirstLetter(translatedText)
+      : translatedText,
+  );
 };
