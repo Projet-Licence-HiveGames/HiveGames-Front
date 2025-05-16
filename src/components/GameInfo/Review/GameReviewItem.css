@@ -6,6 +6,7 @@
   flex-direction: column;
   gap: 1rem;
   justify-content: flex-start;
+  min-width: 300px;
   padding: 10px;
 }
 
@@ -30,7 +31,7 @@
 
 .game-review-content {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: space-between;
 }
@@ -40,6 +41,7 @@
   flex: 1;
   flex-direction: column;
   gap: 1rem;
+  min-width: 15rem;
 }
 
 .game-review-content-rating {
@@ -51,6 +53,11 @@
   gap: .5rem;
   margin: auto;
   padding: .5rem;
+}
+
+.game-review-content-rate-only .game-review-content-rating {
+  margin: 0;
+  width: 100%;
 }
 
 .game-review-content-rating-title {
@@ -68,25 +75,9 @@
   align-items: center;
   display: flex;
   gap: .5rem;
+  text-align: end;
 }
 
 .game-review-date {
   text-align: right;
-}
-
-@media screen and (max-width: 768px) {
-  .game-review-content {
-    flex-direction: column;
-  }
-
-  .game-review-content-rating-values {
-    align-items: center;
-    margin: 0;
-    padding: 0 5rem;
-  }
-
-  .game-review-content-rating-label {
-    flex-direction: column;
-    gap: 0;
-  }
 }

@@ -130,15 +130,3 @@
     flex-direction: column;
     gap: 2rem;
 }
-
-.game-review-group {
-    column-gap: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
-    row-gap: 2rem;
-
-    @media screen and (width <= 1000px) {
-        grid-template-columns: 1fr;
-        
-    }
-}

@@ -13,9 +13,23 @@ import "./GameReviewItem.css";
 interface GameReviewProps {
   className?: string;
   review: GameReview;
+  RatingOnly?: boolean;
 }
 
-const GameReviewItem: FC<GameReviewProps> = ({ className, review }) => {
+const GameReviewItem: FC<GameReviewProps> = ({
+  className,
+  review,
+  RatingOnly,
+}) => {
+  const hasRating =
+    !!review.gameplay_rate ||
+    !!review.graphics_rate ||
+    !!review.sound_design_rate ||
+    !!review.story_rate ||
+    !!review.translation_quality_rate ||
+    !!review.usability_rate ||
+    !!review.value_for_money_rate;
+
   return (
     <div className={classNames("game-review-container", className)}>
       <div className="game-review-header">
@@ -34,11 +48,15 @@ const GameReviewItem: FC<GameReviewProps> = ({ className, review }) => {
           {new Date(review.created_at).toLocaleDateString()}
         </span>
       </div>
-      <div className="game-review-content">
-        {review.commentary && (
+      <div
+        className={classNames("game-review-content", {
+          "game-review-content-rate-only": RatingOnly,
+        })}
+      >
+        {review.commentary && !RatingOnly && (
           <span className="game-review-commentary">{review.commentary}</span>
         )}
-        {review.gameplay_rate && (
+        {hasRating && (
           <div className="game-review-content-rating">
             <div className="game-review-content-rating-title">
               <TLabel label="review.rating" />

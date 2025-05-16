@@ -9,7 +9,7 @@ import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx"
 import { GameLanguages } from "../../components/GameInfo/GameLanguages/GameLanguages.tsx";
 import { GameLongDescription } from "../../components/GameInfo/GameLongDescription/GameLongDescription.tsx";
 import { GameShortDescription } from "../../components/GameInfo/GameShortDescription/GameShortDescription.tsx";
-import GameReviewItem from "../../components/GameInfo/Review/GameReviewItem.tsx";
+import GameReviewSection from "../../components/GameInfo/Review/GameReviewSection.tsx";
 import { Loader } from "../../components/Loader/Loader.tsx";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
 import { Game } from "../../types/Game.ts";
@@ -96,11 +96,7 @@ export const GameInfo: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="game-review-group">
-        {gameData?.reviews?.map((review) => (
-          <GameReviewItem key={review.id} review={review} />
-        ))}
-      </div>
+      <GameReviewSection reviews={gameData?.reviews || []} />
     </div>
   );
 };
