@@ -1,5 +1,3 @@
-export const currentLanguage: "fr" | "en" = "fr";
-
 const labelList = [
   "french",
   "french_belgium",
@@ -34,9 +32,6 @@ const labelList = [
 ] as const;
 
 type Label = (typeof labelList)[number];
-
-export const translateLanguage = (label: Label): string =>
-  translationLanguageDictionnaries[currentLanguage][label];
 
 export type TranslationLanguageLabelType = (typeof labelList)[number];
 

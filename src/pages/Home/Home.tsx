@@ -1,8 +1,7 @@
 import { FC, useContext } from "react";
 
-import reactLogo from "../../assets/react.svg";
-import viteLogo from "../../assets/vite.svg";
 import { GameOfTheWeek } from "../../components/Home/GameOfTheWeek/GameOfTheWeek.tsx";
+import { TopCategories } from "../../components/Home/TopCategories/TopCategories.tsx";
 import { GameSessionContext } from "../../context/GameSessionProvider";
 
 import "./Home.css";
@@ -15,6 +14,7 @@ const Home: FC = () => {
         Start
       </button>
       <GameOfTheWeek />
+      <TopCategories />
     </div>
   );
 };
