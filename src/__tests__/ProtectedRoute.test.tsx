@@ -20,6 +20,7 @@ const MockAuthProvider: React.FC<{
           id: 1,
           email: "test@example.com",
           user: "testuser",
+          avatar_path: null,
           pseudo: "Test",
           user_tag: "test#1234",
           user_role: "admin",

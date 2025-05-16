@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Toaster } from 'react-hot-toast';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { AuthProvider } from "./context/AuthProvider.tsx";
 import { GameSessionProvider } from './context/GameSessionProvider.tsx';
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               v7_startTransition: true
             }}>
             <App/>
-            <Toaster/>
+            <ToastContainer />
           </BrowserRouter>
         </GameSessionProvider>
       </TranslationProvider>

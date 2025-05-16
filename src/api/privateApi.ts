@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 
 import { AuthContext } from "../context/AuthProvider";
 
@@ -15,6 +15,7 @@ export const privateApi = async <T>(
     method: method,
     headers: {
       "Content-Type": "application/json",
+      Accept: "application/json",
       ...headers,
     },
     credentials: "include",

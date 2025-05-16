@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 import { useFetch } from "../../api/privateApi.ts";
 import FilterSidebar, {

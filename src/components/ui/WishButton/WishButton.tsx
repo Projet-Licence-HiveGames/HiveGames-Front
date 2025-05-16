@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import BookmarkAddRoundedIcon from "@mui/icons-material/BookmarkAddRounded";
 import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded";
 
