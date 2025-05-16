@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 import { privateApi } from "../../../api/privateApi.ts";
-import { categoryIcons } from "../../../constants/CategoriesDict.tsx";
+import {
+  categoryIcons,
+  TranslationCategoryLabelType,
+} from "../../../constants/CategoriesDict.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./TopCategories.css";
 
 type CategoryData = {
-  category_name: keyof typeof categoryIcons;
+  category_name: TranslationCategoryLabelType;
   total_orders: number;
 };
 

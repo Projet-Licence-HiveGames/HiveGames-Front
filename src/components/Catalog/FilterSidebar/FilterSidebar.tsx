@@ -4,12 +4,12 @@ import { Slider } from "@mui/joy";
 import classNames from "classnames";
 
 import { useFetch } from "../../../api/privateApi";
+import { TranslationCategoryLabelType } from "../../../constants/CategoriesDict.tsx";
 import { TranslationFeatureLabelType } from "../../../constants/FeaturesDict";
 import { TranslationLanguageLabelType } from "../../../constants/LanguagesDict";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import { GameCategory, GameFeature, Language } from "../../../types/Game";
-import { TranslationLabelType } from "../../../utils/translations";
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
 import Dropdown, { DropdownOption } from "./Dropdown/Dropdown";
@@ -194,7 +194,9 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
                 (category) =>
                   ({
                     label: (
-                      <TLabel label={category.label as TranslationLabelType} />
+                      <TLabel
+                        label={category.label as TranslationCategoryLabelType}
+                      />
                     ),
                     value: category.id,
                   }) as DropdownOption,
