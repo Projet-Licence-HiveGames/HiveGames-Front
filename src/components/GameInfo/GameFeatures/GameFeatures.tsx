@@ -23,7 +23,7 @@ export const GameFeatures: React.FC<GameFeaturesProps> = ({ features }) => {
         {features?.map((feature, index) => (
           <div className="game-features__list-item" key={index}>
             <div className="game-features__list-item__icon">
-              {featureIcons[feature.label as keyof typeof featureIcons]}
+              {featureIcons[feature.label as TranslationFeatureLabelType]}
             </div>
             <div className="game-features__list-item__title">
               <TLabel

@@ -42,8 +42,8 @@ export const GameLanguages: React.FC<GameLanguagesProps> = ({ languages }) => {
                 <tr key={index}>
                   <TLabel
                     baliseType={"td"}
-                    translationType={"language"}
                     label={language.label as TranslationLanguageLabelType}
+                    translationType={"language"}
                   />
                   <td>
                     {language.has_interface ? (

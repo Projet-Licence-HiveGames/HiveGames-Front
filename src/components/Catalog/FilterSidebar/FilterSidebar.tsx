@@ -194,11 +194,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
                 (category) =>
                   ({
                     label: (
-                      <TLabel
-                        label={
-                          `category.${category.label}` as TranslationLabelType
-                        }
-                      />
+                      <TLabel label={category.label as TranslationLabelType} />
                     ),
                     value: category.id,
                   }) as DropdownOption,

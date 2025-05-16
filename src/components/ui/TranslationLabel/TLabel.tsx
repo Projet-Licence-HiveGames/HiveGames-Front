@@ -1,6 +1,10 @@
 import React, { FC, useContext } from "react";
 
 import {
+  translationCategoryDictionnaries,
+  TranslationCategoryLabelType,
+} from "../../../constants/CategoriesDict.tsx";
+import {
   translationFeatureDictionnaries,
   TranslationFeatureLabelType,
 } from "../../../constants/FeaturesDict";
@@ -19,7 +23,8 @@ interface TLabelProps {
   label:
     | TranslationLabelType
     | TranslationFeatureLabelType
-    | TranslationLanguageLabelType; // Type de la clé de traduction
+    | TranslationLanguageLabelType
+    | TranslationCategoryLabelType; // Type de la clé de traduction
   baliseType?: React.ElementType; // Prop avec camelCase
   translationType?: "app" | "category" | "feature" | "language"; // Type de la clé de traduction
   className?: string;
@@ -48,8 +53,8 @@ export const TLabel: FC<TLabelProps> = ({
         );
       case "category":
         return (
-          translationDictionnaries[selectedLanguage][
-            label as TranslationLabelType
+          translationCategoryDictionnaries[selectedLanguage][
+            label as TranslationCategoryLabelType
           ] ?? label
         );
       case "feature":
