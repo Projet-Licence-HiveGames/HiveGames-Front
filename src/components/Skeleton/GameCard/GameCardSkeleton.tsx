@@ -9,8 +9,8 @@ export const GameCardSkeleton: React.FC = () => {
         <div
           className="skeleton-image"
           style={{
-            width: "250px",
-            height: "150px",
+            aspectRatio: "16/9",
+            height: "100%",
             backgroundColor: "var(--bg-color-light)",
           }}
         />

@@ -9,7 +9,6 @@
   object-fit: contain;
   position: absolute;
   top: 0;
-  width: 100%;
 }
 
 .main-image {
@@ -17,7 +16,6 @@
   height: auto;
   opacity: 0;
   transition: opacity .3s ease-in-out;
-  width: 100%;
 }
 
 .main-image.visible {
