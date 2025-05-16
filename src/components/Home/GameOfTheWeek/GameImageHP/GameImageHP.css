@@ -68,7 +68,7 @@
   }
 }
 
-.big-image-swiper {
+.big-image-swiper-hp {
   height: 100%;
   margin-bottom: 1rem;
   width: 100%;
@@ -86,7 +86,7 @@
   }
 }
 
-.panel-image {
+.panel-image-hp {
   aspect-ratio: 16/9;
   border-radius: 8px;
   max-height: 450px;
@@ -101,7 +101,7 @@
     justify-content: center;
 }
 
-.game-thumbs-swiper {
+.game-thumbs-swiper-hp {
   width: 100%;
 }
 

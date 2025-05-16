@@ -43,7 +43,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
   return (
     <div className="game-image-hp-wrapper">
       <Swiper
-        className="big-image-swiper"
+        className="big-image-swiper-hp"
         modules={[Navigation, Thumbs, Autoplay]}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         thumbs={{ swiper: thumbsSwiper }}
@@ -61,7 +61,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
                   src={image.file_url}
                   alt={image.alt || "Game Image"}
                   loading={"eager"}
-                  className="panel-image"
+                  className="panel-image-hp"
                 />
               </a>
             </div>
@@ -88,7 +88,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
       </Swiper>
       <Swiper
         autoplay={{ delay: 5000 }}
-        className="game-thumbs-swiper"
+        className="game-thumbs-swiper-hp"
         freeMode={true}
         loop={true}
         modules={[Thumbs]}
