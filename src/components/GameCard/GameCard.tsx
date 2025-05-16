@@ -6,9 +6,13 @@ import { calculateDiscount } from "../../utils/calculateDiscount";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { getGameThumbnail } from "../../utils/gameUtils";
 import { Category } from "../ui/CategoryBloc/Category";
-import { PromoBloc } from "./PromoBloc/PromoBloc";
-import { WishButton } from "../ui/WishButton/WishButton";
+import ImageWithLoader from "../ui/Image/ImageWithLoader";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
+import { WishButton } from "../ui/WishButton/WishButton";
+
+import { PromoBloc } from "./PromoBloc/PromoBloc";
+
+import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 
 import "./GameCard.css";
 
@@ -23,24 +27,25 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
   return (
     <div className={"game-card"} onClick={() => navigate(`/game/${game.id}`)}>
       <div className={"game-card-image"}>
-        <img src={getGameThumbnail(game).file_url} alt={game.name}/>
+        <ImageWithLoader
+          src={getGameThumbnail(game).file_url || defaultGameThumbnailImage}
+          alt={game.name}
+          loaderSrc={defaultGameThumbnailImage}
+        />
         <div className={"game-card-content-progress-bar"}>
-          <ProgressBar leftPercentValue={50}/>
+          <ProgressBar leftPercentValue={50} />
         </div>
       </div>
       <div className={"game-card-content"}>
-        <WishButton
-          game={game}
-          isAuthenticated={isAuthenticated}
-        />
+        <WishButton game={game} isAuthenticated={isAuthenticated} />
         <div className={"game-card-content-title"}>
           <h3>{capitalizeFirstLetter(game.name)}</h3>
         </div>
-        <div className={"game-card-content-category"}>
-          <Category
-            category={game.categories?.map((category) => category.label) || []}
-          />
-        </div>
+        {game.categories && (
+          <div className={"game-card-content-category"}>
+            <Category categories={game.categories} />
+          </div>
+        )}
         <div className={"game-card-content-price"}>
           <PromoBloc
             discount={calculateDiscount(game.oldPrice || 0, game.price)}

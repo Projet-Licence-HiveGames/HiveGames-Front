@@ -53,7 +53,7 @@ export const GameDetails: React.FC<GameDetailsProps> = ({
         </div>
         <div className="detail-item">
           <span className="detail-label">Genre :</span>
-          <Category category={categories?.map((category) => category.label)} />
+          <Category categories={categories} />
         </div>
       </div>
     </div>

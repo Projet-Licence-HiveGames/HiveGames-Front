@@ -5,6 +5,7 @@ interface TranslationContextProps {
   setSelectedLanguage: (language: string) => void;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const TranslationContext = createContext<TranslationContextProps>({
   selectedLanguage: "fr",
   setSelectedLanguage: () => {},

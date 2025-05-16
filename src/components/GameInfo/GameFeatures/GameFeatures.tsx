@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   featureIcons,
-  translateFeature,
+  TranslationFeatureLabelType,
 } from "../../../constants/FeaturesDict";
 import { GameFeature } from "../../../types/Game";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
@@ -26,9 +26,11 @@ export const GameFeatures: React.FC<GameFeaturesProps> = ({ features }) => {
               {featureIcons[feature.label as keyof typeof featureIcons]}
             </div>
             <div className="game-features__list-item__title">
-              <h3>
-                {translateFeature(feature.label as keyof typeof featureIcons)}
-              </h3>
+              <TLabel
+                baliseType={"h3"}
+                translationType={"feature"}
+                label={feature.label as TranslationFeatureLabelType}
+              />
             </div>
           </div>
         ))}

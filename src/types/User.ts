@@ -9,6 +9,7 @@ export interface User {
   user: {};
   pseudo: string;
   user_tag: string;
+  avatar_path: string | null;
   email: string;
   user_role: string;
   game_collections?: UserGameCollections[];

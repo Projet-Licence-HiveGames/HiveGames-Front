@@ -1,0 +1,29 @@
+.image-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.loader-image {
+  height: 100%;
+  left: 0;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.main-image {
+  display: block;
+  height: auto;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  width: 100%;
+}
+
+.main-image.visible {
+  opacity: 1;
+}
+
+.main-image.hidden {
+  opacity: 0;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { CheckRounded, CloseRounded } from "@mui/icons-material";
 
-import { translateLanguage } from "../../../constants/LanguagesDict.tsx";
+import { TranslationLanguageLabelType } from "../../../constants/LanguagesDict.tsx";
 import { GameLanguage } from "../../../types/Game";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
@@ -40,11 +40,11 @@ export const GameLanguages: React.FC<GameLanguagesProps> = ({ languages }) => {
               ?.slice(0, showAll ? languages.length : 6)
               .map((language, index) => (
                 <tr key={index}>
-                  <td>
-                    {translateLanguage(
-                      language.label as keyof typeof translateLanguage,
-                    )}
-                  </td>
+                  <TLabel
+                    baliseType={"td"}
+                    translationType={"language"}
+                    label={language.label as TranslationLanguageLabelType}
+                  />
                   <td>
                     {language.has_interface ? (
                       <CheckRounded />
