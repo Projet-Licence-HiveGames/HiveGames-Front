@@ -75,6 +75,26 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
   };
 
   useEffect(() => {
+    const savedFilters = localStorage.getItem("gameFilters");
+    if (savedFilters) {
+      setFilters(JSON.parse(savedFilters));
+    } else {
+      setFilters(defaultFilters);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isDefaultFilters) {
+      localStorage.setItem("gameFilters", JSON.stringify(filters));
+    }
+  }, [filters]);
+
+  const handleClearFilters = () => {
+    setFilters(defaultFilters);
+    localStorage.setItem("gameFilters", JSON.stringify(defaultFilters));
+  };
+
+  useEffect(() => {
     fetchFilters();
   }, []);
 
@@ -99,7 +119,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
               size={17}
               disabled={isDefaultFilters}
               className="filter-sidebar-clear-filters"
-              onClick={() => !isDefaultFilters && setFilters(defaultFilters)}
+              onClick={handleClearFilters}
             />
           </div>
           <div className="filter-sidebar-top-content">
