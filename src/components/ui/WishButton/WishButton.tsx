@@ -123,7 +123,6 @@ export const WishButton: React.FC<WishButtonProps> = ({
           e.stopPropagation();
           handleFavoriteToggle();
         }}
-        disabled={!isAuthenticated}
       >
         {isFavorite ? (
           <BookmarkRemoveRoundedIcon />
