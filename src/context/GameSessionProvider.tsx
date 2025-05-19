@@ -25,14 +25,12 @@ export const GameSessionContext = createContext<GameSessionContextProps>({
 });
 
 export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
-  const { user } = useContext(AuthContext);
+  const { user, isAuthenticated } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [tempGameName, setTempGameName] = useState<string | null>(null);
   const [game, setGame] = useState<Game | null>(null);
   const fetchAPI = useFetch();
-
-  const { isAuthenticated } = useContext(AuthContext);
 
   const startGameSession = async (gameId: number, gameName: string) => {
     setTempGameName(gameName);

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { privateApi } from "../../api/privateApi.ts";
+import { useFetch } from "../../api/privateApi.ts";
 import { GameBuyCard } from "../../components/GameInfo/GameBuyCard/GameBuyCard.tsx";
 import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.tsx";
 import { GameFeatures } from "../../components/GameInfo/GameFeatures/GameFeatures.tsx";
@@ -19,12 +19,14 @@ import "./GameInfo.css";
 
 export const GameInfo: React.FC = () => {
   const { id } = useParams();
+  const fetchApi = useFetch();
   const navigate = useNavigate();
   const [gameData, setGameData] = useState<Game>();
   const { isMobile } = useWindowSize();
 
   const fetchGame = useCallback(async () => {
-    await privateApi<Game>(`/games/${id}`, "GET")
+    await fetchApi
+      .get<Game>(`/games/${id}`)
       .then(setGameData)
       .catch(() => navigate("/404", { state: { error_status: 404 } }));
   }, [id, navigate]);

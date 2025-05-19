@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 
-import { privateApi } from "../api/privateApi.ts";
+import { useFetch } from "../api/privateApi.ts";
 import { User } from "../types/User.ts";
 
 interface AuthContextType {
@@ -35,6 +35,7 @@ export const AuthContext = createContext<AuthContextType>({
 
 // Le fournisseur AuthProvider
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const fetchApi = useFetch();
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -50,7 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setLoading(true);
       setError(null);
-      const userData = await privateApi<{ user: User }>("/auth/user", "GET");
+      const userData = await fetchApi.get<{ user: User }>("/auth/user");
       setUser(userData.user);
       setIsAuthenticated(true); // Si l'utilisateur est récupéré, il est authentifié
     } catch (err) {
@@ -68,7 +69,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setLoading(true);
       // Ici, vous devez appeler une API de connexion et obtenir le token ou la session
-      const valide = await privateApi("/auth/register", "POST", {
+      const valide = await fetchApi.post("/auth/register", {
         pseudo,
         email,
         password,
@@ -89,7 +90,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       setLoading(true);
       // Ici, vous devez appeler une API de connexion et obtenir le token ou la session
-      const valide = await privateApi("/auth/login", "POST", {
+      const valide = await fetchApi.post("/auth/login", {
         email,
         password,
       });
@@ -108,7 +109,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = async () => {
     try {
       // Appel à l'API pour supprimer le token de session
-      await privateApi("/auth/logout", "POST");
+      await fetchApi.post("/auth/logout");
       localStorage.removeItem("isAuthenticated");
       setUser(null);
       setIsAuthenticated(false);

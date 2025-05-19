@@ -5,7 +5,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-import { privateApi } from "../../api/privateApi.ts";
+import { useFetch } from "../../api/privateApi.ts";
 import { useAuth } from "../../context/AuthProvider.tsx";
 
 import "./Checkout.css";
@@ -20,12 +20,13 @@ interface CheckoutData {
 }
 
 export const Checkout: React.FC = () => {
+  const fetchApi = useFetch();
   const [options, setOptions] = useState<CheckoutData | null>(null);
   const { isAuthenticated } = useAuth();
 
   const fetchClientSecret = useCallback(async () => {
     // Create a Checkout Session
-    const data: CheckoutData = await privateApi("/stripe/payment", "POST", {
+    const data: CheckoutData = await fetchApi.post("/stripe/payment", {
       products: [
         { name: "Souris", amount: 120, currency: "eur" },
         { name: "Clavier", amount: 200, currency: "eur" },

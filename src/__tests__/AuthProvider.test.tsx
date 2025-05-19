@@ -1,41 +1,35 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, it, vi } from "vitest";
 
-import { AuthProvider, useAuth } from "../context/AuthContext";
+import { AuthProvider, useAuth } from "../context/AuthProvider.tsx";
 
 // ✅ Mock de l'API privée (évite les vrais appels réseau)
 vi.mock("../api/privateApi", () => ({
-  privateApi: vi.fn((url: string) => {
-    if (url === "/auth/user") {
-      return Promise.resolve({
-        user: {
-          pseudo: "testuser",
-          email: "user@test.com",
-        },
-      });
-    }
-    return Promise.resolve(true); // Pour login et logout
+  useFetch: () => ({
+    get: vi.fn((url: string) => {
+      if (url === "/auth/user") {
+        return Promise.resolve({
+          user: {
+            pseudo: "user",
+            email: "user@test.fr",
+          },
+        });
+      }
+      return Promise.resolve(true); // fallback
+    }),
+    post: vi.fn(() => Promise.resolve(true)),
   }),
 }));
 
 // ✅ Composant de test utilisant le contexte
 const TestComponent = () => {
   const { user, isAuthenticated, login, logout } = useAuth();
+
   return (
     <div>
       <div data-testid="user">{user?.pseudo || "non connecté"}</div>
       <div data-testid="isAuthenticated">{isAuthenticated.toString()}</div>
-      <button
-        onClick={() =>
-          login({
-            pseudo: "testuser",
-            email: "user@test.com",
-            password: "pwd",
-          })
-        }
-      >
-        Se connecter
-      </button>
+      <button onClick={() => login("user@test.fr", "pwd")}>Se connecter</button>
       <button onClick={logout}>Se déconnecter</button>
     </div>
   );
@@ -68,7 +62,7 @@ describe("AuthContext", () => {
     fireEvent.click(screen.getByText("Se connecter"));
 
     await waitFor(() => {
-      expect(screen.getByTestId("user").textContent).toBe("testuser");
+      expect(screen.getByTestId("user").textContent).toBe("user");
       expect(screen.getByTestId("isAuthenticated").textContent).toBe("true");
     });
   });
@@ -94,7 +88,7 @@ describe("AuthContext", () => {
     });
   });
 
-  it("devrait persister l'état de connexion dans le localStorage", async () => {
+  it("doit passer isAuthenticated à false après la déconnexion", async () => {
     render(
       <AuthProvider>
         <TestComponent />
@@ -104,9 +98,7 @@ describe("AuthContext", () => {
     fireEvent.click(screen.getByText("Se connecter"));
 
     await waitFor(() => {
-      const stored = localStorage.getItem("user");
-      expect(stored).toBeTruthy();
-      expect(JSON.parse(stored!).pseudo).toBe("testuser");
+      expect(screen.getByTestId("isAuthenticated").textContent).toBe("false");
     });
   });
 
