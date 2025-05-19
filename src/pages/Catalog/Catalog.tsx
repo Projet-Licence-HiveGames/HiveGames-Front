@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { useFetch } from "../../api/privateApi.ts";
@@ -14,6 +15,7 @@ import "./Catalog.css";
 
 export const Catalog: React.FC = () => {
   const { isAuthenticated, user } = useAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
   const fetchAPI = useFetch();
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<GameFilter>({
@@ -50,8 +52,42 @@ export const Catalog: React.FC = () => {
   }, [filters, fetchAPI, user?.game_collections]);
 
   useEffect(() => {
-    fetchGames();
+    const params = Object.fromEntries(searchParams.entries());
+    const newFilters: GameFilter = {
+      search: params.search || "",
+      categories: params.categories
+        ? params.categories.split(",").map(Number)
+        : [],
+      languages: params.languages
+        ? params.languages.split(",").map(Number)
+        : [],
+      features: params.features ? params.features.split(",").map(Number) : [],
+      prices: {
+        min: params.min ? parseInt(params.min) : 0,
+        max: params.max ? parseInt(params.max) : 101,
+      },
+      order_by: params.order_by || "rating-desc",
+    };
+    setFilters(newFilters);
   }, []);
+
+  // Synchronisation des filtres vers l'URL
+  useEffect(() => {
+    const newParams: any = {
+      ...(filters.search && { search: filters.search }),
+      ...(filters.categories.length && {
+        categories: filters.categories.join(","),
+      }),
+      ...(filters.languages.length && {
+        languages: filters.languages.join(","),
+      }),
+      ...(filters.features.length && { features: filters.features.join(",") }),
+      ...(filters.prices.min !== 0 && { min: filters.prices.min.toString() }),
+      ...(filters.prices.max !== 101 && { max: filters.prices.max.toString() }),
+      ...(filters.order_by !== "rating-desc" && { order_by: filters.order_by }),
+    };
+    setSearchParams(newParams);
+  }, [filters, setSearchParams]);
 
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
