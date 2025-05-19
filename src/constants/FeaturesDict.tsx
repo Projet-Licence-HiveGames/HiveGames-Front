@@ -1,4 +1,3 @@
-export const currentLanguage: "fr" | "en" = "fr";
 import {
   AccountCircleRounded,
   BuildRounded,
@@ -76,9 +75,6 @@ const labelList = [
 ] as const;
 
 type Label = (typeof labelList)[number];
-
-export const translateFeature = (label: Label): string =>
-  translationFeatureDictionnaries[currentLanguage][label];
 
 export type TranslationFeatureLabelType = (typeof labelList)[number];
 

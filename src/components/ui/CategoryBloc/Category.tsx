@@ -1,6 +1,7 @@
 import React from "react";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
+import { TranslationCategoryLabelType } from "../../../constants/CategoriesDict.tsx";
 import { GameCategory } from "../../../types/Game";
 import { TranslationLabelType } from "../../../utils/translations";
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
@@ -22,7 +23,8 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
           return (
             <div key={index} className={"category-bloc-category"}>
               <TLabel
-                label={`category.${category.label}` as TranslationLabelType}
+                label={category.label as TranslationCategoryLabelType}
+                translationType={"category"}
                 capitalizeFirstLetter
               />
             </div>
