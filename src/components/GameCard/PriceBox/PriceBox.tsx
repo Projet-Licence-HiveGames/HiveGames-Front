@@ -1,5 +1,7 @@
 import React from "react";
 
+import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
+
 import "./PriceBox.css";
 
 interface PriceBoxProps {
@@ -18,7 +20,17 @@ const PriceBox: React.FC<PriceBoxProps> = ({ price, oldPrice }) => {
       <div
         className={`price-box-price ${oldPrice && oldPrice !== 0 ? "green" : ""}`}
       >
-        <h3>{price}€</h3>
+        <h3>
+          {price != 0 ? (
+            `${price} €`
+          ) : (
+            <TLabel
+              label={"free"}
+              baliseType={"span"}
+              translationType={"app"}
+            />
+          )}
+        </h3>
       </div>
     </div>
   );
