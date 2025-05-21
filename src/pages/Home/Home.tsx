@@ -6,7 +6,7 @@ import { GameSessionContext } from "../../context/GameSessionProvider";
 
 import "./Home.css";
 
-const Home: FC = () => {
+export const Home: FC = () => {
   const { startGameSession } = useContext(GameSessionContext);
   return (
     <div className="container">
@@ -18,5 +18,3 @@ const Home: FC = () => {
     </div>
   );
 };
-
-export default Home;

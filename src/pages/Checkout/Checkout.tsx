@@ -6,7 +6,6 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 import { useFetch } from "../../api/privateApi.ts";
-import { useAuth } from "../../context/AuthProvider.tsx";
 
 import "./Checkout.css";
 
@@ -21,40 +20,43 @@ interface CheckoutData {
 
 export const Checkout: React.FC = () => {
   const fetchApi = useFetch();
-  const [options, setOptions] = useState<CheckoutData | null>(null);
-  const { isAuthenticated } = useAuth();
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
 
   const fetchClientSecret = useCallback(async () => {
-    // Create a Checkout Session
-    const data: CheckoutData = await fetchApi.post("/stripe/payment", {
-      products: [
-        { name: "Souris", amount: 120, currency: "eur" },
-        { name: "Clavier", amount: 200, currency: "eur" },
-      ],
-    });
-    return data.client_secret;
+    try {
+      const data: CheckoutData = await fetchApi.post("/stripe/payment", {
+        products: [
+          { name: "Souris", amount: 120, currency: "eur" },
+          { name: "Clavier", amount: 200, currency: "eur" },
+        ],
+      });
+      return data.client_secret;
+    } catch (error) {
+      console.error("Error fetching client secret:", error);
+      return null;
+    }
   }, []);
 
   useEffect(() => {
     const fetchSecret = async () => {
-      const clientSecret = await fetchClientSecret();
-      if (clientSecret) {
-        setOptions({ client_secret: clientSecret });
+      const secret = await fetchClientSecret();
+      if (secret) {
+        setClientSecret(secret);
       }
     };
+    fetchSecret();
+  }, [fetchClientSecret]);
 
-    if (isAuthenticated) {
-      fetchSecret();
-    }
-  }, [isAuthenticated, fetchClientSecret]);
-
-  if (!options) {
-    return <div>Loading...</div>;
+  if (!clientSecret) {
+    return <div>Chargement du paiement...</div>;
   }
 
   return (
     <div id="checkout">
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+      <EmbeddedCheckoutProvider
+        stripe={stripePromise}
+        options={{ clientSecret }}
+      >
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>
     </div>

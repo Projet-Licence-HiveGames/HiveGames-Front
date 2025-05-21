@@ -7,7 +7,7 @@ import { UserForm } from "../../types/User.ts";
 
 type UserErrorsMsg = Partial<UserForm>;
 
-const Register: React.FC = () => {
+export const Register: React.FC = () => {
   const auth = useAuth();
   const { register, logout, isAuthenticated, user, loading, error } = auth;
 
@@ -119,5 +119,3 @@ const Register: React.FC = () => {
     </div>
   );
 };
-
-export default Register;

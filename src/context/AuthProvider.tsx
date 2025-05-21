@@ -37,27 +37,19 @@ export const AuthContext = createContext<AuthContextType>({
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const fetchApi = useFetch();
   const [user, setUser] = useState<User | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const isAuthenticated = !!user;
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   // Fonction pour récupérer les informations utilisateur (par exemple, après un login)
   const checkUser = async () => {
-    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-    if (!isAuthenticated) {
-      return;
-    }
-
     try {
-      setLoading(true);
       setError(null);
       const userData = await fetchApi.get<{ user: User }>("/auth/user");
       setUser(userData.user);
-      setIsAuthenticated(true);
     } catch (err) {
       localStorage.removeItem("isAuthenticated");
       setUser(null);
-      setIsAuthenticated(false);
       setError("Utilisateur non trouvé ou non authentifié.");
     } finally {
       setLoading(false);
@@ -111,7 +103,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       await fetchApi.post("/auth/logout");
       localStorage.removeItem("isAuthenticated");
       setUser(null);
-      setIsAuthenticated(false);
     } catch (err) {
       setError("Logout failed");
     }

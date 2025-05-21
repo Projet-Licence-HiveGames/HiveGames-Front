@@ -7,7 +7,7 @@ import Sidebar from "./Sidebar/Sidebar.tsx";
 
 import "./MainLayout.css";
 
-const MainLayout: React.FC = () => {
+export const MainLayout: React.FC = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -29,5 +29,3 @@ const MainLayout: React.FC = () => {
     </div>
   );
 };
-
-export default MainLayout;

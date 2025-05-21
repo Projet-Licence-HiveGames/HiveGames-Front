@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 import HGInputField from "../../components/ui/Input/HGInputField.tsx";
@@ -14,8 +15,10 @@ interface Errors {
   password?: string;
 }
 
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
   const { login, logout, isAuthenticated, user, loading, error } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [errors, setErrors] = useState<Errors>({});
   const [formData, setFormData] = useState<FormData>({
     email: "",
@@ -56,7 +59,12 @@ const Login: React.FC = () => {
     e.preventDefault();
     const isValid = await validateForm();
     if (isValid) {
-      await login(formData.email, formData.password);
+      try {
+        await login(formData.email, formData.password);
+        navigate(location.state?.from?.pathname || "/", { replace: true });
+      } catch (loginError) {
+        setErrors({ ...errors, password: "Login failed. Please try again." });
+      }
     }
   };
 
@@ -64,7 +72,6 @@ const Login: React.FC = () => {
     <div>
       {!isAuthenticated ? (
         <form onSubmit={handleLogin}>
-          {/* Email Input */}
           <div>
             <HGInputField
               type="email"
@@ -76,8 +83,6 @@ const Login: React.FC = () => {
             />
             {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
           </div>
-
-          {/* Password Input */}
           <div>
             <HGInputField
               type="password"
@@ -91,7 +96,6 @@ const Login: React.FC = () => {
               <p style={{ color: "red" }}>{errors.password}</p>
             )}
           </div>
-
           <button type="submit">Login</button>
         </form>
       ) : (
@@ -100,11 +104,8 @@ const Login: React.FC = () => {
           <button onClick={logout}>Logout</button>
         </div>
       )}
-
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
-
-export default Login;
