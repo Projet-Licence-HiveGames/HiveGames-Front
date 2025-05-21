@@ -12,6 +12,16 @@
     justify-content: center;
     order: 2;
     padding: 16px;
+    width: 100px;
+
+    &.owned {
+        background: var(--bg-color-lightest);
+
+        &:hover {
+            background: var(--bg-color-lightest);
+            cursor: not-allowed;
+        }
+    }
 }
 
 .cart-button:hover {

@@ -9,22 +9,39 @@ import "./GameBuyCard.css";
 
 interface GameBuyCardProps {
   name: string;
-  oldPrice: number;
+  oldPrice?: number;
   price: number;
+  isOwned?: boolean;
+  isDlc?: "base" | "dlc";
+  gameBase?: string;
 }
 
 export const GameBuyCard: React.FC<GameBuyCardProps> = ({
   name,
-  oldPrice,
+  oldPrice = 0,
   price,
+  isOwned = false,
+  isDlc,
+  gameBase,
 }) => {
   return (
-    <div className="game-buy-card-container">
+    <div className={`game-buy-card-container ${isDlc ? "dlc" : ""}`}>
+      {isDlc && gameBase && (
+        <span className="game-buy-card-container__banner-text">
+          ⚠️
+          <TLabel
+            label={"dlc.requirements"}
+            baliseType="span"
+            translationType="app"
+            params={{ value: gameBase }}
+          />
+        </span>
+      )}
       <div className="game-buy-card-content">
         <div className="game-buy-card__title">
           <h3>{capitalizeFirstLetter(name)}</h3>
         </div>
-        {oldPrice !== 0 && (
+        {oldPrice > 0 && (
           <div className="game-buy-card__description">
             <TLabel label="weekend_deal" />
           </div>
@@ -35,6 +52,7 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
           discount={calculateDiscount(oldPrice || 0, price)}
           originalPrice={oldPrice || 0}
           discountedPrice={price}
+          isOwned={isOwned}
         />
       </div>
     </div>

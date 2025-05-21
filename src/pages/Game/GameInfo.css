@@ -97,19 +97,9 @@
 }
 
 .game-details__purchase {
-    background-color: var(--bg-color-darker);
-    border-radius: var(--button-border-radius-lg);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    height: 100%;
-    max-width: 900px;
-    padding: 1rem;
-    width: 100%;
-
-    @media screen and (width <= 1200px) {
-        width: 100%;
-    }
+    gap: 4rem;
 }
 
 .game-details__secondary {

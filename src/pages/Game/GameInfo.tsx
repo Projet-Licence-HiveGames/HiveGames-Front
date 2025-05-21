@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useFetch } from "../../api/privateApi.ts";
@@ -79,7 +79,22 @@ export const GameInfo: React.FC = () => {
               name={gameData?.name || ""}
               oldPrice={gameData?.oldPrice || 0}
               price={gameData?.price || 0}
+              isOwned={gameData?.is_owned || false}
             />
+            {gameData?.dlcs?.length > 0 && (
+              <>
+                {gameData.dlcs.map((dlc) => (
+                  <GameBuyCard
+                    key={dlc.id}
+                    name={dlc.name}
+                    oldPrice={dlc.oldPrice || 0}
+                    price={dlc.price}
+                    isDlc={dlc.game_type}
+                    gameBase={gameData.name}
+                  />
+                ))}
+              </>
+            )}
           </div>
           <div className="game-details__description">
             <GameLongDescription
