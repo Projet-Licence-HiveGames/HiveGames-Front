@@ -27,7 +27,7 @@ export const GameShortDescription: React.FC<GameDescriptionProps> = ({
       </div>
       <div className="game-short-description">
         <ReactMarkdown
-          allowedElements={["p", "strong", "em", "ul", "ol", "li", "br"]}
+          allowedElements={["p", "strong", "em", "ul", "ol", "li", "br", "h3"]}
         >
           {description}
         </ReactMarkdown>

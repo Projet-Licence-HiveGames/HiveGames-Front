@@ -33,7 +33,7 @@ export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
 });
 
-// Le fournisseur AuthProvider
+// The AuthProvide supplier
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const fetchApi = useFetch();
   const [user, setUser] = useState<User | null>(null);
@@ -53,10 +53,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setError(null);
       const userData = await fetchApi.get<{ user: User }>("/auth/user");
       setUser(userData.user);
-      setIsAuthenticated(true); // Si l'utilisateur est récupéré, il est authentifié
+      setIsAuthenticated(true);
     } catch (err) {
       localStorage.removeItem("isAuthenticated");
-      setUser(null); // Si une erreur survient, il n'y a pas d'utilisateur connecté
+      setUser(null);
       setIsAuthenticated(false);
       setError("Utilisateur non trouvé ou non authentifié.");
     } finally {
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Fonction pour se créer un compte (par exemple, envoyer les informations de connexion)
+  // Function to create an account (e.g., send login information)
   const register = async (pseudo: string, email: string, password: string) => {
     try {
       setLoading(true);
@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Fonction pour se connecter (par exemple, envoyer les informations de connexion)
+  // Function for logging in (e.g., sending log-in information)
   const login = async (email: string, password: string) => {
     try {
       setLoading(true);
@@ -105,10 +105,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Fonction pour se déconnecter
+  // Function to logout
   const logout = async () => {
     try {
-      // Appel à l'API pour supprimer le token de session
       await fetchApi.post("/auth/logout");
       localStorage.removeItem("isAuthenticated");
       setUser(null);
@@ -119,7 +118,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    checkUser(); // Lors du montage du composant, vérifier si l'utilisateur est déjà connecté
+    checkUser();
   }, []);
 
   const contextValue = useMemo(

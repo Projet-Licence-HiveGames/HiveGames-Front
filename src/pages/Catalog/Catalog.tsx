@@ -71,7 +71,7 @@ export const Catalog: React.FC = () => {
     setFilters(newFilters);
   }, []);
 
-  // Synchronisation des filtres vers l'URL
+  // Synchronize filters to URL
   useEffect(() => {
     const newParams: any = {
       ...(filters.search && { search: filters.search }),

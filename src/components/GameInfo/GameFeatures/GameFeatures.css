@@ -35,6 +35,10 @@
     flex-direction: row;
     gap: 1rem;
     padding: .5rem;
+
+    @media screen and (width <= 768px) {
+        width: 100%;
+    }
 }
 
 .game-features__list-item__icon {
@@ -47,8 +51,8 @@
     font-size: .8rem;
     font-weight: 600;
 
-    @media screen and (width <= 768px) {
-        font-size: .7rem;
+    @media screen and (width <= 368px) {
+        font-size: .6rem;
     }
 }
 

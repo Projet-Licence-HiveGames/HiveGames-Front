@@ -67,7 +67,7 @@ export const WishButton: React.FC<WishButtonProps> = ({
     isFavoriteRef.current = newState;
 
     if (!cooldownRef.current) {
-      // 🔥 premier clic ou hors cooldown
+      // 🔥first click or out of cooldown
       sendToAPI(newState);
       cooldownRef.current = true;
 

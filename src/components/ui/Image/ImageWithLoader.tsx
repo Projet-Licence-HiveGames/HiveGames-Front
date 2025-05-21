@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import classNames from "classnames";
 
-import "./ImageWithLoader.css"; // Pour les styles CSS
+import "./ImageWithLoader.css";
 
 interface ImageWithLoaderProps {
   src: string;

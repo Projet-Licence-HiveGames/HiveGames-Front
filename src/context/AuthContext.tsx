@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Vérifier si l'utilisateur est déjà connecté (par exemple via un token dans localStorage)
+    // Check if the user is already logged in (e.g. via a token in localStorage)
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));

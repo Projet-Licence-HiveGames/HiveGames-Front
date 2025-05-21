@@ -8,7 +8,6 @@ import { UserForm } from "../../types/User.ts";
 type UserErrorsMsg = Partial<UserForm>;
 
 const Register: React.FC = () => {
-  // On extrait une seule fois les valeurs de useAuth
   const auth = useAuth();
   const { register, logout, isAuthenticated, user, loading, error } = auth;
 
@@ -19,7 +18,7 @@ const Register: React.FC = () => {
     password: "",
   });
 
-  // Validation schema avec Yup (mémorisé pour éviter les recréations)
+  // Validate schema with Yup (saved to avoid recreation)
   const schema = useMemo(
     () =>
       yup.object().shape({
@@ -66,7 +65,6 @@ const Register: React.FC = () => {
     }
   };
 
-  // Si l'utilisateur est déjà authentifié, on affiche le message de bienvenue
   if (isAuthenticated) {
     return (
       <div>

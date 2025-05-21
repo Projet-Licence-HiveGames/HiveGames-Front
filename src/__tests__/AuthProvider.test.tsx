@@ -3,7 +3,7 @@ import { beforeEach, describe, it, vi } from "vitest";
 
 import { AuthProvider, useAuth } from "../context/AuthProvider.tsx";
 
-// ✅ Mock de l'API privée (évite les vrais appels réseau)
+// ✅ Mock of private API (avoid real call of the backend)
 vi.mock("../api/privateApi", () => ({
   useFetch: () => ({
     get: vi.fn((url: string) => {
@@ -21,7 +21,7 @@ vi.mock("../api/privateApi", () => ({
   }),
 }));
 
-// ✅ Composant de test utilisant le contexte
+// ✅ Test component using the context
 const TestComponent = () => {
   const { user, isAuthenticated, login, logout } = useAuth();
 

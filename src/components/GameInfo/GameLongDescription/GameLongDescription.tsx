@@ -1,5 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import "./GameLongDescription.css";
 
@@ -13,7 +14,7 @@ export const GameLongDescription: React.FC<GameDescriptionProps> = ({
   return (
     <div className="game-long-description-container">
       <div className="game-long-description">
-        <ReactMarkdown>{description}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{description}</ReactMarkdown>
       </div>
     </div>
   );

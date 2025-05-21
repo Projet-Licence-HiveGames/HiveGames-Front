@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./HomeSkeleton.css"; // Assure-toi de lier les styles appropriés
+import "./HomeSkeleton.css";
 
 export const HomeSkeleton: React.FC = () => {
   return (

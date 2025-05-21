@@ -23,7 +23,7 @@ export const GroupMenu: React.FC = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Fermer le dropdown en cliquant à l'extérieur
+  // Close the dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
