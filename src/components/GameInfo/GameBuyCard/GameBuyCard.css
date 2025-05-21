@@ -1,10 +1,34 @@
 .game-buy-card-container {
+    background-color: var(--bg-color-darker);
+    border-radius: var(--button-border-radius-lg);
     display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    position: relative;
     width: 100%;
 
     @media screen and (width <= 768px) {
         flex-wrap: wrap;
         gap: 20px;
+    }
+
+    &.dlc {
+        border-radius: 0 0 var(--button-border-radius-lg) var(--button-border-radius-lg);
+    }
+
+    & .game-buy-card-container__banner-text {
+        align-items: center;
+        background-color: var(--bg-color-blue-light);
+        border-radius: var(--button-border-radius-lg) var(--button-border-radius-lg) 0 0;
+        color: white;
+        display: flex;
+        font-size: .9rem;
+        font-weight: 600;
+        left: 0;
+        padding: .5rem 1rem;
+        position: absolute;
+        top: -2rem;
+        width: 100%;
     }
 }
 

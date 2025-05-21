@@ -10,6 +10,7 @@ interface PromoBlocProps {
   originalPrice: number;
   discountedPrice: number;
   onAddToCart?: () => void;
+  isOwned?: boolean;
 }
 
 export const PromoBloc: React.FC<PromoBlocProps> = ({
@@ -17,6 +18,7 @@ export const PromoBloc: React.FC<PromoBlocProps> = ({
   originalPrice,
   discountedPrice,
   onAddToCart,
+  isOwned,
 }) => {
   return (
     <div className="promotion-card">
@@ -28,7 +30,7 @@ export const PromoBloc: React.FC<PromoBlocProps> = ({
             </div>
           )}
           <PriceBox oldPrice={originalPrice} price={discountedPrice} />
-          <CartButton onClick={onAddToCart} />
+          <CartButton onClick={onAddToCart} isOwned={isOwned} />
         </div>
       </div>
     </div>

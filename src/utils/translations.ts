@@ -36,12 +36,17 @@ const labelList = [
   "review.value_for_money_rate",
   "games_of_the_week",
   "add_to_favorite",
+  "dlc.downloadable_content",
+  "dlc.requirements",
+  "owned",
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
 
 export const translationDictionnaries: {
-  [language: string]: { [label in TranslationLabelType]: string };
+  [language: string]: {
+    [label in TranslationLabelType]: string | ((name: string) => string);
+  };
 } = {
   // -------------------- English --------------------
   en: {
@@ -82,6 +87,10 @@ export const translationDictionnaries: {
     "review.value_for_money_rate": "Value for Money",
     games_of_the_week: "Games of the week",
     add_to_favorite: "Add to favorite",
+    "dlc.downloadable_content": "Downloadable content",
+    "dlc.requirements": (name: string) =>
+      `This additional content requires the base game ${name ? `"${name}"` : ""} to run.`,
+    owned: "Owned",
   },
 
   // -------------------- French --------------------
@@ -123,5 +132,9 @@ export const translationDictionnaries: {
     "review.value_for_money_rate": "Rapport qualité/prix",
     games_of_the_week: "Jeux de la semaine",
     add_to_favorite: "Ajouter aux favoris",
+    "dlc.downloadable_content": "Contenu téléchargeable",
+    "dlc.requirements": (name: string) =>
+      `Ce contenu additionnel nécessite le jeu de base ${name ? `"${name}"` : ""} pour fonctionner.`,
+    owned: "Possédé",
   },
 };

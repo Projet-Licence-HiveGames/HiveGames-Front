@@ -30,6 +30,7 @@ interface TLabelProps {
   className?: string;
   noBalise?: boolean; // Prop pour ne pas utiliser de balise
   capitalizeFirstLetter?: boolean; // Prop pour capitaliser la première lettre
+  params?: { value?: string };
 }
 
 export const TLabel: FC<TLabelProps> = ({
@@ -39,18 +40,23 @@ export const TLabel: FC<TLabelProps> = ({
   className,
   noBalise = false,
   capitalizeFirstLetter = false,
+  params = {},
 }) => {
   const { selectedLanguage } = useContext(TranslationContext);
 
   // Récupère le texte traduit
   const translatedText = (() => {
     switch (translationType) {
-      case "app":
-        return (
+      case "app": {
+        const value =
           translationDictionnaries[selectedLanguage][
             label as TranslationLabelType
-          ] ?? label
-        );
+          ] ?? label;
+        if (typeof value === "function") {
+          return value(params?.value ?? "");
+        }
+        return value;
+      }
       case "category":
         return (
           translationCategoryDictionnaries[selectedLanguage][
@@ -80,6 +86,7 @@ export const TLabel: FC<TLabelProps> = ({
 
   // Si noBalise est vrai, retourne juste le texte traduit
   if (noBalise) {
+    if (typeof translatedText === "function") return null;
     return (
       <>
         {capitalizeFirstLetter
@@ -88,6 +95,8 @@ export const TLabel: FC<TLabelProps> = ({
       </>
     );
   }
+
+  if (typeof translatedText === "function") return null;
 
   // Retourne la balise dynamique avec le texte traduit
   return React.createElement(
