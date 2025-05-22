@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { privateApi } from "../../../api/privateApi.ts";
+import { useFetch } from "../../../api/privateApi.ts";
 import {
   categoryIcons,
   TranslationCategoryLabelType,
@@ -15,19 +15,15 @@ type CategoryData = {
 };
 
 export const TopCategories: React.FC = () => {
+  const fetchAPI = useFetch();
   const [categories, setCategories] = useState<CategoryData[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
-      try {
-        const response = await privateApi<CategoryData[]>(
-          "/games/top-categories",
-          "GET",
-        );
-        setCategories(response);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
+      await fetchAPI
+        .get<CategoryData[]>("/games/top-categories")
+        .then(setCategories)
+        .catch((error) => console.error("Error fetching categories:", error));
     };
 
     fetchCategories();
