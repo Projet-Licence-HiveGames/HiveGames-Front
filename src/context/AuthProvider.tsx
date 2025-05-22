@@ -44,6 +44,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // Fonction pour récupérer les informations utilisateur (par exemple, après un login)
   const checkUser = async () => {
     try {
+      if (!localStorage.getItem("isAuthenticated")) {
+        return;
+      }
       setError(null);
       const userData = await fetchApi.get<{ user: User }>("/auth/user");
       setUser(userData.user);

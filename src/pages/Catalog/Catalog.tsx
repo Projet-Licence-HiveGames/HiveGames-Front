@@ -9,7 +9,7 @@ import FilterSidebar, {
 import GameCard from "../../components/GameCard/GameCard.tsx";
 import { GameCardSkeleton } from "../../components/Skeleton/GameCard/GameCardSkeleton.tsx";
 import { useAuth } from "../../context/AuthProvider";
-import { Game } from "../../types/Game.ts";
+import { findGameCollection, Game } from "../../types/Game.ts";
 
 import "./Catalog.css";
 
@@ -35,9 +35,7 @@ export const Catalog: React.FC = () => {
       .then((games) =>
         setGameList(
           games.map((game) => {
-            const collection = user?.game_collections?.find(
-              (c) => c.game_id === game.id,
-            );
+            const collection = findGameCollection(game.id, user);
             return {
               ...game,
               is_wished: collection?.is_wished || false,
