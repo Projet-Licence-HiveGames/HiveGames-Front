@@ -9,8 +9,8 @@
     --bg-color-blue-darker: #0065D3;
     --bg-color-blue-dark: #006FE8;
     --bg-color-blue-light: #1786FF;
-    --bg-color-blue-lighter: #2C91FF;
     --bg-color-blue-normal: #4B619B;
+    --bg-color-blue-lighter: #466cb9;
     --bg-color-darker: #1b232e;
     --bg-color-dark: #212a38;
     --bg-color-green: #A1CD44;
@@ -49,6 +49,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: Nunito, serif;
     margin: 0;
     padding: 0;
 }
