@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Game } from "../../types/Game";
 import { calculateDiscount } from "../../utils/calculateDiscount";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
-import { getGameThumbnail } from "../../utils/gameUtils";
+import { getGameImage } from "../../utils/gameUtils";
 import { Category } from "../ui/CategoryBloc/Category";
 import ImageWithLoader from "../ui/Image/ImageWithLoader";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
@@ -28,7 +28,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
     <div className={"game-card"} onClick={() => navigate(`/game/${game.id}`)}>
       <div className={"game-card-image"}>
         <ImageWithLoader
-          src={getGameThumbnail(game).file_url || defaultGameThumbnailImage}
+          src={getGameImage(game.images).file_url || defaultGameThumbnailImage}
           alt={game.name}
           loaderSrc={defaultGameThumbnailImage}
         />

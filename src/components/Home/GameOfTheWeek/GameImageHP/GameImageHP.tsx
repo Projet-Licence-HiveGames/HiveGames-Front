@@ -5,10 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import useWindowSize from "../../../../hooks/useWindowSize.ts";
 import { Game } from "../../../../types/Game.ts";
-import {
-  getGameHeader,
-  getGameThumbnail,
-} from "../../../../utils/gameUtils.ts";
+import { getGameImage } from "../../../../utils/gameUtils.ts";
 import { PriceTag } from "../../../ui/PriceTag/PriceTag.tsx";
 import { TLabel } from "../../../ui/TranslationLabel/TLabel.tsx";
 import { WishButton } from "../../../ui/WishButton/WishButton.tsx";
@@ -38,7 +35,9 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
     (i) => i.file_name.startsWith("header") && i.file_url,
   );
 
-  const mainImages = _images?.length ? _images : [getGameHeader(selectedGame)];
+  const mainImages = _images?.length
+    ? _images
+    : [getGameImage(selectedGame.images, "header")];
 
   return (
     <div className="game-image-hp-wrapper">
@@ -100,7 +99,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
         watchSlidesProgress={true}
       >
         {games.map((game, index) => {
-          const thumb = getGameThumbnail(game);
+          const thumb = getGameImage(game.images);
           return (
             <SwiperSlide key={index} onClick={() => setSelectedGame(game)}>
               <img

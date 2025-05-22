@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 
 import { calculateDiscount } from "../../../utils/calculateDiscount";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
@@ -13,7 +14,7 @@ interface GameBuyCardProps {
   price: number;
   isOwned?: boolean;
   isDlc?: boolean;
-  gameBase?: string;
+  gameBaseName?: string;
 }
 
 export const GameBuyCard: React.FC<GameBuyCardProps> = ({
@@ -22,18 +23,18 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
   price,
   isOwned = false,
   isDlc = false,
-  gameBase,
+  gameBaseName,
 }) => {
   return (
-    <div className={`game-buy-card-container ${isDlc ? "dlc" : ""}`}>
-      {isDlc && gameBase && (
+    <div className={classNames("game-buy-card-container", { dlc: isDlc })}>
+      {isDlc && gameBaseName && (
         <span className="game-buy-card-container__banner-text">
           ⚠️
           <TLabel
-            label={"dlc.requirements"}
+            label={"dlc.requirements.base_game"}
             baliseType="span"
             translationType="app"
-            params={{ value: gameBase }}
+            replaceValues={{ game_name: gameBaseName }}
           />
         </span>
       )}
