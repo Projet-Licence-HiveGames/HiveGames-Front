@@ -17,7 +17,7 @@ export interface Game {
   be_notified?: boolean;
   studios?: GameStudio[];
   release_date?: string;
-  game_type?: "base" | "dlc";
+  game_type?: "base" | "dlc" | "demo";
   dlcs: Game[];
   reviews?: GameReview[];
 }

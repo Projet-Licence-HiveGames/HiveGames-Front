@@ -12,7 +12,7 @@ interface GameBuyCardProps {
   oldPrice?: number;
   price: number;
   isOwned?: boolean;
-  isDlc?: "base" | "dlc";
+  isDlc?: boolean;
   gameBase?: string;
 }
 
@@ -21,7 +21,7 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
   oldPrice = 0,
   price,
   isOwned = false,
-  isDlc,
+  isDlc = false,
   gameBase,
 }) => {
   return (

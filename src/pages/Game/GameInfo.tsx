@@ -46,7 +46,7 @@ export const GameInfo: React.FC = () => {
           <div className="game-details__gallery">
             <GameImages
               images={gameData?.images}
-              thumbnail={getGameThumbnail(gameData)}
+              thumbnail={getGameThumbnail(gameData.images)}
             />
           </div>
         )}
@@ -54,11 +54,11 @@ export const GameInfo: React.FC = () => {
           {!isMobile ? (
             <GameShortDescription
               description={gameData?.short_description || ""}
-              thumbnail={getGameThumbnail(gameData)}
+              thumbnail={getGameThumbnail(gameData.images)}
             />
           ) : (
             <img
-              src={getGameThumbnail(gameData)?.file_url}
+              src={getGameThumbnail(gameData.images)?.file_url}
               alt={gameData?.name}
               className="game-details__thumbnail"
             />
@@ -81,20 +81,17 @@ export const GameInfo: React.FC = () => {
               price={gameData?.price || 0}
               isOwned={gameData?.is_owned || false}
             />
-            {!isGameDlc(gameData) && gameData.dlcs?.length > 0 && (
-              <>
-                {gameData.dlcs.map((dlc) => (
-                  <GameBuyCard
-                    key={dlc.id}
-                    name={dlc.name}
-                    oldPrice={dlc.oldPrice || 0}
-                    price={dlc.price}
-                    isDlc={dlc.game_type}
-                    gameBase={gameData.name}
-                  />
-                ))}
-              </>
-            )}
+            {!isGameDlc(gameData) &&
+              gameData.dlcs.map((dlc) => (
+                <GameBuyCard
+                  key={dlc.id}
+                  name={dlc.name}
+                  oldPrice={dlc.oldPrice || 0}
+                  price={dlc.price}
+                  isDlc={true}
+                  gameBase={gameData.name}
+                />
+              ))}
           </div>
           <div className="game-details__description">
             <GameLongDescription
