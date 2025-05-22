@@ -99,3 +99,7 @@ export function findGameCollection(gameId: number, user?: User | null) {
     (c) => Number(c.game_id) === Number(gameId),
   );
 }
+
+export function isGameDlc(game: Game | GameDlc): game is GameDlc {
+  return "base_game_id" in game && !("dlcs" in game);
+}
