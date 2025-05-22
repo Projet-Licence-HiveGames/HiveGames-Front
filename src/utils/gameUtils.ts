@@ -1,8 +1,8 @@
-import { Game, GameImage } from "../types/Game";
+import { Game, GameDlc, GameImage } from "../types/Game";
 
 import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 
-export const getGameThumbnail = (game?: Game) => {
+export const getGameThumbnail = (game?: Game | GameDlc) => {
   const defaultGameThumbnail = {
     id: 0,
     file_name: "thumbnail",

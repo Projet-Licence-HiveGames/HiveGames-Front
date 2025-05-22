@@ -12,7 +12,7 @@ import { GameShortDescription } from "../../components/GameInfo/GameShortDescrip
 import GameReviewSection from "../../components/GameInfo/Review/GameReviewSection.tsx";
 import { Loader } from "../../components/Loader/Loader.tsx";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
-import { Game } from "../../types/Game.ts";
+import { Game, GameDlc, isGameDlc } from "../../types/Game.ts";
 import { getGameThumbnail } from "../../utils/gameUtils.ts";
 
 import "./GameInfo.css";
@@ -21,7 +21,7 @@ export const GameInfo: React.FC = () => {
   const { id } = useParams();
   const fetchApi = useFetch();
   const navigate = useNavigate();
-  const [gameData, setGameData] = useState<Game>();
+  const [gameData, setGameData] = useState<Game | GameDlc>();
   const { isMobile } = useWindowSize();
 
   const fetchGame = useCallback(async () => {
@@ -81,7 +81,7 @@ export const GameInfo: React.FC = () => {
               price={gameData?.price || 0}
               isOwned={gameData?.is_owned || false}
             />
-            {gameData?.dlcs?.length > 0 && (
+            {!isGameDlc(gameData) && gameData.dlcs?.length > 0 && (
               <>
                 {gameData.dlcs.map((dlc) => (
                   <GameBuyCard
