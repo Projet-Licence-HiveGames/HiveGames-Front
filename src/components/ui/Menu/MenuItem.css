@@ -32,7 +32,8 @@
   border-radius: var(--button-border-radius-md);
   cursor: pointer;
   display: inline-flex;
-  gap: .5rem;
+  gap: 1.1rem;
+  overflow: hidden;
   padding: .5rem 1rem;
   width: 100%;
 }
@@ -45,8 +46,4 @@
 .hivegames-menuItem.active > label {
   background: var(--button-gradient-orange);
   border-radius: var(--button-border-radius-md);
-}
-
-.sidebar-container--collapsed .hivegames-menuItem > label > span {
-  display: none;
 }

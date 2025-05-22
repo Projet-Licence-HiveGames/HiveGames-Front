@@ -73,6 +73,20 @@
     z-index: 2;
 }
 
+.game-card .wish-button-container {
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    @media screen and (width <= 1024px) {
+        opacity: 1;
+    }
+}
+
+.game-card:hover .wish-button-container {
+    opacity: 1;
+    z-index: 2;
+}
+
 .game-card-image img {
     aspect-ratio: 16/9;
     border-radius: var(--button-border-radius-small);
