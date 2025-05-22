@@ -19,7 +19,6 @@ export interface Game {
   release_date?: string;
   game_type?: "base" | "dlc";
   dlcs: Game[];
-  base_game_id?: number;
   reviews?: GameReview[];
 }
 
@@ -27,6 +26,10 @@ export interface Language {
   id: number;
   label: string;
   code: string;
+}
+
+export interface GameDlc extends Omit<Game, "dlcs"> {
+  base_game_id?: number;
 }
 
 export interface GameLanguage extends Language {
