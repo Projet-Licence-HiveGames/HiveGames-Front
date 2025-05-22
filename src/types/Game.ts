@@ -87,3 +87,9 @@ export interface GameReview {
   usability_rate: number | null;
   value_for_money_rate: number | null;
 }
+
+export function findGameCollection(gameId: number, user?: User | null) {
+  return user?.game_collections?.find(
+    (c) => Number(c.game_id) === Number(gameId),
+  );
+}
