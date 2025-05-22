@@ -15,7 +15,7 @@ interface PriceBoxProps {
   onAddToCart?: () => void;
 }
 
-const PriceBox: React.FC<PriceBoxProps> = ({
+export const PriceBox: React.FC<PriceBoxProps> = ({
   price,
   promotion,
   isOwned,
@@ -58,5 +58,3 @@ const PriceBox: React.FC<PriceBoxProps> = ({
     </div>
   );
 };
-
-export default PriceBox;
