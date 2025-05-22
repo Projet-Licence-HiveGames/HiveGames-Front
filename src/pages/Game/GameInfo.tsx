@@ -13,7 +13,7 @@ import GameReviewSection from "../../components/GameInfo/Review/GameReviewSectio
 import { Loader } from "../../components/Loader/Loader.tsx";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
 import { Game, GameDlc, isGameDlc } from "../../types/Game.ts";
-import { getGameThumbnail } from "../../utils/gameUtils.ts";
+import { getGameImage } from "../../utils/gameUtils.ts";
 
 import "./GameInfo.css";
 
@@ -46,7 +46,7 @@ export const GameInfo: React.FC = () => {
           <div className="game-details__gallery">
             <GameImages
               images={gameData?.images}
-              thumbnail={getGameThumbnail(gameData.images)}
+              thumbnail={getGameImage(gameData.images)}
             />
           </div>
         )}
@@ -54,11 +54,11 @@ export const GameInfo: React.FC = () => {
           {!isMobile ? (
             <GameShortDescription
               description={gameData?.short_description || ""}
-              thumbnail={getGameThumbnail(gameData.images)}
+              thumbnail={getGameImage(gameData.images)}
             />
           ) : (
             <img
-              src={getGameThumbnail(gameData.images)?.file_url}
+              src={getGameImage(gameData.images)?.file_url}
               alt={gameData?.name}
               className="game-details__thumbnail"
             />
@@ -82,14 +82,14 @@ export const GameInfo: React.FC = () => {
               isOwned={gameData?.is_owned || false}
             />
             {!isGameDlc(gameData) &&
-              gameData.dlcs.map((dlc) => (
+              gameData.dlcs?.map((dlc) => (
                 <GameBuyCard
                   key={dlc.id}
                   name={dlc.name}
                   oldPrice={dlc.oldPrice || 0}
                   price={dlc.price}
                   isDlc={true}
-                  gameBase={gameData.name}
+                  gameBaseName={gameData.name}
                 />
               ))}
           </div>

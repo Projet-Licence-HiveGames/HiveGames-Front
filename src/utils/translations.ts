@@ -37,7 +37,7 @@ const labelList = [
   "games_of_the_week",
   "add_to_favorite",
   "dlc.downloadable_content",
-  "dlc.requirements",
+  "dlc.requirements.base_game",
   "owned",
 ] as const;
 
@@ -45,7 +45,7 @@ export type TranslationLabelType = (typeof labelList)[number];
 
 export const translationDictionnaries: {
   [language: string]: {
-    [label in TranslationLabelType]: string | ((name: string) => string);
+    [label in TranslationLabelType]: string;
   };
 } = {
   // -------------------- English --------------------
@@ -88,8 +88,8 @@ export const translationDictionnaries: {
     games_of_the_week: "Games of the week",
     add_to_favorite: "Add to favorite",
     "dlc.downloadable_content": "Downloadable content",
-    "dlc.requirements": (name: string) =>
-      `This additional content requires the base game ${name ? `"${name}"` : ""} to run.`,
+    "dlc.requirements.base_game":
+      "This additional content requires the base game %game_name% to run.",
     owned: "Owned",
   },
 
@@ -133,8 +133,8 @@ export const translationDictionnaries: {
     games_of_the_week: "Jeux de la semaine",
     add_to_favorite: "Ajouter aux favoris",
     "dlc.downloadable_content": "Contenu téléchargeable",
-    "dlc.requirements": (name: string) =>
-      `Ce contenu additionnel nécessite le jeu de base ${name ? `"${name}"` : ""} pour fonctionner.`,
+    "dlc.requirements.base_game":
+      "Ce contenu additionnel nécessite le jeu de base %game_name% pour fonctionner.",
     owned: "Possédé",
   },
 };
