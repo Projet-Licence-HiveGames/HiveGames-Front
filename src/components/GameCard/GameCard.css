@@ -91,7 +91,7 @@
   aspect-ratio: 16/9;
   border-radius: var(--button-border-radius-small);
   object-fit: cover;
-  
+
   @media screen and (width <= 1024px) {
     height: 100%;
     width: 100%;
@@ -104,7 +104,7 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
-  
+
   @media screen and (width <= 1200px) {
     gap: 20px;
   }
@@ -135,7 +135,7 @@
 
 .game-card-content-price {
   height: fit-content;
-  
+
   @media screen and (width <= 1024px) {
     width: 100%;
   }
@@ -145,7 +145,7 @@
   0% {
     background-position: -1000px 0;
   }
-  
+
   100% {
     background-position: 1000px 0;
   }
