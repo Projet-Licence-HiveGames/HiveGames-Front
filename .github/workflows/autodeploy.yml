@@ -1,10 +1,8 @@
 name: Auto Deploy
 
 on:
-  push:
-    branches: [ "preprod" ]
-
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ['autodeployer3000']
