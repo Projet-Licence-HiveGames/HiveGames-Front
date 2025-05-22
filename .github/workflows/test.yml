@@ -1,10 +1,6 @@
 name: Run React Tests
 
 on:
-  push:
-    branches:
-      - preprod
-      - prod
   pull_request:
     branches:
       - preprod
