@@ -1,26 +1,47 @@
 .price-box {
-    width: auto;
+    align-items: center;
+    display: flex;
+    gap: 1rem;
 }
 
-.price-box-old-price {
+.price-box-container {
+    align-items: center;
+    display: flex;
+    gap: .5rem;
     height: fit-content;
     position: relative;
     width: fit-content;
 }
 
-.price-box-old-price h3 {
-    color: var(--bg-color-lightest);
-    text-decoration: line-through white 2px;
+.price-box-discount-rate {
+    background: var(--bg-color-green);
+    border-radius: 3px;
+    height: 100%;
+    min-width: 50px;
+    padding: 5px;
+    text-align: center;
+    width: fit-content;
+
+    & h3 {
+        color: #0E141B;
+        font-size: 19px;
+        font-weight: 700;
+    }
 }
 
-.price-box-price h3 {
+.price-box-prices {
+    align-items: end;
     color: white;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 700;
-    height: fit-content;
+    display: flex;
+    flex-direction: column;
 }
 
-.price-box-price.green h3 {
+.price-box-old-price {
+    color: var(--bg-color-lightest);
+    font-size: .85rem;
+    text-decoration: line-through rgb(112 112 112);
+}
+
+.on-promotion .current-price {
     color: var(--bg-color-green);
 }

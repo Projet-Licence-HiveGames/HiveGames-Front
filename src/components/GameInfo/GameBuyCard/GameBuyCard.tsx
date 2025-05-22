@@ -1,17 +1,17 @@
 import React from "react";
 import classNames from "classnames";
 
-import { calculateDiscount } from "../../../utils/calculateDiscount";
+import { Promotion } from "../../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
-import { PromoBloc } from "../../GameCard/PromoBloc/PromoBloc";
+import PriceBox from "../../GameCard/PriceBox/PriceBox.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameBuyCard.css";
 
 interface GameBuyCardProps {
   name: string;
-  oldPrice?: number;
   price: number;
+  promotion?: Promotion | null;
   isOwned?: boolean;
   isDlc?: boolean;
   gameBaseName?: string;
@@ -19,8 +19,8 @@ interface GameBuyCardProps {
 
 export const GameBuyCard: React.FC<GameBuyCardProps> = ({
   name,
-  oldPrice = 0,
   price,
+  promotion = null,
   isOwned = false,
   isDlc = false,
   gameBaseName,
@@ -42,19 +42,14 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
         <div className="game-buy-card__title">
           <h3>{capitalizeFirstLetter(name)}</h3>
         </div>
-        {oldPrice > 0 && (
+        {!!promotion && (
           <div className="game-buy-card__description">
             <TLabel label="weekend_deal" />
           </div>
         )}
       </div>
       <div className="game-buy-card-content__price">
-        <PromoBloc
-          discount={calculateDiscount(oldPrice || 0, price)}
-          originalPrice={oldPrice || 0}
-          discountedPrice={price}
-          isOwned={isOwned}
-        />
+        <PriceBox price={price} promotion={promotion} isOwned={isOwned} />
       </div>
     </div>
   );
