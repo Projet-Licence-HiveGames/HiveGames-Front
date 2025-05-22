@@ -1,133 +1,137 @@
 .game-card {
-    align-self: stretch;
-    background: var(--bg-color-normal);
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    flex: none;
-    flex-grow: 0;
-    gap: 20px;
-    height: fit-content;
-    min-height: 150px;
-    min-width: 240px;
-    order: 0;
-    padding: 10px;
-    user-select: none;
-    width: 100%;
-
-    @media screen and (width <= 1024px) {
-        flex-direction: column;
-        margin: 0 auto;
-        max-height: unset;
-        max-width: 300px;
-    }
+  align-self: stretch;
+  background: var(--bg-color-normal);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex: none;
+  flex-grow: 0;
+  gap: 20px;
+  height: fit-content;
+  min-height: 150px;
+  min-width: 240px;
+  order: 0;
+  padding: 10px;
+  user-select: none;
+  width: 100%;
+  
+  @media screen and (width <= 1024px) {
+    flex-direction: column;
+    margin: 0 auto;
+    max-height: unset;
+    max-width: 300px;
+  }
 }
 
 .game-card:hover {
-    background: var(--bg-color-dark);
-    box-shadow: 0 0 10px var(--bg-color-light);
+  background: var(--bg-color-dark);
+  box-shadow: 0 0 10px var(--bg-color-light);
 }
 
 .game-card-image {
-    border-radius: 3px;
-    display: flex;
-    height: 140px;
-    margin: 0 auto;
-    max-width: 250px;
-    position: relative;
+  border-radius: 3px;
+  display: flex;
+  height: 140px;
+  margin: 0 auto;
+  max-width: 250px;
+  position: relative;
 }
 
 .game-card-image::after {
-    bottom: 0;
-    content: "";
-    height: 30%;
-    left: 0;
-    position: absolute;
-    transition: height .3s ease;
-    width: 100%;
-    z-index: 1;
+  bottom: 0;
+  content: "";
+  height: 30%;
+  left: 0;
+  position: absolute;
+  transition: height .3s ease;
+  width: 100%;
+  z-index: 1;
 }
 
 .game-card-content-progress-bar {
-    align-items: center;
-    backdrop-filter: blur(2px);
-    background-color: rgb(0 0 0 / 60%);
-    border-radius: 4px 4px 0 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    padding: 4px;
-    position: absolute;
-    right: 0;
-    transition: opacity .3s ease;
-
-    @media screen and (width <= 1024px) {
-        opacity: 1;
-    }
+  align-items: center;
+  backdrop-filter: blur(2px);
+  background-color: rgb(0 0 0 / 60%);
+  border-radius: 4px 4px 0 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  padding: 4px;
+  position: absolute;
+  right: 0;
+  transition: opacity .3s ease;
+  
+  @media screen and (width <= 1024px) {
+    opacity: 1;
+  }
 }
 
 .game-card:hover .game-card-content-progress-bar {
-    bottom: 0;
-    opacity: 1;
-    z-index: 2;
+  bottom: 0;
+  opacity: 1;
+  z-index: 2;
 }
 
 .game-card-image img {
-    aspect-ratio: 16/9;
-    border-radius: var(--button-border-radius-small);
-    object-fit: cover;
-
-    @media screen and (width <= 1024px) {
-        height: 100%;
-        width: 100%;
-    }
+  aspect-ratio: 16/9;
+  border-radius: var(--button-border-radius-small);
+  object-fit: cover;
+  
+  @media screen and (width <= 1024px) {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .game-card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    width: 100%;
-
-    @media screen and (width <= 1200px) {
-        gap: 20px;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  
+  @media screen and (width <= 1200px) {
+    gap: 20px;
+  }
 }
 
-.game-card-content-title a{
+.game-card-content-title {
+  width: 85%;
+  
+  & a {
     color: white;
     height: fit-content;
     text-decoration: none;
+  }
 }
 
 .game-card-content-data {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  
+  @media screen and (width <= 1024px) {
+    align-items: flex-start;
     flex-direction: column;
     gap: 10px;
-    justify-content: space-between;
-
-    @media screen and (width <= 1024px) {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-    }
+  }
 }
 
 .game-card-content-price {
-    height: fit-content;
-
-    @media screen and (width <= 1024px) {
-        width: 100%;
-    }
+  height: fit-content;
+  
+  @media screen and (width <= 1024px) {
+    width: 100%;
+  }
 }
 
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
   }
-
+  
   100% {
     background-position: 1000px 0;
   }

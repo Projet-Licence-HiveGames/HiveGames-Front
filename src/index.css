@@ -51,29 +51,56 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        background-color: #fff;
-        color: #213547;
+    
+    @media (prefers-color-scheme: light) {
+        :root {
+            background-color: #fff;
+            color: #213547;
+        }
+        
+        a:hover {
+            color: #747bff;
+        }
+        
+        button {
+            background-color: #f9f9f9;
+        }
     }
-
-    a:hover {
-        color: #747bff;
+    
+    .regular-16 {
+        font-size: 1rem;
+        font-weight: 400;
     }
-
-    button {
-        background-color: #f9f9f9;
+    
+    .regular-12 {
+        font-size: .75rem;
+        font-weight: 400;
     }
-}
-
-.regular-16 {
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.regular-12 {
-    font-size: .75rem;
-    font-weight: 400;
+    
+    .logo {
+        height: 6em;
+        padding: 1.5em;
+        transition: filter 300ms;
+        will-change: filter;
+    }
+    
+    .logo:hover {
+        filter: drop-shadow(0 0 2em #646cffaa);
+    }
+    
+    @keyframes logo-spin {
+        from {
+            transform: rotate(0deg);
+        }
+        
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    
+    @media (prefers-reduced-motion: no-preference) {
+        a:nth-of-type(2) .logo {
+            animation: logo-spin infinite 20s linear;
+        }
+    }
 }
