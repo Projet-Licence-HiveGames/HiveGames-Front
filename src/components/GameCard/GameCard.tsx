@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Game } from "../../types/Game";
-import { calculateDiscount } from "../../utils/calculateDiscount";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { getGameImage } from "../../utils/gameUtils";
 import { Category } from "../ui/CategoryBloc/Category";
@@ -10,7 +9,7 @@ import ImageWithLoader from "../ui/Image/ImageWithLoader";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
 import { WishButton } from "../ui/WishButton/WishButton";
 
-import PriceBox from "./PriceBox/PriceBox";
+import { PriceBox } from "./PriceBox/PriceBox";
 
 import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 

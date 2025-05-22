@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import { Promotion } from "../../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
-import PriceBox from "../../GameCard/PriceBox/PriceBox.tsx";
+import { PriceBox } from "../../GameCard/PriceBox/PriceBox.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameBuyCard.css";
