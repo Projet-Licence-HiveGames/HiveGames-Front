@@ -1,6 +1,7 @@
 name: Run React Build
 
 on:
+  workflow_call:
   pull_request:
     branches:
       - preprod
