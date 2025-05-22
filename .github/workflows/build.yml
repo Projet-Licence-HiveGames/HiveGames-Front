@@ -1,10 +1,6 @@
 name: Run React Build
 
 on:
-  push:
-    branches:
-      - preprod
-      - prod
   pull_request:
     branches:
       - preprod
