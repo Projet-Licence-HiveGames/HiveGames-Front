@@ -8,7 +8,7 @@ export interface Game {
   features?: GameFeature[];
   images?: GameImage[];
   price: number;
-  oldPrice?: number;
+  promotion?: Promotion | null;
   current_version?: string;
   categories?: GameCategory[];
   languages?: GameLanguage[];
@@ -74,6 +74,13 @@ export interface GameFeature {
   id: number;
   description: string;
   label: string;
+}
+
+export interface Promotion {
+  id: number;
+  promotion_rate: number;
+  start_date: Date;
+  end_date: Date;
 }
 
 type PartialWithRequired<T, K extends keyof T> = Partial<T> & Pick<T, K>;

@@ -77,8 +77,8 @@ export const GameInfo: React.FC = () => {
           <div className="game-details__purchase">
             <GameBuyCard
               name={gameData?.name || ""}
-              oldPrice={gameData?.oldPrice || 0}
               price={gameData?.price || 0}
+              promotion={gameData?.promotion}
               isOwned={gameData?.is_owned || false}
             />
             {!isGameDlc(gameData) &&
@@ -86,8 +86,8 @@ export const GameInfo: React.FC = () => {
                 <GameBuyCard
                   key={dlc.id}
                   name={dlc.name}
-                  oldPrice={dlc.oldPrice || 0}
                   price={dlc.price}
+                  promotion={dlc.promotion}
                   isDlc={true}
                   gameBaseName={gameData.name}
                 />

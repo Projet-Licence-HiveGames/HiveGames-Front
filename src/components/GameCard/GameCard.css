@@ -130,11 +130,7 @@
 }
 
 .game-card-content-price {
-    height: fit-content;
-
-    @media screen and (width <= 1024px) {
-        width: 100%;
-    }
+    align-self: flex-end;
 }
 
 @keyframes shimmer {

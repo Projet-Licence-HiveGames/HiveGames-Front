@@ -10,7 +10,7 @@ import ImageWithLoader from "../ui/Image/ImageWithLoader";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
 import { WishButton } from "../ui/WishButton/WishButton";
 
-import { PromoBloc } from "./PromoBloc/PromoBloc";
+import PriceBox from "./PriceBox/PriceBox";
 
 import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 
@@ -47,11 +47,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
           </div>
         )}
         <div className={"game-card-content-price"}>
-          <PromoBloc
-            discount={calculateDiscount(game.oldPrice || 0, game.price)}
-            originalPrice={game.oldPrice || 0}
-            discountedPrice={game.price}
-          />
+          <PriceBox price={game.price} promotion={game.promotion} />
         </div>
       </div>
     </div>
