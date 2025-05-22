@@ -1,0 +1,21 @@
+name: Auto Deploy
+
+on:
+  push:
+    branches: [ "preprod" ]
+
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ['autodeployer3000']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Start Deployment
+        uses: modcraftmc/custom-docker-compose-ssh-deployment@2.2
+        with:
+          ssh_host: 100.117.249.49
+          ssh_user: autodeploy
+          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          docker_compose_filename: docker-compose.yaml
+          directory: auto_hivesgames_front
+          docker_container_name: main
