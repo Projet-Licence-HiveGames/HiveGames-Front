@@ -2,18 +2,17 @@ import { Game, GameDlc, GameImage } from "../types/Game";
 
 import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 
-export const getGameThumbnail = (game?: Game | GameDlc) => {
+export const getGameThumbnail = (images?: GameImage[]) => {
   const defaultGameThumbnail = {
     id: 0,
     file_name: "thumbnail",
     alt: "Thumbnail de jeu",
     file_url: defaultGameThumbnailImage,
   } as GameImage;
-  if (!game) return defaultGameThumbnail;
+  if (!images) return defaultGameThumbnail;
   return (
-    game.images?.find(
-      (i) => i.file_name.startsWith("thumbnail") && i.file_url,
-    ) ?? defaultGameThumbnail
+    images?.find((i) => i.file_name.startsWith("thumbnail") && i.file_url) ??
+    defaultGameThumbnail
   );
 };
 
