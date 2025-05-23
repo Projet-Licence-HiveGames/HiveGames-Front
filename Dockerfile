@@ -17,7 +17,7 @@ FROM httpd:2.4-alpine
 COPY --from=builder /app/dist /usr/local/apache2/htdocs/
 
 # Copie du fichier .htaccess
-COPY --from=builder /app/dist/.htaccess /usr/local/apache2/htdocs/.htaccess
+COPY .htaccess /usr/local/apache2/htdocs/.htaccess
 
 # Activation de mod_rewrite et configuration d'AllowOverride
 RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf && \
