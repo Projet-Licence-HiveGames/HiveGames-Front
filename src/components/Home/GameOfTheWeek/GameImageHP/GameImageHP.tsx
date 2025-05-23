@@ -37,7 +37,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
 
   const mainImages = _images?.length
     ? _images
-    : [getGameImage(selectedGame.images, "header")];
+    : [getGameImage(selectedGame?.images, "header")];
 
   return (
     <div className="game-image-hp-wrapper">
