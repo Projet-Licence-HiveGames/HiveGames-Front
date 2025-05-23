@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.env.docker
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
