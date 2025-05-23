@@ -5,7 +5,7 @@ COPY package*.json ./
 COPY tsconfig*.json ./
 COPY tsconfig.node.json ./
 COPY tsconfig.app.json ./
-COPY vite.config.mts ./ 
+COPY vite.config.mts ./
 COPY index.html ./
 COPY src src
 COPY module-patch.d.ts ./
@@ -15,5 +15,12 @@ RUN npm i @rollup/rollup-linux-x64-musl && \
 
 FROM httpd:2.4-alpine
 COPY --from=builder /app/dist /usr/local/apache2/htdocs/
-COPY .htaccess /usr/local/apache2/htdocs/
+
+# Copie du fichier .htaccess
+COPY --from=builder /app/dist/.htaccess /usr/local/apache2/htdocs/.htaccess
+
+# Activation de mod_rewrite et configuration d'AllowOverride
+RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf && \
+    sed -i '/<Directory "\/usr\/local\/apache2\/htdocs">/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf
+
 EXPOSE 80
