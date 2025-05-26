@@ -90,10 +90,6 @@
   .swiper-thumbs {
     height: 100px;
   }
-
-  .swiper-thumbs .swiper-slide {
-    height: 80px;
-  }
 }
 
 .swiper-button-prev,
