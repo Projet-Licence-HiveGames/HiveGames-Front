@@ -27,21 +27,23 @@
 }
 
 .skeleton-image {
+  aspect-ratio: 16/9;
   border-radius: 8px;
-  height: 250px;
+  height: 450px;
   width: 100%;
 }
 
 .skeleton-images {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 2rem;
   justify-content: center;
+  width: 100%;
 }
 
 .skeleton-little-image {
   height: 75px;
-  width: 125px;
+  width: 100%;
 }
 
 .skeleton-price {

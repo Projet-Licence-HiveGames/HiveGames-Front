@@ -13,7 +13,7 @@ export const PriceTag: React.FC<PriceTagProps> = ({ price }) => {
     <div className="price-tag">
       <span className="price-tag__original-price">
         {price != 0 ? (
-          `${price} €`
+          `${price.toFixed(2)} €`
         ) : (
           <TLabel label={"free"} translationType={"app"} baliseType={"span"} />
         )}
