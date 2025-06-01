@@ -36,17 +36,23 @@ export const useFetch = () => {
   };
 
   const handleResponse = async <T>(response: Response): Promise<T> => {
-    if (!response.ok) {
-      if (response.status === 401) {
-        logout();
-      } else if (response.status >= 500) {
-        toast.error(
-          "Service momentanément indisponible. Veuillez réessayer plus tard",
-        );
+    try {
+      if (!response.ok) {
+        if (response.status === 401) {
+          await logout();
+        } else if (response.status >= 500) {
+          toast.error(
+            "Service momentanément indisponible. Veuillez réessayer plus tard",
+          );
+        }
+        const errorData = await response.json().catch(() => ({}));
+        throw { status: response.status, ...errorData };
       }
-      throw response;
+      return response.json();
+    } catch (error) {
+      toast.error(error.message || "Une erreur est survenue");
+      throw error;
     }
-    return response.json();
   };
 
   return {

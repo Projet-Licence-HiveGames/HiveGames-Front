@@ -1,6 +1,7 @@
 .wish-button-container {
   position: absolute;
   right: 0;
+  top: 0;
 
   & .wish-button {
     align-items: center;

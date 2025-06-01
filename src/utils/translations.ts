@@ -60,6 +60,9 @@ const labelList = [
   "review.editor.already_submitted_last_24h",
   "error.not_authenticated",
   "error.something_went_wrong",
+  "total_price",
+  "continue_shopping",
+  "purchase",
   "home.section.under_price.title",
 ] as const;
 
@@ -137,6 +140,9 @@ export const translationDictionnaries: {
     "error.not_authenticated": "You must be logged in to %action%.",
     "error.something_went_wrong":
       "Something went wrong, please try again later.",
+    total_price: "Estimated total",
+    continue_shopping: "Continue shopping",
+    purchase: "Purchase",
     "home.section.under_price.title": "This game is under the price of %price%",
   },
 
@@ -206,6 +212,9 @@ export const translationDictionnaries: {
     "error.not_authenticated": "Vous devez être connecté pour %action%.",
     "error.something_went_wrong":
       "Une erreur s'est produite, veuillez réessayer plus tard.",
+    total_price: "Prix total estimé",
+    continue_shopping: "Continuer vos achats",
+    purchase: "Acheter",
     "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };

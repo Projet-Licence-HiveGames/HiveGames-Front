@@ -12,7 +12,8 @@ interface PriceBoxProps {
   price: number;
   promotion?: Promotion | null;
   isOwned?: boolean;
-  onAddToCart?: () => void;
+  onAddToCart?: (e: React.MouseEvent) => void;
+  buyButton?: boolean;
 }
 
 export const PriceBox: React.FC<PriceBoxProps> = ({
@@ -20,6 +21,7 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
   promotion,
   isOwned,
   onAddToCart,
+  buyButton = true,
 }) => {
   const discountedPrice = calculateDiscount(
     price,
@@ -56,7 +58,7 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
           )}
         </div>
       </div>
-      <CartButton onClick={onAddToCart} isOwned={isOwned} />
+      {buyButton && <CartButton onClick={onAddToCart} isOwned={isOwned} />}
     </div>
   );
 };
