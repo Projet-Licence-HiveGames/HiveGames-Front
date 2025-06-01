@@ -6,6 +6,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 import { useFetch } from "../../api/privateApi.ts";
+import { useCart } from "../../context/CartContext.tsx";
 
 import "./Checkout.css";
 
@@ -20,16 +21,17 @@ interface CheckoutData {
 
 export const Checkout: React.FC = () => {
   const fetchApi = useFetch();
+  const { cartItems } = useCart();
   const [clientSecret, setClientSecret] = useState<string | null>(null);
 
   const fetchClientSecret = useCallback(async () => {
     try {
+      const gameIds = cartItems.map(Number);
+
       const data: CheckoutData = await fetchApi.post("/stripe/payment", {
-        products: [
-          { name: "Souris", amount: 120, currency: "eur" },
-          { name: "Clavier", amount: 200, currency: "eur" },
-        ],
+        gameIds: gameIds,
       });
+
       return data.client_secret;
     } catch (error) {
       console.error("Error fetching client secret:", error);

@@ -1,41 +1,39 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { useFetch } from "../../api/privateApi.ts";
-import { useAuth } from "../../context/AuthProvider.tsx";
+import { useCartGameApi } from "../../api/services/cartApi";
 
 import "./PaymentSuccess.css";
 
 export const PaymentSuccess: React.FC = ({}) => {
-  const fetchAPI = useFetch();
-  const { user } = useAuth();
-  const location = useLocation();
+  const { fetchOrderDetails } = useCartGameApi();
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const sessionId = queryParams.get("session_id");
-  const [paymentData, setPaymentData] = React.useState<any>(null);
+  const [paymentData, setPaymentData] = React.useState<any>({});
   const [error, setError] = React.useState<any>(null);
 
   const fetchData = async () => {
-    await fetchAPI
-      .get<any>(`/stripe/order/${sessionId}`)
+    await fetchOrderDetails(sessionId)
       .then(setPaymentData)
       .catch((_error) => {
-        setError({ ...error, _error });
+        setError({ ...error, error: _error });
       });
   };
-  console.log(paymentData); // eslint-disable-line
 
   useEffect(() => {
-    if (user) {
-      fetchData();
+    fetchData();
+  }, [sessionId]);
+
+  useEffect(() => {
+    if (
+      paymentData &&
+      paymentData.status &&
+      paymentData.status !== "succeeded"
+    ) {
+      navigate("/payment-failed");
     }
-  }, [user]);
+  }, [paymentData, navigate]);
 
-  // useEffect(() => {
-  //   if (paymentData.status !== 'succeeded') {
-  //       navigate('/home');
-  //   }
-  // }, []);
-
-  return <div>{paymentData}</div>;
+  return <div>{JSON.stringify(paymentData)}</div>;
 };

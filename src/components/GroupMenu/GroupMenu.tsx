@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
 
 import { BasketCart } from "../../assets/icones/BasketCart.tsx";
@@ -44,7 +44,9 @@ export const GroupMenu: React.FC = () => {
     <div className="group-menu-content">
       <div className="group-menu-icones">
         <NotificationBell numberNotif={5} />
-        <BasketCart />
+        <Link to={"/Cart"}>
+          <BasketCart />
+        </Link>
       </div>
 
       {!isMobile ? (

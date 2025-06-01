@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { GameBaseType } from "../../types/Game";
+import { useCart } from "../../context/CartContext";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { getGameImage } from "../../utils/gameUtils";
 import { Category } from "../ui/CategoryBloc/Category";
@@ -22,6 +23,15 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
   const navigate = useNavigate();
+  const { addToCart, cartItems } = useCart();
+  const isInCart = cartItems.some((item) => item === game.id);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isInCart) {
+      addToCart(game.id);
+    }
+  };
 
   return (
     <div className={"game-card"} onClick={() => navigate(`/game/${game.id}`)}>
@@ -46,7 +56,12 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
           </div>
         )}
         <div className={"game-card-content-price"}>
-          <PriceBox price={game.price} promotion={game.promotion} />
+          <PriceBox
+            price={game.price}
+            promotion={game.promotion}
+            isOwned={game.is_owned}
+            onAddToCart={handleAddToCart}
+          />
         </div>
       </div>
     </div>
