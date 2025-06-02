@@ -49,8 +49,10 @@ export const useFetch = () => {
         throw { status: response.status, ...errorData };
       }
       return response.json();
-    } catch (error) {
-      toast.error(error.message || "Une erreur est survenue");
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Une erreur est survenue";
+      toast.error(errorMessage);
       throw error;
     }
   };
