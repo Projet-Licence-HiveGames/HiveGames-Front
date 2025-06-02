@@ -9,11 +9,14 @@ COPY vite.config.mts ./
 COPY index.html ./
 COPY src src
 COPY module-patch.d.ts ./
+COPY .env.docker ./.env
+
 RUN npm i @rollup/rollup-linux-x64-musl && \
     npm i && \
     npm run build
 
 FROM httpd:2.4-alpine
+
 COPY --from=builder /app/dist /usr/local/apache2/htdocs/
 
 # Copie du fichier .htaccess
