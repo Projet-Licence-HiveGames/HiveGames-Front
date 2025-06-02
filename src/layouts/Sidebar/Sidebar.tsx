@@ -8,7 +8,7 @@ import {
 } from "@mui/icons-material";
 import classNames from "classnames";
 
-import { LanguageSelector } from "../../components/ui/LanguageSelector/languageSelector.tsx";
+import { LanguageSelector } from "../../components/ui/LanguageSelector/LanguageSelector.tsx";
 import MenuItem from "../../components/ui/Menu/MenuItem";
 import { TLabel } from "../../components/ui/TranslationLabel/TLabel.tsx";
 import { TranslationContext } from "../../context/TranslationProvider.tsx";
