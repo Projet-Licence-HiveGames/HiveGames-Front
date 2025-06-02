@@ -31,7 +31,7 @@ export const Catalog: React.FC = () => {
   const fetchGames = useCallback(async () => {
     setIsLoading(true);
     await fetchAPI
-      .post<Game[]>("/games", filters)
+      .post<Game[]>("/games/filter", filters)
       .then((games) =>
         setGameList(
           games.map((game) => {
@@ -89,7 +89,7 @@ export const Catalog: React.FC = () => {
 
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
-      fetchGames();
+      await fetchGames();
     }, 500);
 
     return () => clearTimeout(timeoutId);

@@ -11,7 +11,7 @@ export interface Game {
   promotion?: Promotion | null;
   current_version?: string;
   categories?: GameCategory[];
-  languages?: GameLanguage[];
+  languages?: GameLanguageDetails[];
   is_wished?: boolean;
   is_owned?: boolean;
   be_notified?: boolean;
@@ -22,7 +22,7 @@ export interface Game {
   reviews?: GameReview[];
 }
 
-export interface Language {
+export interface GameLanguage {
   id: number;
   label: string;
   code: string;
@@ -32,7 +32,7 @@ export interface GameDlc extends Omit<Game, "dlcs"> {
   base_game_id?: number;
 }
 
-export interface GameLanguage extends Language {
+export interface GameLanguageDetails extends GameLanguage {
   has_subtitles: boolean;
   has_voice_over: boolean;
   has_interface: boolean;
@@ -54,6 +54,12 @@ export interface GameSession {
 export interface GameCategory {
   id: number;
   label: string;
+}
+
+export interface GameInfoResponse {
+  categories: GameCategory[];
+  languages: GameLanguage[];
+  features: GameFeature[];
 }
 
 export interface GameStudio {

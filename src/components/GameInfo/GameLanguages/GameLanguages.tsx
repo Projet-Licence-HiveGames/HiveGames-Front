@@ -2,13 +2,13 @@ import React from "react";
 import { CheckRounded, CloseRounded } from "@mui/icons-material";
 
 import { TranslationLanguageLabelType } from "../../../constants/LanguagesDict.tsx";
-import { GameLanguage } from "../../../types/Game";
+import { GameLanguageDetails } from "../../../types/Game";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameLanguages.css";
 
 interface GameLanguagesProps {
-  languages: GameLanguage[];
+  languages: GameLanguageDetails[];
 }
 
 export const GameLanguages: React.FC<GameLanguagesProps> = ({ languages }) => {

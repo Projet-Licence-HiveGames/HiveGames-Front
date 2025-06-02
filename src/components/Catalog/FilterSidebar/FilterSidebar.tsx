@@ -9,7 +9,12 @@ import { TranslationFeatureLabelType } from "../../../constants/FeaturesDict";
 import { TranslationLanguageLabelType } from "../../../constants/LanguagesDict";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
 import { useWindowSize } from "../../../hooks/useWindowSize";
-import { GameCategory, GameFeature, Language } from "../../../types/Game";
+import {
+  GameCategory,
+  GameFeature,
+  GameInfoResponse,
+  GameLanguage,
+} from "../../../types/Game";
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
 import Dropdown, { DropdownOption } from "./Dropdown/Dropdown";
@@ -50,7 +55,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
 
   const [categories, setCategories] = useState<GameCategory[]>([]);
   const [features, setFeatures] = useState<GameFeature[]>([]);
-  const [languages, setLanguages] = useState<Language[]>([]);
+  const [languages, setLanguages] = useState<GameLanguage[]>([]);
 
   const defaultFilters: GameFilter = {
     search: "",
@@ -66,9 +71,12 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
 
   const fetchFilters = async () => {
     try {
-      await fetchAPI.get<GameCategory[]>("/categories").then(setCategories);
-      await fetchAPI.get<GameFeature[]>("/features").then(setFeatures);
-      await fetchAPI.get<Language[]>("/languages").then(setLanguages);
+      const response = await fetchAPI.get<GameInfoResponse>("/game-info/all");
+      const { categories, languages, features } = response;
+
+      setCategories(categories);
+      setLanguages(languages);
+      setFeatures(features);
     } catch (error) {
       console.error("Erreur lors de la récupération des filtres", error);
     }
