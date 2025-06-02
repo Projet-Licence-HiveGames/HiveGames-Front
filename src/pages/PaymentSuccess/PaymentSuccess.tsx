@@ -14,6 +14,11 @@ export const PaymentSuccess: React.FC = ({}) => {
   const [error, setError] = React.useState<any>(null);
 
   const fetchData = async () => {
+    if (!sessionId) {
+      setError({ error: "Session ID is missing" });
+      return;
+    }
+
     await fetchOrderDetails(sessionId)
       .then(setPaymentData)
       .catch((_error) => {
