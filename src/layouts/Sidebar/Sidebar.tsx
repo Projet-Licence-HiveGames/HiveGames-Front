@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
+import { MaterialSymbol } from "react-material-symbols";
 import {
   CalendarMonth,
   HomeRounded,
@@ -7,6 +8,7 @@ import {
 } from "@mui/icons-material";
 import classNames from "classnames";
 
+import { LanguageSelector } from "../../components/ui/LanguageSelector/languageSelector.tsx";
 import MenuItem from "../../components/ui/Menu/MenuItem";
 import { TLabel } from "../../components/ui/TranslationLabel/TLabel.tsx";
 import { TranslationContext } from "../../context/TranslationProvider.tsx";
@@ -14,6 +16,7 @@ import { useWindowSize } from "../../hooks/useWindowSize.ts";
 
 import logo from "@assets/images/logo.svg";
 import logoName from "@assets/images/logo-name.svg";
+import modcraftHost from "@assets/images/powered_by_modcraft.svg";
 
 import "./Sidebar.css";
 
@@ -79,15 +82,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
           </MenuItem>
         </div>
         <div className="sidebar-content-bottom">
-          <select
-            onChange={(e) => {
-              setSelectedLanguage(e.target.value);
-            }}
-            value={selectedLanguage}
-          >
-            <option value="fr">Français</option>
-            <option value="en">English</option>
-          </select>
+          <LanguageSelector />
+          <img src={modcraftHost} alt="PoweredByModcraft" />
         </div>
       </div>
     </div>

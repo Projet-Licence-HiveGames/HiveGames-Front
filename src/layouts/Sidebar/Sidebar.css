@@ -2,7 +2,6 @@
   background: var(--bg-color-normal);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   position: relative;
   transition: width 500ms;
   width: 240px;
@@ -66,12 +65,24 @@
   justify-content: space-between;
 }
 
+.sidebar-content-top {
+  overflow: hidden;
+}
+
 .sidebar-content-bottom {
   align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin: 1rem auto;
+  gap: 1rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.sidebar-content-bottom img {
+  max-width: 8rem;
+  padding: 0 .5rem;
   width: 100%;
 }
 

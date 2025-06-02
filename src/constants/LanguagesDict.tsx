@@ -105,3 +105,8 @@ export const translationLanguageDictionnaries: {
     greek: "Grec",
   },
 };
+
+export const AVAILABLE_TRANSLATION_LANGUAGES = [
+  { value: "en", label: "English(US)" },
+  { value: "fr", label: "Français" },
+];
