@@ -25,7 +25,7 @@ jobs:
             exit 0
           fi
 
-          prs=$(gh pr list --state open --json number,title,labels \
+          prs=$(gh pr list --repo "${{ github.repository }}" --state open --json number,title,labels \
             --jq "[.[] | select((.labels[].name == \"MEP\") and (.number != $CURRENT_PR))]")
 
           if [ "$prs" != "[]" ]; then
