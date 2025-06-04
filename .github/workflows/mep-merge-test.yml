@@ -1,27 +1,33 @@
-name: MEP Merge Test
+name: Contrôle de fusion basé sur le label MEP
 
 on:
   pull_request:
     types: [opened, synchronize, labeled, unlabeled]
 
 jobs:
-  check-label:
+  check-mep-label:
     runs-on: ubuntu-latest
-    outputs:
-      has_mep: ${{ steps.check.outputs.has_mep }}
     steps:
-      - name: Check for MEP label
-        id: check
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const labels = context.payload.pull_request.labels.map(l => l.name)
-            core.setOutput('has_mep', labels.includes('MEP') ? 'true' : 'false')
+      - name: Vérifier les conditions de fusion
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Vérifier si la PR actuelle a le label 'MEP'
+          has_mep=$(gh pr view "$CURRENT_PR" --repo "$REPO" --json labels --jq '.labels[].name' | grep -c '^MEP$')
 
-  ton_job_principal:
-    runs-on: ubuntu-latest
-    needs: check-label
-    if: needs.check-label.outputs.has_mep == 'true'
-    steps:
-      - name: Faire quelque chose
-        run: echo "Le label MEP est présent, on continue !"
+          if [ "$has_mep" -eq 1 ]; then
+            echo "La PR actuelle a le label 'MEP'. Fusion autorisée."
+            exit 0
+          fi
+
+          # Rechercher d'autres PRs ouvertes avec le label 'MEP'
+          other_mep_prs=$(gh pr list --repo "$REPO" --state open --label "MEP" --json number --jq "[.[] | select(.number != $CURRENT_PR)]")
+
+          if [ "$other_mep_prs" != "[]" ]; then
+            echo "Une autre PR avec le label 'MEP' est ouverte. Fusion bloquée pour les PRs sans le label 'MEP'."
+            exit 1
+          else
+            echo "Aucune autre PR avec le label 'MEP' n'est ouverte. Fusion autorisée."
+          fi
