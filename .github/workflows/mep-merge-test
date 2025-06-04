@@ -1,0 +1,28 @@
+name: Block merges if a PR with label 'MEP' is open
+
+on:
+  pull_request:
+    types: [opened, reopened, closed, labeled, unlabeled]
+
+jobs:
+  check-mep-label:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+      contents: read
+
+    steps:
+      - name: Check for open PRs with label 'MEP' (excluding current PR)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_PR: ${{ github.event.pull_request.number }}
+        run: |
+          prs=$(gh pr list --state open --json number,title,labels \
+            --jq "[.[] | select((.labels[].name == \"MEP\") and (.number != $CURRENT_PR))]")
+
+          if [ "$prs" != "[]" ]; then
+            echo "Another PR with label 'MEP' is open. Blocking this merge."
+            exit 1
+          else
+            echo "No other 'MEP'-labeled PRs open. Merge allowed."
+          fi
