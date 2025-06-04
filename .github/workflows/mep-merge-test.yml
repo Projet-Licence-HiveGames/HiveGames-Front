@@ -1,16 +1,16 @@
-name: Contrôle de fusion basé sur le label MEP
+name: Merge control
 
 on:
   pull_request:
     types: [opened, reopened, closed, labeled, unlabeled, synchronize]
 
 jobs:
-  check-mep-label:
+  check-mep:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
     steps:
-      - name: Vérifier les conditions de fusion
+      - name: Check merge conditions
         uses: actions/github-script@v6
         with:
           script: |
@@ -18,7 +18,7 @@ jobs:
             const currentPRLabels = context.payload.pull_request.labels.map(label => label.name);
 
             if (currentPRLabels.includes('MEP')) {
-              console.log("La PR actuelle a le label 'MEP'. Fusion autorisée.");
+              console.log("No current PR for MEP");
               return;
             }
 
@@ -34,7 +34,7 @@ jobs:
             );
 
             if (otherMEPPRs.length > 0) {
-              core.setFailed("Une autre PR avec le label 'MEP' est ouverte. Fusion bloquée pour les PRs sans le label 'MEP'.");
+              core.setFailed("Existing current PR for MEP");
             } else {
-              console.log("Aucune autre PR avec le label 'MEP' n'est ouverte. Fusion autorisée.");
+              console.log("Merge allowed.");
             }
