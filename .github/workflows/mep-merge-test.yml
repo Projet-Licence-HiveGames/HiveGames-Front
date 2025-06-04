@@ -12,16 +12,25 @@ jobs:
       contents: read
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Check for open PRs with label 'MEP' (excluding current PR)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CURRENT_PR: ${{ github.event.pull_request.number }}
         run: |
+          if [[ "${{ github.event.action }}" == "closed" && "${{ github.event.pull_request.merged }}" != "true" ]]; then
+            echo "PR closed without merge. Skipping check."
+            exit 0
+          fi
+
           prs=$(gh pr list --state open --json number,title,labels \
             --jq "[.[] | select((.labels[].name == \"MEP\") and (.number != $CURRENT_PR))]")
 
           if [ "$prs" != "[]" ]; then
             echo "Another PR with label 'MEP' is open. Blocking this merge."
+            echo "$prs"
             exit 1
           else
             echo "No other 'MEP'-labeled PRs open. Merge allowed."
