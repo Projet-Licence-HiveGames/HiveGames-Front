@@ -7,27 +7,34 @@ on:
 jobs:
   check-mep-label:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     steps:
       - name: Vérifier les conditions de fusion
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CURRENT_PR: ${{ github.event.pull_request.number }}
-          REPO: ${{ github.repository }}
-        run: |
-          # Vérifier si la PR actuelle a le label 'MEP'
-          has_mep=$(gh pr view "$CURRENT_PR" --repo "$REPO" --json labels --jq '.labels[].name' | grep -c '^MEP$')
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const currentPRNumber = context.payload.pull_request.number;
+            const currentPRLabels = context.payload.pull_request.labels.map(label => label.name);
 
-          if [ "$has_mep" -eq 1 ]; then
-            echo "La PR actuelle a le label 'MEP'. Fusion autorisée."
-            exit 0
-          fi
+            if (currentPRLabels.includes('MEP')) {
+              console.log("La PR actuelle a le label 'MEP'. Fusion autorisée.");
+              return;
+            }
 
-          # Rechercher d'autres PRs ouvertes avec le label 'MEP'
-          other_mep_prs=$(gh pr list --repo "$REPO" --state open --label "MEP" --json number --jq "[.[] | select(.number != $CURRENT_PR)]")
+            const { data: pullRequests } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            });
 
-          if [ "$other_mep_prs" != "[]" ]; then
-            echo "Une autre PR avec le label 'MEP' est ouverte. Fusion bloquée pour les PRs sans le label 'MEP'."
-            exit 1
-          else
-            echo "Aucune autre PR avec le label 'MEP' n'est ouverte. Fusion autorisée."
-          fi
+            const otherMEPPRs = pullRequests.filter(pr =>
+              pr.number !== currentPRNumber &&
+              pr.labels.some(label => label.name === 'MEP')
+            );
+
+            if (otherMEPPRs.length > 0) {
+              core.setFailed("Une autre PR avec le label 'MEP' est ouverte. Fusion bloquée pour les PRs sans le label 'MEP'.");
+            } else {
+              console.log("Aucune autre PR avec le label 'MEP' n'est ouverte. Fusion autorisée.");
+            }
