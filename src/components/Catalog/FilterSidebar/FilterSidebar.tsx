@@ -203,6 +203,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
                   ({
                     label: (
                       <TLabel
+                        translationType="category"
                         label={category.label as TranslationCategoryLabelType}
                       />
                     ),
