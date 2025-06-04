@@ -1,8 +1,8 @@
 name: Contrôle de fusion basé sur le label MEP
 
 on:
-  pull_request:
-    types: [opened, synchronize, labeled, unlabeled]
+  repository_dispatch:
+      types: [trigger-pr-merge-restriction-for-mep]
 
 jobs:
   check-mep-label:
