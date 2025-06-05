@@ -55,9 +55,9 @@ const App: React.FC = () => {
           <Route path=':id' element={<Home/>}/>
         </Route>
 
-        <Route path='cart' element={<ProtectedRoute><CartLayout/></ProtectedRoute>}>
+        <Route path='cart' element={<CartLayout/>}>
           <Route index element={<Cart />} />
-          <Route path="checkout" element={<Checkout />} />
+          <Route path="checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
           <Route path="order" element={<PaymentSuccess />} />
           <Route path="payment-failed" element={<PaymentFailed />} />
         </Route>

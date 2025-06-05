@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
 
 import { BasketCart } from "../../assets/icones/BasketCart.tsx";
@@ -18,6 +18,7 @@ export const GroupMenu: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   const dropdownRef = useRef<HTMLDivElement>(null); // Référence pour le Menu
   const { isMobile } = useWindowSize();
+  const location = useLocation();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -78,7 +79,11 @@ export const GroupMenu: React.FC = () => {
           </>
         ) : (
           <div className="group-menu-connexion">
-            <NavLink className={"group-menu-connexion-text"} to={"login"}>
+            <NavLink
+              className={"group-menu-connexion-text"}
+              to={"login"}
+              state={{ from: location }}
+            >
               <TLabel baliseType={"h4"} label={"login"} />
             </NavLink>
           </div>

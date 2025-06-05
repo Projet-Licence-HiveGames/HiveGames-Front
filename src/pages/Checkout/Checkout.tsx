@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,
@@ -23,6 +24,7 @@ export const Checkout: React.FC = () => {
   const fetchApi = useFetch();
   const { cartItems } = useCart();
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const fetchClientSecret = useCallback(async () => {
     try {
@@ -40,12 +42,19 @@ export const Checkout: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (cartItems.length === 0) {
+      navigate("/cart");
+    }
+  }, [cartItems, navigate]);
+
+  useEffect(() => {
     const fetchSecret = async () => {
       const secret = await fetchClientSecret();
       if (secret) {
         setClientSecret(secret);
       }
     };
+
     fetchSecret();
   }, [fetchClientSecret]);
 

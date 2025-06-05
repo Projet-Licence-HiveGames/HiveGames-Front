@@ -83,25 +83,30 @@ export const Cart: React.FC = () => {
             </div>
           </div>
         </section>
-        <aside className="cart-container__panel right">
-          {games.map((game) =>
-            game.dlcs && Array.isArray(game.dlcs)
-              ? game.dlcs.map((dlc) => (
-                  <Suspense fallback={<p>Chargement...</p>} key={dlc.id}>
-                    <CartArticleCard
-                      key={dlc.id}
-                      title={dlc.name}
-                      price={dlc.price}
-                      game={dlc}
-                      imageUrl={dlc.images}
-                      isDlc={true}
-                      onRemove={() => handleRemoveFromCart(dlc.id)}
-                    />
-                  </Suspense>
-                ))
-              : null,
-          )}
-        </aside>
+        {games.some(
+          (game) =>
+            game.dlcs && Array.isArray(game.dlcs) && game.dlcs.length > 0,
+        ) && (
+          <aside className="cart-container__panel right">
+            {games.map((game) =>
+              game.dlcs && Array.isArray(game.dlcs)
+                ? game.dlcs.map((dlc) => (
+                    <Suspense fallback={<p>Chargement...</p>} key={dlc.id}>
+                      <CartArticleCard
+                        key={dlc.id}
+                        title={dlc.name}
+                        price={dlc.price}
+                        game={dlc}
+                        imageUrl={dlc.images}
+                        isDlc={true}
+                        onRemove={() => handleRemoveFromCart(dlc.id)}
+                      />
+                    </Suspense>
+                  ))
+                : null,
+            )}
+          </aside>
+        )}
       </div>
     </div>
   );

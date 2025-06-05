@@ -31,7 +31,6 @@
     &.left {
         flex: 1;
         height: fit-content;
-        max-width: 70%;
     }
     
     .cart-container__total {
