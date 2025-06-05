@@ -18,7 +18,6 @@ const CartButton: React.FC<CartButtonProps> = ({ onClick, isOwned }) => {
         e.stopPropagation();
         if (isOwned) return;
         onClick?.(e);
-        toast.success("Added to cart");
       }}
     >
       <TLabel

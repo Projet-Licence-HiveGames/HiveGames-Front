@@ -6,16 +6,17 @@ import { useCartGameApi } from "../../api/services/cartApi";
 import "./PaymentSuccess.css";
 
 export const PaymentSuccess: React.FC = ({}) => {
+  const [paymentData, setPaymentData] = React.useState<any>({});
+  const [error, setError] = React.useState<any>(null);
   const { fetchOrderDetails } = useCartGameApi();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const sessionId = queryParams.get("session_id");
-  const [paymentData, setPaymentData] = React.useState<any>({});
-  const [error, setError] = React.useState<any>(null);
 
   const fetchData = async () => {
     if (!sessionId) {
       setError({ error: "Session ID is missing" });
+      navigate("/home");
       return;
     }
 
@@ -34,7 +35,7 @@ export const PaymentSuccess: React.FC = ({}) => {
     if (
       paymentData &&
       paymentData.status &&
-      paymentData.status !== "succeeded"
+      paymentData.status !== "complete"
     ) {
       navigate("/payment-failed");
     }
