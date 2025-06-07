@@ -76,17 +76,17 @@ export const GameInfo: React.FC = () => {
             />
           ) : (
             <img
-              src={getGameImage(gameData.images)?.file_url}
               alt={gameData?.name}
               className="game-details__thumbnail"
+              src={getGameImage(gameData.images)?.file_url}
             />
           )}
           <GameDetails
-            title={gameData?.name || ""}
-            studio={gameData?.studios || []}
-            release_date={gameData?.release_date || ""}
             categories={gameData?.categories || []}
             description={gameData?.short_description || ""}
+            release_date={gameData?.release_date || ""}
+            studio={gameData?.studios || []}
+            title={gameData?.name || ""}
           />
         </div>
       </div>
@@ -94,20 +94,21 @@ export const GameInfo: React.FC = () => {
         <div className="game-details__primary">
           <div className="game-details__purchase">
             <GameBuyCard
+              game={isGameDlc(gameData) ? undefined : gameData}
+              isOwned={gameData?.is_owned || false}
               name={gameData?.name || ""}
               price={gameData?.price || 0}
               promotion={gameData?.promotion}
-              isOwned={gameData?.is_owned || false}
             />
             {!isGameDlc(gameData) &&
               gameData.dlcs?.map((dlc) => (
                 <GameBuyCard
+                  gameBaseName={gameData.name}
+                  isDlc={true}
                   key={dlc.id}
                   name={dlc.name}
                   price={dlc.price}
                   promotion={dlc.promotion}
-                  isDlc={true}
-                  gameBaseName={gameData.name}
                 />
               ))}
           </div>

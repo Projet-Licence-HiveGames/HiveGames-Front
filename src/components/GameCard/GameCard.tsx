@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { GameBaseType } from "../../types/Game";
 import { useCart } from "../../context/CartContext";
@@ -30,6 +31,8 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
     e.stopPropagation();
     if (!isInCart) {
       addToCart(game.id);
+    } else {
+      toast.error("Ce jeu est déjà dans votre panier !");
     }
   };
 
@@ -37,9 +40,9 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
     <div className={"game-card"} onClick={() => navigate(`/game/${game.id}`)}>
       <div className={"game-card-image"}>
         <ImageWithLoader
-          src={getGameImage(game.images).file_url || defaultGameThumbnailImage}
           alt={game.name}
           loaderSrc={defaultGameThumbnailImage}
+          src={getGameImage(game.images).file_url || defaultGameThumbnailImage}
         />
         {game.votes &&
           !(game.votes?.likes == 0 && game.votes?.dislikes == 0) && (
@@ -65,10 +68,10 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
         )}
         <div className={"game-card-content-price"}>
           <PriceBox
-            price={game.price}
-            promotion={game.promotion}
             isOwned={game.is_owned}
             onAddToCart={handleAddToCart}
+            price={game.price}
+            promotion={game.promotion}
           />
         </div>
       </div>
