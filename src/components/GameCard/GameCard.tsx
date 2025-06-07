@@ -27,8 +27,6 @@ const GameCard: React.FC<GameCardProps> = ({ className, game }) => {
   return (
     <div
       className={classNames("game-card", className)}
-      role="button"
-      tabIndex={0}
       onClick={(e) => {
         if (e.button !== 0) return;
         navigate(`/game/${game.id}`);
@@ -41,10 +39,12 @@ const GameCard: React.FC<GameCardProps> = ({ className, game }) => {
           return;
         }
       }}
+      role="button"
+      tabIndex={0}
     >
       <Link
-        to={`/game/${game.id}`}
         style={{ position: "absolute", inset: 0, zIndex: 1 }}
+        to={`/game/${game.id}`}
       />
       <div className={"game-card-image"}>
         <ImageWithLoader
@@ -75,7 +75,7 @@ const GameCard: React.FC<GameCardProps> = ({ className, game }) => {
           </div>
         )}
         <div className={"game-card-content-price"}>
-          <PriceBox isOwned={game.is_owned} game={game} />
+          <PriceBox game={game} isOwned={game.is_owned} />
         </div>
       </div>
     </div>
