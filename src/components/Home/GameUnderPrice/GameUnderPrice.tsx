@@ -3,6 +3,7 @@ import React, { useCallback, useEffect } from "react";
 import { useFetch } from "../../../api/privateApi.ts";
 import { Game } from "../../../types/Game.ts";
 import GameCard from "../../GameCard/GameCard.tsx";
+import { Loader } from "../../Loader/Loader.tsx";
 
 import "./GameUnderPrice.css";
 
@@ -12,33 +13,31 @@ export const GameUnderPrice: React.FC = () => {
   const fetchAPI = useFetch();
 
   const fetchData = useCallback(async () => {
-    try {
-      const response: Game[] = await fetchAPI.post("/games", {
-        prices: { min: 0, max: 10 },
-      });
-      setGameData(response);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }, []);
+    fetchAPI
+      .post<Game[]>("/games/filter", { prices: { min: 0, max: 10 } })
+      .then(setGameData)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [fetchAPI]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return (
-    <div className={"game-under-price-container"}>
-      <div className={"game-under-price-header"}>
-        <div className={"game-under-price-title"}>
-          <h2>Jeux à moins de 10 €</h2>
+    <div className="game-under-price-container">
+      <header className="game-under-price-header">
+        <h2 className="game-under-price-title">Jeux à moins de 10 €</h2>
+      </header>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="game-under-price-body">
+          {gameData.map((game) => (
+            <GameCard key={game.id} game={game} isAuthenticated={false} />
+          ))}
         </div>
-      </div>
-      <div className={"game-under-price-body"}>
-        {gameData.map((game, index) => (
-          <GameCard key={game.id} game={game} isAuthenticated={false} />
-        ))}
-      </div>
+      )}
     </div>
   );
 };

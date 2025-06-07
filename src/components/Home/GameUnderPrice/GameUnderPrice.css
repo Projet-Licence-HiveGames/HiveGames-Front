@@ -6,7 +6,11 @@
 }
 
 .game-under-price-body {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  
+  @media (max-width: 680px) {
+    grid-template-columns: 1fr;
+  }
 }
