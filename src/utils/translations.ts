@@ -39,6 +39,9 @@ const labelList = [
   "dlc.downloadable_content",
   "dlc.requirements.base_game",
   "owned",
+  "reviews",
+  "review.editor.subtitle",
+  "review.editor.commentary.placeholder",
   "home.section.under_price.title",
 ] as const;
 
@@ -92,6 +95,9 @@ export const translationDictionnaries: {
     "dlc.requirements.base_game":
       "This additional content requires the base game %game_name% to run.",
     owned: "Owned",
+    reviews: "Reviews",
+    "review.editor.subtitle": "Share your review on %game_name%",
+    "review.editor.commentary.placeholder": "Write your commentary here...",
     "home.section.under_price.title": "This game is under the price of %price%",
   },
 
@@ -138,6 +144,9 @@ export const translationDictionnaries: {
     "dlc.requirements.base_game":
       "Ce contenu additionnel nécessite le jeu de base %game_name% pour fonctionner.",
     owned: "Possédé",
+    reviews: "Avis",
+    "review.editor.subtitle": "Partagez votre avis sur %game_name%",
+    "review.editor.commentary.placeholder": "Écrivez votre commentaire ici...",
     "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };

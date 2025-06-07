@@ -1,0 +1,53 @@
+.review-editor-container {
+    background-color: var(--bg-color-darker);
+    border-radius: .5rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.review-editor-header {
+    align-items: center;
+    display: flex;
+}
+
+.review-editor-header_game-name {
+    font-weight: bold;
+}
+
+.review-editor-content {
+    display: flex;
+    gap: 1rem;
+}
+
+.review-editor-content .review-editor-commentary {
+    flex: 1;
+    position: relative;
+}
+
+.review-editor-content .review-editor-commentary .editor-textarea {
+    background-color: var(--bg-color-dark);
+    border: 1px solid var(--border-color);
+    border-radius: .5rem;
+    color: white;
+    outline: none;
+    padding: 1rem;
+    width: 100%;
+
+    /* stylelint-disable-next-line */
+    --Textarea-focusedHighlight: var(--bg-color-light); 
+}
+
+.editor-textarea-length {
+    bottom: 0;
+    color: #676a6d;
+    font-size: .75rem;
+    position: absolute;
+    right: .25rem;
+
+    &.editor-textarea-length-max {
+        color: var(--bg-color-red);
+    }
+}

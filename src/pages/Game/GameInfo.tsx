@@ -110,7 +110,10 @@ export const GameInfo: React.FC = () => {
           </div>
         </div>
       </div>
-      <GameReviewSection reviews={gameData?.reviews || []} />
+      <GameReviewSection
+        gameName={gameData.name}
+        reviews={gameData?.reviews || []}
+      />
     </div>
   );
 };

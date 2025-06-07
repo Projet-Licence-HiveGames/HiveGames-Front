@@ -91,13 +91,16 @@ export interface Promotion {
 
 type PartialWithRequired<T, K extends keyof T> = Partial<T> & Pick<T, K>;
 
-export interface GameReview {
+export interface GameReview extends ReviewRatings {
   id: number;
   user: PartialWithRequired<User, "id" | "pseudo">;
   game_id: number;
   created_at: Date;
   updated_at: Date;
   commentary: string | null;
+}
+
+export interface ReviewRatings {
   gameplay_rate: number | null;
   graphics_rate: number | null;
   sound_design_rate: number | null;
