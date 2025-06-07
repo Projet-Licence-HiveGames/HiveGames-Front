@@ -71,7 +71,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
 
   const fetchFilters = async () => {
     try {
-      const response = await fetchAPI.get<GameInfoResponse>("/games/filter");
+      const response = await fetchAPI.get<GameInfoResponse>("/game-info/all");
       const { categories, languages, features } = response;
 
       setCategories(categories);
