@@ -19,11 +19,13 @@
     justify-content: center;
   }
 
-  & li {
+  & li, .top-categories__item {
     align-items: center;
+    color: white;
     display: flex;
     gap: 5px;
     list-style: none;
+    text-decoration: none;
   }
 
   & .top-categories__header {

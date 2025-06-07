@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   featureIcons,
@@ -21,7 +22,11 @@ export const GameFeatures: React.FC<GameFeaturesProps> = ({ features }) => {
       </div>
       <div className="game-features__list">
         {features?.map((feature, index) => (
-          <div className="game-features__list-item" key={index}>
+          <Link
+            to={`/catalog?features=${feature.id}`}
+            className="game-features__list-item"
+            key={index}
+          >
             <div className="game-features__list-item__icon">
               {featureIcons[feature.label as TranslationFeatureLabelType]}
             </div>
@@ -32,7 +37,7 @@ export const GameFeatures: React.FC<GameFeaturesProps> = ({ features }) => {
                 label={feature.label as TranslationFeatureLabelType}
               />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
