@@ -92,6 +92,11 @@
     font-weight: 600;
 }
 
+.game-languages-item-name {
+    color: white;
+    text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
     .game-languages__list-item__title {
         font-size: .7rem;

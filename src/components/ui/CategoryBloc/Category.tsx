@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
 import { TranslationCategoryLabelType } from "../../../constants/CategoriesDict.tsx";
 import { GameCategory } from "../../../types/Game";
-import { TranslationLabelType } from "../../../utils/translations";
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
 import "./Category.css";
@@ -21,13 +21,17 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
         .slice(0, showAll ? categories.length : 3)
         .map((category, index) => {
           return (
-            <div key={index} className={"category-bloc-category"}>
+            <Link
+              to={`/catalog?categories=${category.id}`}
+              key={index}
+              className={"category-bloc-category"}
+            >
               <TLabel
                 label={category.label as TranslationCategoryLabelType}
                 translationType={"category"}
                 capitalizeFirstLetter
               />
-            </div>
+            </Link>
           );
         })}
       {!showAll && categories.length > 3 && (

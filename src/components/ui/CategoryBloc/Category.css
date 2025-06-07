@@ -30,6 +30,7 @@
     height: 32px;
     order: 0;
     padding: 8px 13px;
+    text-decoration: none;
     width: fit-content;
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { useFetch } from "../../../api/privateApi.ts";
 import {
@@ -10,6 +11,7 @@ import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 import "./TopCategories.css";
 
 type CategoryData = {
+  id: number;
   category_name: TranslationCategoryLabelType;
   total_orders: number;
 };
@@ -38,10 +40,18 @@ export const TopCategories: React.FC = () => {
       </div>
       <div className={"top-categories__body"}>
         <ul>
-          {categories.map(({ category_name }, index) => (
+          {categories.map((category, index) => (
             <li key={index}>
-              {categoryIcons[category_name]}
-              <TLabel label={category_name} translationType={"category"} />
+              <Link
+                to={`/catalog?categories=${category.id}`}
+                className={"top-categories__item"}
+              >
+                {categoryIcons[category.category_name]}
+                <TLabel
+                  label={category.category_name}
+                  translationType={"category"}
+                />
+              </Link>
             </li>
           ))}
         </ul>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { CheckRounded, CloseRounded } from "@mui/icons-material";
 
 import { TranslationLanguageLabelType } from "../../../constants/LanguagesDict.tsx";
@@ -13,6 +14,10 @@ interface GameLanguagesProps {
 
 export const GameLanguages: React.FC<GameLanguagesProps> = ({ languages }) => {
   const [showAll, setShowAll] = React.useState(false);
+
+  const checkmarkCell = (checked: boolean = false) => {
+    return <td>{checked ? <CheckRounded /> : <CloseRounded />}</td>;
+  };
 
   return (
     <div className="game-languages-container">
@@ -40,32 +45,20 @@ export const GameLanguages: React.FC<GameLanguagesProps> = ({ languages }) => {
               ?.slice(0, showAll ? languages.length : 6)
               .map((language, index) => (
                 <tr key={index}>
-                  <TLabel
-                    baliseType={"td"}
-                    label={language.label as TranslationLanguageLabelType}
-                    translationType={"language"}
-                  />
                   <td>
-                    {language.has_interface ? (
-                      <CheckRounded />
-                    ) : (
-                      <CloseRounded />
-                    )}
+                    <Link
+                      to={`/catalog?languages=${language.id}`}
+                      className="game-languages-item-name"
+                    >
+                      <TLabel
+                        label={language.label as TranslationLanguageLabelType}
+                        translationType={"language"}
+                      />
+                    </Link>
                   </td>
-                  <td>
-                    {language.has_subtitles ? (
-                      <CheckRounded />
-                    ) : (
-                      <CloseRounded />
-                    )}
-                  </td>
-                  <td>
-                    {language.has_voice_over ? (
-                      <CheckRounded />
-                    ) : (
-                      <CloseRounded />
-                    )}
-                  </td>
+                  {checkmarkCell(language.has_interface)}
+                  {checkmarkCell(language.has_subtitles)}
+                  {checkmarkCell(language.has_voice_over)}
                 </tr>
               ))}
           </tbody>
