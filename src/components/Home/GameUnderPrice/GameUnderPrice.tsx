@@ -22,7 +22,7 @@ export const GameUnderPrice: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   return (
     <div className="game-under-price-container">
