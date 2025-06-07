@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Start Deployment
-        uses: modcraftmc/custom-docker-compose-ssh-deployment@2.5
+        uses: modcraftmc/custom-docker-compose-ssh-deployment@2.6
         with:
           ssh_host: 100.117.249.49
           ssh_user: autodeploy
