@@ -18,7 +18,7 @@ export const GameUnderPrice: React.FC = () => {
       .then(setGameData)
       .catch(console.error)
       .finally(() => setLoading(false));
-  }, [fetchAPI]);
+  }, []);
 
   useEffect(() => {
     fetchData();
