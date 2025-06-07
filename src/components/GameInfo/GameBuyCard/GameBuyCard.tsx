@@ -1,7 +1,9 @@
 import React from "react";
+import { toast } from "react-toastify";
 import classNames from "classnames";
 
-import { Promotion } from "../../../types/Game.ts";
+import { useCart } from "../../../context/CartContext.tsx";
+import { Game, Promotion } from "../../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
 import { PriceBox } from "../../GameCard/PriceBox/PriceBox.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
@@ -9,6 +11,7 @@ import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 import "./GameBuyCard.css";
 
 interface GameBuyCardProps {
+  game?: Game;
   name: string;
   price: number;
   promotion?: Promotion | null;
@@ -18,6 +21,7 @@ interface GameBuyCardProps {
 }
 
 export const GameBuyCard: React.FC<GameBuyCardProps> = ({
+  game,
   name,
   price,
   promotion = null,
@@ -25,16 +29,31 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
   isDlc = false,
   gameBaseName,
 }) => {
+  const { addToCart, cartItems } = useCart();
+  const isInCart =
+    isDlc && game ? cartItems.some((item) => item === game.id) : false;
+  const toastId = "cart-error";
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isInCart && isDlc && game) {
+      addToCart(game.id);
+    } else {
+      toast.dismiss(toastId);
+      toast.error("Ce jeu est déjà dans votre panier !", { toastId });
+    }
+  };
+
   return (
     <div className={classNames("game-buy-card-container", { dlc: isDlc })}>
       {isDlc && gameBaseName && (
         <span className="game-buy-card-container__banner-text">
           ⚠️
           <TLabel
-            label={"dlc.requirements.base_game"}
             baliseType="span"
-            translationType="app"
+            label={"dlc.requirements.base_game"}
             replaceValues={{ game_name: gameBaseName }}
+            translationType="app"
           />
         </span>
       )}
@@ -49,7 +68,12 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
         )}
       </div>
       <div className="game-buy-card-content__price">
-        <PriceBox price={price} promotion={promotion} isOwned={isOwned} />
+        <PriceBox
+          isOwned={isOwned}
+          onAddToCart={handleAddToCart}
+          price={price}
+          promotion={promotion}
+        />
       </div>
     </div>
   );

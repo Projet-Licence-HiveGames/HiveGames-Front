@@ -25,7 +25,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 v7_startTransition: true
               }}>
               <App/>
-              <ToastContainer/>
+              <ToastContainer
+                className={"toast-container"}
+                draggable={"mouse"}
+                limit={1}
+                newestOnTop={true}
+                stacked={true}
+                style={{marginTop: 'var(--header-height)', marginRight: '1rem'}}
+                theme={"dark"}
+              />
             </BrowserRouter>
           </CartProvider>
         </GameSessionProvider>
