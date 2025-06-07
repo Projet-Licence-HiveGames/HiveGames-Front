@@ -2,33 +2,47 @@ import { FC } from "react";
 import classNames from "classnames";
 
 import { GameReview } from "../../../types/Game";
+import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
 import GameReviewItem from "./GameReviewItem";
+import ReviewEditor from "./ReviewEditor";
 
 import "./GameReviewSection.css";
 
 interface GameReviewSectionProps {
   className?: string;
+  gameName: string;
   reviews: GameReview[] | null;
 }
 
 const GameReviewSection: FC<GameReviewSectionProps> = ({
   className,
+  gameName,
   reviews,
 }) => {
   return (
     <div className={classNames("game-review-section-container", className)}>
-      <div className="game-review-group-main">
-        {reviews
-          ?.filter((f) => !!f.commentary)
-          .map((review) => <GameReviewItem key={review.id} review={review} />)}
-      </div>
-      <div className="game-review-group-rate">
-        {reviews
-          ?.filter((f) => !f.commentary)
-          .map((review) => (
-            <GameReviewItem key={review.id} review={review} RatingOnly />
-          ))}
+      <TLabel
+        className="game-review-section-title"
+        label="reviews"
+        baliseType={"h2"}
+      />
+      <ReviewEditor gameName={gameName} />
+      <div className="game-review-group-content">
+        <div className="game-review-group-main">
+          {reviews
+            ?.filter((f) => !!f.commentary)
+            .map((review) => (
+              <GameReviewItem key={review.id} review={review} />
+            ))}
+        </div>
+        <div className="game-review-group-rate">
+          {reviews
+            ?.filter((f) => !f.commentary)
+            .map((review) => (
+              <GameReviewItem key={review.id} review={review} RatingOnly />
+            ))}
+        </div>
       </div>
     </div>
   );

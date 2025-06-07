@@ -1,9 +1,17 @@
 .game-review-section-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.game-review-group-content {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
-    padding: 2rem 0;
 }
 
 .game-review-group-main {

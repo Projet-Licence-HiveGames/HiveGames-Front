@@ -19,26 +19,23 @@ import {
   TranslationLabelType,
 } from "../../../utils/translations";
 
-interface TLabelProps {
-  label:
-    | TranslationLabelType
-    | TranslationFeatureLabelType
-    | TranslationLanguageLabelType
-    | TranslationCategoryLabelType;
-  baliseType?: React.ElementType;
-  translationType?: "app" | "category" | "feature" | "language";
-  className?: string;
-  noBalise?: boolean;
-  capitalizeFirstLetter?: boolean;
-  replaceValues?: Record<string, string | number | React.ReactNode>;
-}
-
 const dictionnariesMap = {
   app: translationDictionnaries,
   category: translationCategoryDictionnaries,
   feature: translationFeatureDictionnaries,
   language: translationLanguageDictionnaries,
 };
+
+function interpolateText(
+  text: string,
+  values: Record<string, string | number>,
+): string {
+  return Object.entries(values).reduce(
+    (acc, [key, value]) =>
+      acc.replace(new RegExp(`%${key}%`, "g"), String(value)),
+    text,
+  );
+}
 
 function interpolate(
   text: string,
@@ -56,6 +53,20 @@ function interpolate(
     );
   }
   return parts;
+}
+
+interface TLabelProps {
+  label:
+    | TranslationLabelType
+    | TranslationFeatureLabelType
+    | TranslationLanguageLabelType
+    | TranslationCategoryLabelType;
+  baliseType?: React.ElementType;
+  translationType?: "app" | "category" | "feature" | "language";
+  className?: string;
+  noBalise?: boolean;
+  capitalizeFirstLetter?: boolean;
+  replaceValues?: Record<string, string | number | React.ReactNode>;
 }
 
 export const TLabel: FC<TLabelProps> = ({
@@ -84,4 +95,28 @@ export const TLabel: FC<TLabelProps> = ({
   return React.createElement(baliseType, { className }, content);
 };
 
-export default TLabel;
+export const TText = ({
+  label,
+  translationType = "app",
+  capitalizeFirstLetter = false,
+  replaceValues = {},
+}: {
+  label: TranslationLabelType;
+  translationType?: "app" | "category" | "feature" | "language";
+  capitalizeFirstLetter?: boolean;
+  replaceValues?: Record<string, string | number>;
+}) => {
+  const { selectedLanguage } = useContext(TranslationContext);
+  const dict = dictionnariesMap[translationType] ?? translationDictionnaries;
+  const translated =
+    dict[selectedLanguage]?.[label as keyof (typeof dict)[string]] ?? label;
+
+  let content: string = translated;
+  if (replaceValues && Object.keys(replaceValues).length > 0) {
+    content = interpolateText(translated as string, replaceValues);
+  } else if (capitalizeFirstLetter) {
+    content = _capitalizeFirstLetter(translated as string);
+  }
+
+  return content;
+};
