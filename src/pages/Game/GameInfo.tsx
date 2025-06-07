@@ -97,11 +97,11 @@ export const GameInfo: FC = () => {
             {"dlcs" in gameData &&
               gameData.dlcs?.map((dlc) => (
                 <GameBuyCard
+                  game={dlc}
                   gameBaseName={gameData.name}
                   isDlc={true}
                   key={dlc.id}
                   name={dlc.name}
-                  game={dlc}
                 />
               ))}
           </div>

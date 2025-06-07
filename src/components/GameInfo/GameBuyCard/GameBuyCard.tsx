@@ -52,7 +52,6 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
             baliseType="span"
             label={"dlc.requirements.base_game"}
             replaceValues={{ game_name: gameBaseName }}
-            translationType="app"
           />
         </span>
       )}
@@ -67,7 +66,7 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
         )}
       </div>
       <div className="game-buy-card-content__price">
-        <PriceBox isOwned={isOwned} onAddToCart={handleAddToCart} game={game} />
+        <PriceBox game={game} isOwned={isOwned} onAddToCart={handleAddToCart} />
       </div>
     </div>
   );
