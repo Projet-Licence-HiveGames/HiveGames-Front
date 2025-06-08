@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
+    /* Breakpoints */
     --mobile-width-size: 768px;
     --tablet-width-size: 1024px;
     --laptop-width-size: 1440px;
@@ -35,6 +36,24 @@
     -webkit-font-smoothing: antialiased;
     font-synthesis: none;
     text-rendering: optimizelegibility;
+    
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-regular: 500;
+    --font-weight-medium: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+    
+    /* Font Sizes */
+    --font-size-12: .75rem; /* 12px */
+    --font-size-14: .875rem; /* 14px */
+    --font-size-16: 1rem; /* 16px */
+    --font-size-18: 1.125rem; /* 18px */
+    --font-size-20: 1.25rem; /* 20px */
+    --font-size-22: 1.375rem; /* 22px */
+    --font-size-24: 1.5rem; /* 24px */
 
     /* Gradient */
     --button-gradient-orange: linear-gradient(-125deg, #f2b705, #f28a07);

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { useGamesApi } from "../../api/services/gamesApi.ts";
 import { CartArticleCard } from "../../components/CartArticleCard/CartArticleCard.tsx";
+import { Loader } from "../../components/Loader/Loader.tsx";
 import { TLabel } from "../../components/ui/TranslationLabel/TLabel.tsx";
 import { useCart } from "../../context/CartContext";
 import { Game } from "../../types/Game";
@@ -37,8 +38,10 @@ export const Cart: React.FC = () => {
     setGames((prevGames) => prevGames.filter((game) => game.id !== id));
   };
 
-  if (loading) return <p>Chargement du panier...</p>;
-  if (games.length === 0) return <p>Votre panier est vide.</p>;
+  if (loading) return <Loader />;
+  if (error) return <p>Error: {error}</p>;
+  if (games.length === 0)
+    return <TLabel baliseType={"p"} label={"cart_empty"} />;
 
   return (
     <div className="cart-container">
@@ -48,22 +51,22 @@ export const Cart: React.FC = () => {
       <div className="cart-container__content">
         <section className="cart-container__panel left">
           {games.map((game) => (
-            <Suspense fallback={<p>Chargement...</p>} key={game.id}>
+            <Suspense fallback={<Loader />} key={game.id}>
               <CartArticleCard
-                key={game.id}
-                title={game.name}
-                price={game.price}
                 imageUrl={game.images}
+                key={game.id}
                 onRemove={() => handleRemoveFromCart(game.id)}
+                price={game.price}
+                title={game.name}
               />
             </Suspense>
           ))}
           <div className={"cart-container__total"}>
             <CartArticleCard
-              title={"Total du panier"}
-              price={games.reduce((total, game) => total + game.price, 0)}
               isTotal={true}
               onRemove={() => clearCart()}
+              price={games.reduce((total, game) => total + game.price, 0)}
+              title={"Total du panier"}
             />
             <div className={"cart-container__total-button"}>
               <Link to={"/catalog"}>
@@ -93,13 +96,13 @@ export const Cart: React.FC = () => {
                 ? game.dlcs.map((dlc) => (
                     <Suspense fallback={<p>Chargement...</p>} key={dlc.id}>
                       <CartArticleCard
-                        key={dlc.id}
-                        title={dlc.name}
-                        price={dlc.price}
                         game={dlc}
                         imageUrl={dlc.images}
                         isDlc={true}
+                        key={dlc.id}
                         onRemove={() => handleRemoveFromCart(dlc.id)}
+                        price={dlc.price}
+                        title={dlc.name}
                       />
                     </Suspense>
                   ))

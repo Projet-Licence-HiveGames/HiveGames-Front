@@ -14,11 +14,11 @@ const getWindowSize = (): WindowSize => {
   const width = window.innerWidth;
   return {
     isDesktop: width >= 1440,
-    isLaptop: width >= 1024 && width <= 1440,
-    isTablet: width >= 768 && width <= 1024,
-    isMobileL: width >= 540 && width <= 768,
-    isMobileM: width >= 368 && width <= 540,
-    isMobileS: width >= 0 && width <= 368,
+    isLaptop: width >= 1024 && width < 1440,
+    isTablet: width >= 768 && width < 1024,
+    isMobileL: width >= 541 && width < 768,
+    isMobileM: width >= 369 && width < 541,
+    isMobileS: width <= 369,
     isMobile: width <= 768,
   };
 };

@@ -7,6 +7,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 import { useFetch } from "../../api/privateApi.ts";
+import { Loader } from "../../components/Loader/Loader.tsx";
 import { useCart } from "../../context/CartContext.tsx";
 
 import "./Checkout.css";
@@ -29,9 +30,8 @@ export const Checkout: React.FC = () => {
   const fetchClientSecret = useCallback(async () => {
     try {
       const gameIds = cartItems.map(Number);
-
       const data: CheckoutData = await fetchApi.post("/stripe/payment", {
-        gameIds: gameIds,
+        gameIds,
       });
 
       return data.client_secret;
@@ -59,14 +59,14 @@ export const Checkout: React.FC = () => {
   }, [fetchClientSecret]);
 
   if (!clientSecret) {
-    return <div>Chargement du paiement...</div>;
+    return <Loader />;
   }
 
   return (
     <div id="checkout">
       <EmbeddedCheckoutProvider
-        stripe={stripePromise}
         options={{ clientSecret }}
+        stripe={stripePromise}
       >
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>

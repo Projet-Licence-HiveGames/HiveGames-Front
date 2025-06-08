@@ -62,6 +62,7 @@ const labelList = [
   "total_price",
   "continue_shopping",
   "purchase",
+  "cart_empty",
   "home.section.under_price.title",
 ] as const;
 
@@ -141,6 +142,7 @@ export const translationDictionnaries: {
     total_price: "Estimated total",
     continue_shopping: "Continue shopping",
     purchase: "Purchase",
+    cart_empty: "Your cart is empty.",
     "home.section.under_price.title": "This game is under the price of %price%",
   },
 
@@ -212,6 +214,7 @@ export const translationDictionnaries: {
     total_price: "Prix total estimé",
     continue_shopping: "Continuer vos achats",
     purchase: "Acheter",
+    cart_empty: "Votre panier est vide.",
     "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };
