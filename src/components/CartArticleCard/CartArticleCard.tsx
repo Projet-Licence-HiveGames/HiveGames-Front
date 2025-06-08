@@ -2,6 +2,7 @@ import React from "react";
 import { DeleteForeverRounded } from "@mui/icons-material";
 
 import { useCart } from "../../context/CartContext.tsx";
+import { useWindowSize } from "../../hooks/useWindowSize.ts";
 import { Game, GameImage } from "../../types/Game.ts";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter.ts";
 import { getGameImage } from "../../utils/gameUtils.ts";
@@ -42,6 +43,7 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
   const showWishButton = !isTotal && game !== undefined;
   const { addToCart, cartItems } = useCart();
   const isInCart = cartItems.some((item) => item === game?.id);
+  const { isMobileM } = useWindowSize();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -53,14 +55,14 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
   return (
     <div className={`cart-article-card ${isDlc ? "little" : ""}`}>
       <div className={`cart-article-card__content ${isDlc ? "little" : ""}`}>
-        {!isTotal && (
+        {((!isTotal && !isMobileM) || isDlc) && (
           <div className={`cart-article-card__image ${isDlc ? "little" : ""}`}>
             <img
+              alt={title}
               src={
                 getGameImage(imageUrl).file_url ??
                 "https://via.placeholder.com/150"
               }
-              alt={title}
             />
           </div>
         )}
@@ -68,27 +70,29 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
           <div className="cart-article-card__title">
             <h3>{capitalizeFirstLetter(title)}</h3>
             {showWishButton && (
-              <WishButton game={gameForWishlist} isAuthenticated={true} />
+              <div className={"cart-article-card__wish-button"}>
+                <WishButton game={gameForWishlist} isAuthenticated={true} />
+              </div>
             )}
           </div>
           <PriceBox
-            price={price}
             buyButton={isDlc ?? false}
             onAddToCart={handleAddToCart}
+            price={price}
           />
         </div>
       </div>
       {!isDlc && (
         <div className="cart-article-card__actions">
           <DeleteForeverRounded
+            aria-label={`Supprimer ${title}`}
             color="error"
             onClick={onRemove}
-            role="button"
-            tabIndex={0}
-            aria-label={`Supprimer ${title}`}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") onRemove();
             }}
+            role="button"
+            tabIndex={0}
           />
         </div>
       )}

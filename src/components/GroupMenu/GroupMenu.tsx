@@ -45,7 +45,7 @@ export const GroupMenu: React.FC = () => {
     <div className="group-menu-content">
       <div className="group-menu-icones">
         <NotificationBell numberNotif={5} />
-        <Link to={"/Cart"}>
+        <Link to={"/cart"}>
           <BasketCart />
         </Link>
       </div>
@@ -60,10 +60,10 @@ export const GroupMenu: React.FC = () => {
             >
               <img
                 alt={"Account logo"}
-                src={logoAccount}
                 onError={(e) => {
                   e.currentTarget.src = "https://placehold.co/40x40";
                 }}
+                src={logoAccount}
               />
               <div className="group-menu-connexion-text authenticated">
                 <h4>{user?.pseudo}</h4>
@@ -81,8 +81,8 @@ export const GroupMenu: React.FC = () => {
           <div className="group-menu-connexion">
             <NavLink
               className={"group-menu-connexion-text"}
-              to={"login"}
               state={{ from: location }}
+              to={"login"}
             >
               <TLabel baliseType={"h4"} label={"login"} />
             </NavLink>
@@ -97,10 +97,10 @@ export const GroupMenu: React.FC = () => {
           >
             <img
               alt={"Account logo"}
-              src={logoAccount}
               onError={(e) => {
                 e.currentTarget.src = "https://placehold.co/40x40";
               }}
+              src={logoAccount}
             />
             {isDropdownOpen && <DropdownMenu />}
           </div>

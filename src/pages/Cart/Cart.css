@@ -1,65 +1,74 @@
 .cart-container {
-    border-radius: var(--button-border-radius-lg);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    justify-content: flex-start;
-    padding: 20px;
+  border-radius: var(--button-border-radius-lg);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 20px;
 }
 
-.cart-container__header {
-    & h2 {
-        font-size: 2rem;
-        font-weight: 600;
-        margin: 0;
-    }
+.cart-container__header h2 {
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
 }
 
 .cart-container__content {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .cart-container__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+  &.left {
+    flex: 1;
+    width: 100%;
+  }
+  
+  &.right {
+    flex: 1;
+    max-width: 25%;
+    
+    @media (max-width: 768px) {
+      display: flex;
+      flex-flow: row;
+      gap: 1rem;
+      max-width: none;
+    }
+  }
+  
+  .cart-container__total {
+    background: var(--bg-color-dark);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    height: 200px;
+    justify-content: space-between;
     
-    &.left {
-        flex: 1;
-        height: fit-content;
+    .cart-container__total-button {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      padding: 20px;
     }
     
-    .cart-container__total {
-        background: var(--bg-color-dark);
-        display: flex;
-        flex-direction: column;
-        height: 200px;
-        justify-content: space-between;
-        
-        & .cart-container__total-button {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
-        
-        & .cart-container__shopping-button {
-            background: var(--bg-color-lighter);
-            border: none;
-            padding: 10px;
-            
-            &:hover {
-                background: var(--bg-color-light);
-                cursor: pointer;
-            }
-        }
+    .cart-container__shopping-button {
+      background: var(--bg-color-lighter);
+      border: none;
+      padding: 10px;
+      
+      &:hover {
+        background: var(--bg-color-light);
+        cursor: pointer;
+      }
     }
-    
-    &.right {
-        flex: 1;
-        max-width: 25%;
-    }
+  }
 }

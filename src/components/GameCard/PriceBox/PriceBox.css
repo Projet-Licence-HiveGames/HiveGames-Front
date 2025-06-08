@@ -44,6 +44,12 @@
     text-decoration: line-through rgb(112 112 112);
 }
 
+.current-price {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-light);
+    white-space: nowrap;
+}
+
 .on-promotion .current-price {
     color: var(--bg-color-green);
 }
