@@ -4,6 +4,14 @@ import { useFetch } from "../privateApi";
 export const useCartGameApi = () => {
   const api = useFetch();
 
+  const fetchCartGames = async (): Promise<Game[]> => {
+    const response = await api.get<Game[]>("/cart/list");
+    if (!response) {
+      throw new Error("Failed to fetch cart games.");
+    }
+    return response;
+  };
+
   const addGamesToCart = async (gameIds: number): Promise<void> => {
     if (!gameIds) {
       throw new Error("At least one game ID is required to add to the cart.");
@@ -31,6 +39,7 @@ export const useCartGameApi = () => {
   };
 
   return {
+    fetchCartGames,
     addGamesToCart,
     clearCartOnServer,
     fetchCartGamesByIds,

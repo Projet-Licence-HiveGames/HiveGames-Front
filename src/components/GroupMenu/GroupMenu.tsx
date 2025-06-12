@@ -7,6 +7,7 @@ import { BasketCart } from "../../assets/icones/BasketCart.tsx";
 import { NotificationBell } from "../../assets/icones/NotificationBell.tsx";
 import logoAccount from "../../assets/images/logoAccount.png";
 import { useAuth } from "../../context/AuthProvider.tsx";
+import { useCart } from "../../context/CartContext.tsx";
 import useWindowSize from "../../hooks/useWindowSize.ts";
 import DropdownMenu from "../ui/DropDown/DropDown.tsx";
 import { TLabel } from "../ui/TranslationLabel/TLabel.tsx";
@@ -19,6 +20,7 @@ export const GroupMenu: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null); // Référence pour le Menu
   const { isMobile } = useWindowSize();
   const location = useLocation();
+  const { cartItems } = useCart();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -44,9 +46,9 @@ export const GroupMenu: React.FC = () => {
   return (
     <div className="group-menu-content">
       <div className="group-menu-icones">
-        <NotificationBell numberNotif={5} />
+        <NotificationBell numberNotif={0} />
         <Link to={"/cart"}>
-          <BasketCart />
+          <BasketCart numberNotif={cartItems.length} />
         </Link>
       </div>
 

@@ -16,7 +16,7 @@ export const PaymentSuccess: React.FC = ({}) => {
   const fetchData = async () => {
     if (!sessionId) {
       setError({ error: "Session ID is missing" });
-      navigate("/home");
+      navigate("/");
       return;
     }
 

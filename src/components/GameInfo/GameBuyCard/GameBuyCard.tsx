@@ -40,7 +40,9 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
       addToCart(game.id);
     } else {
       toast.dismiss(toastId);
-      toast.error("Ce jeu est déjà dans votre panier !", { toastId });
+      toast.error(<TLabel baliseType={"span"} label={"already_in_cart"} />, {
+        toastId,
+      });
     }
   };
 

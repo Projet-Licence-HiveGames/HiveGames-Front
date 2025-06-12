@@ -27,13 +27,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               <App />
               <ToastContainer
                 className={"toast-container"}
-                draggable={"mouse"}
                 limit={1}
                 newestOnTop={true}
+                position={"top-right"}
                 stacked={true}
                 style={{
                   marginTop: "var(--header-height)",
-                  marginRight: "1rem",
+                  pointerEvents: "none",
                 }}
                 theme={"dark"}
               />
