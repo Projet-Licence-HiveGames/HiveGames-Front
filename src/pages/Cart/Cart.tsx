@@ -17,20 +17,26 @@ export const Cart: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const ids = cartItems.map(Number);
+  console.log(ids);
 
   useEffect(() => {
-    if (cartItems.length === 0) {
-      setGames([]);
-      return;
-    }
-    setLoading(true);
-    fetchGamesByIds(ids)
-      .then((data) => {
+    const fetchGames = async () => {
+      if (cartItems.length === 0) {
+        setGames([]);
+        return;
+      }
+      setLoading(true);
+      try {
+        const data = await fetchGamesByIds(ids);
         setGames(data as Game[]);
         setError(null);
-      })
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchGames();
   }, [cartItems]);
 
   const handleRemoveFromCart = (id: number) => {

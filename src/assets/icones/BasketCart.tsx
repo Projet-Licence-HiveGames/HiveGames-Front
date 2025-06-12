@@ -1,12 +1,18 @@
 import React from "react";
 
-export const BasketCart: React.FC = () => (
+interface NotificationBellProps {
+  numberNotif: number;
+}
+
+export const BasketCart: React.FC<NotificationBellProps> = ({
+  numberNotif,
+}) => (
   <div style={{ position: "relative", top: "2px" }}>
     <svg
-      width="39"
+      fill="none"
       height="32"
       viewBox="0 0 39 32"
-      fill="none"
+      width="39"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_d_478_4454)">
@@ -17,20 +23,20 @@ export const BasketCart: React.FC = () => (
       </g>
       <defs>
         <filter
+          colorInterpolationFilters="sRGB"
+          filterUnits="userSpaceOnUse"
+          height="34"
           id="filter0_d_478_4454"
+          width="39"
           x="0"
           y="0"
-          width="39"
-          height="34"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
+            result="hardAlpha"
             type="matrix"
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
           />
           <feOffset dy="4" />
           <feGaussianBlur stdDeviation="2" />
@@ -40,18 +46,34 @@ export const BasketCart: React.FC = () => (
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
           />
           <feBlend
-            mode="normal"
             in2="BackgroundImageFix"
+            mode="normal"
             result="effect1_dropShadow_478_4454"
           />
           <feBlend
-            mode="normal"
             in="SourceGraphic"
             in2="effect1_dropShadow_478_4454"
+            mode="normal"
             result="shape"
           />
         </filter>
       </defs>
     </svg>
+    {numberNotif > 0 && (
+      <span
+        style={{
+          position: "absolute",
+          top: "0",
+          right: "0",
+          backgroundColor: "red",
+          color: "white",
+          borderRadius: "50%",
+          padding: "2px 5px",
+          fontSize: "8px",
+        }}
+      >
+        {numberNotif}
+      </span>
+    )}
   </div>
 );

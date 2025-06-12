@@ -63,6 +63,8 @@ const labelList = [
   "continue_shopping",
   "purchase",
   "cart_empty",
+  "article_added",
+  "already_in_cart",
   "home.section.under_price.title",
 ] as const;
 
@@ -143,6 +145,8 @@ export const translationDictionnaries: {
     continue_shopping: "Continue shopping",
     purchase: "Purchase",
     cart_empty: "Your cart is empty.",
+    article_added: "Article added to your cart",
+    already_in_cart: "This game is already in your cart!",
     "home.section.under_price.title": "This game is under the price of %price%",
   },
 
@@ -215,6 +219,8 @@ export const translationDictionnaries: {
     continue_shopping: "Continuer vos achats",
     purchase: "Acheter",
     cart_empty: "Votre panier est vide.",
+    article_added: "Article ajouté à votre panier",
+    already_in_cart: "Ce jeu est déjà dans votre panier !",
     "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };

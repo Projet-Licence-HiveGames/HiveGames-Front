@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useCartGameApi } from "../api/services/cartApi.ts";
+import TLabel from "../components/ui/TranslationLabel/TLabel.tsx";
 
 import { useAuth } from "./AuthProvider";
 
@@ -27,23 +28,36 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { isAuthenticated } = useAuth();
-  const { addGamesToCart, clearCartOnServer } = useCartGameApi();
+  const { fetchCartGames, addGamesToCart, clearCartOnServer } =
+    useCartGameApi();
   const [cartItems, setCartItems] = useState<number[]>(() => {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
 
   useEffect(() => {
-    if (!isAuthenticated)
-      localStorage.setItem("cart", JSON.stringify(cartItems));
-  }, [cartItems, isAuthenticated]);
+    if (isAuthenticated) {
+      fetchCartGames()
+        .then((data) => {
+          setCartItems(data.map((game) => game.id));
+          localStorage.setItem(
+            "cart",
+            JSON.stringify(data.map((game) => game.id)),
+          );
+        })
+        .catch(() => {
+          toast.error("Erreur lors de la récupération du panier.");
+        });
+    }
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [isAuthenticated]);
 
   const addToCart = async (id: number) => {
     setCartItems((prev) => (prev.includes(id) ? prev : [...prev, id]));
     if (isAuthenticated) {
       await addGamesToCart(id)
         .then(() => {
-          toast.success("Article ajouté au panier !");
+          toast.success(<TLabel baliseType={"span"} label={"article_added"} />);
         })
         .catch(() => {
           toast.error("Erreur lors de l'ajout au panier.");
@@ -51,6 +65,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     } else {
       const updatedCart = [...cartItems, id];
       setCartItems(updatedCart);
+      toast.success(<TLabel baliseType={"span"} label={"article_added"} />);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
   };
@@ -67,7 +82,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       await clearCartOnServer([id]);
       setCartItems((prev) => prev.filter((cartId) => cartId !== id));
     } catch (e) {
-      toast.error("Le produit n'a pas pu être supprimé");
+      toast.error("The product could not be removed from the cart.");
     }
   };
 

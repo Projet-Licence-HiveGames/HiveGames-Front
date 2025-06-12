@@ -9,6 +9,7 @@ import { getGameImage } from "../../utils/gameUtils";
 import { Category } from "../ui/CategoryBloc/Category";
 import ImageWithLoader from "../ui/Image/ImageWithLoader";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
+import TLabel from "../ui/TranslationLabel/TLabel.tsx";
 import { WishButton } from "../ui/WishButton/WishButton";
 
 import { PriceBox } from "./PriceBox/PriceBox";
@@ -32,7 +33,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
     if (!isInCart) {
       addToCart(game.id);
     } else {
-      toast.error("Ce jeu est déjà dans votre panier !");
+      toast.error(<TLabel baliseType={"span"} label={"already_in_cart"} />);
     }
   };
 
