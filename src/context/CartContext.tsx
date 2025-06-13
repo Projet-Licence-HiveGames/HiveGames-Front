@@ -30,26 +30,28 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const { isAuthenticated } = useAuth();
   const { fetchCartGames, addGamesToCart, clearCartOnServer } =
     useCartGameApi();
-  const [cartItems, setCartItems] = useState<number[]>(() => {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cartItems, setCartItems] = useState<number[]>([]);
 
   useEffect(() => {
+    const localCart = localStorage.getItem("cart");
+    const localCartIds: number[] = localCart ? JSON.parse(localCart) : [];
+
     if (isAuthenticated) {
       fetchCartGames()
         .then((data) => {
-          setCartItems(data.map((game) => game.id));
-          localStorage.setItem(
-            "cart",
-            JSON.stringify(data.map((game) => game.id)),
+          const serverCartIds = data.map((game) => game.id);
+          const mergedCartIds = Array.from(
+            new Set([...localCartIds, ...serverCartIds]),
           );
+          setCartItems(mergedCartIds);
+          localStorage.setItem("cart", JSON.stringify(mergedCartIds));
         })
         .catch(() => {
           toast.error("Erreur lors de la récupération du panier.");
         });
+    } else {
+      setCartItems(localCartIds);
     }
-    localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [isAuthenticated]);
 
   const addToCart = async (id: number) => {

@@ -9,6 +9,7 @@ export const PaymentSuccess: React.FC = ({}) => {
   const [paymentData, setPaymentData] = React.useState<any>({});
   const [error, setError] = React.useState<any>(null);
   const { fetchOrderDetails } = useCartGameApi();
+  const { removeFromCart } = useCartGameApi();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const sessionId = queryParams.get("session_id");
@@ -40,6 +41,14 @@ export const PaymentSuccess: React.FC = ({}) => {
       navigate("/payment-failed");
     }
   }, [paymentData, navigate]);
+
+  useEffect(() => {
+    if (paymentData && paymentData.status === "complete") {
+      const gameIds = paymentData.items.map((item: any) => item.id);
+      gameIds.forEach((id: number) => removeFromCart(id));
+      localStorage.removeItem("cart");
+    }
+  }, [paymentData, removeFromCart]);
 
   return <div>{JSON.stringify(paymentData)}</div>;
 };
