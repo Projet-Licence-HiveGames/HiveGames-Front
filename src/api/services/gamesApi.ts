@@ -4,7 +4,11 @@ import { useFetch } from "../privateApi";
 export const useGamesApi = () => {
   const api = useFetch();
 
-  const fetchGamesByIds = async (ids: number[]): Promise<Game[]> => {
+  const fetchGamesByIds = async ({
+    ids,
+  }: {
+    ids: number[];
+  }): Promise<Game[]> => {
     return await api.post<Game[]>("/games/filter", { ids });
   };
 

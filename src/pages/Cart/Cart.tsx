@@ -17,7 +17,6 @@ export const Cart: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const ids = cartItems.map(Number);
-  console.log(ids);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -27,7 +26,7 @@ export const Cart: React.FC = () => {
       }
       setLoading(true);
       try {
-        const data = await fetchGamesByIds(ids);
+        const data = await fetchGamesByIds({ ids });
         setGames(data as Game[]);
         setError(null);
       } catch (err: any) {
@@ -36,6 +35,7 @@ export const Cart: React.FC = () => {
         setLoading(false);
       }
     };
+
     fetchGames();
   }, [cartItems]);
 

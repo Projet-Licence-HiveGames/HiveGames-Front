@@ -33,7 +33,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 stacked={true}
                 style={{
                   marginTop: "var(--header-height)",
-                  pointerEvents: "none",
                 }}
                 theme={"dark"}
               />
