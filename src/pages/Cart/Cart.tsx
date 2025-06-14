@@ -1,12 +1,13 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGamesApi } from "@api/services/gamesApi.ts";
 
-import { useGamesApi } from "../../api/services/gamesApi.ts";
-import { CartArticleCard } from "../../components/CartArticleCard/CartArticleCard.tsx";
-import { Loader } from "../../components/Loader/Loader.tsx";
-import { TLabel } from "../../components/ui/TranslationLabel/TLabel.tsx";
-import { useCart } from "../../context/CartContext";
-import { Game } from "../../types/Game";
+import { useCart } from "@context/CartContext.tsx";
+import { Game } from "@customTypes/Game";
+
+import { CartArticleCard } from "@components/CartArticleCard/CartArticleCard.tsx";
+import { Loader } from "@components/ui/Loader/Loader.tsx";
+import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./Cart.css";
 

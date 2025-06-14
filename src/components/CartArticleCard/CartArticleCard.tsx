@@ -1,13 +1,15 @@
 import React from "react";
 import { DeleteForeverRounded } from "@mui/icons-material";
 
-import { useCart } from "../../context/CartContext.tsx";
-import { useWindowSize } from "../../hooks/useWindowSize.ts";
-import { Game, GameImage } from "../../types/Game.ts";
-import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter.ts";
-import { getGameImage } from "../../utils/gameUtils.ts";
+import { useCart } from "@context/CartContext.tsx";
+import { Game, GameImage } from "@customTypes/Game.ts";
+import { useWindowSize } from "@hooks/useWindowSize.ts";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
+import { getGameImage } from "@utils/gameUtils.ts";
+
+import { WishButton } from "@components/ui/WishButton/WishButton.tsx";
+
 import { PriceBox } from "../GameCard/PriceBox/PriceBox";
-import { WishButton } from "../ui/WishButton/WishButton.tsx";
 
 import "./CartArticleCard.css";
 

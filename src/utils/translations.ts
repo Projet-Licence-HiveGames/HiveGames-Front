@@ -65,6 +65,11 @@ const labelList = [
   "cart_empty",
   "article_added",
   "already_in_cart",
+  "see_invoice",
+  "return_to_home",
+  "total_paid",
+  "thank_you_for_your_purchase",
+  "payment_confirmed",
   "home.section.under_price.title",
 ] as const;
 
@@ -147,6 +152,11 @@ export const translationDictionnaries: {
     cart_empty: "Your cart is empty.",
     article_added: "Article added to your cart",
     already_in_cart: "This game is already in your cart!",
+    see_invoice: "See the invoice",
+    return_to_home: "Return to home",
+    total_paid: "Total paid : %amount% €",
+    thank_you_for_your_purchase: "Thank you for your purchase on %site_name%!",
+    payment_confirmed: "Payment Confirmed!",
     "home.section.under_price.title": "This game is under the price of %price%",
   },
 
@@ -221,6 +231,11 @@ export const translationDictionnaries: {
     cart_empty: "Votre panier est vide.",
     article_added: "Article ajouté à votre panier",
     already_in_cart: "Ce jeu est déjà dans votre panier !",
+    see_invoice: "Voir la facture",
+    return_to_home: "Retour à l'accueil",
+    total_paid: "Total payé : %amount% €",
+    thank_you_for_your_purchase: "Merci pour votre achat sur %site_name% !",
+    payment_confirmed: "Paiement confirmé !",
     "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };

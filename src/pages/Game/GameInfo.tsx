@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { Loader } from "@components/ui/Loader/Loader.tsx";
+
 import { useFetch } from "../../api/privateApi.ts";
 import { GameBuyCard } from "../../components/GameInfo/GameBuyCard/GameBuyCard.tsx";
 import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.tsx";
@@ -10,7 +12,6 @@ import { GameLanguages } from "../../components/GameInfo/GameLanguages/GameLangu
 import { GameLongDescription } from "../../components/GameInfo/GameLongDescription/GameLongDescription.tsx";
 import { GameShortDescription } from "../../components/GameInfo/GameShortDescription/GameShortDescription.tsx";
 import GameReviewSection from "../../components/GameInfo/Review/GameReviewSection.tsx";
-import { Loader } from "../../components/Loader/Loader.tsx";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
 import {
   GameBaseType,

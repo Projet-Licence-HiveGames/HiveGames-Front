@@ -77,10 +77,6 @@
     height: unset;
   }
 
-  @media screen and (width <= 368px) {
-    aspect-ratio: 16/9;
-  }
-
   & .swiper-wrapper {
     height: 100%;
   }
@@ -93,6 +89,10 @@
   min-height: 150px;
   object-fit: cover;
   width: 100%;
+  
+  @media screen and (width <= 368px) {
+    aspect-ratio: 1/1;
+  }
 }
 
 .swiper-slide {
