@@ -4,7 +4,7 @@ import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
 import { TranslationCategoryLabelType } from "../../../constants/CategoriesDict.tsx";
 import { GameCategory } from "../../../types/Game";
-import { TLabel } from "../../ui/TranslationLabel/TLabel";
+import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
 import "./Category.css";
 
@@ -22,14 +22,14 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
         .map((category, index) => {
           return (
             <Link
-              to={`/catalog?categories=${category.id}`}
-              key={index}
               className={"category-bloc-category"}
+              key={index}
+              to={`/catalog?categories=${category.id}`}
             >
               <TLabel
+                capitalizeFirstLetter
                 label={category.label as TranslationCategoryLabelType}
                 translationType={"category"}
-                capitalizeFirstLetter
               />
             </Link>
           );

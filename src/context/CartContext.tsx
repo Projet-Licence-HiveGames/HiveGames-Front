@@ -15,7 +15,6 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// Hook personnalisé pour utiliser le contexte
 export const useCart = (): CartContextType => {
   const context = useContext(CartContext);
   if (!context) {

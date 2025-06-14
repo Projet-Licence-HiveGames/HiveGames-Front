@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { CheckCircleRounded } from "@mui/icons-material";
 
 import { useCartGameApi } from "../../api/services/cartApi";
+import { useCart } from "../../context/CartContext.tsx";
 
 import "./PaymentSuccess.css";
 
@@ -9,7 +11,7 @@ export const PaymentSuccess: React.FC = ({}) => {
   const [paymentData, setPaymentData] = React.useState<any>({});
   const [error, setError] = React.useState<any>(null);
   const { fetchOrderDetails } = useCartGameApi();
-  const { removeFromCart } = useCartGameApi();
+  const { removeFromCart } = useCart();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const sessionId = queryParams.get("session_id");
@@ -17,7 +19,7 @@ export const PaymentSuccess: React.FC = ({}) => {
   const fetchData = async () => {
     if (!sessionId) {
       setError({ error: "Session ID is missing" });
-      navigate("/");
+      navigate("/home");
       return;
     }
 
@@ -33,11 +35,7 @@ export const PaymentSuccess: React.FC = ({}) => {
   }, [sessionId]);
 
   useEffect(() => {
-    if (
-      paymentData &&
-      paymentData.status &&
-      paymentData.status !== "complete"
-    ) {
+    if (paymentData.status && paymentData.status !== "complete") {
       navigate("/payment-failed");
     }
   }, [paymentData, navigate]);
@@ -50,5 +48,43 @@ export const PaymentSuccess: React.FC = ({}) => {
     }
   }, [paymentData, removeFromCart]);
 
-  return <div>{JSON.stringify(paymentData)}</div>;
+  return (
+    <div className="confirmation-container">
+      <div className="confirmation-card">
+        <CheckCircleRounded className="confirmation-icon" />
+        <h1 className="confirmation-title">Paiement Confirmé !</h1>
+        <p className="confirmation-message">
+          Merci pour votre achat sur <strong>HiveGames</strong>.
+        </p>
+
+        <div className="confirmation-details">
+          <p>
+            🎮 <strong>{paymentData.name}</strong>
+          </p>
+          <p className="confirmation-price">
+            Total payé : {paymentData.amount}
+          </p>
+        </div>
+
+        <div className="confirmation-details-buttons">
+          <button
+            className="confirmation-button"
+            onClick={() => navigate("/home")}
+          >
+            Retour à l'accueil
+          </button>
+          {paymentData.invoice && (
+            <a
+              className="confirmation-invoice-button"
+              href={paymentData.invoice}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Voir la facture
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };

@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react/jsx-sort-props */
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
@@ -32,38 +33,38 @@ import './App.css';
 const App: React.FC = () => {
   return (
     <Routes>
-      <Route element={<MainLayout/>} path='/'>
-        <Route element={<Home/>} index/>
-        <Route element={<ProtectedRoute><Calendar/></ProtectedRoute>} path='calendar'/>
-        <Route element={<Catalog/>} path='catalog'/>
-        <Route element={<ProtectedRoute><Friend/></ProtectedRoute>} path='friend'/>
-        <Route element={<ProtectedRoute><Library/></ProtectedRoute>} path='library'/>
-        <Route element={<ProtectedRoute><Setting/></ProtectedRoute>} path='setting'/>
-        <Route element={<ProtectedRoute><Subscription/></ProtectedRoute>} path='subscription'/>
-        <Route element={<ProtectedRoute><Wishlist/></ProtectedRoute>} path='whislist'/>
-        <Route element={<About/>} path='about'/>
-        <Route element={<Contact/>} path='contact'/>
-        <Route element={<Login/>} path='login'/>
-        <Route element={<Register/>} path='register'/>
+      <Route path='/' element={<MainLayout/>}>
+        <Route index element={<Home/>}/>
+        <Route path='calendar' element={<ProtectedRoute><Calendar/></ProtectedRoute>}/>
+        <Route path='catalog' element={<Catalog/>}/>
+        <Route path='friend' element={<ProtectedRoute><Friend/></ProtectedRoute>}/>
+        <Route path='library' element={<ProtectedRoute><Library/></ProtectedRoute>}/>
+        <Route path='setting' element={<ProtectedRoute><Setting/></ProtectedRoute>}/>
+        <Route path='subscription' element={<ProtectedRoute><Subscription/></ProtectedRoute>}/>
+        <Route path='whislist' element={<ProtectedRoute><Wishlist/></ProtectedRoute>}/>
+        <Route path='about' element={<About/>}/>
+        <Route path='contact' element={<Contact/>}/>
+        <Route path='login' element={<Login/>}/>
+        <Route path='register' element={<Register/>}/>
 
-        <Route element={<GameInfo/>} path='game'>
-          <Route element={<GameInfo/>} path=':id'/>
+        <Route path='game' element={<GameInfo/>}>
+          <Route path=':id' element={<GameInfo/>}/>
         </Route>
 
         <Route path='profil'>
-          <Route element={<ProtectedRoute><Profil/></ProtectedRoute>} index/>
-          <Route element={<Home/>} path=':id'/>
+          <Route index element={<ProtectedRoute><Profil/></ProtectedRoute>}/>
+          <Route path=':id' element={<Home/>}/>
         </Route>
 
-        <Route element={<CartLayout/>} path='cart'>
-          <Route element={<Cart />} index />
-          <Route element={<ProtectedRoute><Checkout /></ProtectedRoute>} path="checkout" />
-          <Route element={<PaymentSuccess />} path="order" />
-          <Route element={<PaymentFailed />} path="payment-failed" />
+        <Route path='cart' element={<CartLayout/>}>
+          <Route index element={<Cart />} />
+          <Route path="checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+          <Route path="order" element={<ProtectedRoute><PaymentSuccess /></ProtectedRoute>} />
+          <Route path="payment-failed" element={<PaymentFailed />} />
         </Route>
-        <Route element={<ErrorPage/>} path='404'/>
+        <Route path='404' element={<ErrorPage/>}/>
       </Route>
-      <Route element={<Navigate replace to='/' />} path='*' />
+      <Route path='*' element={<Navigate replace to='/' />}/>
     </Routes>
   );
 };

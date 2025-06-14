@@ -84,7 +84,7 @@ export const Catalog: React.FC = () => {
       order_by: params.order_by || "rating-desc",
     };
     setFilters(newFilters);
-  }, [searchParams]);
+  }, []);
 
   // Synchronize filters to URL
   useEffect(() => {
@@ -119,7 +119,7 @@ export const Catalog: React.FC = () => {
           .fill(0)
           .map((_, index) => <GameCardSkeleton key={index} />)
       : gameList.map((game, index) => (
-          <GameCard key={index} game={game} isAuthenticated={isAuthenticated} />
+          <GameCard game={game} isAuthenticated={isAuthenticated} key={index} />
         ));
   }, [isLoading, gameList, isAuthenticated]);
 
