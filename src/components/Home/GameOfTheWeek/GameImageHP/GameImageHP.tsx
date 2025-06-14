@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import useWindowSize from "../../../../hooks/useWindowSize.ts";
 import { GameBaseType } from "../../../../types/Game.ts";
-import { getGameImage } from "../../../../utils/gameUtils.ts";
-import { PriceTag } from "../../../ui/PriceTag/PriceTag.tsx";
-import { TLabel } from "../../../ui/TranslationLabel/TLabel.tsx";
-import { WishButton } from "../../../ui/WishButton/WishButton.tsx";
+import { useCart } from "@context/CartContext";
+import useWindowSize from "@hooks/useWindowSize.ts";
+import { getGameImage } from "@utils/gameUtils.ts";
+
+import CartButton from "@components/GameCard/CartButton/CartButton.tsx";
+import { PriceTag } from "@components/ui/PriceTag/PriceTag.tsx";
+import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
+import { WishButton } from "@components/ui/WishButton/WishButton.tsx";
 
 import "swiper/swiper-bundle.css";
 import "./GameImageHP.css";
@@ -26,6 +30,8 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
   const [selectedGame, setSelectedGame] = useState<GameBaseType>(games[0]);
   const { isMobileL, isMobileM, isMobileS, isTablet } = useWindowSize();
   const navigate = useNavigate();
+  const { addToCart, cartItems } = useCart();
+  const isInCart = cartItems.some((item: number) => item === selectedGame.id);
 
   useEffect(() => {
     setSelectedGame(games[0]);
@@ -39,15 +45,25 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
     ? _images
     : [getGameImage(selectedGame?.images, "header")];
 
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isInCart) {
+      addToCart(selectedGame.id);
+    } else {
+      toast.dismiss();
+      toast.error(<TLabel baliseType={"span"} label={"already_in_cart"} />);
+    }
+  };
+
   return (
     <div className="game-image-hp-wrapper">
       <Swiper
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         className="big-image-swiper-hp"
         modules={[Navigation, Thumbs, Autoplay]}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        thumbs={{ swiper: thumbsSwiper }}
         slidesPerView={1}
         spaceBetween={10}
+        thumbs={{ swiper: thumbsSwiper }}
       >
         {mainImages.map((image, index) => (
           <SwiperSlide key={index}>
@@ -57,29 +73,28 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
                 style={{ cursor: "pointer" }}
               >
                 <img
-                  src={image.file_url}
                   alt={image.alt || "Game Image"}
-                  loading={"eager"}
                   className="panel-image-hp"
+                  loading={"eager"}
+                  src={image.file_url}
                 />
               </a>
             </div>
             <div className={"game-image-hp-wishlist-button"}>
               <WishButton
                 game={selectedGame}
+                homeP={true}
                 isAuthenticated={isAuthenticated}
                 large={true}
-                homeP={true}
               />
             </div>
             <div className={"game-image-hp-price"}>
               <PriceTag price={selectedGame?.price} />
             </div>
             <div className="game-image-hp-button-wrapper">
-              <TLabel
-                baliseType={"span"}
-                label={"buy"}
-                className={"game-image-hp-button"}
+              <CartButton
+                isOwned={selectedGame.is_owned}
+                onClick={handleAddToCart}
               />
             </div>
           </SwiperSlide>
@@ -92,10 +107,10 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
         loop={true}
         modules={[Thumbs]}
         onSwiper={setThumbsSwiper}
-        spaceBetween={11}
         slidesPerView={
           isMobileS || isMobileM ? 2 : isMobileL ? 3 : isTablet ? 4 : 7
         }
+        spaceBetween={11}
         watchSlidesProgress={true}
       >
         {games.map((game, index) => {
@@ -103,11 +118,11 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
           return (
             <SwiperSlide key={index} onClick={() => setSelectedGame(game)}>
               <img
-                src={thumb.file_url}
                 alt={game.name}
+                className={`thumb-image ${game.id === selectedGame?.id ? "active" : ""}`}
                 decoding="async"
                 loading="lazy"
-                className={`thumb-image ${game.id === selectedGame?.id ? "active" : ""}`}
+                src={thumb.file_url}
               />
             </SwiperSlide>
           );

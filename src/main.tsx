@@ -3,10 +3,11 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { AuthProvider } from "./context/AuthProvider.tsx";
-import { CartProvider } from "./context/CartContext.tsx";
-import { GameSessionProvider } from "./context/GameSessionProvider.tsx";
-import TranslationProvider from "./context/TranslationProvider.tsx";
+import { AuthProvider } from "@context/AuthProvider.tsx";
+import { CartProvider } from "@context/CartContext.tsx";
+import { GameSessionProvider } from "@context/GameSessionProvider.tsx";
+import TranslationProvider from "@context/TranslationProvider.tsx";
+
 import App from "./App.tsx";
 
 import "./index.css";
@@ -26,14 +27,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             >
               <App />
               <ToastContainer
-                className={"toast-container"}
                 limit={1}
                 newestOnTop={true}
-                position={"top-right"}
-                stacked={true}
-                style={{
-                  marginTop: "var(--header-height)",
-                }}
+                position="top-center"
                 theme={"dark"}
               />
             </BrowserRouter>

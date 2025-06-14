@@ -1,15 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCartGameApi } from "@api/services/cartApi.ts";
 import { CheckCircleRounded } from "@mui/icons-material";
+import { SportsEsportsRounded } from "@mui/icons-material";
 
-import { useCartGameApi } from "../../api/services/cartApi";
-import { useCart } from "../../context/CartContext.tsx";
+import { useCart } from "@context/CartContext.tsx";
+
+import { Loader } from "@components/ui/Loader/Loader.tsx";
+import TLabel from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./PaymentSuccess.css";
 
 export const PaymentSuccess: React.FC = ({}) => {
-  const [paymentData, setPaymentData] = React.useState<any>({});
-  const [error, setError] = React.useState<any>(null);
+  const [paymentData, setPaymentData] = useState<any>({});
+  const [error, setError] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { fetchOrderDetails } = useCartGameApi();
   const { removeFromCart } = useCart();
   const navigate = useNavigate();
@@ -24,9 +29,13 @@ export const PaymentSuccess: React.FC = ({}) => {
     }
 
     await fetchOrderDetails(sessionId)
-      .then(setPaymentData)
+      .then((data) => {
+        setPaymentData(data);
+        setIsLoading(false);
+      })
       .catch((_error) => {
         setError({ ...error, error: _error });
+        setIsLoading(false);
       });
   };
 
@@ -42,36 +51,50 @@ export const PaymentSuccess: React.FC = ({}) => {
 
   useEffect(() => {
     if (paymentData && paymentData.status === "complete") {
-      const gameIds = paymentData.items.map((item: any) => item.id);
-      gameIds.forEach((id: number) => removeFromCart(id));
+      const gameIds = paymentData?.items?.map((item: any) => item.id);
+      gameIds?.forEach((id: number) => removeFromCart(id));
       localStorage.removeItem("cart");
     }
   }, [paymentData, removeFromCart]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="confirmation-container">
       <div className="confirmation-card">
         <CheckCircleRounded className="confirmation-icon" />
-        <h1 className="confirmation-title">Paiement Confirmé !</h1>
+        <TLabel
+          baliseType={"h1"}
+          className={"confirmation-title"}
+          label={"payment_confirmed"}
+        />
         <p className="confirmation-message">
-          Merci pour votre achat sur <strong>HiveGames</strong>.
+          <TLabel
+            allowHtml
+            baliseType={"span"}
+            label={"thank_you_for_your_purchase"}
+            replaceValues={{ site_name: "<strong>HiveGames</strong>" }}
+          />
         </p>
 
         <div className="confirmation-details">
           <p>
-            🎮 <strong>{paymentData.name}</strong>
+            <SportsEsportsRounded />
+            <strong>{paymentData.name}</strong>
           </p>
-          <p className="confirmation-price">
-            Total payé : {paymentData.amount}
-          </p>
+          <TLabel
+            baliseType={"p"}
+            className={"confirmation-price"}
+            label={"total_paid"}
+            replaceValues={{ amount: paymentData.amount }}
+          />
         </div>
 
         <div className="confirmation-details-buttons">
-          <button
-            className="confirmation-button"
-            onClick={() => navigate("/home")}
-          >
-            Retour à l'accueil
+          <button className="confirmation-button" onClick={() => navigate("/")}>
+            <TLabel baliseType={"span"} label={"return_to_home"} />
           </button>
           {paymentData.invoice && (
             <a
@@ -80,7 +103,7 @@ export const PaymentSuccess: React.FC = ({}) => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              Voir la facture
+              <TLabel baliseType={"span"} label={"see_invoice"} />
             </a>
           )}
         </div>

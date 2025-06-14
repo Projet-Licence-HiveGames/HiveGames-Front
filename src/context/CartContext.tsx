@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useCartGameApi } from "@api/services/cartApi.ts";
 
-import { useCartGameApi } from "../api/services/cartApi.ts";
-import TLabel from "../components/ui/TranslationLabel/TLabel.tsx";
+import TLabel from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import { useAuth } from "./AuthProvider";
 
@@ -46,6 +46,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
           localStorage.setItem("cart", JSON.stringify(mergedCartIds));
         })
         .catch(() => {
+          toast.dismiss();
           toast.error("Erreur lors de la récupération du panier.");
         });
     } else {
@@ -58,14 +59,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     if (isAuthenticated) {
       await addGamesToCart(id)
         .then(() => {
+          toast.dismiss();
           toast.success(<TLabel baliseType={"span"} label={"article_added"} />);
         })
         .catch(() => {
+          toast.dismiss();
           toast.error("Erreur lors de l'ajout au panier.");
         });
     } else {
       const updatedCart = [...cartItems, id];
       setCartItems(updatedCart);
+      toast.dismiss();
       toast.success(<TLabel baliseType={"span"} label={"article_added"} />);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
@@ -83,6 +87,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       await clearCartOnServer([id]);
       setCartItems((prev) => prev.filter((cartId) => cartId !== id));
     } catch (e) {
+      toast.dismiss();
       toast.error("The product could not be removed from the cart.");
     }
   };

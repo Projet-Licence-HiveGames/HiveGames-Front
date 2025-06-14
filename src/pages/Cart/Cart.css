@@ -36,6 +36,7 @@
   
   &.right {
     flex: 1;
+    max-height: 250px;
     max-width: 25%;
     
     @media (max-width: 768px) {

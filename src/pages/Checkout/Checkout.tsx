@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFetch } from "@api/privateApi.ts";
 import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-import { useFetch } from "../../api/privateApi.ts";
-import { Loader } from "../../components/Loader/Loader.tsx";
-import { useCart } from "../../context/CartContext.tsx";
+import { useCart } from "@context/CartContext.tsx";
+
+import { Loader } from "@components/ui/Loader/Loader.tsx";
 
 import "./Checkout.css";
 

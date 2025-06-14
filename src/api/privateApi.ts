@@ -40,10 +40,6 @@ export const useFetch = () => {
       if (!response.ok) {
         if (response.status === 401) {
           await logout();
-        } else if (response.status >= 500) {
-          toast.error(
-            "Service momentanément indisponible. Veuillez réessayer plus tard",
-          );
         }
         const errorData = await response.json().catch(() => ({}));
         throw { status: response.status, ...errorData };
@@ -52,6 +48,7 @@ export const useFetch = () => {
     } catch (error: unknown) {
       const errorMessage =
         error instanceof Error ? error.message : "Une erreur est survenue";
+      toast.dismiss();
       toast.error(errorMessage);
       throw error;
     }
