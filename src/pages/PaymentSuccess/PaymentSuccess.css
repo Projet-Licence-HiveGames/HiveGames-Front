@@ -1,0 +1,81 @@
+.confirmation-container {
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.confirmation-card {
+    background-color: #2d3748;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 40%);
+    max-width: 500px;
+    padding: 32px;
+    text-align: center;
+    width: 100%;
+}
+
+.confirmation-icon {
+    color: var(--bg-color-green);
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.confirmation-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.confirmation-message {
+    color: #cbd5e1;
+    margin-bottom: 24px;
+}
+
+.confirmation-details {
+    background-color: var(--bg-color-dark);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    padding: 16px;
+}
+
+.confirmation-price {
+    color: var(--bg-color-green);
+    margin-top: 8px;
+}
+
+.confirmation-button {
+    background-color: var(--bg-color-blue-light);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    padding: 12px 24px;
+    transition: background-color .3s ease;
+}
+
+.confirmation-button:hover {
+    background-color: var(--bg-color-blue-darker);
+}
+
+.confirmation-details-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.confirmation-invoice-button {
+    color: var(--bg-color-blue-light);
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 12px;
+    text-decoration: none;
+    transition: color .3s ease;
+}
+
+.confirmation-invoice-button:hover {
+    color: var(--bg-color-blue-normal);
+}

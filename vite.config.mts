@@ -20,20 +20,8 @@ export default defineConfig({
       '@utils': '/src/utils',
     },
   },
-  //Required for ngrok
   server: {
-    //allowedHosts: true,
     port: 3000,
-    // proxy: {
-    //   '/api': {
-    //     target: process.env.HIVEGAMES_BACKEND,
-    //     changeOrigin: true,
-    //     secure: false,
-    //     cookieDomainRewrite: {
-    //         '*': '',
-    //     },
-    //   },
-    // },
   },
   test: {
     globals: true,
