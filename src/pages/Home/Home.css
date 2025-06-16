@@ -1,14 +1,9 @@
-.container {
+.home-container {
   background-color: var(--bg-color-lighter);
   color: white;
-  margin-bottom: 20px;
-}
-
-.home-body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 100%;
   padding: 1rem;
 }
 
