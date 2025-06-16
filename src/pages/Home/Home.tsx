@@ -8,17 +8,11 @@ import { GameSessionContext } from "../../context/GameSessionProvider";
 import "./Home.css";
 
 export const Home: FC = () => {
-  const { startGameSession } = useContext(GameSessionContext);
   return (
-    <div className="container">
-      <button onClick={() => startGameSession(1, "Cookie Clicker")}>
-        Start
-      </button>
-      <div className={"home-body"}>
-        <GameOfTheWeek />
-        <TopCategories />
-        <GameUnderPrice />
-      </div>
+    <div className="home-container">
+      <GameOfTheWeek />
+      <TopCategories />
+      <GameUnderPrice />
     </div>
   );
 };
