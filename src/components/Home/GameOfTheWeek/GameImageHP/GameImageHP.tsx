@@ -51,7 +51,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
       addToCart(selectedGame.id);
     } else {
       toast.dismiss();
-      toast.error(<TLabel baliseType={"span"} label={"already_in_cart"} />);
+      toast.error(<TLabel label={"already_in_cart"} />);
     }
   };
 

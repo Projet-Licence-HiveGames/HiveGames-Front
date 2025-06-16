@@ -30,13 +30,13 @@ export const GameLanguages: React.FC<GameLanguagesProps> = ({ languages }) => {
             <tr>
               <th />
               <th>
-                <TLabel baliseType={"span"} label="interfaces" />
+                <TLabel label="interfaces" />
               </th>
               <th>
-                <TLabel baliseType={"span"} label="subtitles" />
+                <TLabel label="subtitles" />
               </th>
               <th>
-                <TLabel baliseType={"span"} label="audio" />
+                <TLabel label="audio" />
               </th>
             </tr>
           </thead>
@@ -69,7 +69,6 @@ export const GameLanguages: React.FC<GameLanguagesProps> = ({ languages }) => {
             onClick={() => setShowAll(true)}
           >
             <TLabel
-              baliseType={"span"}
               className={"languages-see-more__label"}
               label={"see_more"}
             />

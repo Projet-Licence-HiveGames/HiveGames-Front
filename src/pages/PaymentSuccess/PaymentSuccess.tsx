@@ -72,10 +72,8 @@ export const PaymentSuccess: React.FC = ({}) => {
         />
         <p className="confirmation-message">
           <TLabel
-            allowHtml
-            baliseType={"span"}
             label={"thank_you_for_your_purchase"}
-            replaceValues={{ site_name: "<strong>HiveGames</strong>" }}
+            replaceValues={{ site_name: <strong>HiveGames</strong> }}
           />
         </p>
 
@@ -94,7 +92,7 @@ export const PaymentSuccess: React.FC = ({}) => {
 
         <div className="confirmation-details-buttons">
           <button className="confirmation-button" onClick={() => navigate("/")}>
-            <TLabel baliseType={"span"} label={"return_to_home"} />
+            <TLabel label={"return_to_home"} />
           </button>
           {paymentData.invoice && (
             <a
@@ -103,7 +101,7 @@ export const PaymentSuccess: React.FC = ({}) => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <TLabel baliseType={"span"} label={"see_invoice"} />
+              <TLabel label={"see_invoice"} />
             </a>
           )}
         </div>

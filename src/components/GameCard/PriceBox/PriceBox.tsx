@@ -45,12 +45,7 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
             <span className={"price-box-old-price"}>{price} €</span>
           )}
           {discountedPrice <= 0 ? (
-            <TLabel
-              label={"free"}
-              baliseType={"span"}
-              translationType={"app"}
-              className="current-price"
-            />
+            <TLabel label={"free"} className="current-price" />
           ) : (
             <span className="current-price">{discountedPrice} €</span>
           )}

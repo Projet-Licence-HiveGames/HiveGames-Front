@@ -36,22 +36,16 @@ export const useFetch = () => {
   };
 
   const handleResponse = async <T>(response: Response): Promise<T> => {
-    try {
-      if (!response.ok) {
-        if (response.status === 401) {
-          await logout();
-        }
-        const errorData = await response.json().catch(() => ({}));
-        throw { status: response.status, ...errorData };
+    if (!response.ok) {
+      if (response.status === 401) {
+        await logout();
       }
-      return response.json();
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Une erreur est survenue";
+      const errorData: Error = await response.json().catch(() => ({}));
       toast.dismiss();
-      toast.error(errorMessage);
-      throw error;
+      toast.error(errorData.message);
+      throw response;
     }
+    return response.json();
   };
 
   return {

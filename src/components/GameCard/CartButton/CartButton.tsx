@@ -20,11 +20,7 @@ const CartButton: React.FC<CartButtonProps> = ({ onClick, isOwned }) => {
         onClick?.(e);
       }}
     >
-      <TLabel
-        baliseType={"span"}
-        label={isOwned ? "owned" : "buy"}
-        translationType={"app"}
-      />
+      <TLabel label={isOwned ? "owned" : "buy"} />
     </button>
   );
 };

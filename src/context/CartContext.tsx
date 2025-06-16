@@ -60,7 +60,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       await addGamesToCart(id)
         .then(() => {
           toast.dismiss();
-          toast.success(<TLabel baliseType={"span"} label={"article_added"} />);
+          toast.success(<TLabel label={"article_added"} />);
         })
         .catch(() => {
           toast.dismiss();
@@ -70,7 +70,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       const updatedCart = [...cartItems, id];
       setCartItems(updatedCart);
       toast.dismiss();
-      toast.success(<TLabel baliseType={"span"} label={"article_added"} />);
+      toast.success(<TLabel label={"article_added"} />);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
   };
