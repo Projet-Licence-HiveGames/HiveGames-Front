@@ -78,20 +78,26 @@ export const TLabel: FC<TLabelProps> = ({
   capitalizeFirstLetter = false,
   replaceValues = {},
 }) => {
+  // Get the current selected language
   const { selectedLanguage } = useContext(TranslationContext);
+  // Get the dictionary corresponding to type of translation
   const dict = dictionnariesMap[translationType] ?? translationDictionnaries;
+  // Get the translated label from the dictionary corresponding to the selected language
   const translated =
     dict[selectedLanguage]?.[label as keyof (typeof dict)[string]] ?? label;
 
   let content: string | React.ReactNode | (string | React.ReactNode)[] =
     translated;
   if (replaceValues && Object.keys(replaceValues).length > 0) {
+    // Interpolate the translated label with the replaceValues
     content = interpolate(translated as string, replaceValues);
   } else if (capitalizeFirstLetter) {
+    // Capitalize the first letter of the translated label
     content = _capitalizeFirstLetter(translated as string);
   }
 
   if (noBalise) return <>{content}</>;
+  // Return the translated label wrapped in the baliseType
   return React.createElement(baliseType, { className }, content);
 };
 

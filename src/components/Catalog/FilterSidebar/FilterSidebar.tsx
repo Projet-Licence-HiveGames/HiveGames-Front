@@ -15,11 +15,23 @@ import {
   GameInfoResponse,
   GameLanguage,
 } from "../../../types/Game";
+import { TranslationLabelType } from "../../../utils/translations.ts";
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
 import Dropdown, { DropdownOption } from "./Dropdown/Dropdown";
 
 import "./FilterSidebar.css";
+
+const ORDER_BY_OPTIONS = [
+  "rating-asc",
+  "rating-desc",
+  "name-asc",
+  "name-desc",
+  "price-asc",
+  "price-desc",
+  "release_date-desc",
+  "release_date-asc",
+];
 
 export interface GameFilter {
   search: string;
@@ -69,17 +81,15 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
   const isDefaultFilters =
     JSON.stringify(filters) === JSON.stringify(defaultFilters);
 
-  const fetchFilters = async () => {
-    try {
-      const response = await fetchAPI.get<GameInfoResponse>("/game-info/all");
-      const { categories, languages, features } = response;
-
-      setCategories(categories);
-      setLanguages(languages);
-      setFeatures(features);
-    } catch (error) {
-      console.error("Erreur lors de la récupération des filtres", error);
-    }
+  const fetchFilters = () => {
+    fetchAPI
+      .get<GameInfoResponse>("/game-info/all")
+      .then((filtre) => {
+        setCategories(filtre.categories);
+        setLanguages(filtre.languages);
+        setFeatures(filtre.features);
+      })
+      .catch((error) => console.error("Error fetching filters:", error));
   };
 
   useEffect(() => {
@@ -101,7 +111,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
       <div className="filter-sidebar-container">
         <div className="filter-sidebar-top">
           <div className="filter-sidebar-header">
-            <span>FILTRES</span>
+            <TLabel label="filters" baliseType="h2" capitalizeFirstLetter />
             <MaterialSymbol
               icon="filter_alt_off"
               size={17}
@@ -112,22 +122,23 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
           </div>
           <div className="filter-sidebar-top-content">
             <div className="filter-item filter-item-sort">
-              <span className="filter-item-title">Trier par</span>
+              <TLabel label="filter.orderBy" className="filter-item-title" />
               <select
+                name="filter-order-by"
                 className="filter-item-select"
                 value={filters.order_by}
                 onChange={(e) =>
                   setFilters({ ...filters, order_by: e.target.value })
                 }
               >
-                <option value="rating-desc">Avis (+ / -)</option>
-                <option value="rating-asc">Avis (- / +)</option>
-                <option value="name-asc">Nom (A-Z)</option>
-                <option value="name-desc">Nom (Z-A)</option>
-                <option value="price-asc">Prix (- / +)</option>
-                <option value="price-desc">Prix (+ / -)</option>
-                <option value="release_date-desc">Sortie récente</option>
-                <option value="release_date-asc">Sortie ancienne</option>
+                {Object.entries(ORDER_BY_OPTIONS).map(([value, label]) => (
+                  <option key={value} value={value}>
+                    <TLabel
+                      label={`filter.orderBy.${label}` as TranslationLabelType}
+                      noBalise
+                    />
+                  </option>
+                ))}
               </select>
             </div>
             <div className="filter-item search-bar">
