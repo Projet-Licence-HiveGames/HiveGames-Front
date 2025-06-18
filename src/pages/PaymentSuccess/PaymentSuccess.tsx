@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCartGameApi } from "@api/services/cartApi.ts";
-import { CheckCircleRounded } from "@mui/icons-material";
-import { SportsEsportsRounded } from "@mui/icons-material";
+import { CheckCircleRounded, SportsEsportsRounded } from "@mui/icons-material";
 
 import { useCart } from "@context/CartContext.tsx";
 
@@ -11,8 +10,17 @@ import TLabel from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./PaymentSuccess.css";
 
+interface PaymentData {
+  id: number;
+  status: string;
+  amount: number;
+  name: string;
+  invoice: string;
+  game_ids: string[];
+}
+
 export const PaymentSuccess: React.FC = ({}) => {
-  const [paymentData, setPaymentData] = useState<any>({});
+  const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
   const [error, setError] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { fetchOrderDetails } = useCartGameApi();
@@ -44,18 +52,17 @@ export const PaymentSuccess: React.FC = ({}) => {
   }, [sessionId]);
 
   useEffect(() => {
-    if (paymentData.status && paymentData.status !== "complete") {
+    if (paymentData?.status && paymentData.status !== "complete") {
       navigate("/payment-failed");
     }
   }, [paymentData, navigate]);
 
   useEffect(() => {
     if (paymentData && paymentData.status === "complete") {
-      const gameIds = paymentData?.items?.map((item: any) => item.id);
-      gameIds?.forEach((id: number) => removeFromCart(id));
-      localStorage.removeItem("cart");
+      const gameIds = paymentData?.game_ids?.map((gameId) => Number(gameId));
+      removeFromCart(gameIds);
     }
-  }, [paymentData, removeFromCart]);
+  }, [paymentData]);
 
   if (isLoading) {
     return <Loader />;
@@ -73,20 +80,20 @@ export const PaymentSuccess: React.FC = ({}) => {
         <p className="confirmation-message">
           <TLabel
             label={"thank_you_for_your_purchase"}
-            replaceValues={{ site_name: <strong>HiveGames</strong> }}
+            replaceValues={{ site_name: "HiveGames" }}
           />
         </p>
 
         <div className="confirmation-details">
           <p>
             <SportsEsportsRounded />
-            <strong>{paymentData.name}</strong>
+            <strong>{paymentData?.name}</strong>
           </p>
           <TLabel
             baliseType={"p"}
             className={"confirmation-price"}
             label={"total_paid"}
-            replaceValues={{ amount: paymentData.amount }}
+            replaceValues={{ amount: paymentData?.amount }}
           />
         </div>
 
@@ -94,10 +101,10 @@ export const PaymentSuccess: React.FC = ({}) => {
           <button className="confirmation-button" onClick={() => navigate("/")}>
             <TLabel label={"return_to_home"} />
           </button>
-          {paymentData.invoice && (
+          {paymentData?.invoice && (
             <a
               className="confirmation-invoice-button"
-              href={paymentData.invoice}
+              href={paymentData?.invoice}
               rel="noopener noreferrer"
               target="_blank"
             >

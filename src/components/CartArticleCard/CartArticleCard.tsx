@@ -14,35 +14,23 @@ import { PriceBox } from "../GameCard/PriceBox/PriceBox";
 import "./CartArticleCard.css";
 
 interface CartArticleCardProps {
-  title: string;
-  price: number;
   imageUrl?: GameImage[];
+  buyButton?: boolean;
   onRemove: () => void;
   isDlc?: boolean;
-  isTotal?: boolean;
-  game?: Game;
+  isItemCart?: boolean;
+  game: Game;
 }
 
 export const CartArticleCard: React.FC<CartArticleCardProps> = ({
-  title,
-  price,
   imageUrl,
+  buyButton = true,
   onRemove,
   isDlc = false,
-  isTotal = false,
+  isItemCart = false,
   game,
 }) => {
-  const gameForWishlist =
-    game ||
-    ({
-      id: 0,
-      name: title,
-      price: price,
-      images: imageUrl || [],
-      is_wished: false,
-    } as Game);
-
-  const showWishButton = !isTotal && game !== undefined;
+  const showWishButton = !isItemCart && game !== undefined;
   const { addToCart, cartItems } = useCart();
   const isInCart = cartItems.some((item) => item === game?.id);
   const { isMobileM } = useWindowSize();
@@ -50,17 +38,17 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!isInCart) {
-      addToCart(game?.id ?? gameForWishlist.id);
+      addToCart(game.id);
     }
   };
 
   return (
     <div className={`cart-article-card ${isDlc ? "little" : ""}`}>
       <div className={`cart-article-card__content ${isDlc ? "little" : ""}`}>
-        {((!isTotal && !isMobileM) || isDlc) && (
+        {((!isItemCart && !isMobileM) || isDlc) && (
           <div className={`cart-article-card__image ${isDlc ? "little" : ""}`}>
             <img
-              alt={title}
+              alt={game.name}
               src={
                 getGameImage(imageUrl).file_url ??
                 "https://via.placeholder.com/150"
@@ -70,24 +58,24 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
         )}
         <div className={`cart-article-card__details ${isDlc ? "little" : ""}`}>
           <div className="cart-article-card__title">
-            <h3>{capitalizeFirstLetter(title)}</h3>
-            {showWishButton && (
+            <h3>{capitalizeFirstLetter(game.name)}</h3>
+            {!showWishButton && (
               <div className={"cart-article-card__wish-button"}>
-                <WishButton game={gameForWishlist} isAuthenticated={true} />
+                <WishButton game={game} isAuthenticated={true} />
               </div>
             )}
           </div>
           <PriceBox
-            buyButton={isDlc ?? false}
+            buyButton={buyButton}
             onAddToCart={handleAddToCart}
-            price={price}
+            game={game}
           />
         </div>
       </div>
       {!isDlc && (
         <div className="cart-article-card__actions">
           <DeleteForeverRounded
-            aria-label={`Supprimer ${title}`}
+            aria-label={`Supprimer ${game.name}`}
             color="error"
             onClick={onRemove}
             onKeyDown={(e) => {

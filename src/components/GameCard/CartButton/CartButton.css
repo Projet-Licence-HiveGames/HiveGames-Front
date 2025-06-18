@@ -1,40 +1,31 @@
 .cart-button {
-    align-items: center;
-    background: var(--bg-color-blue-normal);
-    border: none;
-    border-radius: 3px;
-    display: flex;
-    flex: none;
-    flex-direction: row;
-    flex-grow: 0;
-    gap: 10px;
-    height: 44px;
-    justify-content: center;
-    order: 2;
-    padding: 16px;
-    width: 100px;
-
-    &.owned {
-        background: var(--bg-color-lightest);
-
-        &:hover {
-            background: var(--bg-color-lightest);
-            cursor: not-allowed;
-        }
-    }
-}
-
-.cart-button:hover {
+  align-items: center;
+  background: var(--bg-color-blue-normal);
+  border: none;
+  border-radius: 3px;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-grow: 0;
+  gap: 10px;
+  height: 44px;
+  justify-content: center;
+  order: 2;
+  padding: 16px;
+  width: 100px;
+  
+  &:hover {
     background: var(--bg-color-blue-lighter);
     cursor: pointer;
     transition: background-color .3s ease;
-}
-
-.cart-button span {
+  }
+  
+  & span {
     color: white;
     flex: none;
     flex-grow: 0;
     font-size: 16px;
     font-weight: 400;
     order: 0;
+  }
 }

@@ -6,9 +6,9 @@ import {
   useMemo,
   useState,
 } from "react";
+import { useFetch } from "@api/privateApi.ts";
 
-import { useFetch } from "../api/privateApi.ts";
-import { User } from "../types/User.ts";
+import { User } from "@customTypes/User.ts";
 
 interface AuthContextType {
   user: User | null;
@@ -100,10 +100,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // Function to logout
+  // Function to log out
   const logout = async () => {
     try {
       await fetchApi.post("/auth/logout");
+      window.location.reload();
       localStorage.removeItem("isAuthenticated");
       setUser(null);
     } catch (err) {

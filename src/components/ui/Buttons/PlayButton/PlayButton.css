@@ -1,0 +1,21 @@
+.play-button {
+  align-items: center;
+  background: var(--bg-color-green);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-grow: 0;
+  gap: 10px;
+  height: 44px;
+  justify-content: center;
+  order: 2;
+  padding: 16px;
+  width: 100px;
+  
+  &:hover {
+    background: #86c70b;
+  }
+}

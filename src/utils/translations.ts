@@ -70,6 +70,7 @@ const labelList = [
   "total_paid",
   "thank_you_for_your_purchase",
   "payment_confirmed",
+  "play",
   "home.section.under_price.title",
 ] as const;
 
@@ -157,6 +158,7 @@ export const translationDictionnaries: {
     total_paid: "Total paid : %amount% €",
     thank_you_for_your_purchase: "Thank you for your purchase on %site_name%!",
     payment_confirmed: "Payment Confirmed!",
+    play: "Play",
     "home.section.under_price.title": "This game is under the price of %price%",
   },
 
@@ -236,6 +238,7 @@ export const translationDictionnaries: {
     total_paid: "Total payé : %amount% €",
     thank_you_for_your_purchase: "Merci pour votre achat sur %site_name% !",
     payment_confirmed: "Paiement confirmé !",
+    play: "Jouer",
     "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };

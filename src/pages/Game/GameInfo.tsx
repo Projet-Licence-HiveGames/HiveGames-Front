@@ -3,23 +3,23 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Loader } from "@components/ui/Loader/Loader.tsx";
 
-import { useFetch } from "../../api/privateApi.ts";
-import { GameBuyCard } from "../../components/GameInfo/GameBuyCard/GameBuyCard.tsx";
-import { GameDetails } from "../../components/GameInfo/GameDetails/GameDetails.tsx";
-import { GameFeatures } from "../../components/GameInfo/GameFeatures/GameFeatures.tsx";
-import { GameImages } from "../../components/GameInfo/GameImages/GameImages.tsx";
-import { GameLanguages } from "../../components/GameInfo/GameLanguages/GameLanguages.tsx";
-import { GameLongDescription } from "../../components/GameInfo/GameLongDescription/GameLongDescription.tsx";
-import { GameShortDescription } from "../../components/GameInfo/GameShortDescription/GameShortDescription.tsx";
-import GameReviewSection from "../../components/GameInfo/Review/GameReviewSection.tsx";
-import { useWindowSize } from "../../hooks/useWindowSize.ts";
+import { useFetch } from "@api/privateApi.ts";
+import { GameBuyCard } from "@components/GameInfo/GameBuyCard/GameBuyCard.tsx";
+import { GameDetails } from "@components/GameInfo/GameDetails/GameDetails.tsx";
+import { GameFeatures } from "@components/GameInfo/GameFeatures/GameFeatures.tsx";
+import { GameImages } from "@components/GameInfo/GameImages/GameImages.tsx";
+import { GameLanguages } from "@components/GameInfo/GameLanguages/GameLanguages.tsx";
+import { GameLongDescription } from "@components/GameInfo/GameLongDescription/GameLongDescription.tsx";
+import { GameShortDescription } from "@components/GameInfo/GameShortDescription/GameShortDescription.tsx";
+import GameReviewSection from "@components/GameInfo/Review/GameReviewSection.tsx";
+import { useWindowSize } from "@hooks/useWindowSize.ts";
 import {
   GameBaseType,
   GameDlcType,
   GameReview,
   isGameDlc,
-} from "../../types/Game.ts";
-import { getGameImage } from "../../utils/gameUtils.ts";
+} from "@customTypes/Game.ts";
+import { getGameImage } from "@utils/gameUtils.ts";
 
 import "./GameInfo.css";
 
@@ -95,11 +95,9 @@ export const GameInfo: React.FC = () => {
         <div className="game-details__primary">
           <div className="game-details__purchase">
             <GameBuyCard
-              game={isGameDlc(gameData) ? undefined : gameData}
+              game={gameData}
               isOwned={gameData?.is_owned || false}
               name={gameData?.name || ""}
-              price={gameData?.price || 0}
-              promotion={gameData?.promotion}
             />
             {!isGameDlc(gameData) &&
               gameData.dlcs?.map((dlc) => (
@@ -108,8 +106,7 @@ export const GameInfo: React.FC = () => {
                   isDlc={true}
                   key={dlc.id}
                   name={dlc.name}
-                  price={dlc.price}
-                  promotion={dlc.promotion}
+                  game={dlc}
                 />
               ))}
           </div>
