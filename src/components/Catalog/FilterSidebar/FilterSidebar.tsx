@@ -131,10 +131,10 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
                   setFilters({ ...filters, order_by: e.target.value })
                 }
               >
-                {Object.entries(ORDER_BY_OPTIONS).map(([value, label]) => (
+                {ORDER_BY_OPTIONS.map((value) => (
                   <option key={value} value={value}>
                     <TLabel
-                      label={`filter.orderBy.${label}` as TranslationLabelType}
+                      label={`filter.orderBy.${value}` as TranslationLabelType}
                       noBalise
                     />
                   </option>
