@@ -54,15 +54,30 @@ export const Catalog: React.FC = () => {
     const newFilters: GameFilter = {
       search: params.search || "",
       categories: params.categories
-        ? params.categories.split(",").map(Number)
+        ? params.categories
+            .split(",")
+            .filter((id) => !isNaN(parseInt(id)))
+            .map(Number)
         : [],
       languages: params.languages
-        ? params.languages.split(",").map(Number)
+        ? params.languages
+            .split(",")
+            .filter((id) => !isNaN(parseInt(id)))
+            .map(Number)
         : [],
-      features: params.features ? params.features.split(",").map(Number) : [],
+      features: params.features
+        ? params.features
+            .split(",")
+            .filter((id) => !isNaN(parseInt(id)))
+            .map(Number)
+        : [],
       prices: {
-        min: params.min ? parseInt(params.min) : 0,
-        max: params.max ? parseInt(params.max) : 101,
+        min:
+          params.min && !isNaN(parseInt(params.min)) ? parseInt(params.min) : 0,
+        max:
+          params.max && !isNaN(parseInt(params.max))
+            ? parseInt(params.min)
+            : 101,
       },
       order_by: params.order_by || "rating-desc",
     };
