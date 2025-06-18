@@ -1,33 +1,42 @@
-import React, { useCallback, useEffect } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 import { useFetch } from "../../../api/privateApi.ts";
 import { Game } from "../../../types/Game.ts";
 import GameCard from "../../GameCard/GameCard.tsx";
 import { Loader } from "../../Loader/Loader.tsx";
+import TLabel from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameUnderPrice.css";
 
-export const GameUnderPrice: React.FC = () => {
-  const [gameData, setGameData] = React.useState<Game[]>([]);
-  const [loading, setLoading] = React.useState(true);
+export const GameUnderPrice: FC = () => {
+  const [gameData, setGameData] = useState<Game[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [price, setPrice] = useState<number>(10);
   const fetchAPI = useFetch();
 
   const fetchData = useCallback(async () => {
     fetchAPI
-      .post<Game[]>("/games/filter", { prices: { min: 0, max: 10 } })
+      .post<Game[]>("/games/filter", { prices: { min: 0, max: price } })
       .then(setGameData)
       .catch(console.error)
       .finally(() => setLoading(false));
-  }, []);
+  }, [price]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return (
     <div className="game-under-price-container">
       <header className="game-under-price-header">
-        <h2 className="game-under-price-title">Jeux à moins de 10 €</h2>
+        <TLabel
+          label="home.section.under_price.title"
+          baliseType="h2"
+          className="game-under-price-title"
+          replaceValues={{
+            price: `${price}€`,
+          }}
+        />
       </header>
       {loading ? (
         <Loader />
