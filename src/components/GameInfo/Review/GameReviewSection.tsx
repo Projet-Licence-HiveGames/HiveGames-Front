@@ -20,6 +20,7 @@ const GameReviewSection: FC<GameReviewSectionProps> = ({
   gameName,
   reviews,
 }) => {
+  const onlyRatings = reviews?.filter((f) => !f.commentary);
   return (
     <div className={classNames("game-review-section-container", className)}>
       <TLabel
@@ -36,13 +37,13 @@ const GameReviewSection: FC<GameReviewSectionProps> = ({
               <GameReviewItem key={review.id} review={review} />
             ))}
         </div>
-        <div className="game-review-group-rate">
-          {reviews
-            ?.filter((f) => !f.commentary)
-            .map((review) => (
+        {!!onlyRatings?.length && (
+          <div className="game-review-group-rate">
+            {onlyRatings.map((review) => (
               <GameReviewItem key={review.id} review={review} RatingOnly />
             ))}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
