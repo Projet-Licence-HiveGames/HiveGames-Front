@@ -13,7 +13,7 @@ import "./Cart.css";
 
 export const Cart: React.FC = () => {
   const { fetchGamesByIds } = useGamesApi();
-  const { cartItems, removeFromCart, clearCart } = useCart();
+  const { cartItems, removeFromCart } = useCart();
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +35,7 @@ export const Cart: React.FC = () => {
   }, [cartItems]);
 
   const handleRemoveFromCart = (id: number) => {
-    removeFromCart(id);
+    removeFromCart([id]);
     setGames((prevGames) => prevGames.filter((game) => game.id !== id));
   };
 
@@ -54,21 +54,23 @@ export const Cart: React.FC = () => {
           {games.map((game) => (
             <Suspense fallback={<Loader />} key={game.id}>
               <CartArticleCard
+                isItemCart={false}
+                buyButton={false}
                 imageUrl={game.images}
                 key={game.id}
+                game={game}
                 onRemove={() => handleRemoveFromCart(game.id)}
-                price={game.price}
-                title={game.name}
               />
             </Suspense>
           ))}
           <div className={"cart-container__total"}>
-            <CartArticleCard
-              isTotal={true}
-              onRemove={() => clearCart()}
-              price={games.reduce((total, game) => total + game.price, 0)}
-              title={"Total du panier"}
-            />
+            {/*<CartArticleCard*/}
+            {/*  isTotal={true}*/}
+            {/*  onRemove={() => clearCart()}*/}
+            {/*  game={games[0]}*/}
+            {/*  //price={games.reduce((total, game) => total + game.price, 0)}*/}
+            {/*  title={"Total du panier"}*/}
+            {/*/>*/}
             <div className={"cart-container__total-button"}>
               <Link to={"/catalog"}>
                 <TLabel
@@ -95,15 +97,13 @@ export const Cart: React.FC = () => {
             {games.map((game) =>
               game.dlcs && Array.isArray(game.dlcs)
                 ? game.dlcs.map((dlc) => (
-                    <Suspense fallback={<p>Chargement...</p>} key={dlc.id}>
+                    <Suspense fallback={<Loader />} key={dlc.id}>
                       <CartArticleCard
                         game={dlc}
                         imageUrl={dlc.images}
                         isDlc={true}
                         key={dlc.id}
                         onRemove={() => handleRemoveFromCart(dlc.id)}
-                        price={dlc.price}
-                        title={dlc.name}
                       />
                     </Suspense>
                   ))

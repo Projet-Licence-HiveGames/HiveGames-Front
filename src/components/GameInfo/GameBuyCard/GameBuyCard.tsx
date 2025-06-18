@@ -2,19 +2,18 @@ import React from "react";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 
-import { useCart } from "../../../context/CartContext.tsx";
-import { Game, Promotion } from "../../../types/Game.ts";
-import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+import { useCart } from "@context/CartContext.tsx";
+import { Game, GameDlc } from "@customTypes/Game.ts";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
+
 import { PriceBox } from "../../GameCard/PriceBox/PriceBox.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameBuyCard.css";
 
 interface GameBuyCardProps {
-  game?: Game;
+  game: Game | GameDlc;
   name: string;
-  price: number;
-  promotion?: Promotion | null;
   isOwned?: boolean;
   isDlc?: boolean;
   gameBaseName?: string;
@@ -23,8 +22,6 @@ interface GameBuyCardProps {
 export const GameBuyCard: React.FC<GameBuyCardProps> = ({
   game,
   name,
-  price,
-  promotion = null,
   isOwned = false,
   isDlc = false,
   gameBaseName,
@@ -63,19 +60,14 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
         <div className="game-buy-card__title">
           <h3>{capitalizeFirstLetter(name)}</h3>
         </div>
-        {!!promotion && (
+        {!!game.promotion && (
           <div className="game-buy-card__description">
             <TLabel label="weekend_deal" />
           </div>
         )}
       </div>
       <div className="game-buy-card-content__price">
-        <PriceBox
-          isOwned={isOwned}
-          onAddToCart={handleAddToCart}
-          price={price}
-          promotion={promotion}
-        />
+        <PriceBox isOwned={isOwned} onAddToCart={handleAddToCart} game={game} />
       </div>
     </div>
   );

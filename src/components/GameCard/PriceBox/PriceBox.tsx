@@ -1,48 +1,50 @@
 import React from "react";
 import classNames from "classnames";
 
-import { Promotion } from "../../../types/Game.ts";
-import { calculateDiscount } from "../../../utils/calculateDiscount.ts";
+import { Game, GameDlc } from "@customTypes/Game.ts";
+import { calculateDiscount } from "@utils/calculateDiscount.ts";
+
+import { PlayButton } from "@components/ui/Buttons/PlayButton/PlayButton.tsx";
+
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 import CartButton from "../CartButton/CartButton.tsx";
 
 import "./PriceBox.css";
 
 interface PriceBoxProps {
-  price: number;
-  promotion?: Promotion | null;
+  game: Game | GameDlc;
   isOwned?: boolean;
   onAddToCart?: (e: React.MouseEvent) => void;
   buyButton?: boolean;
 }
 
 export const PriceBox: React.FC<PriceBoxProps> = ({
-  price,
-  promotion,
   isOwned,
+  game,
   onAddToCart,
   buyButton = true,
 }) => {
   const discountedPrice = calculateDiscount(
-    price,
-    promotion?.promotion_rate || 0,
+    game.price,
+    game.promotion?.promotion_rate || 0,
   );
+
   return (
     <div className="price-box">
       <div
         className={classNames("price-box-container", {
-          "on-promotion": !!promotion && discountedPrice > 0,
+          "on-promotion": !!game.promotion && discountedPrice > 0,
         })}
       >
-        {promotion && price > 0 && (
+        {game.promotion && game.price > 0 && (
           <div className={"price-box-discount-rate"}>
-            <h3>{promotion?.promotion_rate}%</h3>
+            <h3>{game.promotion?.promotion_rate}%</h3>
           </div>
         )}
 
         <div className="price-box-prices">
-          {promotion && price > 0 && (
-            <span className={"price-box-old-price"}>{price} €</span>
+          {game.promotion && game.price > 0 && (
+            <span className={"price-box-old-price"}>{game.price} €</span>
           )}
           {discountedPrice <= 0 ? (
             <TLabel label={"free"} className="current-price" />
@@ -53,7 +55,11 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
           )}
         </div>
       </div>
-      {buyButton && <CartButton onClick={onAddToCart} isOwned={isOwned} />}
+      {buyButton && !isOwned ? (
+        <CartButton onClick={onAddToCart} isOwned={isOwned} />
+      ) : isOwned ? (
+        <PlayButton id={game.id} name={game.name} />
+      ) : null}
     </div>
   );
 };

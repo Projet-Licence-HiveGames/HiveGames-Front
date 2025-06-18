@@ -1,7 +1,6 @@
 import React from "react";
-import { toast } from "react-toastify";
 
-import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./CartButton.css";
 
@@ -13,14 +12,14 @@ interface CartButtonProps {
 const CartButton: React.FC<CartButtonProps> = ({ onClick, isOwned }) => {
   return (
     <button
-      className={`cart-button ${isOwned ? "owned" : ""}`}
+      className={`cart-button`}
       onClick={(e) => {
         e.stopPropagation();
         if (isOwned) return;
         onClick?.(e);
       }}
     >
-      <TLabel label={isOwned ? "owned" : "buy"} />
+      <TLabel label={"buy"} />
     </button>
   );
 };

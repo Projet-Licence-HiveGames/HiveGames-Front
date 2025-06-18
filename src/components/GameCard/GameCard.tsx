@@ -2,14 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { GameBaseType } from "../../types/Game";
-import { useCart } from "../../context/CartContext";
-import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
-import { getGameImage } from "../../utils/gameUtils";
+import { GameBaseType } from "@customTypes/Game";
+import { useCart } from "@context/CartContext";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
+import { getGameImage } from "@utils/gameUtils";
 import { Category } from "../ui/CategoryBloc/Category";
 import ImageWithLoader from "../ui/Image/ImageWithLoader";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
-import TLabel from "../ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "../ui/TranslationLabel/TLabel.tsx";
 import { WishButton } from "../ui/WishButton/WishButton";
 
 import { PriceBox } from "./PriceBox/PriceBox";
@@ -70,9 +70,8 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
         <div className={"game-card-content-price"}>
           <PriceBox
             isOwned={game.is_owned}
+            game={game}
             onAddToCart={handleAddToCart}
-            price={game.price}
-            promotion={game.promotion}
           />
         </div>
       </div>

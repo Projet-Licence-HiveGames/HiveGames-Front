@@ -9,7 +9,7 @@ import { useAuth } from "./AuthProvider";
 interface CartContextType {
   cartItems: number[];
   addToCart: (item: number) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: number[]) => void;
   clearCart: () => void;
 }
 
@@ -34,16 +34,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const localCart = localStorage.getItem("cart");
     const localCartIds: number[] = localCart ? JSON.parse(localCart) : [];
-
     if (isAuthenticated) {
       fetchCartGames()
         .then((data) => {
-          const serverCartIds = data.map((game) => game.id);
+          const serverCartIds = data ?? [];
           const mergedCartIds = Array.from(
             new Set([...localCartIds, ...serverCartIds]),
           );
           setCartItems(mergedCartIds);
-          localStorage.setItem("cart", JSON.stringify(mergedCartIds));
+          const test = localCartIds.filter((id) => !serverCartIds.includes(id));
+          test.length && addGamesToCart(test);
         })
         .catch(() => {
           toast.dismiss();
@@ -55,50 +55,45 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [isAuthenticated]);
 
   const addToCart = async (id: number) => {
-    setCartItems((prev) => (prev.includes(id) ? prev : [...prev, id]));
     if (isAuthenticated) {
-      await addGamesToCart(id)
-        .then(() => {
-          toast.dismiss();
-          toast.success(<TLabel label={"article_added"} />);
-        })
-        .catch(() => {
-          toast.dismiss();
-          toast.error("Erreur lors de l'ajout au panier.");
-        });
-    } else {
-      const updatedCart = [...cartItems, id];
-      setCartItems(updatedCart);
-      toast.dismiss();
-      toast.success(<TLabel label={"article_added"} />);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      try {
+        await addGamesToCart([id]);
+      } catch {
+        toast.dismiss();
+        toast.error("Erreur lors de l'ajout au panier.");
+        return;
+      }
     }
+    const updatedCart = [...cartItems, id];
+    setCartItems(updatedCart);
+    toast.dismiss();
+    toast.success(<TLabel label={"article_added"} />);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const removeFromCart = async (id: number) => {
-    if (!isAuthenticated) {
-      const updatedCart = cartItems.filter((cartId) => cartId !== id);
-      setCartItems(updatedCart);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return;
+  const removeFromCart = async (id: number[]) => {
+    if (isAuthenticated) {
+      try {
+        await clearCartOnServer(id);
+      } catch (e) {
+        toast.dismiss();
+        toast.error("The product could not be removed from the cart.");
+        return;
+      }
     }
 
-    try {
-      await clearCartOnServer([id]);
-      setCartItems((prev) => prev.filter((cartId) => cartId !== id));
-    } catch (e) {
-      toast.dismiss();
-      toast.error("The product could not be removed from the cart.");
-    }
+    const updatedCart = cartItems.filter((item) => !id.includes(item));
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const clearCart = async () => {
     setCartItems([]);
     if (isAuthenticated) {
       await clearCartOnServer();
-    } else {
-      localStorage.removeItem("cart");
     }
+
+    localStorage.removeItem("cart");
   };
 
   return (
