@@ -39,6 +39,7 @@ const labelList = [
   "dlc.downloadable_content",
   "dlc.requirements.base_game",
   "owned",
+  "home.section.under_price.title",
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -91,6 +92,7 @@ export const translationDictionnaries: {
     "dlc.requirements.base_game":
       "This additional content requires the base game %game_name% to run.",
     owned: "Owned",
+    "home.section.under_price.title": "This game is under the price of %price%",
   },
 
   // -------------------- French --------------------
@@ -136,5 +138,6 @@ export const translationDictionnaries: {
     "dlc.requirements.base_game":
       "Ce contenu additionnel nécessite le jeu de base %game_name% pour fonctionner.",
     owned: "Possédé",
+    "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };
