@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Textarea } from "@mui/joy";
 import { Rating } from "@mui/material";
 import classNames from "classnames";
@@ -39,6 +39,19 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ gameName }) => {
       setIsFocused(false);
     }
   });
+
+  const allRatingsFilled = Object.values(ratingValues).every(
+    (value) => value !== null,
+  );
+  const noRatingsFilled = Object.values(ratingValues).every(
+    (value) => value === null,
+  );
+  const hasText = textCommentary.trim().length > 0;
+
+  const disableSubmit = !(
+    (hasText && (allRatingsFilled || noRatingsFilled)) ||
+    (!hasText && allRatingsFilled)
+  );
 
   return (
     <div
@@ -101,7 +114,7 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ gameName }) => {
                 <Rating
                   className="editor-rating_star"
                   name={key}
-                  value={value ?? 0}
+                  value={value}
                   onChange={(_, newValue) => {
                     setRatingValues((prev) => ({
                       ...prev,
@@ -122,10 +135,7 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ gameName }) => {
           onClick={() => {
             alert("Submit functionality not implemented yet.");
           }}
-          disabled={
-            textCommentary.length === 0 &&
-            !Object.values(ratingValues).some((value) => value !== null)
-          }
+          disabled={disableSubmit}
         >
           <TLabel
             label="review.editor.submit"
