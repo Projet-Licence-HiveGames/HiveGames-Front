@@ -59,6 +59,7 @@ const labelList = [
   "review.editor.already_submitted_last_24h",
   "error.not_authenticated",
   "error.something_went_wrong",
+  "home.section.under_price.title",
   "total_price",
   "continue_shopping",
   "purchase",
@@ -71,7 +72,6 @@ const labelList = [
   "thank_you_for_your_purchase",
   "payment_confirmed",
   "play",
-  "home.section.under_price.title",
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -147,6 +147,7 @@ export const translationDictionnaries: {
     "error.not_authenticated": "You must be logged in to %action%.",
     "error.something_went_wrong":
       "Something went wrong, please try again later.",
+    "home.section.under_price.title": "This game is under the price of %price%",
     total_price: "Estimated total",
     continue_shopping: "Continue shopping",
     purchase: "Purchase",
@@ -159,7 +160,6 @@ export const translationDictionnaries: {
     thank_you_for_your_purchase: "Thank you for your purchase on %site_name%!",
     payment_confirmed: "Payment Confirmed!",
     play: "Play",
-    "home.section.under_price.title": "This game is under the price of %price%",
   },
 
   // -------------------- French --------------------
@@ -227,6 +227,7 @@ export const translationDictionnaries: {
     "error.not_authenticated": "Vous devez être connecté pour %action%.",
     "error.something_went_wrong":
       "Une erreur s'est produite, veuillez réessayer plus tard.",
+    "home.section.under_price.title": "Ce jeu est à moins de %price%",
     total_price: "Prix total estimé",
     continue_shopping: "Continuer vos achats",
     purchase: "Acheter",
@@ -239,6 +240,5 @@ export const translationDictionnaries: {
     thank_you_for_your_purchase: "Merci pour votre achat sur %site_name% !",
     payment_confirmed: "Paiement confirmé !",
     play: "Jouer",
-    "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };
