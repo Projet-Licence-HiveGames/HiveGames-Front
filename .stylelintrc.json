@@ -11,6 +11,12 @@
         "number-leading-zero": "never",
         "no-empty-source": null,
         "selector-class-pattern": null,
-        "keyframes-name-pattern": null
+        "keyframes-name-pattern": null,
+        "indentation": [
+            2,
+            {
+                "baseIndentLevel": 1
+            }
+        ]
     }
 }

@@ -15,7 +15,7 @@ interface PaymentData {
   status: string;
   amount: number;
   name: string;
-  invoice: string;
+  invoice_url: string;
   game_ids: string[];
 }
 
@@ -101,10 +101,10 @@ export const PaymentSuccess: React.FC = ({}) => {
           <button className="confirmation-button" onClick={() => navigate("/")}>
             <TLabel label={"return_to_home"} />
           </button>
-          {paymentData?.invoice && (
+          {paymentData?.invoice_url && (
             <a
               className="confirmation-invoice-button"
-              href={paymentData?.invoice}
+              href={paymentData?.invoice_url}
               rel="noopener noreferrer"
               target="_blank"
             >

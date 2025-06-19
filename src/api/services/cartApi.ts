@@ -2,6 +2,8 @@ import { Game } from "@customTypes/Game.ts";
 
 import { useFetch } from "../privateApi";
 
+import { StripeOrderType } from "@/types/StripeOrderType.ts";
+
 export const useCartGameApi = () => {
   const api = useFetch();
 
@@ -17,11 +19,11 @@ export const useCartGameApi = () => {
     if (!gameIds) {
       throw new Error("At least one game ID is required to add to the cart.");
     }
-    await api.post<void>("/cart/add", { gameIds });
+    await api.post("/cart/add", { gameIds });
   };
 
   const clearCartOnServer = async (gameIds?: number[]): Promise<void> => {
-    await api.post<void>("/cart/clear", { gameIds });
+    await api.post("/cart/clear", { gameIds });
   };
 
   const fetchCartGamesByIds = async (ids: number[]): Promise<Game[]> => {
@@ -33,7 +35,7 @@ export const useCartGameApi = () => {
       throw new Error("Session ID is required to fetch order details.");
     }
 
-    return await api.get<any>(`/stripe/order/${sessionId}`);
+    return await api.get<StripeOrderType>(`/stripe/order/${sessionId}`);
   };
 
   return {
