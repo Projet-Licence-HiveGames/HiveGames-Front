@@ -14,7 +14,7 @@ interface PaymentData {
   id: number;
   status: string;
   amount: number;
-  name: string;
+  name: string[];
   invoice_url: string;
   game_ids: string[];
 }
@@ -85,10 +85,14 @@ export const PaymentSuccess: React.FC = ({}) => {
         </p>
 
         <div className="confirmation-details">
-          <p>
-            <SportsEsportsRounded />
-            <strong>{paymentData?.name}</strong>
-          </p>
+          <ul>
+            {paymentData?.name.map((name, index) => (
+              <ol key={index} className={"item"}>
+                <SportsEsportsRounded />
+                {name}
+              </ol>
+            ))}
+          </ul>
           <TLabel
             baliseType={"p"}
             className={"confirmation-price"}
