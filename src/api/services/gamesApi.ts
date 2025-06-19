@@ -1,4 +1,10 @@
-import { Game } from "../../types/Game";
+import {
+  Game,
+  GameCategory,
+  GameFeature,
+  GameLanguage,
+} from "@customTypes/Game.ts";
+
 import { useFetch } from "../privateApi";
 
 export const useGamesApi = () => {
@@ -12,16 +18,16 @@ export const useGamesApi = () => {
     return await api.post<Game[]>("/games/filter", { ids });
   };
 
-  const fetchCategories = async (): Promise<string[]> => {
-    return await api.get<string[]>("/games/top-categories");
+  const fetchCategories = async (): Promise<GameCategory[]> => {
+    return await api.get<GameCategory[]>("/games/top-categories");
   };
 
-  const fetchLanguages = async (): Promise<string[]> => {
-    return await api.get<string[]>("/games/filter/languages");
+  const fetchLanguages = async (): Promise<GameLanguage[]> => {
+    return await api.get<GameLanguage[]>("/games/filter/languages");
   };
 
-  const fetchFeatures = async (): Promise<string[]> => {
-    return await api.get<string[]>("/games/filter/features");
+  const fetchFeatures = async (): Promise<GameFeature[]> => {
+    return await api.get<GameFeature[]>("/games/filter/features");
   };
 
   return {
