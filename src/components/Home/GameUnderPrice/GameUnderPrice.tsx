@@ -3,7 +3,7 @@ import { FC, useCallback, useEffect, useState } from "react";
 import { useFetch } from "../../../api/privateApi.ts";
 import { GameBaseType } from "../../../types/Game.ts";
 import GameCard from "../../GameCard/GameCard.tsx";
-import { Loader } from "../../Loader/Loader.tsx";
+import { Loader } from "../../ui/Loader/Loader.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameUnderPrice.css";
