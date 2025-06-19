@@ -1,126 +1,127 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 :root {
-    /* Breakpoints */
-    --mobile-width-size: 768px;
-    --tablet-width-size: 1024px;
-    --laptop-width-size: 1440px;
+  /* Breakpoints */
+  --mobile-width-size: 768px;
+  --tablet-width-size: 1024px;
+  --laptop-width-size: 1440px;
 
-    /* Colors */
-    --bg-color-blue-darker: #0065D3;
-    --bg-color-blue-dark: #006FE8;
-    --bg-color-blue-light: #1786FF;
-    --bg-color-blue-normal: #4B619B;
-    --bg-color-blue-lighter: #466cb9;
-    --bg-color-darker: #1b232e;
-    --bg-color-dark: #212a38;
-    --bg-color-green: #A1CD44;
-    --bg-color-light: #2d3748;
-    --bg-color-lighter: #323d4e;
-    --bg-color-lightest: #454f5e;
-    --bg-color-brightest: #454F5E;
-    --bg-color-normal: #273142;
-    --bg-color-orange: #FFA500;
-    --bg-color-red: #CD5444;
+  /* Colors */
+  --bg-color-blue-darker: #0065D3;
+  --bg-color-blue-dark: #006FE8;
+  --bg-color-blue-light: #1786FF;
+  --bg-color-blue-normal: #4B619B;
+  --bg-color-blue-lighter: #466cb9;
+  --bg-color-darker: #1b232e;
+  --bg-color-dark: #212a38;
+  --bg-color-green: #A1CD44;
+  --bg-color-green-dark: #789c2c;
+  --bg-color-light: #2d3748;
+  --bg-color-lighter: #323d4e;
+  --bg-color-lightest: #454f5e;
+  --bg-color-brightest: #454F5E;
+  --bg-color-normal: #273142;
+  --bg-color-orange: #FFA500;
+  --bg-color-red: #CD5444;
 
-    /* Color Scheme */
-    background-color: #242424;
-    color: rgb(255 255 255 / 87%);
-    color-scheme: light dark;
+  /* Color Scheme */
+  background-color: #242424;
+  color: rgb(255 255 255 / 87%);
+  color-scheme: light dark;
 
-    /* Font */
-    font-family: Nunito, serif;
+  /* Font */
+  font-family: Nunito, serif;
 
-    /* Typography */
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-synthesis: none;
-    text-rendering: optimizelegibility;
+  /* Typography */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
     
-    /* Font Weights */
-    --font-weight-light: 300;
-    --font-weight-normal: 400;
-    --font-weight-regular: 500;
-    --font-weight-medium: 600;
-    --font-weight-bold: 700;
-    --font-weight-extrabold: 800;
-    --font-weight-black: 900;
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-regular: 500;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
     
-    /* Font Sizes */
-    --font-size-12: .75rem; /* 12px */
-    --font-size-14: .875rem; /* 14px */
-    --font-size-16: 1rem; /* 16px */
-    --font-size-18: 1.125rem; /* 18px */
-    --font-size-20: 1.25rem; /* 20px */
-    --font-size-22: 1.375rem; /* 22px */
-    --font-size-24: 1.5rem; /* 24px */
+  /* Font Sizes */
+  --font-size-12: .75rem; /* 12px */
+  --font-size-14: .875rem; /* 14px */
+  --font-size-16: 1rem; /* 16px */
+  --font-size-18: 1.125rem; /* 18px */
+  --font-size-20: 1.25rem; /* 20px */
+  --font-size-22: 1.375rem; /* 22px */
+  --font-size-24: 1.5rem; /* 24px */
 
-    /* Gradient */
-    --button-gradient-orange: linear-gradient(-125deg, #f2b705, #f28a07);
+  /* Gradient */
+  --button-gradient-orange: linear-gradient(-125deg, #f2b705, #f28a07);
 
-    /* Radius */
-    --button-border-radius-small: 4px;
-    --button-border-radius-lg: 10px;
-    --button-border-radius-md: 7px;
-    --button-border-radius-xl: 12px;
-    --header-height: 3.5rem;
+  /* Radius */
+  --button-border-radius-small: 4px;
+  --button-border-radius-lg: 10px;
+  --button-border-radius-md: 7px;
+  --button-border-radius-xl: 12px;
+  --header-height: 3.5rem;
 }
 
 * {
-    box-sizing: border-box;
-    font-family: Nunito, serif;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  font-family: Nunito, serif;
+  margin: 0;
+  padding: 0;
     
-    @media (prefers-color-scheme: light) {
-        :root {
-            background-color: #fff;
-            color: #213547;
-        }
+  @media (prefers-color-scheme: light) {
+    :root {
+      background-color: #fff;
+      color: #213547;
+    }
         
-        a:hover {
-            color: #747bff;
-        }
+    a:hover {
+      color: #747bff;
+    }
         
-        button {
-            background-color: #f9f9f9;
-        }
+    button {
+      background-color: #f9f9f9;
     }
+  }
     
-    .regular-16 {
-        font-size: 1rem;
-        font-weight: 400;
+  .regular-16 {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+    
+  .regular-12 {
+    font-size: .75rem;
+    font-weight: 400;
+  }
+    
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    transition: filter 300ms;
+    will-change: filter;
+  }
+    
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+    
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
     }
-    
-    .regular-12 {
-        font-size: .75rem;
-        font-weight: 400;
-    }
-    
-    .logo {
-        height: 6em;
-        padding: 1.5em;
-        transition: filter 300ms;
-        will-change: filter;
-    }
-    
-    .logo:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-    }
-    
-    @keyframes logo-spin {
-        from {
-            transform: rotate(0deg);
-        }
         
-        to {
-            transform: rotate(360deg);
-        }
+    to {
+      transform: rotate(360deg);
     }
+  }
     
-    @media (prefers-reduced-motion: no-preference) {
-        a:nth-of-type(2) .logo {
-            animation: logo-spin infinite 20s linear;
-        }
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
     }
+  }
 }

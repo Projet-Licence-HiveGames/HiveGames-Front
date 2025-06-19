@@ -53,23 +53,5 @@
     flex-direction: column;
     height: 200px;
     justify-content: space-between;
-    
-    .cart-container__total-button {
-      display: flex;
-      gap: 20px;
-      justify-content: space-between;
-      padding: 20px;
-    }
-    
-    .cart-container__shopping-button {
-      background: var(--bg-color-lighter);
-      border: none;
-      padding: 10px;
-      
-      &:hover {
-        background: var(--bg-color-light);
-        cursor: pointer;
-      }
-    }
   }
 }

@@ -38,7 +38,7 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
       >
         {game.promotion && game.price > 0 && (
           <div className={"price-box-discount-rate"}>
-            <h3>{game.promotion?.promotion_rate}%</h3>
+            <h3>{parseFloat(game?.promotion.promotion_rate.toString())}%</h3>
           </div>
         )}
 
@@ -49,7 +49,9 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
           {discountedPrice <= 0 ? (
             <TLabel label={"free"} className="current-price" />
           ) : (
-            <span className="current-price">{discountedPrice} €</span>
+            <span className="current-price">
+              {discountedPrice.toFixed(2)} €
+            </span>
           )}
         </div>
       </div>

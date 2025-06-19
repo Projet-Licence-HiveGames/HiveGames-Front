@@ -46,6 +46,12 @@
     display: flex;
     justify-content: center;
   }
+
+  & .item {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .confirmation-price {

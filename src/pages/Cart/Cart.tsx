@@ -1,10 +1,10 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useGamesApi } from "@api/services/gamesApi.ts";
 
 import { useCart } from "@context/CartContext.tsx";
 import { Game } from "@customTypes/Game";
 
+import { CartAmountTotal } from "@components/CartAmountTotal/CartAmountTotal.tsx";
 import { CartArticleCard } from "@components/CartArticleCard/CartArticleCard.tsx";
 import { Loader } from "@components/ui/Loader/Loader.tsx";
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
@@ -64,29 +64,7 @@ export const Cart: React.FC = () => {
             </Suspense>
           ))}
           <div className={"cart-container__total"}>
-            {/*<CartArticleCard*/}
-            {/*  isTotal={true}*/}
-            {/*  onRemove={() => clearCart()}*/}
-            {/*  game={games[0]}*/}
-            {/*  //price={games.reduce((total, game) => total + game.price, 0)}*/}
-            {/*  title={"Total du panier"}*/}
-            {/*/>*/}
-            <div className={"cart-container__total-button"}>
-              <Link to={"/catalog"}>
-                <TLabel
-                  baliseType={"button"}
-                  className={"cart-container__shopping-button"}
-                  label="continue_shopping"
-                />
-              </Link>
-              <Link to={"/cart/checkout"}>
-                <TLabel
-                  baliseType={"button"}
-                  className={"cart-container__shopping-button"}
-                  label={"purchase"}
-                />
-              </Link>
-            </div>
+            <CartAmountTotal games={games} />
           </div>
         </section>
         {games.some(
