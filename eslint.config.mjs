@@ -63,13 +63,6 @@ export default defineConfig([
           ],
         },
       ],
-      // "react/jsx-sort-props": ["error", {
-      //   "callbacksLast": false,
-      //   "shorthandFirst": false,
-      //   "ignoreCase": true,
-      //   "noSortAlphabetically": false,
-      //   "reservedFirst": false
-      // }],
       "simple-import-sort/exports": "error",
     },
     settings: {
