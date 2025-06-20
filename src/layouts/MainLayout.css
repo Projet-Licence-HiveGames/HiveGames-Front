@@ -11,6 +11,7 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  transition: all .3s ease;
   width: 100%;
 }
 
@@ -18,15 +19,12 @@
   flex-grow: 1;
   overflow: auto;
   transition: margin-left .3s ease;
-
-  @media screen and (width <= 1024px) {
-    opacity: 1;
-  }
 }
 
-.main-content--collapsed {
+.sidebar:not(.sidebar--collapsed) + .right-panel {
   @media screen and (width <= 1024px) {
-    opacity: .5;
+    filter: brightness(.75);
+    pointer-events: none;
   }
 }
 

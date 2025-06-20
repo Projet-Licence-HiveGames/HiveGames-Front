@@ -9,6 +9,7 @@
   max-height: var(--header-height);
   min-height: var(--header-height);
   padding: 0 1rem;
+  padding-left: 3rem;
 }
 
 .search-bar {
@@ -50,13 +51,3 @@
   justify-content: flex-end;
 }
 
-.sidebar-toggle {
-  align-items: center;
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  display: flex;
-  font-size: 1.5rem;
-  justify-content: center;
-}
