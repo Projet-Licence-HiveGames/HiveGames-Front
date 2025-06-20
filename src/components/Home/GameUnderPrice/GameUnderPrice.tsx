@@ -1,22 +1,22 @@
 import { FC, useCallback, useEffect, useState } from "react";
 
 import { useFetch } from "../../../api/privateApi.ts";
-import { Game } from "../../../types/Game.ts";
+import { GameBaseType } from "../../../types/Game.ts";
 import GameCard from "../../GameCard/GameCard.tsx";
 import { Loader } from "../../Loader/Loader.tsx";
-import TLabel from "../../ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameUnderPrice.css";
 
 export const GameUnderPrice: FC = () => {
-  const [gameData, setGameData] = useState<Game[]>([]);
+  const [gameData, setGameData] = useState<GameBaseType[]>([]);
   const [loading, setLoading] = useState(true);
   const [price, setPrice] = useState<number>(10);
   const fetchAPI = useFetch();
 
   const fetchData = useCallback(async () => {
     fetchAPI
-      .post<Game[]>("/games/filter", { prices: { min: 0, max: price } })
+      .post<GameBaseType[]>("/games/filter", { prices: { min: 0, max: price } })
       .then(setGameData)
       .catch(console.error)
       .finally(() => setLoading(false));
