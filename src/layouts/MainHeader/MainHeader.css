@@ -8,8 +8,7 @@
   justify-content: space-between;
   max-height: var(--header-height);
   min-height: var(--header-height);
-  padding: 0 1rem;
-  padding-left: 3rem;
+  padding: 0 1rem 0 3rem;
 }
 
 .search-bar {

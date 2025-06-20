@@ -59,7 +59,6 @@ const Sidebar: FC = () => {
               <StorefrontOutlined />
               <TLabel label="sidebar.catalog" />
             </MenuItem>
-            <hr />
             <MenuItem to="/calendar">
               <CalendarMonth />
               <TLabel label="sidebar.calendar" />
@@ -75,7 +74,6 @@ const Sidebar: FC = () => {
           </div>
         </div>
       </div>
-
       <button
         className="sidebar-toggle"
         onClick={() => setIsExpanded(!isExpanded)}
