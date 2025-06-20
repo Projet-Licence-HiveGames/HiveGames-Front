@@ -1,6 +1,6 @@
 import { User } from "./User";
 
-export interface Game {
+export interface GameType {
   id: number;
   name: string;
   short_description?: string;
@@ -18,18 +18,21 @@ export interface Game {
   studios?: GameStudio[];
   release_date?: string;
   game_type?: "base" | "dlc" | "demo";
-  dlcs: Game[];
   reviews?: GameReview[];
+}
+
+export interface GameBaseType extends GameType {
+  dlcs: GameBaseType[];
+}
+
+export interface GameDlcType extends GameType {
+  base_game_id?: number;
 }
 
 export interface GameLanguage {
   id: number;
   label: string;
   code: string;
-}
-
-export interface GameDlc extends Omit<Game, "dlcs"> {
-  base_game_id?: number;
 }
 
 export interface GameLanguageDetails extends GameLanguage {
@@ -45,7 +48,7 @@ export interface GameFeature {
 
 export interface GameSession {
   id: number;
-  game: Game;
+  game: GameBaseType;
   user: User;
   start_date: Date;
   end_date?: Date;
@@ -72,7 +75,7 @@ export interface GameImage {
   id: number;
   file_name: string;
   file_url?: string;
-  game: Game;
+  game: GameType;
   alt: string;
 }
 
@@ -116,6 +119,8 @@ export function findGameCollection(gameId: number, user?: User | null) {
   );
 }
 
-export function isGameDlc(game: Game | GameDlc): game is GameDlc {
+export function isGameDlc(
+  game: GameBaseType | GameDlcType,
+): game is GameDlcType {
   return "base_game_id" in game && !("dlcs" in game);
 }

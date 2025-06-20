@@ -4,13 +4,13 @@ import CircularProgress from "@mui/joy/CircularProgress";
 import classNames from "classnames";
 
 import { AuthContext } from "../../context/AuthProvider";
-import { Game } from "../../types/Game";
+import { GameBaseType } from "../../types/Game";
 
 import "./GameSession.css";
 
 interface GameSessionProps {
   tempGameName: string | null;
-  game: Game | null;
+  game: GameBaseType | null;
   isOpen: boolean;
   isLoading: boolean;
   onCloseGameSession: () => void;

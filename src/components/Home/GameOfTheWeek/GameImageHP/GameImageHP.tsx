@@ -4,7 +4,7 @@ import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import useWindowSize from "../../../../hooks/useWindowSize.ts";
-import { Game } from "../../../../types/Game.ts";
+import { GameBaseType } from "../../../../types/Game.ts";
 import { getGameImage } from "../../../../utils/gameUtils.ts";
 import { PriceTag } from "../../../ui/PriceTag/PriceTag.tsx";
 import { TLabel } from "../../../ui/TranslationLabel/TLabel.tsx";
@@ -14,7 +14,7 @@ import "swiper/swiper-bundle.css";
 import "./GameImageHP.css";
 
 interface GameImageHPProps {
-  games: Game[];
+  games: GameBaseType[];
   isAuthenticated: boolean;
 }
 
@@ -23,7 +23,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
   isAuthenticated,
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  const [selectedGame, setSelectedGame] = useState<Game>(games[0]);
+  const [selectedGame, setSelectedGame] = useState<GameBaseType>(games[0]);
   const { isMobileL, isMobileM, isMobileS, isTablet } = useWindowSize();
   const navigate = useNavigate();
 

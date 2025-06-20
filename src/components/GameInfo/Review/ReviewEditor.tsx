@@ -1,34 +1,43 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useState } from "react";
+import { toast } from "react-toastify";
 import { Textarea } from "@mui/joy";
 import { Rating } from "@mui/material";
 import classNames from "classnames";
 
+import { useFetch } from "../../../api/privateApi";
+import { AuthContext } from "../../../context/AuthProvider";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
-import { ReviewRatings } from "../../../types/Game";
+import { GameReview, ReviewRatings } from "../../../types/Game";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
 import { TranslationLabelType } from "../../../utils/translations";
 import { TLabel, TText } from "../../ui/TranslationLabel/TLabel";
 
 import "./ReviewEditor.css";
 
-const MAX_COMMENTARY_LENGTH = 516;
+const MAX_COMMENTARY_LENGTH = 512;
+const DEFAULT_RATING_VALUE: ReviewRatings = {
+  gameplay_rate: null,
+  graphics_rate: null,
+  sound_design_rate: null,
+  story_rate: null,
+  translation_quality_rate: null,
+  usability_rate: null,
+  value_for_money_rate: null,
+};
 
 interface ReviewEditorProps {
-  gameName: string;
+  game: { id: number; name: string };
+  updateReviewList: (review: GameReview) => void;
 }
 
-const ReviewEditor: FC<ReviewEditorProps> = ({ gameName }) => {
+const ReviewEditor: FC<ReviewEditorProps> = ({ game, updateReviewList }) => {
+  const fetchAPI = useFetch();
+  const { isAuthenticated } = useContext(AuthContext);
   const [textCommentary, setTextCommentary] = useState<string>("");
-  const [ratingValues, setRatingValues] = useState<ReviewRatings>({
-    gameplay_rate: null,
-    graphics_rate: null,
-    sound_design_rate: null,
-    story_rate: null,
-    translation_quality_rate: null,
-    usability_rate: null,
-    value_for_money_rate: null,
-  });
+  const [ratingValues, setRatingValues] =
+    useState<ReviewRatings>(DEFAULT_RATING_VALUE);
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const ref = useOutsideClick<HTMLDivElement>(() => {
     if (
@@ -48,10 +57,49 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ gameName }) => {
   );
   const hasText = textCommentary.trim().length > 0;
 
-  const disableSubmit = !(
-    (hasText && (allRatingsFilled || noRatingsFilled)) ||
-    (!hasText && allRatingsFilled)
-  );
+  const disableSubmit =
+    !(
+      (hasText && (allRatingsFilled || noRatingsFilled)) ||
+      (!hasText && allRatingsFilled)
+    ) || isSubmitting;
+
+  const handleSubmit = () => {
+    if (disableSubmit) return;
+    if (!isAuthenticated) {
+      toast.error(
+        <TLabel
+          label="error.not_authenticated"
+          replaceValues={{
+            action: <TText label="review.editor.submit_review" />,
+          }}
+        />,
+      );
+      return;
+    }
+    setIsSubmitting(true);
+    fetchAPI
+      .post<GameReview>(`/games/${game.id}/review`, {
+        commentary: textCommentary,
+        ...ratingValues,
+      })
+      .then((newReview) => {
+        updateReviewList(newReview);
+        setTextCommentary("");
+        setRatingValues(DEFAULT_RATING_VALUE);
+        setIsFocused(false);
+        toast.success(<TLabel label="review.editor.submit.success" />);
+      })
+      .catch((response) => {
+        if (response.status == 403) {
+          toast.error(
+            <TLabel label="review.editor.already_submitted_last_24h" />,
+          );
+        } else {
+          toast.error(<TLabel label="error.something_went_wrong" />);
+        }
+      })
+      .finally(() => setIsSubmitting(false));
+  };
 
   return (
     <div
@@ -66,7 +114,7 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ gameName }) => {
           replaceValues={{
             game_name: (
               <span className="review-editor-header_game-name">
-                {capitalizeFirstLetter(gameName)}
+                {capitalizeFirstLetter(game.name)}
               </span>
             ),
           }}
@@ -121,7 +169,7 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ gameName }) => {
                       [key]: newValue,
                     }));
                   }}
-                  precision={0.5}
+                  precision={1}
                   size="medium"
                 />
               </div>
@@ -132,9 +180,7 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ gameName }) => {
       {isFocused && (
         <button
           className="review-editor-submit-button"
-          onClick={() => {
-            alert("Submit functionality not implemented yet.");
-          }}
+          onClick={handleSubmit}
           disabled={disableSubmit}
         >
           <TLabel

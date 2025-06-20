@@ -54,6 +54,11 @@ const labelList = [
   "review.editor.subtitle",
   "review.editor.commentary.placeholder",
   "review.editor.submit",
+  "review.editor.submit.success",
+  "review.editor.submit_review",
+  "review.editor.already_submitted_last_24h",
+  "error.not_authenticated",
+  "error.something_went_wrong",
   "home.section.under_price.title",
 ] as const;
 
@@ -122,6 +127,14 @@ export const translationDictionnaries: {
     "review.editor.subtitle": "Share your review on %game_name%",
     "review.editor.commentary.placeholder": "Write your commentary here...",
     "review.editor.submit": "Submit",
+    "review.editor.submit.success":
+      "Your review has been successfully submitted.",
+    "review.editor.submit_review": "submit a review",
+    "review.editor.already_submitted_last_24h":
+      "You have already submitted a review in the last 24 hours.",
+    "error.not_authenticated": "You must be logged in to %action%.",
+    "error.something_went_wrong":
+      "Something went wrong, please try again later.",
     "home.section.under_price.title": "This game is under the price of %price%",
   },
 
@@ -183,6 +196,13 @@ export const translationDictionnaries: {
     "review.editor.subtitle": "Partagez votre avis sur %game_name%",
     "review.editor.commentary.placeholder": "Écrivez votre commentaire ici...",
     "review.editor.submit": "Envoyer",
+    "review.editor.submit.success": "Votre avis a été enregistré avec succès.",
+    "review.editor.submit_review": "soumettre un avis",
+    "review.editor.already_submitted_last_24h":
+      "Vous avez déjà soumis un avis au cours des dernières 24 heures.",
+    "error.not_authenticated": "Vous devez être connecté pour %action%.",
+    "error.something_went_wrong":
+      "Une erreur s'est produite, veuillez réessayer plus tard.",
     "home.section.under_price.title": "Ce jeu est à moins de %price%",
   },
 };

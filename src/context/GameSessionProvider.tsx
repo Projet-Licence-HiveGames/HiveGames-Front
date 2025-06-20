@@ -3,13 +3,13 @@ import { toast } from "react-toastify";
 
 import { useFetch } from "../api/privateApi";
 import { GameSession } from "../pages/GameSession/GameSession";
-import { Game } from "../types/Game";
+import { GameBaseType } from "../types/Game";
 
 import { AuthContext } from "./AuthProvider";
 
 interface GameSessionContextProps {
   isOpen: boolean;
-  game: Game | null;
+  game: GameBaseType | null;
   setIsOpen: (isOpen: boolean) => void;
   startGameSession: (gameId: number, gameName: string) => void;
   endGameSession: () => void;
@@ -29,7 +29,7 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [tempGameName, setTempGameName] = useState<string | null>(null);
-  const [game, setGame] = useState<Game | null>(null);
+  const [game, setGame] = useState<GameBaseType | null>(null);
   const fetchAPI = useFetch();
 
   const startGameSession = async (gameId: number, gameName: string) => {
@@ -38,7 +38,7 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
     setIsOpen(true);
     // get game data from API with gameId
     let gameData = await fetchAPI
-      .get<Game>(`/games/${gameId}`)
+      .get<GameBaseType>(`/games/${gameId}`)
       .catch(() => null);
     if (!gameData) {
       toast.error("Une erreur est survenue lors de la récupération du jeu.");
