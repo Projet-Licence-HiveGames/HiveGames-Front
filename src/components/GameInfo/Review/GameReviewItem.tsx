@@ -76,7 +76,7 @@ const GameReviewItem: FC<GameReviewProps> = ({
               {reviewRatingKeys.map((key) => (
                 <span className="game-review-content-rating-label" key={key}>
                   <TLabel label={`review.${key}` as TranslationLabelType} />
-                  <Rating precision={0.5} value={review[key]} readOnly />
+                  <Rating precision={1} value={review[key]} readOnly />
                 </span>
               ))}
             </div>
