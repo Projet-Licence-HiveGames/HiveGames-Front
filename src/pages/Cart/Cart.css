@@ -51,7 +51,6 @@
     background: var(--bg-color-dark);
     display: flex;
     flex-direction: column;
-    height: 200px;
     justify-content: space-between;
   }
 }

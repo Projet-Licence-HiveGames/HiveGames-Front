@@ -33,7 +33,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
     if (!isInCart) {
       addToCart(game.id);
     } else {
-      toast.error(<TLabel label={"already_in_cart"} />);
+      toast.error(<TLabel label={"cart.already_in_cart"} />);
     }
   };
 

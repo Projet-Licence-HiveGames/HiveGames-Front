@@ -37,7 +37,7 @@ export const GameBuyCard: React.FC<GameBuyCardProps> = ({
       addToCart(game.id);
     } else {
       toast.dismiss(toastId);
-      toast.error(<TLabel label={"already_in_cart"} />, {
+      toast.error(<TLabel label={"cart.already_in_cart"} />, {
         toastId,
       });
     }

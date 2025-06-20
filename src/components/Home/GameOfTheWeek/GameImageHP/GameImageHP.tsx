@@ -51,7 +51,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
       addToCart(selectedGame.id);
     } else {
       toast.dismiss();
-      toast.error(<TLabel label={"already_in_cart"} />);
+      toast.error(<TLabel label={"cart.already_in_cart"} />);
     }
   };
 
@@ -93,7 +93,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
             </div>
             <div className="game-image-hp-button-wrapper">
               <CartButton
-                isOwned={selectedGame.is_owned}
+                isOwned={selectedGame?.is_owned}
                 onClick={handleAddToCart}
               />
             </div>
