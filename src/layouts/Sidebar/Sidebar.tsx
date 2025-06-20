@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   CalendarMonth,
   HomeRounded,
@@ -23,11 +24,18 @@ import "./Sidebar.css";
 const Sidebar: FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { isMobile, isTablet } = useWindowSize();
+  const location = useLocation();
   const sidebarRef = useOutsideClick<HTMLDivElement>(() => {
     if (isExpanded && (isMobile || isTablet)) {
       setIsExpanded(false);
     }
   });
+
+  useEffect(() => {
+    if (isMobile || isTablet) {
+      setIsExpanded(false);
+    }
+  }, [isMobile, isTablet, location]);
 
   return (
     <div
