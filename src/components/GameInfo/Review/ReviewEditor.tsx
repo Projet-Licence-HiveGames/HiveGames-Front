@@ -76,7 +76,9 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ game, updateReviewList }) => {
       );
       return;
     }
+
     setIsSubmitting(true);
+
     fetchAPI
       .post<GameReview>(`/games/${game.id}/review`, {
         commentary: textCommentary,
