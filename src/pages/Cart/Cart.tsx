@@ -13,7 +13,7 @@ import "./Cart.css";
 
 export const Cart: React.FC = () => {
   const { fetchGamesByIds } = useGamesApi();
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems, removeFromCart, clearCart } = useCart();
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -42,12 +42,12 @@ export const Cart: React.FC = () => {
   if (loading) return <Loader />;
   if (error) return <p>Error: {error}</p>;
   if (games.length === 0)
-    return <TLabel baliseType={"p"} label={"cart_empty"} />;
+    return <TLabel baliseType={"p"} label={"cart.empty"} />;
 
   return (
     <div className="cart-container">
       <header className="cart-container__header">
-        <h2>Votre panier</h2>
+        <TLabel baliseType={"h2"} label={"cart.your_cart"} />
       </header>
       <div className="cart-container__content">
         <section className="cart-container__panel left">
@@ -64,7 +64,7 @@ export const Cart: React.FC = () => {
             </Suspense>
           ))}
           <div className={"cart-container__total"}>
-            <CartAmountTotal games={games} />
+            <CartAmountTotal games={games} onRemove={() => clearCart()} />
           </div>
         </section>
         {games.some(

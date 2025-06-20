@@ -64,8 +64,12 @@ export const PaymentSuccess: React.FC = ({}) => {
     }
   }, [paymentData]);
 
-  if (isLoading) {
-    return <Loader />;
+  if (!paymentData) {
+    return (
+      <div className="confirmation-container">
+        <Loader />
+      </div>
+    );
   }
 
   return (
@@ -75,32 +79,32 @@ export const PaymentSuccess: React.FC = ({}) => {
         <TLabel
           baliseType={"h1"}
           className={"confirmation-title"}
-          label={"payment_confirmed"}
+          label={"cart.payment_confirmed"}
         />
         <p className="confirmation-message">
           <TLabel
-            label={"thank_you_for_your_purchase"}
+            label={"cart.thank_you_for_your_purchase"}
             replaceValues={{ site_name: "HiveGames" }}
           />
         </p>
-
         <div className="confirmation-details">
-          <ul>
-            {paymentData?.name.map((name, index) => (
-              <ol key={index} className={"item"}>
-                <SportsEsportsRounded />
-                {name}
-              </ol>
-            ))}
-          </ul>
+          <div className={"confirmation-details-list"}>
+            <ul>
+              {paymentData?.name.map((name, index) => (
+                <ol key={index} className={"item"}>
+                  <SportsEsportsRounded />
+                  {name}
+                </ol>
+              ))}
+            </ul>
+          </div>
           <TLabel
             baliseType={"p"}
             className={"confirmation-price"}
-            label={"total_paid"}
+            label={"cart.total_paid"}
             replaceValues={{ amount: paymentData?.amount }}
           />
         </div>
-
         <div className="confirmation-details-buttons">
           <button className="confirmation-button" onClick={() => navigate("/")}>
             <TLabel label={"return_to_home"} />
@@ -112,7 +116,7 @@ export const PaymentSuccess: React.FC = ({}) => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <TLabel label={"see_invoice"} />
+              <TLabel label={"cart.see_invoice"} />
             </a>
           )}
         </div>

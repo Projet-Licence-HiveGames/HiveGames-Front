@@ -1,55 +1,56 @@
 .price-box {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-end;
 }
 
 .price-box-container {
-    align-items: center;
-    display: flex;
-    gap: .5rem;
-    height: fit-content;
-    position: relative;
-    width: fit-content;
+  align-items: center;
+  display: flex;
+  gap: .5rem;
+  height: fit-content;
+  position: relative;
+  width: fit-content;
 }
 
 .price-box-discount-rate {
-    background: var(--bg-color-green);
-    border-radius: 3px;
-    height: 100%;
-    min-width: 50px;
-    padding: 5px;
-    text-align: center;
-    width: fit-content;
+  background: var(--bg-color-green);
+  border-radius: 3px;
+  height: 100%;
+  min-width: 50px;
+  padding: 5px;
+  text-align: center;
+  width: fit-content;
 
-    & h3 {
-        color: #0E141B;
-        font-size: 19px;
-        font-weight: 700;
-    }
+  & h3 {
+    color: #0E141B;
+    font-size: 19px;
+    font-weight: 700;
+  }
 }
 
 .price-box-prices {
-    align-items: end;
-    color: white;
-    display: flex;
-    flex-direction: column;
+  align-items: end;
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .price-box-old-price {
-    color: var(--bg-color-lightest);
-    font-size: .85rem;
-    text-decoration: line-through rgb(112 112 112);
+  color: var(--bg-color-lightest);
+  font-size: .85rem;
+  text-decoration: line-through rgb(112 112 112);
+  text-wrap: nowrap;
 }
 
 .current-price {
-    font-size: var(--font-size-16);
-    font-weight: var(--font-weight-light);
-    white-space: nowrap;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-light);
+  white-space: nowrap;
 }
 
 .on-promotion .current-price {
-    color: var(--bg-color-green);
+  color: var(--bg-color-green);
 }
