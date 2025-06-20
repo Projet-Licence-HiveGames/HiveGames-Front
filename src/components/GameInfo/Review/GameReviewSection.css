@@ -30,6 +30,6 @@
 .game-review-group-rate {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
     min-width: 350px;
 }
