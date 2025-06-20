@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { MaterialSymbol } from "react-material-symbols";
+import { FC, useState } from "react";
 import {
   CalendarMonth,
   HomeRounded,
+  MenuRounded,
   StorefrontOutlined,
   Subscriptions,
 } from "@mui/icons-material";
@@ -11,7 +11,7 @@ import classNames from "classnames";
 import { LanguageSelector } from "../../components/ui/LanguageSelector/LanguageSelector.tsx";
 import MenuItem from "../../components/ui/Menu/MenuItem";
 import { TLabel } from "../../components/ui/TranslationLabel/TLabel.tsx";
-import { TranslationContext } from "../../context/TranslationProvider.tsx";
+import { useOutsideClick } from "../../hooks/useOutsideClick.tsx";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
 
 import logo from "@assets/images/logo.svg";
@@ -20,72 +20,60 @@ import modcraftHost from "@assets/images/powered_by_modcraft.svg";
 
 import "./Sidebar.css";
 
-interface SidebarProps {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
-  const { selectedLanguage, setSelectedLanguage } =
-    useContext(TranslationContext);
-  const sidebarRef = useRef<HTMLDivElement>(null);
+const Sidebar: FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const { isMobile, isTablet } = useWindowSize();
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isMobile || isTablet) {
-      document.addEventListener("mousedown", handleClickOutside);
+  const sidebarRef = useOutsideClick<HTMLDivElement>(() => {
+    if (isExpanded && (isMobile || isTablet)) {
+      setIsExpanded(false);
     }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isMobile, isTablet]);
+  });
 
   return (
     <div
       ref={sidebarRef}
-      className={classNames("sidebar-container", {
-        "sidebar-container--collapsed": !isOpen,
+      className={classNames("sidebar", {
+        "sidebar--collapsed": !isExpanded,
       })}
     >
-      <div className="sidebar-header">
-        <img src={!isOpen ? logo : logoName} alt="Logo" />
+      <div className={"sidebar-container"}>
+        <div className="sidebar-header">
+          <img src={!isExpanded ? logo : logoName} alt="Logo" />
+        </div>
+
+        <div className="sidebar-content">
+          <div className="sidebar-content-top">
+            <MenuItem to="/">
+              <HomeRounded />
+              <TLabel label="sidebar.home" />
+            </MenuItem>
+            <MenuItem to="/catalog">
+              <StorefrontOutlined />
+              <TLabel label="sidebar.catalog" />
+            </MenuItem>
+            <hr />
+            <MenuItem to="/calendar">
+              <CalendarMonth />
+              <TLabel label="sidebar.calendar" />
+            </MenuItem>
+            <MenuItem to="/subscription">
+              <Subscriptions />
+              <TLabel label="sidebar.subscription" />
+            </MenuItem>
+          </div>
+          <div className="sidebar-content-bottom">
+            <LanguageSelector />
+            <img src={modcraftHost} alt="PoweredByModcraft" />
+          </div>
+        </div>
       </div>
 
-      <div className="sidebar-content">
-        <div className="sidebar-content-top">
-          <MenuItem to="/">
-            <HomeRounded />
-            <TLabel label="sidebar.home" />
-          </MenuItem>
-          <MenuItem to="/catalog">
-            <StorefrontOutlined />
-            <TLabel label="sidebar.catalog" />
-          </MenuItem>
-          <hr />
-          <MenuItem to="/calendar">
-            <CalendarMonth />
-            <TLabel label="sidebar.calendar" />
-          </MenuItem>
-          <MenuItem to="/subscription">
-            <Subscriptions />
-            <TLabel label="sidebar.subscription" />
-          </MenuItem>
-        </div>
-        <div className="sidebar-content-bottom">
-          <LanguageSelector />
-          <img src={modcraftHost} alt="PoweredByModcraft" />
-        </div>
-      </div>
+      <button
+        className="sidebar-toggle"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <MenuRounded />
+      </button>
     </div>
   );
 };

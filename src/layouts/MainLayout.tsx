@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
-import classNames from "classnames";
 
 import MainHeader from "./MainHeader/MainHeader.tsx";
 import Sidebar from "./Sidebar/Sidebar.tsx";
@@ -8,21 +7,12 @@ import Sidebar from "./Sidebar/Sidebar.tsx";
 import "./MainLayout.css";
 
 export const MainLayout: React.FC = () => {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const toggleSidebar = () => {
-    setSidebarOpen(!isSidebarOpen);
-  };
-
   return (
     <div className="app-layout">
-      <Sidebar isOpen={isSidebarOpen} setIsOpen={setSidebarOpen} />
+      <Sidebar />
       <div className="right-panel">
-        <MainHeader onSidebarToggle={toggleSidebar} />
-        <div
-          className={classNames("main-content", {
-            "main-content--collapsed": isSidebarOpen,
-          })}
-        >
+        <MainHeader />
+        <div className={"main-content"}>
           <Outlet />
         </div>
       </div>
