@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Game } from "../../types/Game";
+import { GameBaseType } from "../../types/Game";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { getGameImage } from "../../utils/gameUtils";
 import { Category } from "../ui/CategoryBloc/Category";
@@ -16,7 +16,7 @@ import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 import "./GameCard.css";
 
 interface GameCardProps {
-  game: Game;
+  game: GameBaseType;
   isAuthenticated: boolean;
 }
 

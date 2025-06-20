@@ -1,7 +1,7 @@
 import { FC } from "react";
 import classNames from "classnames";
 
-import { GameReview } from "../../../types/Game";
+import { GameReview, GameType } from "../../../types/Game";
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
 import GameReviewItem from "./GameReviewItem";
@@ -11,16 +11,16 @@ import "./GameReviewSection.css";
 
 interface GameReviewSectionProps {
   className?: string;
-  gameName: string;
-  reviews: GameReview[] | null;
+  game: GameType;
+  updateReviewList: (review: GameReview) => void;
 }
 
 const GameReviewSection: FC<GameReviewSectionProps> = ({
   className,
-  gameName,
-  reviews,
+  game,
+  updateReviewList,
 }) => {
-  const onlyRatings = reviews?.filter((f) => !f.commentary);
+  const onlyRatings = game.reviews?.filter((f) => !f.commentary);
   return (
     <div className={classNames("game-review-section-container", className)}>
       <TLabel
@@ -28,10 +28,10 @@ const GameReviewSection: FC<GameReviewSectionProps> = ({
         label="reviews"
         baliseType={"h2"}
       />
-      <ReviewEditor gameName={gameName} />
+      <ReviewEditor game={game} updateReviewList={updateReviewList} />
       <div className="game-review-group-content">
         <div className="game-review-group-main">
-          {reviews
+          {game.reviews
             ?.filter((f) => !!f.commentary)
             .map((review) => (
               <GameReviewItem key={review.id} review={review} />

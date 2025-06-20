@@ -6,6 +6,7 @@ import pluginPrettier from "eslint-plugin-prettier";
 import pluginSimpleImportSort from "eslint-plugin-simple-import-sort";
 import pluginReactRefresh from "eslint-plugin-react-refresh";
 import parserTs from "@typescript-eslint/parser";
+import pluginUnusedImports from "eslint-plugin-unused-imports";
 
 import { defineConfig } from "eslint/config";
 
@@ -33,12 +34,14 @@ export default defineConfig([
       prettier: pluginPrettier,
       "simple-import-sort": pluginSimpleImportSort,
       "react-refresh": pluginReactRefresh,
+      "unused-imports": pluginUnusedImports,
     },
     rules: {
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "react/react-in-jsx-scope": "off",
       "prettier/prettier": "error",
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      'unused-imports/no-unused-imports': 'warn',
       "simple-import-sort/imports": [
         "error",
         {

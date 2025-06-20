@@ -12,7 +12,12 @@ import { GameShortDescription } from "../../components/GameInfo/GameShortDescrip
 import GameReviewSection from "../../components/GameInfo/Review/GameReviewSection.tsx";
 import { Loader } from "../../components/Loader/Loader.tsx";
 import { useWindowSize } from "../../hooks/useWindowSize.ts";
-import { Game, GameDlc, isGameDlc } from "../../types/Game.ts";
+import {
+  GameBaseType,
+  GameDlcType,
+  GameReview,
+  isGameDlc,
+} from "../../types/Game.ts";
 import { getGameImage } from "../../utils/gameUtils.ts";
 
 import "./GameInfo.css";
@@ -21,12 +26,12 @@ export const GameInfo: React.FC = () => {
   const { id } = useParams();
   const fetchApi = useFetch();
   const navigate = useNavigate();
-  const [gameData, setGameData] = useState<Game | GameDlc>();
+  const [gameData, setGameData] = useState<GameBaseType | GameDlcType>();
   const { isMobile } = useWindowSize();
 
   const fetchGame = useCallback(async () => {
     await fetchApi
-      .get<Game>(`/games/${id}`)
+      .get<GameBaseType>(`/games/${id}`)
       .then(setGameData)
       .catch(() => navigate("/404", { state: { error_status: 404 } }));
   }, [id, navigate]);
@@ -34,6 +39,19 @@ export const GameInfo: React.FC = () => {
   useEffect(() => {
     fetchGame();
   }, [fetchGame]);
+
+  const updateReviewList = useCallback(
+    (review: GameReview) => {
+      setGameData((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          reviews: [review, ...(prev.reviews || [])],
+        };
+      });
+    },
+    [setGameData],
+  );
 
   if (!gameData) {
     return <Loader />;
@@ -110,10 +128,7 @@ export const GameInfo: React.FC = () => {
           </div>
         </div>
       </div>
-      <GameReviewSection
-        gameName={gameData.name}
-        reviews={gameData?.reviews || []}
-      />
+      <GameReviewSection game={gameData} updateReviewList={updateReviewList} />
     </div>
   );
 };

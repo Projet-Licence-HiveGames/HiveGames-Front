@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
 import classNames from "classnames";
 

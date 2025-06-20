@@ -1,4 +1,4 @@
-import React, { FC, useContext, useId } from "react";
+import React, { FC, useContext } from "react";
 
 import {
   translationCategoryDictionnaries,

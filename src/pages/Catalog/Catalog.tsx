@@ -9,7 +9,7 @@ import FilterSidebar, {
 import GameCard from "../../components/GameCard/GameCard.tsx";
 import { GameCardSkeleton } from "../../components/Skeleton/GameCard/GameCardSkeleton.tsx";
 import { useAuth } from "../../context/AuthProvider";
-import { findGameCollection, Game } from "../../types/Game.ts";
+import { findGameCollection, GameBaseType } from "../../types/Game.ts";
 
 import "./Catalog.css";
 
@@ -26,12 +26,12 @@ export const Catalog: React.FC = () => {
     prices: { min: 0, max: 101 },
     order_by: "rating-desc",
   });
-  const [gameList, setGameList] = useState<Game[]>([]);
+  const [gameList, setGameList] = useState<GameBaseType[]>([]);
 
   const fetchGames = useCallback(async () => {
     setIsLoading(true);
     await fetchAPI
-      .post<Game[]>("/games/filter", filters)
+      .post<GameBaseType[]>("/games/filter", filters)
       .then((games) =>
         setGameList(
           games.map((game) => {

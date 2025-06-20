@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { useFetch } from "../../../api/privateApi.ts";
 import { useAuth } from "../../../context/AuthProvider.tsx";
-import { Game } from "../../../types/Game.ts";
+import { GameBaseType } from "../../../types/Game.ts";
 import { HomeSkeleton } from "../../Skeleton/Home/HomeSkeleton.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
@@ -11,13 +11,13 @@ import { GameImageHP } from "./GameImageHP/GameImageHP.tsx";
 import "./GameOfTheWeek.css";
 
 export const GameOfTheWeek: React.FC = () => {
-  const [gameData, setGameData] = useState<Game[]>([]);
+  const [gameData, setGameData] = useState<GameBaseType[]>([]);
   const [loading, setLoading] = useState(true);
   const { isAuthenticated } = useAuth();
   const fetchAPI = useFetch();
   const fetchData = useCallback(async () => {
     await fetchAPI
-      .get<Game[]>("/games/week")
+      .get<GameBaseType[]>("/games/week")
       .then(setGameData)
       .catch((error) => console.error("Error fetching data:", error))
       .finally(() => setLoading(false));
