@@ -22,8 +22,11 @@ export const useCartGameApi = () => {
     await api.post("/cart/add", { gameIds });
   };
 
-  const clearCartOnServer = async (gameIds?: number[]): Promise<void> => {
-    await api.post("/cart/clear", { gameIds });
+  const clearCartOnServer = async (
+    gameIds?: number[],
+    paid?: boolean,
+  ): Promise<void> => {
+    await api.post("/cart/clear", { gameIds, paid });
   };
 
   const fetchCartGamesByIds = async (

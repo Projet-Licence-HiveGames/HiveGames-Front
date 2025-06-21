@@ -22,7 +22,6 @@ interface PaymentData {
 export const PaymentSuccess: React.FC = ({}) => {
   const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
   const [error, setError] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const { fetchOrderDetails } = useCartGameApi();
   const { removeFromCart } = useCart();
   const navigate = useNavigate();
@@ -39,11 +38,9 @@ export const PaymentSuccess: React.FC = ({}) => {
     await fetchOrderDetails(sessionId)
       .then((data) => {
         setPaymentData(data);
-        setIsLoading(false);
       })
       .catch((_error) => {
         setError({ ...error, error: _error });
-        setIsLoading(false);
       });
   };
 
@@ -60,7 +57,7 @@ export const PaymentSuccess: React.FC = ({}) => {
   useEffect(() => {
     if (paymentData && paymentData.status === "complete") {
       const gameIds = paymentData?.game_ids?.map((gameId) => Number(gameId));
-      removeFromCart(gameIds);
+      removeFromCart(gameIds, true);
     }
   }, [paymentData]);
 

@@ -1,9 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
-import { Loader } from "@components/ui/Loader/Loader.tsx";
-
 import { useFetch } from "@api/privateApi.ts";
+
+import {
+  GameBaseType,
+  GameDlcType,
+  GameReview,
+  isGameDlc,
+} from "@customTypes/Game.ts";
+import { useWindowSize } from "@hooks/useWindowSize.ts";
+import { getGameImage } from "@utils/gameUtils.ts";
+
 import { GameBuyCard } from "@components/GameInfo/GameBuyCard/GameBuyCard.tsx";
 import { GameDetails } from "@components/GameInfo/GameDetails/GameDetails.tsx";
 import { GameFeatures } from "@components/GameInfo/GameFeatures/GameFeatures.tsx";
@@ -12,18 +19,11 @@ import { GameLanguages } from "@components/GameInfo/GameLanguages/GameLanguages.
 import { GameLongDescription } from "@components/GameInfo/GameLongDescription/GameLongDescription.tsx";
 import { GameShortDescription } from "@components/GameInfo/GameShortDescription/GameShortDescription.tsx";
 import GameReviewSection from "@components/GameInfo/Review/GameReviewSection.tsx";
-import { useWindowSize } from "@hooks/useWindowSize.ts";
-import {
-  GameBaseType,
-  GameDlcType,
-  GameReview,
-  isGameDlc,
-} from "@customTypes/Game.ts";
-import { getGameImage } from "@utils/gameUtils.ts";
+import { Loader } from "@components/ui/Loader/Loader.tsx";
 
 import "./GameInfo.css";
 
-export const GameInfo: React.FC = () => {
+export const GameInfo: FC = () => {
   const { id } = useParams();
   const fetchApi = useFetch();
   const navigate = useNavigate();
