@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -13,7 +13,7 @@ import { findGameCollection, GameBaseType } from "../../types/Game.ts";
 
 import "./Catalog.css";
 
-export const Catalog: React.FC = () => {
+export const Catalog: FC = () => {
   const { isAuthenticated, user } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const fetchAPI = useFetch();
@@ -103,12 +103,13 @@ export const Catalog: React.FC = () => {
   }, [filters, setSearchParams]);
 
   useEffect(() => {
+    if (!user) return;
     const timeoutId = setTimeout(async () => {
       await fetchGames();
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [filters]);
+  }, [filters, user]);
 
   const renderedGames = useMemo(() => {
     return isLoading

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "@api/privateApi.ts";
 import {
@@ -22,7 +22,7 @@ interface CheckoutData {
   fetchClientSecret?: (() => Promise<string>) | null;
 }
 
-export const Checkout: React.FC = () => {
+export const Checkout: FC = () => {
   const fetchApi = useFetch();
   const { cartItems } = useCart();
   const [clientSecret, setClientSecret] = useState<string | null>(null);
@@ -30,6 +30,7 @@ export const Checkout: React.FC = () => {
 
   const fetchClientSecret = useCallback(async () => {
     try {
+      if (cartItems.length === 0) return null;
       const gameIds = cartItems.map(Number);
       const data: CheckoutData = await fetchApi.post("/stripe/payment", {
         gameIds,
