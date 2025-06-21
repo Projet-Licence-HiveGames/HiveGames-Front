@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import { GameSessionContext } from "@context/GameSessionProvider.tsx";
 
-import TLabel from "@components/ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./PlayButton.css";
 

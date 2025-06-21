@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useGamesApi } from "@api/services/gamesApi.ts";
 
 import { useCart } from "@context/CartContext.tsx";
-import { Game } from "@customTypes/Game";
+import { GameBaseType, GameDlcType } from "@customTypes/Game";
 
 import { CartAmountTotal } from "@components/CartAmountTotal/CartAmountTotal.tsx";
 import { CartArticleCard } from "@components/CartArticleCard/CartArticleCard.tsx";
@@ -14,7 +14,7 @@ import "./Cart.css";
 export const Cart: React.FC = () => {
   const { fetchGamesByIds } = useGamesApi();
   const { cartItems, removeFromCart, clearCart } = useCart();
-  const [games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<GameBaseType[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const ids = cartItems.map(Number);
@@ -27,7 +27,7 @@ export const Cart: React.FC = () => {
     setLoading(true);
     fetchGamesByIds({ ids })
       .then((data) => {
-        setGames(data as Game[]);
+        setGames(data as GameBaseType[]);
         setError(null);
       })
       .catch((err) => setError(err.message))
@@ -68,23 +68,28 @@ export const Cart: React.FC = () => {
           </div>
         </section>
         {games.some(
-          (game) =>
+          (game: GameBaseType & { dlcs?: GameDlcType[] }) =>
             game.dlcs && Array.isArray(game.dlcs) && game.dlcs.length > 0,
         ) && (
           <aside className="cart-container__panel right">
             {games.map((game) =>
-              game.dlcs && Array.isArray(game.dlcs)
-                ? game.dlcs.map((dlc) => (
-                    <Suspense fallback={<Loader />} key={dlc.id}>
-                      <CartArticleCard
-                        game={dlc}
-                        imageUrl={dlc.images}
-                        isDlc={true}
-                        key={dlc.id}
-                        onRemove={() => handleRemoveFromCart(dlc.id)}
-                      />
-                    </Suspense>
-                  ))
+              (game as GameBaseType & { dlcs?: GameDlcType[] }).dlcs &&
+              Array.isArray(
+                (game as GameBaseType & { dlcs?: GameDlcType[] }).dlcs,
+              )
+                ? (game as GameBaseType & { dlcs?: GameDlcType[] }).dlcs!.map(
+                    (dlc: GameDlcType) => (
+                      <Suspense fallback={<Loader />} key={dlc.id}>
+                        <CartArticleCard
+                          game={dlc}
+                          imageUrl={dlc.images}
+                          isDlc={true}
+                          key={dlc.id}
+                          onRemove={() => handleRemoveFromCart(dlc.id)}
+                        />
+                      </Suspense>
+                    ),
+                  )
                 : null,
             )}
           </aside>

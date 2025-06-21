@@ -1,17 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DeleteForeverRounded } from "@mui/icons-material";
 
+import { GameBaseType } from "@customTypes/Game.ts";
 import { calculateDiscount } from "@utils/calculateDiscount.ts";
 
-import TLabel from "@components/ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./CartAmountTotal.css";
 
-import { Game } from "@/types/Game.ts";
-
 interface CartAmountTotalProps {
-  games: Game[];
+  games: GameBaseType[];
   onRemove: () => void;
 }
 
