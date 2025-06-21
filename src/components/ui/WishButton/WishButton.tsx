@@ -6,13 +6,13 @@ import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded
 import { useFetch } from "../../../api/privateApi.ts";
 import { useAuth } from "../../../context/AuthProvider.tsx";
 import { useWindowSize } from "../../../hooks/useWindowSize.ts";
-import { GameBaseType } from "../../../types/Game.ts";
+import { GameBaseType, GameDlcType } from "../../../types/Game.ts";
 import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
 import "./WishButton.css";
 
 interface WishButtonProps {
-  game: GameBaseType;
+  game: GameBaseType | GameDlcType;
   isAuthenticated: boolean;
   large?: boolean;
   homeP?: boolean;

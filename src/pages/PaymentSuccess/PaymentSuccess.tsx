@@ -6,7 +6,7 @@ import { CheckCircleRounded, SportsEsportsRounded } from "@mui/icons-material";
 import { useCart } from "@context/CartContext.tsx";
 
 import { Loader } from "@components/ui/Loader/Loader.tsx";
-import TLabel from "@components/ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./PaymentSuccess.css";
 

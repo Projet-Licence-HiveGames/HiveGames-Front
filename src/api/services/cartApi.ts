@@ -1,4 +1,4 @@
-import { Game } from "@customTypes/Game.ts";
+import { GameBaseType } from "@customTypes/Game.ts";
 
 import { useFetch } from "../privateApi";
 
@@ -26,8 +26,10 @@ export const useCartGameApi = () => {
     await api.post("/cart/clear", { gameIds });
   };
 
-  const fetchCartGamesByIds = async (ids: number[]): Promise<Game[]> => {
-    return await api.post<Game[]>("/games/filter", { ids });
+  const fetchCartGamesByIds = async (
+    ids: number[],
+  ): Promise<GameBaseType[]> => {
+    return await api.post<GameBaseType[]>("/games/filter", { ids });
   };
 
   const fetchOrderDetails = async (sessionId: string): Promise<any> => {

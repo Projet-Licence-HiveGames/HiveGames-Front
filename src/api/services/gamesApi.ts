@@ -1,5 +1,5 @@
 import {
-  Game,
+  GameBaseType,
   GameCategory,
   GameFeature,
   GameLanguage,
@@ -14,8 +14,8 @@ export const useGamesApi = () => {
     ids,
   }: {
     ids: number[];
-  }): Promise<Game[]> => {
-    return await api.post<Game[]>("/games/filter", { ids });
+  }): Promise<GameBaseType[]> => {
+    return await api.post<GameBaseType[]>("/games/filter", { ids });
   };
 
   const fetchCategories = async (): Promise<GameCategory[]> => {

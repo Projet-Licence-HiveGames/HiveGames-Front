@@ -2,7 +2,7 @@ import React from "react";
 import { DeleteForeverRounded } from "@mui/icons-material";
 
 import { useCart } from "@context/CartContext.tsx";
-import { Game, GameImage } from "@customTypes/Game.ts";
+import { GameBaseType, GameDlcType, GameImage } from "@customTypes/Game.ts";
 import { useWindowSize } from "@hooks/useWindowSize.ts";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
 import { getGameImage } from "@utils/gameUtils.ts";
@@ -19,7 +19,7 @@ interface CartArticleCardProps {
   onRemove: () => void;
   isDlc?: boolean;
   isItemCart?: boolean;
-  game: Game;
+  game: GameBaseType | GameDlcType;
 }
 
 export const CartArticleCard: React.FC<CartArticleCardProps> = ({

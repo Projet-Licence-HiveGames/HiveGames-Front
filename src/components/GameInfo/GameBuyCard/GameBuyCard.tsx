@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import classNames from "classnames";
 
 import { useCart } from "@context/CartContext.tsx";
-import { Game, GameDlc } from "@customTypes/Game.ts";
+import { GameBaseType, GameDlcType } from "@customTypes/Game.ts";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
 
 import { PriceBox } from "../../GameCard/PriceBox/PriceBox.tsx";
@@ -12,7 +12,7 @@ import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 import "./GameBuyCard.css";
 
 interface GameBuyCardProps {
-  game: Game | GameDlc;
+  game: GameBaseType | GameDlcType;
   name: string;
   isOwned?: boolean;
   isDlc?: boolean;

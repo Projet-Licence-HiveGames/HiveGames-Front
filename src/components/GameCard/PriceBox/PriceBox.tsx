@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import { Game, GameDlc } from "@customTypes/Game.ts";
+import { GameBaseType, GameDlcType } from "@customTypes/Game.ts";
 import { calculateDiscount } from "@utils/calculateDiscount.ts";
 
 import { PlayButton } from "@components/ui/Buttons/PlayButton/PlayButton.tsx";
@@ -12,7 +12,7 @@ import CartButton from "../CartButton/CartButton.tsx";
 import "./PriceBox.css";
 
 interface PriceBoxProps {
-  game: Game | GameDlc;
+  game: GameBaseType | GameDlcType;
   isOwned?: boolean;
   onAddToCart?: (e: React.MouseEvent) => void;
   buyButton?: boolean;
