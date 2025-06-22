@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useEffect, useState } from "react";
+import { FC, MouseEvent, useCallback, useEffect, useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
@@ -36,8 +36,10 @@ export const GameImageHP: FC<GameImageHPProps> = ({
   const isInCart = cartItems.some((item: number) => item === selectedGame.id);
 
   useEffect(() => {
-    setSelectedGame(games[0]);
-  }, [games]);
+    if (!selectedGame || !games.find((g) => g.id === selectedGame.id)) {
+      setSelectedGame(games[0]);
+    }
+  }, [games, selectedGame]);
 
   const _images = selectedGame?.images?.filter(
     (i) => i.file_name.startsWith("header") && i.file_url,
@@ -47,15 +49,27 @@ export const GameImageHP: FC<GameImageHPProps> = ({
     ? _images
     : [getGameImage(selectedGame?.images, "header")];
 
-  const handleAddToCart = (e: MouseEvent) => {
-    e.stopPropagation();
-    if (!isInCart) {
-      addToCart(selectedGame.id);
-    } else {
-      toast.dismiss();
-      toast.error(<TLabel label={"cart.already_in_cart"} />);
-    }
-  };
+  const handleAddToCart = useCallback(
+    (e: MouseEvent) => {
+      e.stopPropagation();
+      if (!isInCart) {
+        addToCart(selectedGame.id);
+      } else {
+        toast.dismiss();
+        toast.error(<TLabel label={"cart.already_in_cart"} />);
+      }
+    },
+    [isInCart, addToCart, selectedGame.id],
+  );
+
+  const handleNavigateToGame = useCallback(() => {
+    navigate(`/game/${selectedGame.id}`);
+  }, [navigate, selectedGame.id]);
+
+  const handleSelectGame = useCallback(
+    (game: GameType) => () => setSelectedGame(game),
+    [],
+  );
 
   return (
     <div className="game-image-hp-wrapper">
@@ -68,16 +82,13 @@ export const GameImageHP: FC<GameImageHPProps> = ({
         thumbs={{ swiper: thumbsSwiper }}
       >
         {mainImages.map((image, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide id={useId()}>
             <div className="main-image-wrapper">
-              <a
-                onClick={() => navigate(`/game/${selectedGame.id}`)}
-                style={{ cursor: "pointer" }}
-              >
+              <a onClick={handleNavigateToGame} style={{ cursor: "pointer" }}>
                 <img
                   alt={image.alt || "Game Image"}
                   className="panel-image-hp"
-                  loading={"eager"}
+                  loading={"lazy"}
                   src={image.file_url}
                 />
               </a>
@@ -122,7 +133,7 @@ export const GameImageHP: FC<GameImageHPProps> = ({
         {games.map((game, index) => {
           const thumb = getGameImage(game.images);
           return (
-            <SwiperSlide key={index} onClick={() => setSelectedGame(game)}>
+            <SwiperSlide key={index} onClick={handleSelectGame(game)}>
               <img
                 alt={game.name}
                 className={`thumb-image ${game.id === selectedGame?.id ? "active" : ""}`}

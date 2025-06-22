@@ -1,5 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGamesApi } from "@api/services/gamesApi.ts";
+import { RemoveShoppingCartOutlined } from "@mui/icons-material";
 
 import { useCart } from "@context/CartContext.tsx";
 import { GameBaseType } from "@customTypes/Game";
@@ -17,6 +19,7 @@ export const Cart: React.FC = () => {
   const [games, setGames] = useState<GameBaseType[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
   const ids = cartItems.map(Number);
 
   useEffect(() => {
@@ -41,8 +44,23 @@ export const Cart: React.FC = () => {
 
   if (loading) return <Loader />;
   if (error) return <p>Error: {error}</p>;
-  if (games.length === 0)
-    return <TLabel baliseType={"p"} label={"cart.empty"} />;
+  if (games.length === 0) {
+    return (
+      <div className="cart-empty-container">
+        <div className="cart-empty-card">
+          <RemoveShoppingCartOutlined className="cart-empty-icon" />
+          <TLabel
+            baliseType={"h1"}
+            className={"cart-empty-title"}
+            label={"cart.empty"}
+          />
+          <button className="cart-empty-button" onClick={() => navigate("/")}>
+            <TLabel label={"cart.continue_shopping"} />
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="cart-container">
