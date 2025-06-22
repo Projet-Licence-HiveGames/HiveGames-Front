@@ -11,6 +11,8 @@ interface CartContextType {
   addToCart: (item: number) => void;
   removeFromCart: (id: number[]) => void;
   clearCart: () => void;
+  clearLocalCart: () => void;
+  fetchOrderDetails: (sessionId: string) => Promise<any>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -27,8 +29,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { isAuthenticated } = useAuth();
-  const { fetchCartGames, addGamesToCart, clearCartOnServer } =
-    useCartGameApi();
+  const {
+    fetchCartGames,
+    addGamesToCart,
+    clearCartOnServer,
+    fetchOrderDetails,
+  } = useCartGameApi();
   const [cartItems, setCartItems] = useState<number[]>([]);
 
   useEffect(() => {
@@ -105,9 +111,21 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("cart");
   };
 
+  const clearLocalCart = () => {
+    setCartItems([]);
+    localStorage.removeItem("cart");
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        clearLocalCart,
+        fetchOrderDetails,
+      }}
     >
       {children}
     </CartContext.Provider>
