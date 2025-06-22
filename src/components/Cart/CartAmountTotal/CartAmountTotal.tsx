@@ -1,22 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { GameBaseType } from "@customTypes/Game.ts";
+import { useCart } from "@context/CartContext.tsx";
 import { calculateDiscount } from "@utils/calculateDiscount.ts";
 
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./CartAmountTotal.css";
 
+import { GameBaseType } from "@/types/Game.ts";
+
 interface CartAmountTotalProps {
   games: GameBaseType[];
-  onRemove: () => void;
 }
 
-export const CartAmountTotal: React.FC<CartAmountTotalProps> = ({
-  games,
-  onRemove,
-}) => {
+export const CartAmountTotal: React.FC<CartAmountTotalProps> = ({ games }) => {
+  const { clearCart } = useCart();
   const totals = games.reduce(
     (acc, game) => {
       acc.total += game.price;
@@ -68,7 +67,7 @@ export const CartAmountTotal: React.FC<CartAmountTotalProps> = ({
         </div>
       </div>
       <div className="cart-amount-total__buttons">
-        <button className="cart-amount-total__link" onClick={onRemove}>
+        <button className="cart-amount-total__link" onClick={clearCart}>
           <TLabel
             baliseType="span"
             className="cart-amount-total__button delete"

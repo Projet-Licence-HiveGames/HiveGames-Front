@@ -9,7 +9,7 @@ import { useAuth } from "./AuthProvider";
 interface CartContextType {
   cartItems: number[];
   addToCart: (item: number) => void;
-  removeFromCart: (id: number[], paid: boolean) => void;
+  removeFromCart: (id: number[]) => void;
   clearCart: () => void;
 }
 
@@ -80,10 +80,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
-  const removeFromCart = async (id: number[], paid: boolean) => {
+  const removeFromCart = async (id: number[]) => {
     if (isAuthenticated) {
       try {
-        await clearCartOnServer(id, paid);
+        await clearCartOnServer(id);
       } catch (e) {
         toast.dismiss();
         toast.error("The product could not be removed from the cart.");

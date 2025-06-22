@@ -2,16 +2,17 @@ import React from "react";
 import { DeleteForeverRounded } from "@mui/icons-material";
 
 import { useCart } from "@context/CartContext.tsx";
-import { GameBaseType, GameDlcType, GameImage } from "@customTypes/Game.ts";
 import { useWindowSize } from "@hooks/useWindowSize.ts";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
 import { getGameImage } from "@utils/gameUtils.ts";
 
 import { WishButton } from "@components/ui/WishButton/WishButton.tsx";
 
-import { PriceBox } from "../GameCard/PriceBox/PriceBox";
+import { PriceBox } from "../../GameCard/PriceBox/PriceBox.tsx";
 
 import "./CartArticleCard.css";
+
+import { GameBaseType, GameDlcType, GameImage } from "@/types/Game.ts";
 
 interface CartArticleCardProps {
   imageUrl?: GameImage[];

@@ -106,13 +106,12 @@ export const Catalog: FC = () => {
   }, [filters, setSearchParams]);
 
   useEffect(() => {
-    if (!user) return;
     const timeoutId = setTimeout(async () => {
       await fetchGames();
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [filters, user]);
+  }, [filters]);
 
   const renderedGames = useMemo(() => {
     return isLoading
