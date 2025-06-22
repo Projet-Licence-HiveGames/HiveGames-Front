@@ -31,9 +31,8 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
   isItemCart = false,
   game,
 }) => {
-  const showWishButton = !isItemCart && game !== undefined;
   const { addToCart, cartItems } = useCart();
-  const isInCart = cartItems.some((item) => item === game?.id);
+  const isInCart = cartItems.some((item) => item === game.id);
   const { isMobileM } = useWindowSize();
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -60,7 +59,7 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
         <div className={`cart-article-card__details ${isDlc ? "little" : ""}`}>
           <div className="cart-article-card__title">
             <h3>{capitalizeFirstLetter(game.name)}</h3>
-            {!showWishButton && (
+            {!isItemCart && (
               <div className={"cart-article-card__wish-button"}>
                 <WishButton game={game} isAuthenticated={true} />
               </div>

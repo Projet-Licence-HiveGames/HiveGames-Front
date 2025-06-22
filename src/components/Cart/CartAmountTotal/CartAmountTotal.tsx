@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useCart } from "@context/CartContext.tsx";
-import { calculateDiscount } from "@utils/calculateDiscount.ts";
+import { useCart } from "@context/CartContext";
+import { calculateDiscount } from "@utils/calculateDiscount";
 
-import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
+import { TLabel } from "@components/ui/TranslationLabel/TLabel";
 
 import "./CartAmountTotal.css";
 
-import { GameBaseType } from "@/types/Game.ts";
+import { GameBaseType } from "@/types/Game";
 
 interface CartAmountTotalProps {
   games: GameBaseType[];
@@ -22,16 +22,15 @@ export const CartAmountTotal: React.FC<CartAmountTotalProps> = ({ games }) => {
       acc.finalPrice += game.promotion
         ? calculateDiscount(game.price, game.promotion.promotion_rate)
         : game.price;
-      acc.discount = acc.total - acc.finalPrice;
       return acc;
     },
-    { total: 0, discount: 0, finalPrice: 0 },
+    { total: 0, finalPrice: 0 },
   );
-
+  const discount = totals.total - totals.finalPrice;
   const formatPrice = (price: number) => {
     return price.toLocaleString("fr-FR", {
       style: "currency",
-      currency: "eur",
+      currency: "EUR",
     });
   };
 
@@ -45,22 +44,22 @@ export const CartAmountTotal: React.FC<CartAmountTotalProps> = ({ games }) => {
         />
         <div className="cart-amount-total__price-container">
           <div className="cart-amount-total__prices">
-            {totals.discount > 0 && (
+            {discount > 0 && (
               <span className="cart-amount-total__old-price">
                 {formatPrice(totals.total)}
               </span>
             )}
             <span
-              className={`cart-amount-total__current-price ${totals.discount > 0 ? "on-promotion" : ""}`}
+              className={`cart-amount-total__current-price ${discount > 0 ? "on-promotion" : ""}`}
             >
               {formatPrice(totals.finalPrice)}
             </span>
 
-            {totals.discount > 0 && (
+            {discount > 0 && (
               <TLabel
                 className="cart-amount-total__discount"
                 label={"cart.savings"}
-                replaceValues={{ savings: formatPrice(totals.discount) }}
+                replaceValues={{ savings: formatPrice(discount) }}
               />
             )}
           </div>
