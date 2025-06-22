@@ -42,9 +42,24 @@
     
     @media (max-width: 768px) {
       display: flex;
-      flex-flow: row;
+      flex-flow: column;
       gap: 1rem;
-      max-width: none;
+      max-width: unset;
+    }
+    
+    .cart-container__dlcs-title {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      
+      @media screen and (width <= 768px) {
+        flex-flow: row wrap;
+        justify-content: space-between;
+      }
+      
+      @media screen and (width <= 468px) {
+        flex-direction: column;
+      }
     }
   }
   
