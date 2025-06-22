@@ -72,7 +72,10 @@
   gap: 1rem;
   justify-content: space-between;
   min-width: 150px;
-  width: 100%;
+  
+  @media screen and (width <= 468px) {
+    width: 100%;
+  }
   
   & h3 {
     color: #fff;
@@ -99,7 +102,10 @@
 }
 
 .cart-article-card__actions {
+  background: var(--bg-color-normal);
+  border-radius: var(--button-border-radius-small);
   display: flex;
+  padding: 5px;
   
   &:hover {
     cursor: pointer;

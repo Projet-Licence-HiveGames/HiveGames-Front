@@ -1,12 +1,10 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react/jsx-sort-props */
-import React from 'react';
+import { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import 'react-material-symbols/rounded';
 
 import ProtectedRoute from './components/ProtectedRoute';
-import { CartLayout } from './layouts/CartLayout.tsx';
 import { MainLayout } from './layouts/MainLayout';
 import { About } from './pages/About/About.tsx';
 import { Calendar } from './pages/Calendar/Calendar.tsx';
@@ -30,7 +28,7 @@ import { Wishlist } from './pages/Wishlist/Wishlist.tsx';
 
 import './App.css';
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <Routes>
       <Route path='/' element={<MainLayout/>}>
@@ -47,7 +45,8 @@ const App: React.FC = () => {
         <Route path='login' element={<Login/>}/>
         <Route path='register' element={<Register/>}/>
 
-        <Route path='game' element={<GameInfo/>}>
+        <Route path='game'>
+          <Route index element={<GameInfo/>}/>
           <Route path=':id' element={<GameInfo/>}/>
         </Route>
 
@@ -56,15 +55,14 @@ const App: React.FC = () => {
           <Route path=':id' element={<Home/>}/>
         </Route>
 
-        <Route path='cart' element={<CartLayout/>}>
-          <Route index element={<Cart />} />
-          <Route path="checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
-          <Route path="order" element={<ProtectedRoute><PaymentSuccess /></ProtectedRoute>} />
-          <Route path="payment-failed" element={<PaymentFailed />} />
+        <Route path='cart' element={<Cart />}>
+          <Route path="checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
+          <Route path="order" element={<ProtectedRoute><PaymentSuccess/></ProtectedRoute>}/>
+          <Route path="payment-failed" element={<PaymentFailed/>}/>
         </Route>
         <Route path='404' element={<ErrorPage/>}/>
       </Route>
-      <Route path='*' element={<Navigate replace to='/' />}/>
+      <Route path='*' element={<Navigate replace to='/'/>}/>
     </Routes>
   );
 };
