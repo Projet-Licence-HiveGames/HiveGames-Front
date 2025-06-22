@@ -48,7 +48,7 @@ export const Catalog: FC = () => {
       )
       .catch(() => toast.error("Erreur lors de la récupération des jeux"));
     setIsLoading(false);
-  }, [filters, fetchAPI, user?.game_collections]);
+  }, [filters, fetchAPI]);
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());
@@ -111,7 +111,7 @@ export const Catalog: FC = () => {
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [filters]);
+  }, [filters, user]);
 
   const renderedGames = useMemo(() => {
     return isLoading

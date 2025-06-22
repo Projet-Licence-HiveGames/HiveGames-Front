@@ -1,33 +1,35 @@
-import React, { useEffect, useState } from "react";
+import { FC, MouseEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { GameBaseType } from "../../../../types/Game.ts";
 import { useCart } from "@context/CartContext";
 import useWindowSize from "@hooks/useWindowSize.ts";
 import { getGameImage } from "@utils/gameUtils.ts";
 
 import CartButton from "@components/GameCard/CartButton/CartButton.tsx";
+import { PlayButton } from "@components/ui/Buttons/PlayButton/PlayButton.tsx";
 import { PriceTag } from "@components/ui/PriceTag/PriceTag.tsx";
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 import { WishButton } from "@components/ui/WishButton/WishButton.tsx";
+
+import { GameType } from "../../../../types/Game.ts";
 
 import "swiper/swiper-bundle.css";
 import "./GameImageHP.css";
 
 interface GameImageHPProps {
-  games: GameBaseType[];
+  games: GameType[];
   isAuthenticated: boolean;
 }
 
-export const GameImageHP: React.FC<GameImageHPProps> = ({
+export const GameImageHP: FC<GameImageHPProps> = ({
   games,
   isAuthenticated,
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  const [selectedGame, setSelectedGame] = useState<GameBaseType>(games[0]);
+  const [selectedGame, setSelectedGame] = useState<GameType>(games[0]);
   const { isMobileL, isMobileM, isMobileS, isTablet } = useWindowSize();
   const navigate = useNavigate();
   const { addToCart, cartItems } = useCart();
@@ -45,7 +47,7 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
     ? _images
     : [getGameImage(selectedGame?.images, "header")];
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleAddToCart = (e: MouseEvent) => {
     e.stopPropagation();
     if (!isInCart) {
       addToCart(selectedGame.id);
@@ -92,10 +94,14 @@ export const GameImageHP: React.FC<GameImageHPProps> = ({
               <PriceTag price={selectedGame?.price} />
             </div>
             <div className="game-image-hp-button-wrapper">
-              <CartButton
-                isOwned={selectedGame?.is_owned}
-                onClick={handleAddToCart}
-              />
+              {!selectedGame.is_owned ? (
+                <CartButton
+                  isOwned={selectedGame.is_owned}
+                  onClick={handleAddToCart}
+                />
+              ) : (
+                <PlayButton id={selectedGame.id} name={selectedGame.name} />
+              )}
             </div>
           </SwiperSlide>
         ))}
