@@ -33,7 +33,7 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
 }) => {
   const { addToCart, cartItems } = useCart();
   const isInCart = cartItems.some((item) => item === game.id);
-  const { isMobileM } = useWindowSize();
+  const { isMobileM, isMobileS } = useWindowSize();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -45,7 +45,7 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
   return (
     <div className={`cart-article-card ${isDlc ? "little" : ""}`}>
       <div className={`cart-article-card__content ${isDlc ? "little" : ""}`}>
-        {((!isItemCart && !isMobileM) || isDlc) && (
+        {((!isItemCart && !isMobileM && !isMobileS) || isDlc) && (
           <div className={`cart-article-card__image ${isDlc ? "little" : ""}`}>
             <img
               alt={game.name}
@@ -65,27 +65,29 @@ export const CartArticleCard: React.FC<CartArticleCardProps> = ({
               </div>
             )}
           </div>
-          <PriceBox
-            buyButton={buyButton}
-            onAddToCart={handleAddToCart}
-            game={game}
-          />
+          <div className="cart-article-card__price">
+            <PriceBox
+              buyButton={buyButton}
+              onAddToCart={handleAddToCart}
+              game={game}
+            />
+            {!isDlc && (
+              <div className="cart-article-card__actions">
+                <DeleteForeverRounded
+                  aria-label={`Supprimer ${game.name}`}
+                  color="error"
+                  onClick={onRemove}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") onRemove();
+                  }}
+                  role="button"
+                  tabIndex={0}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      {!isDlc && (
-        <div className="cart-article-card__actions">
-          <DeleteForeverRounded
-            aria-label={`Supprimer ${game.name}`}
-            color="error"
-            onClick={onRemove}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") onRemove();
-            }}
-            role="button"
-            tabIndex={0}
-          />
-        </div>
-      )}
     </div>
   );
 };
