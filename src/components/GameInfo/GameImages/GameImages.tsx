@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { FC, useState } from "react";
+import { Swiper as SwiperType } from "swiper";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,17 +14,32 @@ interface GameImagesProps {
   thumbnail: GameImage;
 }
 
-export const GameImages: React.FC<GameImagesProps> = ({
+export const GameImages: FC<GameImagesProps> = ({
   images,
   large = false,
   thumbnail,
 }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   const slides = images?.filter(
     (i) => i.file_name.startsWith("slide") && i.file_url,
   );
   const _images = slides?.length ? slides : [thumbnail];
+
+  const renderImage = (
+    image: GameImage,
+    className: string,
+    altFallback = "Image",
+  ) => (
+    <img
+      alt={image.alt || altFallback}
+      className={className}
+      decoding="async"
+      loading="lazy"
+      src={image.file_url}
+      srcSet={`${image.file_url} 1x, ${image.file_url} 2x`}
+    />
+  );
 
   return (
     <div className={`game-images-wrapper ${large ? "large" : ""}`}>
@@ -39,38 +55,23 @@ export const GameImages: React.FC<GameImagesProps> = ({
       >
         {_images.map((image, index) => (
           <SwiperSlide key={index} className={large ? "large" : ""}>
-            <img
-              alt={image.alt || "Game Image"}
-              className="panel-image"
-              decoding="async"
-              loading="lazy"
-              src={image.file_url}
-              srcSet={`${image.file_url} 1x, ${image.file_url} 2x`}
-            />
+            {renderImage(image, "panel-image", "Game Image")}
           </SwiperSlide>
         ))}
       </Swiper>
       <Swiper
-        autoplay={{ delay: 5000 }}
         className="thumbs-swiper"
-        freeMode={true}
-        loop={true}
+        freeMode
+        loop
         modules={[Thumbs]}
         onSwiper={setThumbsSwiper}
         slidesPerView={4}
         spaceBetween={10}
-        watchSlidesProgress={true}
+        watchSlidesProgress
       >
         {_images.map((image, index) => (
           <SwiperSlide key={index}>
-            <img
-              alt={image.alt || "Thumbnail"}
-              className="thumb-image"
-              decoding="async"
-              loading="lazy"
-              src={image.file_url}
-              srcSet={`${image.file_url} 1x, ${image.file_url} 2x`}
-            />
+            {renderImage(image, "panel-image", "Game Image")}
             <div className="progress-bar" />
           </SwiperSlide>
         ))}
