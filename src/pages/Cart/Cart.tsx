@@ -2,10 +2,10 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useGamesApi } from "@api/services/gamesApi.ts";
 
 import { useCart } from "@context/CartContext.tsx";
-import { GameBaseType, GameDlcType } from "@customTypes/Game";
+import { GameBaseType } from "@customTypes/Game";
 
-import { CartAmountTotal } from "@components/CartAmountTotal/CartAmountTotal.tsx";
-import { CartArticleCard } from "@components/CartArticleCard/CartArticleCard.tsx";
+import { CartAmountTotal } from "@components/Cart/CartAmountTotal/CartAmountTotal.tsx";
+import { CartArticleCard } from "@components/Cart/CartArticleCard/CartArticleCard.tsx";
 import { Loader } from "@components/ui/Loader/Loader.tsx";
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
@@ -13,7 +13,7 @@ import "./Cart.css";
 
 export const Cart: React.FC = () => {
   const { fetchGamesByIds } = useGamesApi();
-  const { cartItems, removeFromCart, clearCart } = useCart();
+  const { cartItems, removeFromCart } = useCart();
   const [games, setGames] = useState<GameBaseType[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -64,33 +64,27 @@ export const Cart: React.FC = () => {
             </Suspense>
           ))}
           <div className={"cart-container__total"}>
-            <CartAmountTotal games={games} onRemove={() => clearCart()} />
+            <CartAmountTotal games={games} />
           </div>
         </section>
         {games.some(
-          (game: GameBaseType & { dlcs?: GameDlcType[] }) =>
-            game.dlcs && Array.isArray(game.dlcs) && game.dlcs.length > 0,
+          (game) => Array.isArray(game.dlcs) && game.dlcs.length > 0,
         ) && (
           <aside className="cart-container__panel right">
-            {games.map((game) =>
-              (game as GameBaseType & { dlcs?: GameDlcType[] }).dlcs &&
-              Array.isArray(
-                (game as GameBaseType & { dlcs?: GameDlcType[] }).dlcs,
-              )
-                ? (game as GameBaseType & { dlcs?: GameDlcType[] }).dlcs!.map(
-                    (dlc: GameDlcType) => (
-                      <Suspense fallback={<Loader />} key={dlc.id}>
-                        <CartArticleCard
-                          game={dlc}
-                          imageUrl={dlc.images}
-                          isDlc={true}
-                          key={dlc.id}
-                          onRemove={() => handleRemoveFromCart(dlc.id)}
-                        />
-                      </Suspense>
-                    ),
-                  )
-                : null,
+            {games.flatMap((game) =>
+              Array.isArray(game.dlcs)
+                ? game.dlcs.map((dlc) => (
+                    <Suspense fallback={<Loader />} key={dlc.id}>
+                      <CartArticleCard
+                        game={dlc}
+                        imageUrl={dlc.images}
+                        isDlc={true}
+                        key={dlc.id}
+                        onRemove={() => handleRemoveFromCart(dlc.id)}
+                      />
+                    </Suspense>
+                  ))
+                : [],
             )}
           </aside>
         )}

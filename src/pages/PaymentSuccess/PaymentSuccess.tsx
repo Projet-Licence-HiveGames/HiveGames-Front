@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useCartGameApi } from "@api/services/cartApi.ts";
 import { CheckCircleRounded, SportsEsportsRounded } from "@mui/icons-material";
 
-import { useCart } from "@context/CartContext.tsx";
-
 import { Loader } from "@components/ui/Loader/Loader.tsx";
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
@@ -23,7 +21,7 @@ export const PaymentSuccess: React.FC = ({}) => {
   const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
   const [error, setError] = useState<any>(null);
   const { fetchOrderDetails } = useCartGameApi();
-  const { removeFromCart } = useCart();
+  const { fetchCartGames } = useCartGameApi();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const sessionId = queryParams.get("session_id");
@@ -51,15 +49,10 @@ export const PaymentSuccess: React.FC = ({}) => {
   useEffect(() => {
     if (paymentData?.status && paymentData.status !== "complete") {
       navigate("/payment-failed");
+    } else {
+      fetchCartGames();
     }
   }, [paymentData, navigate]);
-
-  useEffect(() => {
-    if (paymentData && paymentData.status === "complete") {
-      const gameIds = paymentData?.game_ids?.map((gameId) => Number(gameId));
-      removeFromCart(gameIds, true);
-    }
-  }, [paymentData]);
 
   if (!paymentData) {
     return (
