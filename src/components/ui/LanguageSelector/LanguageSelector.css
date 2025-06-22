@@ -41,7 +41,7 @@
   transform: translate(-50%, -5px);
 }
 
-.sidebar-container--collapsed .language-dropdown {
+.sidebar--collapsed .language-dropdown {
   transform: translateX(-1.5rem);
 }
 

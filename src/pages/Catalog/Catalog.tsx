@@ -20,6 +20,7 @@ export const Catalog: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<GameFilter>({
     search: "",
+    only_promoted: false,
     categories: [],
     languages: [],
     features: [],
@@ -53,6 +54,7 @@ export const Catalog: FC = () => {
     const params = Object.fromEntries(searchParams.entries());
     const newFilters: GameFilter = {
       search: params.search || "",
+      only_promoted: params.only_promoted === "true",
       categories: params.categories
         ? params.categories
             .split(",")
@@ -88,6 +90,7 @@ export const Catalog: FC = () => {
   useEffect(() => {
     const newParams: any = {
       ...(filters.search && { search: filters.search }),
+      ...(filters.only_promoted && { only_promoted: true }),
       ...(filters.categories.length && {
         categories: filters.categories.join(","),
       }),
