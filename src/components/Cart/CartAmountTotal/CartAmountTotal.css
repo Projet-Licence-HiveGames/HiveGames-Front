@@ -75,6 +75,7 @@
 }
 
 .cart-amount-total__button {
+  align-content: center;
   background-color: var(--bg-color-blue-lighter);
   border: none;
   border-radius: 6px;

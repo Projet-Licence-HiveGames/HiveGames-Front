@@ -8,7 +8,7 @@
 }
 
 .cart-container__header h2 {
-  font-size: var(--font-size-24);
+  font-size: var(--font-size-20);
   font-weight: var(--font-weight-medium);
   margin: 0;
 }
@@ -36,7 +36,8 @@
   
   &.right {
     flex: 1;
-    max-height: 250px;
+    height: fit-content;
+    margin-top: 2.5rem;
     max-width: 25%;
     
     @media (max-width: 768px) {

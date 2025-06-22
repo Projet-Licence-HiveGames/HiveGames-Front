@@ -76,6 +76,7 @@ const labelList = [
   "cart.your_cart",
   "cart.savings",
   "cart.delete",
+  "cart.additional_content",
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -169,6 +170,7 @@ export const translationDictionnaries: {
     "cart.your_cart": "Your Cart",
     "cart.savings": "Savings: %savings%",
     "cart.delete": "Delete Cart",
+    "cart.additional_content": "Additional Contents",
   },
 
   // -------------------- French --------------------
@@ -254,5 +256,6 @@ export const translationDictionnaries: {
     "cart.your_cart": "Votre Panier",
     "cart.savings": "Economies: %savings%",
     "cart.delete": "Supprimer le panier",
+    "cart.additional_content": "Contenus supplémentaires",
   },
 };

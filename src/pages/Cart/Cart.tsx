@@ -46,11 +46,11 @@ export const Cart: React.FC = () => {
 
   return (
     <div className="cart-container">
-      <header className="cart-container__header">
-        <TLabel baliseType={"h2"} label={"cart.your_cart"} />
-      </header>
       <div className="cart-container__content">
         <section className="cart-container__panel left">
+          <header className="cart-container__header">
+            <TLabel baliseType={"h1"} label={"cart.your_cart"} />
+          </header>
           {games.map((game) => (
             <Suspense fallback={<Loader />} key={game.id}>
               <CartArticleCard
@@ -71,6 +71,9 @@ export const Cart: React.FC = () => {
           (game) => Array.isArray(game.dlcs) && game.dlcs.length > 0,
         ) && (
           <aside className="cart-container__panel right">
+            <header className="cart-container__header">
+              <TLabel baliseType={"h2"} label={"cart.additional_content"} />
+            </header>
             {games.flatMap((game) =>
               Array.isArray(game.dlcs)
                 ? game.dlcs.map((dlc) => (
