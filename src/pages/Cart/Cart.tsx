@@ -74,21 +74,23 @@ export const Cart: React.FC = () => {
             <header className="cart-container__header">
               <TLabel baliseType={"h2"} label={"cart.additional_content"} />
             </header>
-            {games.flatMap((game) =>
-              Array.isArray(game.dlcs)
-                ? game.dlcs.map((dlc) => (
-                    <Suspense fallback={<Loader />} key={dlc.id}>
-                      <CartArticleCard
-                        game={dlc}
-                        imageUrl={dlc.images}
-                        isDlc={true}
-                        key={dlc.id}
-                        onRemove={() => handleRemoveFromCart(dlc.id)}
-                      />
-                    </Suspense>
-                  ))
-                : [],
-            )}
+            <div className="cart-container__dlcs-title">
+              {games.flatMap((game) =>
+                Array.isArray(game.dlcs)
+                  ? game.dlcs.map((dlc) => (
+                      <Suspense fallback={<Loader />} key={dlc.id}>
+                        <CartArticleCard
+                          game={dlc}
+                          imageUrl={dlc.images}
+                          isDlc={true}
+                          key={dlc.id}
+                          onRemove={() => handleRemoveFromCart(dlc.id)}
+                        />
+                      </Suspense>
+                    ))
+                  : [],
+              )}
+            </div>
           </aside>
         )}
       </div>
