@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
 import { Slider } from "@mui/joy";
+import { Switch } from "@mui/material";
 import classNames from "classnames";
 
 import { useFetch } from "../../../api/privateApi";
@@ -35,6 +36,7 @@ const ORDER_BY_OPTIONS = [
 
 export interface GameFilter {
   search: string;
+  only_promoted: boolean;
   categories: number[];
   languages: number[];
   features: number[];
@@ -71,6 +73,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
 
   const defaultFilters: GameFilter = {
     search: "",
+    only_promoted: false,
     categories: [],
     languages: [],
     features: [],
@@ -157,7 +160,20 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
                 placeholder="Rechercher un nom..."
               />
             </div>
-            <div className="filter-item">
+            <label className="filter-item filter-item-switch">
+              <Switch
+                checked={filters.only_promoted}
+                onChange={(e) =>
+                  setFilters({
+                    ...filters,
+                    only_promoted: e.target.checked,
+                  })
+                }
+              />
+              <TLabel label="filters.only_promoted" />
+            </label>
+
+            <div className="filter-item-price">
               <TLabel label="price" className="filter-item-title" />
               <Slider
                 sx={{

@@ -59,6 +59,17 @@
 }
 
 .filter-item {
+    align-items: center;
+    display: flex;
+    gap: .5rem;
+}
+
+.filter-item-switch {
+    cursor: pointer;
+    width: fit-content;
+}
+
+.filter-item-price {
     display: flex;
     flex-direction: column;
 }
