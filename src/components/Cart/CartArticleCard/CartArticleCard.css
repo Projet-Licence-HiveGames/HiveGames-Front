@@ -23,6 +23,10 @@
   &.little {
     flex-direction: column;
   }
+  
+  @media screen and (max-width: 468px) {
+    flex-wrap: wrap;
+  }
 }
 
 .cart-article-card__image {
@@ -56,12 +60,18 @@
     flex-direction: column;
     gap: 30px;
   }
+  
+  @media screen and (max-width: 468px) {
+    flex-wrap: wrap;
+  }
 }
 
 .cart-article-card__title {
+  align-items: center;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
+  min-width: 150px;
   width: 100%;
   
   & h3 {
@@ -77,6 +87,21 @@
   }
 }
 
+.cart-article-card__price {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  
+  @media screen and (max-width: 468px) {
+    width: 100%;
+  }
+}
+
 .cart-article-card__actions {
   display: flex;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
