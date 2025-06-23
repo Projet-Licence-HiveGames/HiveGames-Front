@@ -76,13 +76,13 @@ export const Catalog: FC = () => {
           params.min && !isNaN(parseInt(params.min)) ? parseInt(params.min) : 0,
         max:
           params.max && !isNaN(parseInt(params.max))
-            ? parseInt(params.min)
+            ? parseInt(params.max)
             : 101,
       },
       order_by: params.order_by || "rating-desc",
     };
     setFilters(newFilters);
-  }, []);
+  }, [searchParams]);
 
   // Synchronize filters to URL
   useEffect(() => {
