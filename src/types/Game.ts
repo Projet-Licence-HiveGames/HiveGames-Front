@@ -17,7 +17,7 @@ export interface GameType {
   be_notified?: boolean;
   studios?: GameStudio[];
   release_date?: string;
-  game_type?: "base" | "dlc" | "demo";
+  game_type: "base" | "dlc" | "demo" | "beta";
   reviews?: GameReview[];
   votes?: {
     likes: number;

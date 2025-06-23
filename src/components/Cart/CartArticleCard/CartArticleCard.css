@@ -30,6 +30,7 @@
 }
 
 .cart-article-card__image {
+  position: relative;
   width: 200px;
   
   & img {
