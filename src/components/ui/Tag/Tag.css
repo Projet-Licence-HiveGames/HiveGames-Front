@@ -1,0 +1,25 @@
+.tag {
+  background-color: var(--bg-color-dark);
+  border-radius: var(--button-border-radius-lg);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+  color: white;
+  font-size: .8rem;
+  font-weight: bold;
+  left: .5rem;
+  padding: 0 .5rem;
+  position: absolute;
+  top: .5rem;
+  z-index: 10;
+
+  &.dlc {
+    background-color: var(--bg-color-orange);
+  }
+
+  &.demo {
+    background-color: var(--bg-color-blue-darker);
+  }
+
+  &.beta {
+    background-color: var(--bg-color-purple);
+  }
+}
