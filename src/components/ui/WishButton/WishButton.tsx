@@ -6,27 +6,24 @@ import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded
 import { useFetch } from "../../../api/privateApi.ts";
 import { useAuth } from "../../../context/AuthProvider.tsx";
 import { useWindowSize } from "../../../hooks/useWindowSize.ts";
-import { GameBaseType, GameDlcType } from "../../../types/Game.ts";
+import { GameType } from "../../../types/Game.ts";
 import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
 import "./WishButton.css";
 
 interface WishButtonProps {
-  game: GameBaseType | GameDlcType;
-  isAuthenticated: boolean;
+  game: GameType;
   large?: boolean;
   homeP?: boolean;
 }
 
 export const WishButton: React.FC<WishButtonProps> = ({
   game,
-  isAuthenticated,
   large = false,
   homeP = false,
 }) => {
   const fetchAPI = useFetch();
-  const auth = useAuth();
-  const { user } = auth;
+  const { user, isAuthenticated } = useAuth();
   const [isFavorite, setIsFavorite] = useState<boolean>(!!game?.is_wished);
   const isFavoriteRef = useRef(!!game?.is_wished || false);
   const cooldownRef = useRef(false);
@@ -98,7 +95,7 @@ export const WishButton: React.FC<WishButtonProps> = ({
             isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"
           }
           onClick={(e) => {
-            e.stopPropagation();
+            e.preventDefault();
             handleFavoriteToggle();
           }}
         >
@@ -120,7 +117,7 @@ export const WishButton: React.FC<WishButtonProps> = ({
         className={`wish-button ${!isAuthenticated ? "disabled" : ""}`}
         aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
         onClick={(e) => {
-          e.stopPropagation();
+          e.preventDefault();
           handleFavoriteToggle();
         }}
       >

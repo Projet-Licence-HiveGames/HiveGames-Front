@@ -55,7 +55,8 @@ const App: FC = () => {
           <Route path=':id' element={<Home/>}/>
         </Route>
 
-        <Route path='cart' element={<Cart />}>
+        <Route path='cart'>
+          <Route index element={<Cart/>}/>
           <Route path="checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
           <Route path="order" element={<ProtectedRoute><PaymentSuccess/></ProtectedRoute>}/>
           <Route path="payment-failed" element={<PaymentFailed/>}/>

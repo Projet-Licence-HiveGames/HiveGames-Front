@@ -14,7 +14,7 @@ import { findGameCollection, GameBaseType } from "../../types/Game.ts";
 import "./Catalog.css";
 
 export const Catalog: FC = () => {
-  const { isAuthenticated, user } = useAuth();
+  const { user } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const fetchAPI = useFetch();
   const [isLoading, setIsLoading] = useState(true);
@@ -84,7 +84,7 @@ export const Catalog: FC = () => {
       order_by: params.order_by || "rating-desc",
     };
     setFilters(newFilters);
-  }, []);
+  }, [searchParams]);
 
   // Synchronize filters to URL
   useEffect(() => {
@@ -118,10 +118,8 @@ export const Catalog: FC = () => {
       ? Array(10)
           .fill(0)
           .map((_, index) => <GameCardSkeleton key={index} />)
-      : gameList.map((game, index) => (
-          <GameCard game={game} isAuthenticated={isAuthenticated} key={index} />
-        ));
-  }, [isLoading, gameList, isAuthenticated]);
+      : gameList.map((game, index) => <GameCard game={game} key={index} />);
+  }, [isLoading, gameList]);
 
   return (
     <div className="catalog-container">

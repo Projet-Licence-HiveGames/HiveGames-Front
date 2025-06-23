@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import { GameBaseType, GameDlcType } from "@customTypes/Game.ts";
+import { GameType } from "@customTypes/Game.ts";
 import { calculateDiscount } from "@utils/calculateDiscount.ts";
 
 import { PlayButton } from "@components/ui/Buttons/PlayButton/PlayButton.tsx";
@@ -12,7 +12,7 @@ import CartButton from "../CartButton/CartButton.tsx";
 import "./PriceBox.css";
 
 interface PriceBoxProps {
-  game: GameBaseType | GameDlcType;
+  game: GameType;
   isOwned?: boolean;
   onAddToCart?: (e: React.MouseEvent) => void;
   buyButton?: boolean;
@@ -56,7 +56,7 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
         </div>
       </div>
       {buyButton && !isOwned ? (
-        <CartButton onClick={onAddToCart} isOwned={isOwned} />
+        <CartButton onClick={onAddToCart} isOwned={isOwned} gameId={game.id} />
       ) : isOwned ? (
         <PlayButton id={game.id} name={game.name} />
       ) : null}

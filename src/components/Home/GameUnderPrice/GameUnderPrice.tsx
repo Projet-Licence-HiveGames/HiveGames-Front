@@ -43,7 +43,7 @@ export const GameUnderPrice: FC = () => {
       ) : (
         <div className="game-under-price-body">
           {gameData.map((game) => (
-            <GameCard key={game.id} game={game} isAuthenticated={false} />
+            <GameCard key={game.id} game={game} />
           ))}
         </div>
       )}
