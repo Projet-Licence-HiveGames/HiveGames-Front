@@ -82,7 +82,7 @@ export const Catalog: FC = () => {
       order_by: params.order_by || "rating-desc",
     };
     setFilters(newFilters);
-  }, [searchParams]);
+  }, []);
 
   // Synchronize filters to URL
   useEffect(() => {

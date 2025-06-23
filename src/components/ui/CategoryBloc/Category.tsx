@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
 import { TranslationCategoryLabelType } from "../../../constants/CategoriesDict.tsx";
@@ -14,6 +14,7 @@ interface CategoryProps {
 
 export const Category: React.FC<CategoryProps> = ({ categories }) => {
   const [showAll, setShowAll] = React.useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className={"category-bloc"} onClick={(e) => e.preventDefault()}>
@@ -21,17 +22,17 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
         .slice(0, showAll ? categories.length : 3)
         .map((category, index) => {
           return (
-            <Link
+            <button
               className={"category-bloc-category"}
               key={index}
-              to={`/catalog?categories=${category.id}`}
+              onClick={() => navigate(`/catalog?categories=${category.id}`)}
             >
               <TLabel
                 capitalizeFirstLetter
                 label={category.label as TranslationCategoryLabelType}
                 translationType={"category"}
               />
-            </Link>
+            </button>
           );
         })}
       {!showAll && categories.length > 3 && (
