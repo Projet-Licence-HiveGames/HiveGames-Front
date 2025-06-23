@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGamesApi } from "@api/services/gamesApi.ts";
 import { RemoveShoppingCartOutlined } from "@mui/icons-material";
@@ -8,14 +8,13 @@ import { GameBaseType, GameDlcType } from "@customTypes/Game";
 
 import { CartAmountTotal } from "@components/Cart/CartAmountTotal/CartAmountTotal.tsx";
 import { CartArticleCard } from "@components/Cart/CartArticleCard/CartArticleCard.tsx";
+import GameCard from "@components/GameCard/GameCard";
 import { Loader } from "@components/ui/Loader/Loader.tsx";
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./Cart.css";
 
-import GameCard from "@/components/GameCard/GameCard";
-
-export const Cart: React.FC = () => {
+export const Cart: FC = () => {
   const { fetchGamesByIds } = useGamesApi();
   const { cartItems, removeFromCart } = useCart();
   const [games, setGames] = useState<GameBaseType[]>([]);
