@@ -94,12 +94,7 @@ export const GameImageHP: FC<GameImageHPProps> = ({
               </a>
             </div>
             <div className={"game-image-hp-wishlist-button"}>
-              <WishButton
-                game={selectedGame}
-                homeP={true}
-                isAuthenticated={isAuthenticated}
-                large={true}
-              />
+              <WishButton game={selectedGame} homeP={true} large={true} />
             </div>
             <div className={"game-image-hp-price"}>
               <PriceTag price={selectedGame?.price} />
@@ -108,6 +103,7 @@ export const GameImageHP: FC<GameImageHPProps> = ({
               {!selectedGame.is_owned ? (
                 <CartButton
                   isOwned={selectedGame.is_owned}
+                  gameId={selectedGame.id}
                   onClick={handleAddToCart}
                 />
               ) : (

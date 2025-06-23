@@ -2,12 +2,7 @@ import { FC, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "@api/privateApi.ts";
 
-import {
-  GameBaseType,
-  GameDlcType,
-  GameReview,
-  isGameDlc,
-} from "@customTypes/Game.ts";
+import { GameBaseType, GameDlcType, GameReview } from "@customTypes/Game.ts";
 import { useWindowSize } from "@hooks/useWindowSize.ts";
 import { getGameImage } from "@utils/gameUtils.ts";
 
@@ -99,7 +94,7 @@ export const GameInfo: FC = () => {
               isOwned={gameData?.is_owned || false}
               name={gameData?.name || ""}
             />
-            {!isGameDlc(gameData) &&
+            {"dlcs" in gameData &&
               gameData.dlcs?.map((dlc) => (
                 <GameBuyCard
                   gameBaseName={gameData.name}

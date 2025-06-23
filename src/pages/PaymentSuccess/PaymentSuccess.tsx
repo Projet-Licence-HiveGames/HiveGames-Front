@@ -9,6 +9,8 @@ import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./PaymentSuccess.css";
 
+import { useAuth } from "@/context/AuthProvider";
+
 interface PaymentData {
   id: number;
   status: string;
@@ -22,11 +24,13 @@ export const PaymentSuccess: FC = ({}) => {
   const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
   const [error, setError] = useState<any>(null);
   const { clearLocalCart, fetchOrderDetails } = useCart();
+  const { checkUser } = useAuth();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const sessionId = queryParams.get("session_id");
 
   const fetchData = async () => {
+    checkUser();
     if (!sessionId) {
       setError({ error: "Session ID is missing" });
       navigate("/home");

@@ -22,11 +22,11 @@ export interface GameType {
 }
 
 export interface GameBaseType extends GameType {
-  dlcs: GameBaseType[];
+  dlcs: GameDlcType[];
 }
 
 export interface GameDlcType extends GameType {
-  base_game_id?: number;
+  base_game_id: number;
 }
 
 export interface GameLanguage {

@@ -1,15 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import classNames from "classnames";
 
-import { GameBaseType } from "@customTypes/Game";
-import { useCart } from "@context/CartContext";
+import { GameType } from "@customTypes/Game";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import { getGameImage } from "@utils/gameUtils";
+
 import { Category } from "../ui/CategoryBloc/Category";
 import ImageWithLoader from "../ui/Image/ImageWithLoader";
 import { ProgressBar } from "../ui/ProgressBar/ProgressBar";
-import { TLabel } from "../ui/TranslationLabel/TLabel.tsx";
 import { WishButton } from "../ui/WishButton/WishButton";
 
 import { PriceBox } from "./PriceBox/PriceBox";
@@ -19,26 +18,16 @@ import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 import "./GameCard.css";
 
 interface GameCardProps {
-  game: GameBaseType;
-  isAuthenticated: boolean;
+  className?: string;
+  game: GameType;
 }
 
-const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
-  const navigate = useNavigate();
-  const { addToCart, cartItems } = useCart();
-  const isInCart = cartItems.some((item) => item === game.id);
-
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!isInCart) {
-      addToCart(game.id);
-    } else {
-      toast.error(<TLabel label={"cart.already_in_cart"} />);
-    }
-  };
-
+const GameCard: React.FC<GameCardProps> = ({ className, game }) => {
   return (
-    <div className={"game-card"} onClick={() => navigate(`/game/${game.id}`)}>
+    <Link
+      to={`/game/${game.id}`}
+      className={classNames("game-card", className)}
+    >
       <div className={"game-card-image"}>
         <ImageWithLoader
           alt={game.name}
@@ -50,7 +39,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
         </div>
       </div>
       <div className={"game-card-content"}>
-        <WishButton game={game} isAuthenticated={isAuthenticated} />
+        <WishButton game={game} />
         <div className={"game-card-content-title"}>
           <h3>{capitalizeFirstLetter(game.name)}</h3>
         </div>
@@ -60,14 +49,10 @@ const GameCard: React.FC<GameCardProps> = ({ game, isAuthenticated }) => {
           </div>
         )}
         <div className={"game-card-content-price"}>
-          <PriceBox
-            isOwned={game.is_owned}
-            game={game}
-            onAddToCart={handleAddToCart}
-          />
+          <PriceBox isOwned={game.is_owned} game={game} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

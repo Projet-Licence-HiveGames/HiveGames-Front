@@ -64,7 +64,7 @@
   justify-content: space-between;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
   }
 }
@@ -80,16 +80,15 @@
   }
 
   &.right {
-    flex: 1;
     height: fit-content;
     margin-top: 2.5rem;
-    max-width: 25%;
+    width: 17.5rem;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
       display: flex;
       flex-flow: column;
       gap: 1rem;
-      max-width: unset;
+      width: unset;
     }
 
     .cart-container__dlcs-title {
@@ -97,7 +96,7 @@
       flex-direction: column;
       gap: 1rem;
 
-      @media screen and (width <= 768px) {
+      @media screen and (width <= 1000px) {
         flex-flow: row wrap;
         justify-content: space-between;
       }
@@ -113,5 +112,40 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+}
+
+.cart-container__dlcs-title .cart-game-card {
+  background-color: var(--bg-color-dark);
+  flex: 1;
+  flex-direction: column;
+  min-width: 16rem;
+
+  &:hover {
+    background-color: var(--bg-color-darker);
+  }
+
+  & .game-card-image {
+    aspect-ratio: 16 / 9;
+    height: auto;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  & .game-card-content {
+    gap: 2rem;
+  }
+
+  & .game-card-content-title > * {
+    margin-right: 1.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+  }
+
+  & .wish-button-container {
+    right: .25rem;
+    top: -.25rem;
   }
 }
