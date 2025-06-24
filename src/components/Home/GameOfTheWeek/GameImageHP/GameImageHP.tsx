@@ -81,8 +81,8 @@ export const GameImageHP: FC<GameImageHPProps> = ({
         spaceBetween={10}
         thumbs={{ swiper: thumbsSwiper }}
       >
-        {mainImages.map((image, index) => (
-          <SwiperSlide id={useId()}>
+        {mainImages.map((image) => (
+          <SwiperSlide key={useId()}>
             <div className="main-image-wrapper">
               <a onClick={handleNavigateToGame} style={{ cursor: "pointer" }}>
                 <img
@@ -114,17 +114,14 @@ export const GameImageHP: FC<GameImageHPProps> = ({
         ))}
       </Swiper>
       <Swiper
-        autoplay={{ delay: 5000 }}
         className="game-thumbs-swiper-hp"
         freeMode={true}
-        loop={true}
         modules={[Thumbs]}
         onSwiper={setThumbsSwiper}
         slidesPerView={
           isMobileS || isMobileM ? 2 : isMobileL ? 3 : isTablet ? 4 : 7
         }
         spaceBetween={11}
-        watchSlidesProgress={true}
       >
         {games.map((game, index) => {
           const thumb = getGameImage(game.images);
