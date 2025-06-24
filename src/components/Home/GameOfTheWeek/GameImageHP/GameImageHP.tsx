@@ -20,13 +20,9 @@ import "./GameImageHP.css";
 
 interface GameImageHPProps {
   games: GameType[];
-  isAuthenticated: boolean;
 }
 
-export const GameImageHP: FC<GameImageHPProps> = ({
-  games,
-  isAuthenticated,
-}) => {
+export const GameImageHP: FC<GameImageHPProps> = ({ games }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [selectedGame, setSelectedGame] = useState<GameType>(games[0]);
   const { isMobileL, isMobileM, isMobileS, isTablet } = useWindowSize();
