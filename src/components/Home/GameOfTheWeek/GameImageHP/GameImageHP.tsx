@@ -1,6 +1,7 @@
 import { FC, MouseEvent, useCallback, useEffect, useId, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Swiper as SwiperType } from "swiper";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -23,7 +24,7 @@ interface GameImageHPProps {
 }
 
 export const GameImageHP: FC<GameImageHPProps> = ({ games }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [selectedGame, setSelectedGame] = useState<GameType>(games[0]);
   const { isMobileL, isMobileM, isMobileS, isTablet } = useWindowSize();
   const navigate = useNavigate();
