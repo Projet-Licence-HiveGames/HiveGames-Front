@@ -47,7 +47,7 @@ export const GameOfTheWeek: React.FC = () => {
           {gameData.length === 0 ? (
             <HomeSkeleton />
           ) : (
-            <GameImageHP games={gameData} isAuthenticated={isAuthenticated} />
+            <GameImageHP games={gameData} />
           )}
         </div>
       </div>
