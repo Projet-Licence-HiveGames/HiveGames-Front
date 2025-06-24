@@ -5,6 +5,7 @@ import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useCart } from "@context/CartContext";
+import { GameType } from "@customTypes/Game.ts";
 import useWindowSize from "@hooks/useWindowSize.ts";
 import { getGameImage } from "@utils/gameUtils.ts";
 
@@ -13,8 +14,6 @@ import { PlayButton } from "@components/ui/Buttons/PlayButton/PlayButton.tsx";
 import { PriceTag } from "@components/ui/PriceTag/PriceTag.tsx";
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 import { WishButton } from "@components/ui/WishButton/WishButton.tsx";
-
-import { GameType } from "../../../../types/Game.ts";
 
 import "swiper/swiper-bundle.css";
 import "./GameImageHP.css";
