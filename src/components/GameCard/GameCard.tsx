@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
 import { GameType } from "@customTypes/Game";
@@ -23,11 +23,29 @@ interface GameCardProps {
 }
 
 const GameCard: React.FC<GameCardProps> = ({ className, game }) => {
+  const navigate = useNavigate();
   return (
-    <Link
-      to={`/game/${game.id}`}
+    <div
       className={classNames("game-card", className)}
+      role="button"
+      tabIndex={0}
+      onClick={(e) => {
+        if (e.button !== 0) return;
+        navigate(`/game/${game.id}`);
+      }}
+      onMouseDown={(e) => {
+        if (e.button === 1) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.open(`/game/${game.id}`, "_blank");
+          return;
+        }
+      }}
     >
+      <Link
+        to={`/game/${game.id}`}
+        style={{ position: "absolute", inset: 0, zIndex: 1 }}
+      />
       <div className={"game-card-image"}>
         <ImageWithLoader
           alt={game.name}
@@ -60,7 +78,7 @@ const GameCard: React.FC<GameCardProps> = ({ className, game }) => {
           <PriceBox isOwned={game.is_owned} game={game} />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
