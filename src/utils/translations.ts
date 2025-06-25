@@ -1,4 +1,5 @@
 const labelList = [
+  "welcome",
   "sidebar.home",
   "sidebar.catalog",
   "sidebar.calendar",
@@ -10,7 +11,10 @@ const labelList = [
   "navitem.library",
   "navitem.setting",
   "logout",
+  "password",
   "login",
+  "login.footer.still_not_registered",
+  "login.footer.already_got_account",
   "subscription.classic",
   "subscription.premium",
   "subscription.ultimate",
@@ -88,6 +92,7 @@ export const translationDictionnaries: {
 } = {
   // -------------------- English --------------------
   en: {
+    welcome: "Welcome",
     "sidebar.home": "Home",
     "sidebar.catalog": "Catalog",
     "sidebar.calendar": "Calendar",
@@ -100,6 +105,9 @@ export const translationDictionnaries: {
     "navitem.setting": "Settings",
     logout: "Logout",
     login: "Login",
+    password: "Password",
+    "login.footer.still_not_registered": "Still not registered? Sign up",
+    "login.footer.already_got_account": "Already got an account? Log in",
     "subscription.classic": "Subscription 1",
     "subscription.premium": "Subscription 2",
     "subscription.ultimate": "Subscription 3",
@@ -175,6 +183,7 @@ export const translationDictionnaries: {
 
   // -------------------- French --------------------
   fr: {
+    welcome: "Bienvenue",
     "sidebar.home": "Accueil",
     "sidebar.catalog": "Catalogue",
     "sidebar.calendar": "Calendrier",
@@ -187,6 +196,9 @@ export const translationDictionnaries: {
     "navitem.setting": "Paramètres",
     logout: "Déconnexion",
     login: "Connexion",
+    password: "Mot de passe",
+    "login.footer.still_not_registered": "Pas encore inscrit ? Inscrivez-vous",
+    "login.footer.already_got_account": "Déjà inscrit ? Connectez-vous",
     "subscription.classic": "Abonnement 1",
     "subscription.premium": "Abonnement 2",
     "subscription.ultimate": "Abonnement 3",

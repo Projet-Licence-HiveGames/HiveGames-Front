@@ -3,12 +3,28 @@
     display: flex;
     height: 100%;
     justify-content: center;
+    width: 100%;
 }
   
 .logo {
   animation: rotateLogo 2s linear infinite;
-  height: auto;
-  width: 100px;
+  height: 100%;
+  max-width: 10rem;
+  width: fit-content;
+  
+  &:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @keyframes rotateLogo {
