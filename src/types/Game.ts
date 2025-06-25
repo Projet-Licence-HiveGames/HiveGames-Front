@@ -19,6 +19,10 @@ export interface GameType {
   release_date?: string;
   game_type?: "base" | "dlc" | "demo";
   reviews?: GameReview[];
+  votes?: {
+    likes: number;
+    dislikes: number;
+  };
 }
 
 export interface GameBaseType extends GameType {

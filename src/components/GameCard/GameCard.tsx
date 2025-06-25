@@ -52,9 +52,17 @@ const GameCard: React.FC<GameCardProps> = ({ className, game }) => {
           loaderSrc={defaultGameThumbnailImage}
           src={getGameImage(game.images).file_url || defaultGameThumbnailImage}
         />
-        <div className={"game-card-content-progress-bar"}>
-          <ProgressBar leftPercentValue={50} />
-        </div>
+        {game.votes &&
+          !(game.votes?.likes == 0 && game.votes?.dislikes == 0) && (
+            <div className={"game-card-content-progress-bar"}>
+              <ProgressBar
+                leftPercentValue={
+                  (game.votes.likes * 100) /
+                  (game.votes.dislikes + game.votes.likes)
+                }
+              />
+            </div>
+          )}
       </div>
       <div className={"game-card-content"}>
         <WishButton game={game} />
