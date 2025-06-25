@@ -30,7 +30,6 @@
   display: flex;
   gap: 10px;
   min-width: 154px;
-  padding: 5px;
   position: relative;
   transition: background-color .3s;
 }
@@ -60,8 +59,12 @@
 
 .group-menu-connexion-text {
   color: white;
+  height: 100%;
   margin: 0 auto;
+  padding: 5px;
+  text-align: center;
   text-decoration: none;
+  width: 100%;
 }
 
 .group-menu-connexion-text.authenticated h4 {

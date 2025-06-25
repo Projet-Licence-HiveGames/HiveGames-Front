@@ -1,15 +1,19 @@
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 import HGInputField from "../../components/ui/Input/HGInputField.tsx";
+import { TLabel, TText } from "../../components/ui/TranslationLabel/TLabel.tsx";
 import { useAuth } from "../../context/AuthProvider";
 import { UserForm } from "../../types/User.ts";
+
+import "./Register.css";
 
 type UserErrorsMsg = Partial<UserForm>;
 
 export const Register: React.FC = () => {
   const auth = useAuth();
-  const { register, logout, isAuthenticated, user, loading, error } = auth;
+  const { register, isAuthenticated, loading, error } = auth;
 
   const [errors, setErrors] = useState<UserErrorsMsg>({});
   const [formData, setFormData] = useState<UserForm>({
@@ -65,57 +69,58 @@ export const Register: React.FC = () => {
     }
   };
 
-  if (isAuthenticated) {
-    return (
-      <div>
-        <h2>Bienvenue, {user?.pseudo}</h2>
-        <button onClick={logout}>Se déconnecter</button>
-      </div>
-    );
-  }
-
-  // Formulaire d'inscription
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          {errors.pseudo && <p style={{ color: "red" }}>{errors.pseudo}</p>}
-          <HGInputField
-            type="text"
-            placeholder="Pseudo"
-            value={formData.pseudo}
-            onChange={(e) =>
-              setFormData({ ...formData, pseudo: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-          <HGInputField
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
-          <HGInputField
-            type="password"
-            placeholder="Mot de passe"
-            value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Inscription en cours..." : "S'inscrire"}
-        </button>
-      </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <div className="register-container">
+      {!isAuthenticated && (
+        <form className="register-form" onSubmit={handleSubmit}>
+          <h1 className="register-title">Inscription</h1>
+          <div className="register-input-container">
+            <HGInputField
+              type="text"
+              placeholder="Pseudo"
+              value={formData.pseudo}
+              onChange={(e) =>
+                setFormData({ ...formData, pseudo: e.target.value })
+              }
+            />
+            {errors.pseudo && <p className="register-error">{errors.pseudo}</p>}
+          </div>
+          <div className="register-input-container">
+            <HGInputField
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+            />
+            {errors.email && <p className="register-error">{errors.email}</p>}
+          </div>
+          <div className="register-input-container">
+            <HGInputField
+              type="password"
+              placeholder={TText({ label: "password" })}
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+            />
+            {errors.password && (
+              <p className="register-error">{errors.password}</p>
+            )}
+          </div>
+          <button className="register-button" type="submit" disabled={loading}>
+            {loading ? "Inscription en cours..." : "S'inscrire"}
+          </button>
+          <div className="register-links">
+            <Link to="/login">
+              <TLabel label={"login.footer.already_got_account"} />
+            </Link>
+          </div>
+
+          {error && <p className="register-error">{error}</p>}
+        </form>
+      )}
     </div>
   );
 };

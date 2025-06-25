@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
+import { Loader } from "../../components/Loader/Loader.tsx";
 import HGInputField from "../../components/ui/Input/HGInputField.tsx";
+import { TLabel, TText } from "../../components/ui/TranslationLabel/TLabel.tsx";
 import { useAuth } from "../../context/AuthProvider";
+
+import "./Login.css";
 
 interface FormData {
   email: string;
@@ -16,7 +20,7 @@ interface Errors {
 }
 
 export const Login: React.FC = () => {
-  const { login, logout, isAuthenticated, user, loading, error } = useAuth();
+  const { login, isAuthenticated, loading, error } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [errors, setErrors] = useState<Errors>({});
@@ -69,10 +73,11 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div>
-      {!isAuthenticated ? (
-        <form onSubmit={handleLogin}>
-          <div>
+    <div className="login-container">
+      {!isAuthenticated && (
+        <form className="login-form" onSubmit={handleLogin}>
+          <TLabel baliseType={"h1"} className={"login-title"} label={"login"} />
+          <div className="login-input-container">
             <HGInputField
               type="email"
               placeholder="Email"
@@ -81,31 +86,32 @@ export const Login: React.FC = () => {
                 setFormData({ ...formData, email: e.target.value })
               }
             />
-            {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+            {errors.email && <p className="login-error">{errors.email}</p>}
           </div>
-          <div>
+          <div className="login-input-container">
             <HGInputField
               type="password"
-              placeholder="Password"
+              placeholder={TText({ label: "password" })}
               value={formData.password}
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
             />
             {errors.password && (
-              <p style={{ color: "red" }}>{errors.password}</p>
+              <p className="login-error">{errors.password}</p>
             )}
           </div>
-          <button type="submit">Login</button>
+          <button className="login-button" type="submit" disabled={loading}>
+            {loading ? <Loader /> : <TLabel label={"login"} />}
+          </button>
+          <div className="login-links">
+            <Link to="/register">
+              <TLabel label={"login.footer.still_not_registered"} />
+            </Link>
+          </div>
+          {error && <p className="login-error">{error}</p>}
         </form>
-      ) : (
-        <div>
-          <h2>Welcome, {user?.pseudo}</h2>
-          <button onClick={logout}>Logout</button>
-        </div>
       )}
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
