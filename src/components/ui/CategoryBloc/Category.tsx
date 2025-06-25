@@ -1,9 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { TranslationCategoryLabelType } from "@constants/CategoriesDict.tsx";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
-import { TranslationCategoryLabelType } from "../../../constants/CategoriesDict.tsx";
-import { GameCategory } from "../../../types/Game";
+import { GameCategory } from "@customTypes/Game";
+
 import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
 import "./Category.css";
@@ -14,31 +15,42 @@ interface CategoryProps {
 
 export const Category: React.FC<CategoryProps> = ({ categories }) => {
   const [showAll, setShowAll] = React.useState(false);
-  const navigate = useNavigate();
 
   return (
-    <div className={"category-bloc"} onClick={(e) => e.preventDefault()}>
+    <div className={"category-bloc"}>
       {categories
         .slice(0, showAll ? categories.length : 3)
         .map((category, index) => {
           return (
-            <button
+            <Link
               className={"category-bloc-category"}
               key={index}
-              onClick={() => navigate(`/catalog?categories=${category.id}`)}
+              to={`/catalog?categories=${category.id}`}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              onMouseDown={(e) => {
+                if (e.button === 1) {
+                  e.stopPropagation();
+                  window.open(`/catalog?categories=${category.id}`, "_blank");
+                }
+              }}
             >
               <TLabel
                 capitalizeFirstLetter
                 label={category.label as TranslationCategoryLabelType}
                 translationType={"category"}
               />
-            </button>
+            </Link>
           );
         })}
       {!showAll && categories.length > 3 && (
         <div
           className={"category-bloc-category-more"}
-          onClick={() => setShowAll(true)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowAll(true);
+          }}
         >
           <MoreHorizRoundedIcon sx={{ color: "white" }} />
         </div>
