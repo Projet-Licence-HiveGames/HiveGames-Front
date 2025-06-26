@@ -47,8 +47,8 @@ export const GameLanguages: React.FC<GameLanguagesProps> = ({ languages }) => {
                 <tr key={index}>
                   <td>
                     <Link
-                      to={`/catalog?languages=${language.id}`}
                       className="game-languages-item-name"
+                      to={`/catalog?languages=${language.id}`}
                     >
                       <TLabel
                         label={language.label as TranslationLanguageLabelType}
