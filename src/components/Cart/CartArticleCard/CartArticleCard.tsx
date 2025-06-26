@@ -6,7 +6,7 @@ import { useWindowSize } from "@hooks/useWindowSize.ts";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
 import { getGameImage } from "@utils/gameUtils.ts";
 
-import { Tag } from "@components/ui/Tag/Tag.tsx";
+import { GameTag } from "@components/ui/GameTag/GameTag.tsx";
 import { WishButton } from "@components/ui/WishButton/WishButton.tsx";
 
 import { PriceBox } from "../../GameCard/PriceBox/PriceBox.tsx";
@@ -31,7 +31,7 @@ export const CartArticleCard: FC<CartArticleCardProps> = ({
       <div className={`cart-article-card__content`}>
         {!isMobileM && !isMobileS && (
           <div className={`cart-article-card__image`}>
-            {game.game_type !== "base" && <Tag text={game.game_type} />}
+            {game.game_type !== "base" && <GameTag text={game.game_type} />}
             <img alt={game.name} src={getGameImage(imageUrl).file_url} />
           </div>
         )}
