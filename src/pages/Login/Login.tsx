@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-import { Loader } from "../../components/Loader/Loader.tsx";
-import HGInputField from "../../components/ui/Input/HGInputField.tsx";
-import { TLabel, TText } from "../../components/ui/TranslationLabel/TLabel.tsx";
-import { useAuth } from "../../context/AuthProvider";
+import { useAuth } from "@context/AuthProvider";
+
+import HGInputField from "@components/ui/Input/HGInputField.tsx";
+import { Loader } from "@components/ui/Loader/Loader.tsx";
+import { TLabel, TText } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./Login.css";
 
@@ -79,29 +80,29 @@ export const Login: React.FC = () => {
           <TLabel baliseType={"h1"} className={"login-title"} label={"login"} />
           <div className="login-input-container">
             <HGInputField
-              type="email"
-              placeholder="Email"
-              value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
+              placeholder="Email"
+              type="email"
+              value={formData.email}
             />
             {errors.email && <p className="login-error">{errors.email}</p>}
           </div>
           <div className="login-input-container">
             <HGInputField
-              type="password"
-              placeholder={TText({ label: "password" })}
-              value={formData.password}
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
+              placeholder={TText({ label: "password" })}
+              type="password"
+              value={formData.password}
             />
             {errors.password && (
               <p className="login-error">{errors.password}</p>
             )}
           </div>
-          <button className="login-button" type="submit" disabled={loading}>
+          <button className="login-button" disabled={loading} type="submit">
             {loading ? <Loader /> : <TLabel label={"login"} />}
           </button>
           <div className="login-links">

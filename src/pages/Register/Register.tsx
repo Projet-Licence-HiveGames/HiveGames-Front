@@ -2,10 +2,11 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 
-import HGInputField from "../../components/ui/Input/HGInputField.tsx";
-import { TLabel, TText } from "../../components/ui/TranslationLabel/TLabel.tsx";
-import { useAuth } from "../../context/AuthProvider";
-import { UserForm } from "../../types/User.ts";
+import { useAuth } from "@context/AuthProvider";
+import { UserForm } from "@customTypes/User.ts";
+
+import HGInputField from "@components/ui/Input/HGInputField.tsx";
+import { TLabel, TText } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./Register.css";
 
@@ -76,40 +77,40 @@ export const Register: React.FC = () => {
           <h1 className="register-title">Inscription</h1>
           <div className="register-input-container">
             <HGInputField
-              type="text"
-              placeholder="Pseudo"
-              value={formData.pseudo}
               onChange={(e) =>
                 setFormData({ ...formData, pseudo: e.target.value })
               }
+              placeholder="Pseudo"
+              type="text"
+              value={formData.pseudo}
             />
             {errors.pseudo && <p className="register-error">{errors.pseudo}</p>}
           </div>
           <div className="register-input-container">
             <HGInputField
-              type="email"
-              placeholder="Email"
-              value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
+              placeholder="Email"
+              type="email"
+              value={formData.email}
             />
             {errors.email && <p className="register-error">{errors.email}</p>}
           </div>
           <div className="register-input-container">
             <HGInputField
-              type="password"
-              placeholder={TText({ label: "password" })}
-              value={formData.password}
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
+              placeholder={TText({ label: "password" })}
+              type="password"
+              value={formData.password}
             />
             {errors.password && (
               <p className="register-error">{errors.password}</p>
             )}
           </div>
-          <button className="register-button" type="submit" disabled={loading}>
+          <button className="register-button" disabled={loading} type="submit">
             {loading ? "Inscription en cours..." : "S'inscrire"}
           </button>
           <div className="register-links">
