@@ -25,15 +25,6 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
             <Link
               className={"category-bloc-category"}
               key={index}
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              onMouseDown={(e) => {
-                if (e.button === 1) {
-                  e.stopPropagation();
-                  window.open(`/catalog?categories=${category.id}`, "_blank");
-                }
-              }}
               to={`/catalog?categories=${category.id}`}
             >
               <TLabel

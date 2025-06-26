@@ -26,7 +26,7 @@ const GameCard: React.FC<GameCardProps> = ({ className, game }) => {
   return (
     <div className={classNames("game-card", className)}>
       <Link
-        style={{ position: "absolute", inset: 0 }}
+        style={{ position: "absolute", inset: 0, zIndex: 1 }}
         to={`/game/${game.id}`}
       />
       <div className={"game-card-image"}>
