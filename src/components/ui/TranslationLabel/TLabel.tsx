@@ -26,11 +26,17 @@ const dictionnariesMap = {
   language: translationLanguageDictionnaries,
 };
 
-type GlobalTranslationLabelType =
+export type GlobalTranslationLabelType =
   | TranslationLabelType
   | TranslationFeatureLabelType
   | TranslationLanguageLabelType
   | TranslationCategoryLabelType;
+
+export type GlobalTranslationDictionnaryType =
+  | "app"
+  | "category"
+  | "feature"
+  | "language";
 
 function interpolate(
   text: string,
@@ -51,7 +57,7 @@ function interpolate(
 interface TLabelProps {
   label: GlobalTranslationLabelType;
   baliseType?: React.ElementType;
-  translationType?: "app" | "category" | "feature" | "language";
+  translationType?: GlobalTranslationDictionnaryType;
   className?: string;
   noBalise?: boolean;
   capitalizeFirstLetter?: boolean;
@@ -104,7 +110,7 @@ export const TText = ({
   replaceValues = {},
 }: {
   label: GlobalTranslationLabelType;
-  translationType?: "app" | "category" | "feature" | "language";
+  translationType?: GlobalTranslationDictionnaryType;
   capitalizeFirstLetter?: boolean;
   replaceValues?: Record<string, string | number>;
 }) => {
@@ -117,6 +123,29 @@ export const TText = ({
   if (replaceValues && Object.keys(replaceValues).length > 0) {
     content = interpolateString(translated, replaceValues);
   } else if (capitalizeFirstLetter) {
+    content = _capitalizeFirstLetter(translated);
+  }
+
+  return content;
+};
+
+export const getTranslatedText = (
+  selectedLanguage: string,
+  translationType: GlobalTranslationDictionnaryType = "app",
+  label: GlobalTranslationLabelType,
+  options: {
+    capitalizeFirstLetter?: boolean;
+    replaceValues?: Record<string, string | number>;
+  } = {},
+) => {
+  const dict = dictionnariesMap[translationType] ?? translationDictionnaries;
+  const translated: string =
+    dict[selectedLanguage]?.[label as keyof (typeof dict)[string]] ?? label;
+
+  let content = translated;
+  if (options.replaceValues && Object.keys(options.replaceValues).length > 0) {
+    content = interpolateString(translated, options.replaceValues);
+  } else if (options.capitalizeFirstLetter) {
     content = _capitalizeFirstLetter(translated);
   }
 

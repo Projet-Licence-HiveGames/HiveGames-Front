@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
 import { Slider } from "@mui/joy";
 import { Switch } from "@mui/material";
@@ -17,11 +17,18 @@ import {
   GameLanguage,
 } from "../../../types/Game";
 import { TranslationLabelType } from "../../../utils/translations.ts";
-import { TLabel } from "../../ui/TranslationLabel/TLabel";
+import {
+  getTranslatedText,
+  TLabel,
+  TText,
+} from "../../ui/TranslationLabel/TLabel";
 
-import Dropdown, { DropdownOption } from "./Dropdown/Dropdown";
+import Dropdown from "./Dropdown/Dropdown";
 
 import "./FilterSidebar.css";
+
+import { TranslationContext } from "@/context/TranslationProvider.tsx";
+import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter.ts";
 
 const ORDER_BY_OPTIONS = [
   "rating-asc",
@@ -54,6 +61,15 @@ interface FilterSidebarProps {
 
 const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
   const fetchAPI = useFetch();
+  const { selectedLanguage } = useContext(TranslationContext);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useOutsideClick<HTMLDivElement>(() => setIsOpen(false));
+
+  const [categories, setCategories] = useState<GameCategory[]>([]);
+  const [features, setFeatures] = useState<GameFeature[]>([]);
+  const [languages, setLanguages] = useState<GameLanguage[]>([]);
+
   useWindowSize(({ isDifferentSize }) => {
     if (isDifferentSize) {
       setIsOpen(false);
@@ -63,13 +79,6 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
       }, 300);
     }
   });
-  const ref = useOutsideClick<HTMLDivElement>(() => setIsOpen(false));
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [categories, setCategories] = useState<GameCategory[]>([]);
-  const [features, setFeatures] = useState<GameFeature[]>([]);
-  const [languages, setLanguages] = useState<GameLanguage[]>([]);
 
   const defaultFilters: GameFilter = {
     search: "",
@@ -83,6 +92,11 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
 
   const isDefaultFilters =
     JSON.stringify(filters) === JSON.stringify(defaultFilters);
+
+  const freeString = TText({
+    label: "free",
+    translationType: "app",
+  });
 
   const fetchFilters = () => {
     fetchAPI
@@ -104,35 +118,35 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
       className={classNames("filter-sidebar", {
         "filter-sidebar--open": isOpen,
       })}
-      ref={ref}
       onClick={(e) => {
         if (e.target === ref.current) {
           setIsOpen(false);
         }
       }}
+      ref={ref}
     >
       <div className="filter-sidebar-container">
         <div className="filter-sidebar-top">
           <div className="filter-sidebar-header">
-            <TLabel label="filters" baliseType="h2" capitalizeFirstLetter />
+            <TLabel baliseType="h2" capitalizeFirstLetter label="filters" />
             <MaterialSymbol
-              icon="filter_alt_off"
-              size={17}
-              disabled={isDefaultFilters}
               className="filter-sidebar-clear-filters"
+              disabled={isDefaultFilters}
+              icon="filter_alt_off"
               onClick={() => !isDefaultFilters && setFilters(defaultFilters)}
+              size={17}
             />
           </div>
           <div className="filter-sidebar-top-content">
             <div className="filter-item filter-item-sort">
-              <TLabel label="filter.orderBy" className="filter-item-title" />
+              <TLabel className="filter-item-title" label="filter.orderBy" />
               <select
-                name="filter-order-by"
                 className="filter-item-select"
-                value={filters.order_by}
+                name="filter-order-by"
                 onChange={(e) =>
                   setFilters({ ...filters, order_by: e.target.value })
                 }
+                value={filters.order_by}
               >
                 {ORDER_BY_OPTIONS.map((value) => (
                   <option key={value} value={value}>
@@ -146,18 +160,18 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
             </div>
             <div className="filter-item search-bar">
               <MaterialSymbol
+                className="search-bar-icon"
                 icon="search"
                 size={24}
-                className="search-bar-icon"
               />
               <input
-                type="text"
-                value={filters.search}
+                className="search-bar-input"
                 onChange={(e) =>
                   setFilters({ ...filters, search: e.target.value })
                 }
-                className="search-bar-input"
                 placeholder="Rechercher un nom..."
+                type="text"
+                value={filters.search}
               />
             </div>
             <label className="filter-item filter-item-switch">
@@ -174,16 +188,32 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
             </label>
 
             <div className="filter-item-price">
-              <TLabel label="price" className="filter-item-title" />
+              <TLabel className="filter-item-title" label="price" />
               <Slider
-                sx={{
-                  margin: "1rem",
-                  width: "auto",
-                  "& .MuiSlider-markLabel": {
-                    color: "white",
+                getAriaValueText={(value) =>
+                  value > 0 ? `${value > 100 ? "+100" : value} €` : freeString
+                }
+                marks={[
+                  {
+                    value: 0,
+                    label:
+                      filters.prices.min == 0
+                        ? capitalizeFirstLetter(freeString)
+                        : filters.prices.min == 101
+                          ? "+100 €"
+                          : `${filters.prices.min} €`,
                   },
-                }}
-                value={[filters.prices.min, filters.prices.max]}
+                  {
+                    value: 101,
+                    label:
+                      filters.prices.max == 0
+                        ? capitalizeFirstLetter(freeString)
+                        : filters.prices.max == 101
+                          ? "+100 €"
+                          : `${filters.prices.max} €`,
+                  },
+                ]}
+                max={101}
                 onChange={(_, value) =>
                   setFilters({
                     ...filters,
@@ -193,92 +223,70 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
                     },
                   })
                 }
+                sx={{
+                  margin: "1rem",
+                  width: "auto",
+                  "& .MuiSlider-markLabel": {
+                    color: "white",
+                  },
+                }}
+                value={[filters.prices.min, filters.prices.max]}
                 valueLabelDisplay="auto"
                 valueLabelFormat={(value) =>
-                  value > 0 ? `${value > 100 ? "+100" : value} €` : "gratuit"
+                  value > 0 ? `${value > 100 ? "+100" : value} €` : freeString
                 }
-                getAriaValueText={(value) =>
-                  value > 0 ? `${value > 100 ? "+100" : value} €` : "gratuit"
-                }
-                max={101}
-                marks={[
-                  {
-                    value: 0,
-                    label:
-                      filters.prices.min == 0
-                        ? "Gratuit"
-                        : filters.prices.min == 101
-                          ? "+100 €"
-                          : `${filters.prices.min} €`,
-                  },
-                  {
-                    value: 101,
-                    label:
-                      filters.prices.max == 0
-                        ? "Gratuit"
-                        : filters.prices.max == 101
-                          ? "+100 €"
-                          : `${filters.prices.max} €`,
-                  },
-                ]}
               />
             </div>
             <Dropdown
-              title={<TLabel label="categories" noBalise />}
-              options={categories.map(
-                (category) =>
-                  ({
-                    label: (
-                      <TLabel
-                        translationType="category"
-                        label={category.label as TranslationCategoryLabelType}
-                      />
-                    ),
-                    value: category.id,
-                  }) as DropdownOption,
-              )}
+              alphabeticalOrder
+              options={categories.map((category) => ({
+                label: getTranslatedText(
+                  selectedLanguage,
+                  "category",
+                  category.label as TranslationCategoryLabelType,
+                  { capitalizeFirstLetter: true },
+                ),
+                value: category.id,
+              }))}
               selected={filters.categories}
               setSelected={(selected) =>
                 setFilters({ ...filters, categories: selected as number[] })
               }
+              title={<TLabel label="categories" noBalise />}
             />
             <Dropdown
-              title={<TLabel label="languages" noBalise />}
-              options={languages.map(
-                (language) =>
-                  ({
-                    label: (
-                      <TLabel
-                        translationType="language"
-                        label={language.label as TranslationLanguageLabelType}
-                      />
-                    ),
-                    value: language.id,
-                  }) as DropdownOption,
-              )}
+              alphabeticalOrder
+              options={languages.map((language) => ({
+                label: getTranslatedText(
+                  selectedLanguage,
+                  "language",
+                  language.label as TranslationLanguageLabelType,
+                  { capitalizeFirstLetter: true },
+                ),
+                value: language.id,
+              }))}
               selected={filters.languages}
               setSelected={(selected) =>
                 setFilters({ ...filters, languages: selected as number[] })
               }
+              title={<TLabel label="languages" noBalise />}
             />
             <Dropdown
-              title={<TLabel label="features" noBalise />}
-              options={features.map(
-                (feature) =>
-                  ({
-                    label: (
-                      <TLabel
-                        translationType="feature"
-                        label={feature.label as TranslationFeatureLabelType}
-                      />
-                    ),
-                    value: feature.id,
-                  }) as DropdownOption,
-              )}
+              alphabeticalOrder
+              options={features.map((feature) => ({
+                label: getTranslatedText(
+                  selectedLanguage,
+                  "feature",
+                  feature.label as TranslationFeatureLabelType,
+                  { capitalizeFirstLetter: true },
+                ),
+                value: feature.id,
+              }))}
               selected={filters.features}
               setSelected={(selected) =>
                 setFilters({ ...filters, features: selected as number[] })
               }
+              title={<TLabel label="features" noBalise />}
             />
           </div>
         </div>

@@ -7,7 +7,7 @@ import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import "./Dropdown.css";
 
 export interface DropdownOption {
-  label: string | number | JSX.Element;
+  label: string;
   value: string | number;
   additionalValue?: string | number;
 }
@@ -18,6 +18,7 @@ interface DropdownProps {
   options: DropdownOption[];
   selected: (string | number)[];
   setSelected: (selected: (string | number)[]) => void;
+  alphabeticalOrder?: boolean;
 }
 
 const Dropdown: FC<DropdownProps> = ({
@@ -26,9 +27,16 @@ const Dropdown: FC<DropdownProps> = ({
   options,
   selected,
   setSelected,
+  alphabeticalOrder,
 }) => {
   const ref = useOutsideClick<HTMLDivElement>(() => setIsExpanded(false));
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const orderedOptions = alphabeticalOrder
+    ? options.sort((a, b) => {
+        return a.label.toLowerCase().localeCompare(b.label.toLowerCase());
+      })
+    : options;
 
   const handleClick = (item: DropdownOption) => {
     const isSelected = selected.some((i) => i === item.value);
@@ -56,7 +64,7 @@ const Dropdown: FC<DropdownProps> = ({
           <div className="dropdown-content">
             {selected.length > 0 && (
               <div className="dropdown-content-selected regular-12">
-                {options
+                {orderedOptions
                   .filter((value) =>
                     selected.some(
                       (selectedItem) => selectedItem === value.value,
@@ -64,8 +72,8 @@ const Dropdown: FC<DropdownProps> = ({
                   )
                   .map((value, index) => (
                     <div
-                      key={index}
                       className="dropdown-content-item dropdown-content-item--selected"
+                      key={index}
                       onClick={(e) => {
                         e.stopPropagation();
                         handleClick(value);
@@ -89,7 +97,7 @@ const Dropdown: FC<DropdownProps> = ({
             )}
             {isExpanded && (
               <div className="dropdown-content-available regular-12">
-                {options
+                {orderedOptions
                   .filter(
                     (value) =>
                       !selected.some(
@@ -98,8 +106,8 @@ const Dropdown: FC<DropdownProps> = ({
                   )
                   .map((value, index) => (
                     <div
-                      key={index}
                       className="dropdown-content-item"
+                      key={index}
                       onClick={() => handleClick(value)}
                     >
                       {typeof value.label === "string" ||
