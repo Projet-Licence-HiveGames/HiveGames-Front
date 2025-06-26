@@ -1,6 +1,6 @@
 import { FC, useContext, useEffect } from "react";
 import { MaterialSymbol } from "react-material-symbols";
-import CircularProgress from "@mui/joy/CircularProgress";
+import { CircularProgress } from "@mui/joy";
 import classNames from "classnames";
 
 import { AuthContext } from "../../context/AuthProvider";
@@ -57,21 +57,21 @@ export const GameSession: FC<GameSessionProps> = ({
               ? "Lancement en cours..."
               : "Récupération des informations du jeu..."}
           </span>
-          <CircularProgress variant="soft" size="md" />
+          <CircularProgress size="md" variant="soft" />
         </div>
       ) : (
         <div className="game-session-overlay">
           {/* <iframe src='https://hivegames-cloudgaming.com/session/128a8b2e-b647-4d1e-8792-70e8154df585' title='Game title' width={'100%'} height={'100%'} /> */}
           <iframe
+            height={"100%"}
             src="https://projet-licence-hivegames.github.io/cookie-clicker/"
             title="Cookie Clicker"
             width={"100%"}
-            height={"100%"}
           />
           <MaterialSymbol
+            className="game-session-close"
             icon="close"
             onClick={handleGameSessionClose}
-            className="game-session-close"
           />
         </div>
       )}
