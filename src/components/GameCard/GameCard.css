@@ -101,11 +101,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  pointer-events: none;
   position: relative;
   width: 100%;
 
   @media screen and (width <= 1200px) {
     gap: 20px;
+  }
+
+  & a,
+  & button,
+  & .clickable {
+    pointer-events: auto;
   }
 }
 
