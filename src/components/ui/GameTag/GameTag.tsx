@@ -8,8 +8,8 @@ interface TagProps {
 
 export const GameTag: FC<TagProps> = ({ text }) => {
   return (
-    <div className={`tag ${text}`}>
-      <span className="tag-text">{text}</span>
+    <div className={`game-tag ${text}`}>
+      <span>{text}</span>
     </div>
   );
 };
