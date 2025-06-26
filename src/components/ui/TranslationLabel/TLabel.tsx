@@ -26,13 +26,13 @@ const dictionnariesMap = {
   language: translationLanguageDictionnaries,
 };
 
-export type GlobalTranslationLabelType =
+type GlobalTranslationLabelType =
   | TranslationLabelType
   | TranslationFeatureLabelType
   | TranslationLanguageLabelType
   | TranslationCategoryLabelType;
 
-export type GlobalTranslationDictionnaryType =
+type GlobalTranslationDictionnaryType =
   | "app"
   | "category"
   | "feature"
