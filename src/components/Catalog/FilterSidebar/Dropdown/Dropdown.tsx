@@ -79,8 +79,7 @@ const Dropdown: FC<DropdownProps> = ({
                         handleClick(value);
                       }}
                     >
-                      {typeof value.label === "string" ||
-                      typeof value.label === "number" ? (
+                      {typeof value.label === "string" ? (
                         <span>{value.label}</span>
                       ) : (
                         value.label
@@ -110,8 +109,7 @@ const Dropdown: FC<DropdownProps> = ({
                       key={index}
                       onClick={() => handleClick(value)}
                     >
-                      {typeof value.label === "string" ||
-                      typeof value.label === "number" ? (
+                      {typeof value.label === "string" ? (
                         <span>{value.label}</span>
                       ) : (
                         value.label
