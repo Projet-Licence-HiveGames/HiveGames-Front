@@ -4,6 +4,15 @@ import { Slider } from "@mui/joy";
 import { Switch } from "@mui/material";
 import classNames from "classnames";
 
+import { TranslationContext } from "@context/TranslationProvider.tsx";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
+
+import {
+  getTranslatedText,
+  TLabel,
+  TText,
+} from "@components/ui/TranslationLabel/TLabel";
+
 import { useFetch } from "../../../api/privateApi";
 import { TranslationCategoryLabelType } from "../../../constants/CategoriesDict.tsx";
 import { TranslationFeatureLabelType } from "../../../constants/FeaturesDict";
@@ -17,18 +26,10 @@ import {
   GameLanguage,
 } from "../../../types/Game";
 import { TranslationLabelType } from "../../../utils/translations.ts";
-import {
-  getTranslatedText,
-  TLabel,
-  TText,
-} from "../../ui/TranslationLabel/TLabel";
 
 import Dropdown from "./Dropdown/Dropdown";
 
 import "./FilterSidebar.css";
-
-import { TranslationContext } from "@/context/TranslationProvider.tsx";
-import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter.ts";
 
 const ORDER_BY_OPTIONS = [
   "rating-asc",
