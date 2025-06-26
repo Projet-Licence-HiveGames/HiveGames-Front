@@ -38,6 +38,7 @@
 .category-bloc-category-more {
   align-items: center;
   background: var(--bg-color-darker);
+  border: none;
   border-radius: 3px;
   cursor: pointer;
   display: flex;

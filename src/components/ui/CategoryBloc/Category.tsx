@@ -25,7 +25,6 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
             <Link
               className={"category-bloc-category"}
               key={index}
-              to={`/catalog?categories=${category.id}`}
               onClick={(e) => {
                 e.stopPropagation();
               }}
@@ -35,6 +34,7 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
                   window.open(`/catalog?categories=${category.id}`, "_blank");
                 }
               }}
+              to={`/catalog?categories=${category.id}`}
             >
               <TLabel
                 capitalizeFirstLetter
@@ -45,7 +45,7 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
           );
         })}
       {!showAll && categories.length > 3 && (
-        <div
+        <button
           className={"category-bloc-category-more"}
           onClick={(e) => {
             e.stopPropagation();
@@ -53,7 +53,7 @@ export const Category: React.FC<CategoryProps> = ({ categories }) => {
           }}
         >
           <MoreHorizRoundedIcon sx={{ color: "white" }} />
-        </div>
+        </button>
       )}
     </div>
   );
