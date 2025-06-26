@@ -3,7 +3,9 @@ import { Swiper as SwiperType } from "swiper";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { GameImage } from "../../../types/Game";
+import { GameImage } from "@customTypes/Game";
+
+import ImageWithLoader from "@components/ui/Image/ImageWithLoader.tsx";
 
 import "swiper/swiper-bundle.css";
 import "./GameImages.css";
@@ -26,21 +28,6 @@ export const GameImages: FC<GameImagesProps> = ({
   );
   const _images = slides?.length ? slides : [thumbnail];
 
-  const renderImage = (
-    image: GameImage,
-    className: string,
-    altFallback = "Image",
-  ) => (
-    <img
-      alt={image.alt || altFallback}
-      className={className}
-      decoding="async"
-      loading="lazy"
-      src={image.file_url}
-      srcSet={`${image.file_url} 1x, ${image.file_url} 2x`}
-    />
-  );
-
   return (
     <div className={`game-images-wrapper ${large ? "large" : ""}`}>
       <Swiper
@@ -55,7 +42,11 @@ export const GameImages: FC<GameImagesProps> = ({
       >
         {_images.map((image, index) => (
           <SwiperSlide key={index} className={large ? "large" : ""}>
-            {renderImage(image, "panel-image", "Game Image")}
+            <ImageWithLoader
+              src={image.file_url}
+              className={"panel-image"}
+              alt={"panel-image"}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -71,7 +62,11 @@ export const GameImages: FC<GameImagesProps> = ({
       >
         {_images.map((image, index) => (
           <SwiperSlide key={index}>
-            {renderImage(image, "panel-image", "Game Image")}
+            <ImageWithLoader
+              src={image.file_url}
+              className={"panel-image"}
+              alt={"game-image"}
+            />
             <div className="progress-bar" />
           </SwiperSlide>
         ))}

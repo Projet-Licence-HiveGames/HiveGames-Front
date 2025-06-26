@@ -11,6 +11,7 @@
   min-height: 150px;
   order: 0;
   padding: 10px;
+  position: relative;
   text-decoration: none;
   user-select: none;
   width: 100%;
