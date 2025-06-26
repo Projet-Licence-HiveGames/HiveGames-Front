@@ -24,19 +24,19 @@ const ImageWithLoader: FC<ImageWithLoaderProps> = ({
     <>
       {!loaded && (
         <img
-          src={loaderSrc}
           alt="Chargement..."
           className={classNames("loader-image", className)}
+          src={loaderSrc}
         />
       )}
       <img
-        src={src}
         alt={alt}
-        onLoad={() => setLoaded(true)}
         className={classNames("main-image", className, {
           visible: loaded,
           hidden: !loaded,
         })}
+        onLoad={() => setLoaded(true)}
+        src={src}
       />
     </>
   );
