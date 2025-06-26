@@ -50,7 +50,9 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
               className="current-price"
             />
           ) : (
-            <span className="current-price">{discountedPrice} €</span>
+            <span className="current-price">
+              {discountedPrice.toFixed(2)} €
+            </span>
           )}
         </div>
       </div>
