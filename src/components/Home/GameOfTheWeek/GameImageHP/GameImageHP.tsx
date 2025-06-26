@@ -98,8 +98,8 @@ export const GameImageHP: FC<GameImageHPProps> = ({ games }) => {
             <div className="game-image-hp-button-wrapper">
               {!selectedGame.is_owned ? (
                 <CartButton
-                  isOwned={selectedGame.is_owned}
                   gameId={selectedGame.id}
+                  isOwned={selectedGame.is_owned}
                   onClick={handleAddToCart}
                 />
               ) : (

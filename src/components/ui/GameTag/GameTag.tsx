@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import "./Tag.css";
+import "./GameTag.css";
 
 interface TagProps {
   text: "demo" | "dlc" | "beta";
 }
 
-export const Tag: FC<TagProps> = ({ text }) => {
+export const GameTag: FC<TagProps> = ({ text }) => {
   return (
     <div className={`tag ${text}`}>
       <span className="tag-text">{text}</span>
