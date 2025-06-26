@@ -251,7 +251,7 @@ export const translationDictionnaries: {
     "error.not_authenticated": "Vous devez être connecté pour %action%.",
     "error.something_went_wrong":
       "Une erreur s'est produite, veuillez réessayer plus tard.",
-    "home.section.under_price.title": "Ce jeu est à moins de %price%",
+    "home.section.under_price.title": "Ces jeux sont à moins de %price%",
     "cart.total_price": "Prix total :",
     "cart.continue_shopping": "Continuer vos achats",
     purchase: "Acheter",
