@@ -170,7 +170,7 @@ const FilterSidebar: FC<FilterSidebarProps> = ({ filters, setFilters }) => {
                 onChange={(e) =>
                   setFilters({ ...filters, search: e.target.value })
                 }
-                placeholder="Rechercher un nom..."
+                placeholder={TText({ label: "filter.search" })}
                 type="text"
                 value={filters.search}
               />
