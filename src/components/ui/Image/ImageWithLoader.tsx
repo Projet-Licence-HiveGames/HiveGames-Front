@@ -1,19 +1,21 @@
 import { FC, useState } from "react";
 import classNames from "classnames";
 
+import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
+
 import "./ImageWithLoader.css";
 
 interface ImageWithLoaderProps {
-  src: string;
+  src: string | undefined;
   alt: string;
-  loaderSrc: string;
+  loaderSrc?: string;
   className?: string;
 }
 
 const ImageWithLoader: FC<ImageWithLoaderProps> = ({
-  src,
+  src = defaultGameThumbnailImage,
   alt,
-  loaderSrc,
+  loaderSrc = defaultGameThumbnailImage,
   className,
 }) => {
   const [loaded, setLoaded] = useState(false);

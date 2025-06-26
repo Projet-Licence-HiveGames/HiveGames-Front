@@ -91,9 +91,6 @@ export const WishButton: React.FC<WishButtonProps> = ({
       <div className="wish-button-container large">
         <button
           className="wish-button"
-          aria-label={
-            isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"
-          }
           onClick={(e) => {
             e.preventDefault();
             handleFavoriteToggle();
@@ -115,7 +112,6 @@ export const WishButton: React.FC<WishButtonProps> = ({
     <div className="wish-button-container">
       <button
         className={`wish-button ${!isAuthenticated ? "disabled" : ""}`}
-        aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
         onClick={(e) => {
           e.preventDefault();
           handleFavoriteToggle();

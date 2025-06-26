@@ -44,7 +44,6 @@ export const CartArticleCard: FC<CartArticleCardProps> = ({
             <PriceBox buyButton={false} game={game} />
             <div className="cart-article-card__actions">
               <DeleteForeverRounded
-                aria-label={`Supprimer ${game.name}`}
                 color="error"
                 onClick={onRemove}
                 onKeyDown={(e) => {

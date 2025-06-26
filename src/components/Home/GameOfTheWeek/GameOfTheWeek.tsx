@@ -1,8 +1,8 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import { useFetch } from "@api/privateApi.ts";
+import { useGamesApi } from "@api/services/gamesApi.ts";
 
 import { useAuth } from "@context/AuthProvider.tsx";
-import { findGameCollection, GameBaseType } from "@customTypes/Game.ts";
+import { GameBaseType } from "@customTypes/Game.ts";
 
 import { HomeSkeleton } from "@components/Skeleton/Home/HomeSkeleton.tsx";
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
@@ -14,25 +14,14 @@ import "./GameOfTheWeek.css";
 export const GameOfTheWeek: FC = () => {
   const [gameData, setGameData] = useState<GameBaseType[]>([]);
   const { user } = useAuth();
-  const fetchAPI = useFetch();
+  const { fetchWeeklyGames } = useGamesApi();
   const fetchData = useCallback(async () => {
     try {
-      const data = await fetchAPI.get<GameBaseType[]>("/games/week");
-      setGameData(
-        data.map((game) => {
-          const collection = findGameCollection(game.id, user);
-          return {
-            ...game,
-            is_wished: collection?.is_wished || false,
-            is_owned: collection?.is_owned || false,
-            be_notified: collection?.be_notified || false,
-          };
-        }),
-      );
+      fetchWeeklyGames().then(setGameData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }, [fetchAPI]);
+  }, []);
 
   useEffect(() => {
     fetchData();
