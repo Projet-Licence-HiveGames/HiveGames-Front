@@ -1,6 +1,6 @@
 .sidebar {
   position: relative;
-  z-index: 1;
+  z-index: 5;
   
   --sidebar-width: 240px;
   --sidebar-width-transition: 500ms;
