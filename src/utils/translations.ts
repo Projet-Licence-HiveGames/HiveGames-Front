@@ -1,5 +1,7 @@
 const labelList = [
   "welcome",
+  "header.search",
+  "header.search.no_results",
   "sidebar.home",
   "sidebar.catalog",
   "sidebar.calendar",
@@ -97,6 +99,8 @@ export const translationDictionnaries: {
   // -------------------- English --------------------
   en: {
     welcome: "Welcome",
+    "header.search": "Search",
+    "header.search.no_results": "No results",
     "sidebar.home": "Home",
     "sidebar.catalog": "Catalog",
     "sidebar.calendar": "Calendar",
@@ -193,6 +197,8 @@ export const translationDictionnaries: {
   // -------------------- French --------------------
   fr: {
     welcome: "Bienvenue",
+    "header.search": "Rechercher",
+    "header.search.no_results": "Aucun resultat",
     "sidebar.home": "Accueil",
     "sidebar.catalog": "Catalogue",
     "sidebar.calendar": "Calendrier",
