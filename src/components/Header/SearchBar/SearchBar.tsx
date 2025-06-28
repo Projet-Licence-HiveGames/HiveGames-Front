@@ -4,20 +4,22 @@ import { toast } from "react-toastify";
 import { Search } from "@mui/icons-material";
 import classNames from "classnames";
 
+import { GameType } from "@customTypes/Game";
+import { useOutsideClick } from "@hooks/useOutsideClick";
+
+import ImageWithLoader from "@components/ui/Image/ImageWithLoader";
+import { Loader } from "@components/ui/Loader/Loader";
+import { TLabel, TText } from "@components/ui/TranslationLabel/TLabel";
+
 import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 
 import "./SearchBar.css";
 
-import { useFetch } from "@/api/privateApi";
-import ImageWithLoader from "@/components/ui/Image/ImageWithLoader";
-import { Loader } from "@/components/ui/Loader/Loader";
-import { TLabel, TText } from "@/components/ui/TranslationLabel/TLabel";
-import { useOutsideClick } from "@/hooks/useOutsideClick";
-import { GameType } from "@/types/Game";
+import { useGamesApi } from "@/api/services/gamesApi";
 
 export const SearchBar: FC = () => {
   const navigate = useNavigate();
-  const fetchAPI = useFetch();
+  const { fetchSearchGamesByName } = useGamesApi();
   const ref = useOutsideClick<HTMLDivElement>(
     () => showSearchResults && setShowSearchResults(false),
   );
@@ -29,15 +31,15 @@ export const SearchBar: FC = () => {
 
   const fetchResults = useCallback(async () => {
     setSearchLoading(true);
-    await fetchAPI
-      .get<GameType[]>(`/games/search/${encodeURIComponent(search)}`)
+    fetchSearchGamesByName(search)
       .then(setSearchResults)
-      .catch(() => toast.error("Erreur lors de la recherche."));
-    setSearchLoading(false);
-  }, [search, fetchAPI]);
+      .catch(() => toast.error("Erreur lors de la recherche."))
+      .finally(() => setSearchLoading(false));
+  }, [search, fetchSearchGamesByName]);
 
   useEffect(() => {
     if (search.trim().length > 0) {
+      setSearchLoading(true);
       const timeoutId = setTimeout(async () => {
         await fetchResults();
       }, 500);
@@ -47,7 +49,6 @@ export const SearchBar: FC = () => {
   }, [search]);
 
   const onChangeSearch = (value: string) => {
-    setSearchResults([]);
     setSearch(value);
     setShowSearchResults(value.length > 0);
   };
@@ -82,7 +83,7 @@ export const SearchBar: FC = () => {
         })}
       >
         <div className={"search-results"}>
-          {searchLoading ? (
+          {searchLoading || search.trim().length === 0 ? (
             <Loader className="search-results-loader" />
           ) : searchResults.length ? (
             <>
