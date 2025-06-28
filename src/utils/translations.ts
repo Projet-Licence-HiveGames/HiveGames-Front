@@ -82,6 +82,9 @@ const labelList = [
   "cart.savings",
   "cart.delete",
   "cart.additional_content",
+  "cart.payment_failed",
+  "cart.payment_error_message",
+  "cart.return_to_cart",
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -176,11 +179,15 @@ export const translationDictionnaries: {
     "cart.thank_you_for_your_purchase":
       "Thank you for your purchase on %site_name%!",
     "cart.payment_confirmed": "Payment Confirmed!",
+    "cart.payment_failed": "Payment Failed",
     play: "Play",
     "cart.your_cart": "Your Cart",
     "cart.savings": "Savings: %savings%",
     "cart.delete": "Delete Cart",
     "cart.additional_content": "Additional Contents",
+    "cart.payment_error_message":
+      "An error occurred during the payment process. Please try again later.",
+    "cart.return_to_cart": "Return to Cart",
   },
 
   // -------------------- French --------------------
@@ -267,10 +274,14 @@ export const translationDictionnaries: {
     "cart.thank_you_for_your_purchase":
       "Merci pour votre achat sur %site_name% !",
     "cart.payment_confirmed": "Paiement confirmé !",
+    "cart.payment_failed": "Échec du paiement",
     play: "Jouer",
     "cart.your_cart": "Votre Panier",
     "cart.savings": "Economies: %savings%",
     "cart.delete": "Supprimer le panier",
     "cart.additional_content": "Contenus supplémentaires",
+    "cart.payment_error_message":
+      "Une erreur s'est produite lors du processus de paiement. Veuillez réessayer plus tard.",
+    "cart.return_to_cart": "Retour au panier",
   },
 };

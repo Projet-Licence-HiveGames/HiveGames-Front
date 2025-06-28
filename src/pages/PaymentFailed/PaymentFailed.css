@@ -1,0 +1,70 @@
+.failed-container {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.failed-card {
+  background-color: #2d3748;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 40%);
+  max-width: 500px;
+  padding: 32px;
+  text-align: center;
+  width: 100%;
+}
+
+.failed-icon {
+  color: var(--bg-color-red, #e53e3e);
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.failed-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.failed-message {
+  color: #cbd5e1;
+  margin-bottom: 24px;
+}
+
+.failed-details-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.failed-button {
+  background-color: var(--bg-color-red, #e53e3e);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  padding: 12px 24px;
+  transition: background-color .3s ease;
+}
+
+.failed-button:hover {
+  background-color: var(--bg-color-red-darker, #c53030);
+}
+
+.failed-home-button {
+  background-color: var(--bg-color-blue-light, #4299e1);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  padding: 12px 24px;
+  transition: background-color .3s ease;
+}
+
+.failed-home-button:hover {
+  background-color: var(--bg-color-blue-darker, #2b6cb0);
+}
