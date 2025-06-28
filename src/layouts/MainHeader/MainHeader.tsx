@@ -1,10 +1,9 @@
 import { FC } from "react";
 
 import { GroupMenu } from "@components/GroupMenu/GroupMenu.tsx";
+import { SearchBar } from "@components/Header/SearchBar/SearchBar.tsx";
 
 import "./MainHeader.css";
-
-import { SearchBar } from "@/components/Header/SearchBar/SearchBar.tsx";
 
 const MainHeader: FC = () => {
   return (
