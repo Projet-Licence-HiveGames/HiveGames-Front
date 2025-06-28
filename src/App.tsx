@@ -56,13 +56,11 @@ const App: FC = () => {
           <Route path=':id' element={<Home/>}/>
         </Route>
 
-        <Route element={<ProtectedRoute><Outlet/></ProtectedRoute>}>
-          <Route path='cart'>
-            <Route index element={<Cart/>}/>
-            <Route path="checkout" element={<Checkout/>}/>
-            <Route path="order" element={<PaymentSuccess/>}/>
-            <Route path="payment-failed" element={<PaymentFailed/>}/>
-          </Route>
+        <Route path='cart' element={<ProtectedRoute><Outlet/></ProtectedRoute>}>
+          <Route index element={<Cart/>}/>
+          <Route path="checkout" element={<Checkout/>}/>
+          <Route path="order" element={<PaymentSuccess/>}/>
+          <Route path="payment-failed" element={<PaymentFailed/>}/>
         </Route>
         <Route path='404' element={<ErrorPage/>}/>
       </Route>
