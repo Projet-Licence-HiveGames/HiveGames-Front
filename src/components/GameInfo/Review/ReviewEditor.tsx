@@ -1,15 +1,16 @@
 import { FC, useContext, useState } from "react";
 import { toast } from "react-toastify";
+import { useFetch } from "@api/privateApi";
 import { Textarea } from "@mui/joy";
 import { Rating } from "@mui/material";
 import classNames from "classnames";
 
-import { useFetch } from "../../../api/privateApi";
-import { AuthContext } from "../../../context/AuthProvider";
-import { useOutsideClick } from "../../../hooks/useOutsideClick";
-import { GameReview, ReviewRatings } from "../../../types/Game";
-import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
-import { TranslationLabelType } from "../../../utils/translations";
+import { AuthContext } from "@contexts/AuthProvider";
+import { GameReview, ReviewRatings } from "@customTypes/Game";
+import { useOutsideClick } from "@hooks/useOutsideClick";
+import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
+import { TranslationLabelType } from "@utils/translations";
+
 import { TLabel, TText } from "../../ui/TranslationLabel/TLabel";
 
 import "./ReviewEditor.css";

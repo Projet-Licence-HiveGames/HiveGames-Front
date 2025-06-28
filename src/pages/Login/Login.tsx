@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-import { useAuth } from "@context/AuthProvider";
+import { useAuth } from "@contexts/AuthProvider";
 
 import HGInputField from "@components/ui/Input/HGInputField.tsx";
 import { Loader } from "@components/ui/Loader/Loader.tsx";

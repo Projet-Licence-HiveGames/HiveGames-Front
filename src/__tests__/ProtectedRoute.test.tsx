@@ -3,8 +3,9 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, it, vi } from "vitest";
 
-import ProtectedRoute from "../components/ProtectedRoute";
-import { AuthContext } from "../context/AuthProvider";
+import { AuthContext } from "@contexts/AuthProvider";
+
+import ProtectedRoute from "@components/ProtectedRoute";
 
 // Composant de test protégé
 const TestComponent = () => <div data-testid="protected">Contenu protégé</div>;

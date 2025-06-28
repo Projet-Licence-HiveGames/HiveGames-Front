@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useCart } from "@context/CartContext";
+import { useCart } from "@contexts/CartContext";
+import { GameBaseType } from "@customTypes/Game";
 import { calculateDiscount } from "@utils/calculateDiscount";
 
 import { TLabel } from "@components/ui/TranslationLabel/TLabel";
 
 import "./CartAmountTotal.css";
-
-import { GameBaseType } from "@/types/Game";
 
 interface CartAmountTotalProps {
   games: GameBaseType[];

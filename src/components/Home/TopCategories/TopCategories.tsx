@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import { useFetch } from "../../../api/privateApi.ts";
+import { useFetch } from "@api/privateApi.ts";
 import {
   categoryIcons,
   TranslationCategoryLabelType,
-} from "../../../constants/CategoriesDict.tsx";
+} from "@constants/CategoriesDict.tsx";
+
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./TopCategories.css";

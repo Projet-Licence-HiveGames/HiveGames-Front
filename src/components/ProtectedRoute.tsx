@@ -1,9 +1,9 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-import { Loader } from "@components/ui/Loader/Loader.tsx";
+import { useAuth } from "@contexts/AuthProvider";
 
-import { useAuth } from "../context/AuthProvider";
+import { Loader } from "@components/ui/Loader/Loader.tsx";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;

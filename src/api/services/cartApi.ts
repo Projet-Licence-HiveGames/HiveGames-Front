@@ -1,8 +1,7 @@
 import { GameBaseType } from "@customTypes/Game.ts";
+import { StripeOrderType } from "@customTypes/StripeOrderType.ts";
 
 import { useFetch } from "../privateApi";
-
-import { StripeOrderType } from "@/types/StripeOrderType.ts";
 
 export const useCartGameApi = () => {
   const api = useFetch();

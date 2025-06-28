@@ -9,11 +9,12 @@ import {
 } from "@mui/icons-material";
 import classNames from "classnames";
 
-import { LanguageSelector } from "../../components/ui/LanguageSelector/LanguageSelector.tsx";
-import MenuItem from "../../components/ui/Menu/MenuItem";
-import { TLabel } from "../../components/ui/TranslationLabel/TLabel.tsx";
-import { useOutsideClick } from "../../hooks/useOutsideClick.tsx";
-import { useWindowSize } from "../../hooks/useWindowSize.ts";
+import { useOutsideClick } from "@hooks/useOutsideClick.tsx";
+import { useWindowSize } from "@hooks/useWindowSize.ts";
+
+import { LanguageSelector } from "@components/ui/LanguageSelector/LanguageSelector.tsx";
+import MenuItem from "@components/ui/Menu/MenuItem";
+import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import logo from "@assets/images/logo.svg";
 import logoName from "@assets/images/logo-name.svg";

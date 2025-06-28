@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import classNames from "classnames";
 
-import { useCart } from "@context/CartContext.tsx";
+import { useCart } from "@contexts/CartContext.tsx";
 import { GameBaseType, GameDlcType } from "@customTypes/Game.ts";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
 

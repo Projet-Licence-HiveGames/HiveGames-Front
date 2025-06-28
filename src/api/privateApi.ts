@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
-import { AuthContext } from "../context/AuthProvider";
+import { AuthContext } from "@contexts/AuthProvider";
 
 export type APIOptions = RequestInit & { withAuth?: boolean };
 

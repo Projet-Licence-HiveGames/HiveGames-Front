@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { TranslationLanguageLabelType } from "@constants/LanguagesDict.tsx";
 import { CheckRounded, CloseRounded } from "@mui/icons-material";
 
-import { TranslationLanguageLabelType } from "../../../constants/LanguagesDict.tsx";
-import { GameLanguageDetails } from "../../../types/Game";
+import { GameLanguageDetails } from "@customTypes/Game";
+
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameLanguages.css";

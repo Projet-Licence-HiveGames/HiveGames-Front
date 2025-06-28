@@ -1,10 +1,10 @@
 import { FC, useContext, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
+import { AVAILABLE_TRANSLATION_LANGUAGES } from "@constants/LanguagesDict";
 import classNames from "classnames";
 
-import { AVAILABLE_TRANSLATION_LANGUAGES } from "../../../constants/LanguagesDict";
-import { TranslationContext } from "../../../context/TranslationProvider";
-import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import { TranslationContext } from "@contexts/TranslationProvider";
+import { useOutsideClick } from "@hooks/useOutsideClick";
 
 import "./LanguageSelector.css";
 

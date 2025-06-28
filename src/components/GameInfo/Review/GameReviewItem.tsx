@@ -2,8 +2,9 @@ import { FC } from "react";
 import { Rating } from "@mui/material";
 import classNames from "classnames";
 
-import { GameReview } from "../../../types/Game";
-import { TranslationLabelType } from "../../../utils/translations";
+import { GameReview } from "@customTypes/Game";
+import { TranslationLabelType } from "@utils/translations";
+
 import ImageWithLoader from "../../ui/Image/ImageWithLoader";
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 

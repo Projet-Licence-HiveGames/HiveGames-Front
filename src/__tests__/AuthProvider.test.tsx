@@ -1,10 +1,10 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, it, vi } from "vitest";
 
-import { AuthProvider, useAuth } from "../context/AuthProvider.tsx";
+import { AuthProvider, useAuth } from "@contexts/AuthProvider.tsx";
 
 // ✅ Mock of private API (avoid real call of the backend)
-vi.mock("../api/privateApi", () => ({
+vi.mock("@api/privateApi", () => ({
   useFetch: () => ({
     get: vi.fn((url: string) => {
       if (url === "/auth/user") {
@@ -21,7 +21,7 @@ vi.mock("../api/privateApi", () => ({
   }),
 }));
 
-// ✅ Test component using the context
+// ✅ Test component using the contexts
 const TestComponent = () => {
   const { user, isAuthenticated, login, logout } = useAuth();
 

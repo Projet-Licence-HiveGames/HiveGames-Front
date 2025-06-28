@@ -5,7 +5,7 @@ import { Swiper as SwiperType } from "swiper";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { useCart } from "@context/CartContext";
+import { useCart } from "@contexts/CartContext";
 import { GameType } from "@customTypes/Game.ts";
 import useWindowSize from "@hooks/useWindowSize.ts";
 import { getGameImage } from "@utils/gameUtils.ts";

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import { GameImage } from "../../../types/Game";
+import { GameImage } from "@customTypes/Game";
 
 import image from "@assets/images/defaultGameThumbnail.png";
 

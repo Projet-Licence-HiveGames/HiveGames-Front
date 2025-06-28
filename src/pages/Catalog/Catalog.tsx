@@ -1,15 +1,16 @@
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useFetch } from "@api/privateApi.ts";
 
-import { useFetch } from "../../api/privateApi.ts";
+import { useAuth } from "@contexts/AuthProvider";
+import { findGameCollection, GameBaseType } from "@customTypes/Game.ts";
+
 import FilterSidebar, {
   GameFilter,
-} from "../../components/Catalog/FilterSidebar/FilterSidebar.tsx";
-import GameCard from "../../components/GameCard/GameCard.tsx";
-import { GameCardSkeleton } from "../../components/Skeleton/GameCard/GameCardSkeleton.tsx";
-import { useAuth } from "../../context/AuthProvider";
-import { findGameCollection, GameBaseType } from "../../types/Game.ts";
+} from "@components/Catalog/FilterSidebar/FilterSidebar.tsx";
+import GameCard from "@components/GameCard/GameCard.tsx";
+import { GameCardSkeleton } from "@components/Skeleton/GameCard/GameCardSkeleton.tsx";
 
 import "./Catalog.css";
 

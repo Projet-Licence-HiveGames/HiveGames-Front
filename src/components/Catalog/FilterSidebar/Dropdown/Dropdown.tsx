@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
 import classNames from "classnames";
 
-import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { useOutsideClick } from "@hooks/useOutsideClick";
 
 import "./Dropdown.css";
 

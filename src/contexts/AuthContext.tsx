@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-import { UserForm } from "../types/User";
+import { UserForm } from "@customTypes/User";
 
 interface AuthContextType {
   user: UserForm | null;

@@ -3,14 +3,16 @@ import { MaterialSymbol } from "react-material-symbols";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
 
-import { BasketCart } from "../../assets/icones/BasketCart.tsx";
-import { NotificationBell } from "../../assets/icones/NotificationBell.tsx";
-import logoAccount from "../../assets/images/logoAccount.png";
-import { useAuth } from "../../context/AuthProvider.tsx";
-import { useCart } from "../../context/CartContext.tsx";
-import useWindowSize from "../../hooks/useWindowSize.ts";
+import { useAuth } from "@contexts/AuthProvider.tsx";
+import { useCart } from "@contexts/CartContext.tsx";
+import useWindowSize from "@hooks/useWindowSize.ts";
+
 import DropdownMenu from "../ui/DropDown/DropDown.tsx";
 import { TLabel } from "../ui/TranslationLabel/TLabel.tsx";
+
+import { BasketCart } from "@assets/icones/BasketCart.tsx";
+import { NotificationBell } from "@assets/icones/NotificationBell.tsx";
+import logoAccount from "@assets/images/logoAccount.png";
 
 import "./GroupMenu.css";
 

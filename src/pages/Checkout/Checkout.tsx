@@ -7,7 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-import { useCart } from "@context/CartContext.tsx";
+import { useCart } from "@contexts/CartContext.tsx";
 
 import { Loader } from "@components/ui/Loader/Loader.tsx";
 

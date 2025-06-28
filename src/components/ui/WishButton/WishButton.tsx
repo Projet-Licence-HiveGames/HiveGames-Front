@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
+import { useFetch } from "@api/privateApi.ts";
 import BookmarkAddRoundedIcon from "@mui/icons-material/BookmarkAddRounded";
 import BookmarkRemoveRoundedIcon from "@mui/icons-material/BookmarkRemoveRounded";
 
-import { useFetch } from "../../../api/privateApi.ts";
-import { useAuth } from "../../../context/AuthProvider.tsx";
-import { useWindowSize } from "../../../hooks/useWindowSize.ts";
-import { GameType } from "../../../types/Game.ts";
+import { useAuth } from "@contexts/AuthProvider.tsx";
+import { GameType } from "@customTypes/Game.ts";
+import { useWindowSize } from "@hooks/useWindowSize.ts";
+
 import { TLabel } from "../TranslationLabel/TLabel.tsx";
 
 import "./WishButton.css";

@@ -2,7 +2,7 @@ import { FC, ReactNode, useCallback, useId } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
-import { noop } from "../../../utils/noop";
+import { noop } from "@utils/noop";
 
 import "./Button.css";
 

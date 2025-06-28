@@ -1,9 +1,10 @@
 import { createContext, ReactNode, useContext, useMemo, useState } from "react";
 import { toast } from "react-toastify";
+import { useFetch } from "@api/privateApi";
 
-import { useFetch } from "../api/privateApi";
-import { GameSession } from "../pages/GameSession/GameSession";
-import { GameBaseType } from "../types/Game";
+import { GameBaseType } from "@customTypes/Game";
+
+import { GameSession } from "@pages/GameSession/GameSession";
 
 import { AuthContext } from "./AuthProvider";
 

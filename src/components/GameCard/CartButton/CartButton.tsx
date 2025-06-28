@@ -1,11 +1,11 @@
 import React from "react";
 import { toast } from "react-toastify";
 
+import { useCart } from "@contexts/CartContext";
+
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./CartButton.css";
-
-import { useCart } from "@/context/CartContext";
 
 interface CartButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;

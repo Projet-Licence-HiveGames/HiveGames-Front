@@ -1,4 +1,4 @@
-import { GameImage } from "../types/Game";
+import { GameImage } from "@customTypes/Game";
 
 import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 

@@ -1,23 +1,23 @@
 import React, { FC, useContext } from "react";
-
 import {
   translationCategoryDictionnaries,
   TranslationCategoryLabelType,
-} from "../../../constants/CategoriesDict.tsx";
+} from "@constants/CategoriesDict.tsx";
 import {
   translationFeatureDictionnaries,
   TranslationFeatureLabelType,
-} from "../../../constants/FeaturesDict";
+} from "@constants/FeaturesDict";
 import {
   translationLanguageDictionnaries,
   TranslationLanguageLabelType,
-} from "../../../constants/LanguagesDict";
-import { TranslationContext } from "../../../context/TranslationProvider";
-import { capitalizeFirstLetter as _capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+} from "@constants/LanguagesDict";
+
+import { TranslationContext } from "@contexts/TranslationProvider";
+import { capitalizeFirstLetter as _capitalizeFirstLetter } from "@utils/capitalizeFirstLetter";
 import {
   translationDictionnaries,
   TranslationLabelType,
-} from "../../../utils/translations";
+} from "@utils/translations";
 
 const dictionnariesMap = {
   app: translationDictionnaries,

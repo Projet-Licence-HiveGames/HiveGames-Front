@@ -1,7 +1,8 @@
 import { FC } from "react";
 import classNames from "classnames";
 
-import { GameReview, GameType } from "../../../types/Game";
+import { GameReview, GameType } from "@customTypes/Game";
+
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
 import GameReviewItem from "./GameReviewItem";

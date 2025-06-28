@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Search } from "@mui/icons-material";
 
-import { GroupMenu } from "../../components/GroupMenu/GroupMenu.tsx";
+import { GroupMenu } from "@components/GroupMenu/GroupMenu.tsx";
 
 import "./MainHeader.css";
 

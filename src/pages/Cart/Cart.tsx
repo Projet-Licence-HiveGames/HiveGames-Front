@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useGamesApi } from "@api/services/gamesApi.ts";
 import { RemoveShoppingCartOutlined } from "@mui/icons-material";
 
-import { useCart } from "@context/CartContext.tsx";
+import { useCart } from "@contexts/CartContext.tsx";
 import { GameBaseType, GameDlcType } from "@customTypes/Game";
 
 import { CartAmountTotal } from "@components/Cart/CartAmountTotal/CartAmountTotal.tsx";

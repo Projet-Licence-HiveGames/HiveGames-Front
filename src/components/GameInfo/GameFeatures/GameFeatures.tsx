@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import {
   featureIcons,
   TranslationFeatureLabelType,
-} from "../../../constants/FeaturesDict";
-import { GameFeature } from "../../../types/Game";
+} from "@constants/FeaturesDict";
+
+import { GameFeature } from "@customTypes/Game";
+
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameFeatures.css";

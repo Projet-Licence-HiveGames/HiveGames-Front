@@ -2,14 +2,13 @@ import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircleRounded, SportsEsportsRounded } from "@mui/icons-material";
 
-import { useCart } from "@context/CartContext.tsx";
+import { useAuth } from "@contexts/AuthProvider";
+import { useCart } from "@contexts/CartContext.tsx";
 
 import { Loader } from "@components/ui/Loader/Loader.tsx";
 import { TLabel } from "@components/ui/TranslationLabel/TLabel.tsx";
 
 import "./PaymentSuccess.css";
-
-import { useAuth } from "@/context/AuthProvider";
 
 interface PaymentData {
   id: number;

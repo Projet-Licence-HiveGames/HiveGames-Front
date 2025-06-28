@@ -1,31 +1,30 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
+import { useFetch } from "@api/privateApi";
+import { TranslationCategoryLabelType } from "@constants/CategoriesDict.tsx";
+import { TranslationFeatureLabelType } from "@constants/FeaturesDict";
+import { TranslationLanguageLabelType } from "@constants/LanguagesDict";
 import { Slider } from "@mui/joy";
 import { Switch } from "@mui/material";
 import classNames from "classnames";
 
-import { TranslationContext } from "@context/TranslationProvider.tsx";
+import { TranslationContext } from "@contexts/TranslationProvider.tsx";
+import {
+  GameCategory,
+  GameFeature,
+  GameInfoResponse,
+  GameLanguage,
+} from "@customTypes/Game";
+import { useOutsideClick } from "@hooks/useOutsideClick";
+import { useWindowSize } from "@hooks/useWindowSize";
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter.ts";
+import { TranslationLabelType } from "@utils/translations.ts";
 
 import {
   getTranslatedText,
   TLabel,
   TText,
 } from "@components/ui/TranslationLabel/TLabel";
-
-import { useFetch } from "../../../api/privateApi";
-import { TranslationCategoryLabelType } from "../../../constants/CategoriesDict.tsx";
-import { TranslationFeatureLabelType } from "../../../constants/FeaturesDict";
-import { TranslationLanguageLabelType } from "../../../constants/LanguagesDict";
-import { useOutsideClick } from "../../../hooks/useOutsideClick";
-import { useWindowSize } from "../../../hooks/useWindowSize";
-import {
-  GameCategory,
-  GameFeature,
-  GameInfoResponse,
-  GameLanguage,
-} from "../../../types/Game";
-import { TranslationLabelType } from "../../../utils/translations.ts";
 
 import Dropdown from "./Dropdown/Dropdown";
 

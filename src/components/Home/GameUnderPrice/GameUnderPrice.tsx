@@ -1,7 +1,8 @@
 import { FC, useCallback, useEffect, useState } from "react";
+import { useFetch } from "@api/privateApi.ts";
 
-import { useFetch } from "../../../api/privateApi.ts";
-import { GameBaseType } from "../../../types/Game.ts";
+import { GameBaseType } from "@customTypes/Game.ts";
+
 import GameCard from "../../GameCard/GameCard.tsx";
 import { Loader } from "../../ui/Loader/Loader.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";

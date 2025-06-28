@@ -49,7 +49,7 @@ export default defineConfig([
             // React & packages
             ["^react", "^@?\\w"],
             // Context, Hooks, Utils, Types, etc.
-            ["^@(context|hooks|customTypes|utils|reducers)(/.*|$)"],
+            ["^@(contexts|hooks|customTypes|utils|reducers)(/.*|$)"],
             // UI components
             ["^@(components|layout|pages)(/.*|$)"],
             // Side effects
@@ -63,13 +63,6 @@ export default defineConfig([
           ],
         },
       ],
-      "react/jsx-sort-props": ["error", {
-        "callbacksLast": false,
-        "shorthandFirst": false,
-        "ignoreCase": true,
-        "noSortAlphabetically": false,
-        "reservedFirst": false
-      }],
       "simple-import-sort/exports": "error",
     },
     settings: {

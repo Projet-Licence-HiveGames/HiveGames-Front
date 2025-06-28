@@ -3,8 +3,8 @@ import { MaterialSymbol } from "react-material-symbols";
 import { CircularProgress } from "@mui/joy";
 import classNames from "classnames";
 
-import { AuthContext } from "../../context/AuthProvider";
-import { GameBaseType } from "../../types/Game";
+import { AuthContext } from "@contexts/AuthProvider";
+import { GameBaseType } from "@customTypes/Game";
 
 import "./GameSession.css";
 

@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 
-import { useAuth } from "@context/AuthProvider";
+import { useAuth } from "@contexts/AuthProvider";
 import { UserForm } from "@customTypes/User.ts";
 
 import HGInputField from "@components/ui/Input/HGInputField.tsx";

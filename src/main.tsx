@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import { AuthProvider } from "@context/AuthProvider.tsx";
-import { CartProvider } from "@context/CartContext.tsx";
-import { GameSessionProvider } from "@context/GameSessionProvider.tsx";
-import TranslationProvider from "@context/TranslationProvider.tsx";
+import { AuthProvider } from "@contexts/AuthProvider.tsx";
+import { CartProvider } from "@contexts/CartContext.tsx";
+import { GameSessionProvider } from "@contexts/GameSessionProvider.tsx";
+import TranslationProvider from "@contexts/TranslationProvider.tsx";
 
 import App from "./App.tsx";
 

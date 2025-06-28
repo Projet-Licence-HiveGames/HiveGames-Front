@@ -1,6 +1,6 @@
 import React from "react";
 
-import useWindowSize from "../../../hooks/useWindowSize.ts";
+import useWindowSize from "@hooks/useWindowSize.ts";
 
 import "./HomeSkeleton.css";
 

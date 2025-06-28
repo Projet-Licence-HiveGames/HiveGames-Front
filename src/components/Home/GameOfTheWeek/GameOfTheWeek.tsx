@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import { useGamesApi } from "@api/services/gamesApi.ts";
 
-import { useAuth } from "@context/AuthProvider.tsx";
+import { useAuth } from "@contexts/AuthProvider.tsx";
 import { GameBaseType } from "@customTypes/Game.ts";
 
 import { HomeSkeleton } from "@components/Skeleton/Home/HomeSkeleton.tsx";
