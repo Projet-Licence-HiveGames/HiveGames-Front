@@ -9,39 +9,7 @@
   max-height: var(--header-height);
   min-height: var(--header-height);
   padding: 0 1rem 0 3rem;
-}
-
-.search-bar {
-  align-items: center;
-  display: flex;
-  flex-grow: 1;
-  justify-content: stretch;
-  position: relative;
-}
-
-.search-bar input {
-  background-color: var(--bg-color-lighter);
-  border: none;
-  border-radius: 1rem;
-  max-width: 250px;
-  padding: 10px 10px 10px 35px;
-  width: 100%;
-}
-
-.search-icon {
-  height: 8px;
-  left: 10px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.search-bar input::placeholder {
-  color: white;
-}
-
-.search-bar input:focus {
-  outline: none;
+  z-index: 100;
 }
 
 .groupMenu-Styled {
@@ -49,4 +17,3 @@
   display: flex;
   justify-content: flex-end;
 }
-
