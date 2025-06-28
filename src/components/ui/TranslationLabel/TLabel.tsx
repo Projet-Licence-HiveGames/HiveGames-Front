@@ -129,6 +129,7 @@ export const TText = ({
   return content;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const getTranslatedText = (
   selectedLanguage: string,
   translationType: GlobalTranslationDictionnaryType = "app",

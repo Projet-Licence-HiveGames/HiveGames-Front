@@ -84,7 +84,7 @@ export const PaymentSuccess: FC = ({}) => {
           <div className={"confirmation-details-list"}>
             <ul>
               {paymentData?.name.map((name, index) => (
-                <ol key={index} className={"item"}>
+                <ol className={"item"} key={index}>
                   <SportsEsportsRounded />
                   {name}
                 </ol>

@@ -47,7 +47,7 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
             <span className={"price-box-old-price"}>{game.price} €</span>
           )}
           {discountedPrice <= 0 ? (
-            <TLabel label={"free"} className="current-price" />
+            <TLabel className="current-price" label={"free"} />
           ) : (
             <span className="current-price">
               {discountedPrice.toFixed(2)} €
@@ -56,7 +56,7 @@ export const PriceBox: React.FC<PriceBoxProps> = ({
         </div>
       </div>
       {buyButton && !isOwned ? (
-        <CartButton onClick={onAddToCart} isOwned={isOwned} gameId={game.id} />
+        <CartButton gameId={game.id} isOwned={isOwned} onClick={onAddToCart} />
       ) : isOwned ? (
         <PlayButton id={game.id} name={game.name} />
       ) : null}

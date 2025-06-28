@@ -31,9 +31,9 @@ export const GameUnderPrice: FC = () => {
     <div className="game-under-price-container">
       <header className="game-under-price-header">
         <TLabel
-          label="home.section.under_price.title"
           baliseType="h2"
           className="game-under-price-title"
+          label="home.section.under_price.title"
           replaceValues={{
             price: `${price}€`,
           }}
@@ -44,7 +44,7 @@ export const GameUnderPrice: FC = () => {
       ) : (
         <div className="game-under-price-body">
           {gameData.map((game) => (
-            <GameCard key={game.id} game={game} />
+            <GameCard game={game} key={game.id} />
           ))}
         </div>
       )}

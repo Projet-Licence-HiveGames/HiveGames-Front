@@ -40,14 +40,14 @@ const Sidebar: FC = () => {
 
   return (
     <div
-      ref={sidebarRef}
       className={classNames("sidebar", {
         "sidebar--collapsed": !isExpanded,
       })}
+      ref={sidebarRef}
     >
       <div className={"sidebar-container"}>
         <div className="sidebar-header">
-          <img src={!isExpanded ? logo : logoName} alt="Logo" />
+          <img alt="Logo" src={!isExpanded ? logo : logoName} />
         </div>
 
         <div className="sidebar-content">
@@ -71,7 +71,7 @@ const Sidebar: FC = () => {
           </div>
           <div className="sidebar-content-bottom">
             <LanguageSelector />
-            <img src={modcraftHost} alt="PoweredByModcraft" />
+            <img alt="PoweredByModcraft" src={modcraftHost} />
           </div>
         </div>
       </div>

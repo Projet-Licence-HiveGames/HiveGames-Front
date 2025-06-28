@@ -27,11 +27,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             >
               <App />
               <ToastContainer
+                closeOnClick
                 limit={1}
                 newestOnTop
                 position="top-center"
                 theme={"dark"}
-                closeOnClick
               />
             </BrowserRouter>
           </CartProvider>
