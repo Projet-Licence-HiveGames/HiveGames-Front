@@ -16,7 +16,7 @@ const FilterModal = ({ onClose }: { onClose: () => void }) => {
           </label>
         </div>
         <div>
-          <button onClick={onClose} className="close-button">
+          <button className="close-button" onClick={onClose}>
             Fermer
           </button>
         </div>

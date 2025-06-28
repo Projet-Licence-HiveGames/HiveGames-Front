@@ -79,11 +79,11 @@ export const GameSessionProvider = ({ children }: { children: ReactNode }) => {
       {children}
       {isAuthenticated && (
         <GameSession
-          tempGameName={tempGameName}
           game={game}
-          isOpen={isOpen}
           isLoading={isLoading}
+          isOpen={isOpen}
           onCloseGameSession={endGameSession}
+          tempGameName={tempGameName}
         />
       )}
     </GameSessionContext.Provider>

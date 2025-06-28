@@ -45,17 +45,17 @@ const HGInputField: React.FC<InputProps> = ({
         step: step,
         endadornment: (
           <InputAdornment position="end">
-            <img src={icon} alt="icon" />
+            <img alt="icon" src={icon} />
           </InputAdornment>
         ),
       }}
+      maxRows={maxLength}
+      onChange={onChange}
+      onInput={handleInput}
+      onKeyDown={handleOnKeyDown}
+      placeholder={placeholder}
       type={type}
       value={value === "tel" ? `+33 ${value}` : value}
-      onChange={onChange}
-      onKeyDown={handleOnKeyDown}
-      onInput={handleInput}
-      placeholder={placeholder}
-      maxRows={maxLength}
     />
   );
 };

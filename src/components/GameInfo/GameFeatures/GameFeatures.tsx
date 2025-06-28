@@ -24,9 +24,9 @@ export const GameFeatures: React.FC<GameFeaturesProps> = ({ features }) => {
       <div className="game-features__list">
         {features?.map((feature, index) => (
           <Link
-            to={`/catalog?features=${feature.id}`}
             className="game-features__list-item"
             key={index}
+            to={`/catalog?features=${feature.id}`}
           >
             <div className="game-features__list-item__icon">
               {featureIcons[feature.label as TranslationFeatureLabelType]}
@@ -34,8 +34,8 @@ export const GameFeatures: React.FC<GameFeaturesProps> = ({ features }) => {
             <div className="game-features__list-item__title">
               <TLabel
                 baliseType={"h3"}
-                translationType={"feature"}
                 label={feature.label as TranslationFeatureLabelType}
+                translationType={"feature"}
               />
             </div>
           </Link>
