@@ -1,6 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useGamesApi } from "@api/services/gamesApi";
 import { Search } from "@mui/icons-material";
 import classNames from "classnames";
 
@@ -14,8 +15,6 @@ import { TLabel, TText } from "@components/ui/TranslationLabel/TLabel";
 import defaultGameThumbnailImage from "@assets/images/defaultGameThumbnail.png";
 
 import "./SearchBar.css";
-
-import { useGamesApi } from "@/api/services/gamesApi";
 
 export const SearchBar: FC = () => {
   const navigate = useNavigate();
