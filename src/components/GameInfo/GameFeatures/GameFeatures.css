@@ -1,60 +1,60 @@
 .game-features-container {
-    background-color: var(--bg-color-darker);
-    border-radius: var(--button-border-radius-lg);
-    padding: 1rem;
-    width: 100%;
+  background-color: var(--bg-color-darker);
+  border-radius: var(--button-border-radius-lg);
+  padding: 1rem;
+  width: 100%;
 }
 
 .game-features__title {
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 10px 0;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 10px 0;
 
-    @media screen and (width <= 768px) {
-        font-size: .8rem;
-    }
+  @media screen and (width <= 768px) {
+    font-size: .8rem;
+  }
 }
 
 .game-features__list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-    @media screen and (width <= 1200px) {
-        flex-flow: row wrap;
-    }
+  @media screen and (width <= 1200px) {
+    flex-flow: row wrap;
+  }
     
 }
 
 .game-features__list-item {
-    align-items: center;
-    background-color: var(--bg-color-normal);
-    border-radius: var(--button-border-radius-small);
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    padding: .5rem;
-    text-decoration: none;
+  align-items: center;
+  background-color: var(--bg-color-normal);
+  border-radius: var(--button-border-radius-small);
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: .5rem;
+  text-decoration: none;
 
-    @media screen and (width <= 768px) {
-        width: 100%;
-    }
+  @media screen and (width <= 768px) {
+    width: 100%;
+  }
 }
 
 .game-features__list-item__icon {
-    color: #fff;
-    display: flex;
+  color: #fff;
+  display: flex;
 }
 
 .game-features__list-item__title {
-    color: #fff;
-    font-size: .8rem;
-    font-weight: 600;
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
 
-    @media screen and (width <= 368px) {
-        font-size: .6rem;
-    }
+  @media screen and (width <= 368px) {
+    font-size: .6rem;
+  }
 }
 
 

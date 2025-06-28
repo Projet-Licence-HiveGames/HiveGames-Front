@@ -1,116 +1,116 @@
 .game-languages-container {
-    background-color: var(--bg-color-darker);
-    border-radius: var(--button-border-radius-lg);
-    padding: 1rem;
-    width: 100%;
+  background-color: var(--bg-color-darker);
+  border-radius: var(--button-border-radius-lg);
+  padding: 1rem;
+  width: 100%;
 }
 
 .game-languages__title {
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 10px 0;
-    width: fit-content;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 10px 0;
+  width: fit-content;
 }
 
 .game-languages__title h2 {
-    margin: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
-    .game-languages__title {
-        font-size: .8rem;
-    }
+  .game-languages__title {
+    font-size: .8rem;
+  }
 }
 
 .game-languages__list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-x: auto;
 }
 
 @media screen and (max-width: 1200px) {
-    .game-languages__list {
-        flex-flow: row wrap;
-    }
+  .game-languages__list {
+    flex-flow: row wrap;
+  }
 }
 
 .game-languages__list table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 
 .game-languages__list th,
 .game-languages__list td {
-    border-bottom: 1px solid #333;
-    color: #fff;
-    font-weight: bold;
-    padding: 8px;
-    text-align: center;
+  border-bottom: 1px solid #333;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px;
+  text-align: center;
 
-    @media (width <= 768px) {
-        font-size: .8rem;
-    }
+  @media (width <= 768px) {
+    font-size: .8rem;
+  }
 }
 
 .game-languages__list thead {
-    width: fit-content;
+  width: fit-content;
 }
 
 .game-languages__list td {
-    color: #fff;
-    text-align: center;
+  color: #fff;
+  text-align: center;
 
-    @media (width <= 768px) {
-        font-size: .8rem;
-    }
+  @media (width <= 768px) {
+    font-size: .8rem;
+  }
 }
 
 .game-languages__list input[type="checkbox"] {
-    margin: 0;
+  margin: 0;
 }
 
 .game-languages__list-item {
-    align-items: center;
-    background-color: var(--bg-color-normal);
-    border-radius: var(--button-border-radius-small);
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    padding: .5rem;
+  align-items: center;
+  background-color: var(--bg-color-normal);
+  border-radius: var(--button-border-radius-small);
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: .5rem;
 }
 
 .game-languages__list-item__icon {
-    color: #fff;
-    display: flex;
+  color: #fff;
+  display: flex;
 }
 
 .game-languages__list-item__title {
-    color: #fff;
-    font-size: .8rem;
-    font-weight: 600;
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
 }
 
 .game-languages-item-name {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {
-    .game-languages__list-item__title {
-        font-size: .7rem;
-    }
+  .game-languages__list-item__title {
+    font-size: .7rem;
+  }
 }
 
 .languages-see-more {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
 .languages-see-more__label {
-    color: #fff;
-    cursor: pointer;
-    font-size: .8rem;
-    font-weight: 600;
-    margin-top: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-size: .8rem;
+  font-weight: 600;
+  margin-top: 10px;
 }

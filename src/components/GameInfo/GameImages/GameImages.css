@@ -94,10 +94,10 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-    background-color: var(--bg-color-dark);
-    color: white;
-    height: 70px;
-    width: 40px;
+  background-color: var(--bg-color-dark);
+  color: white;
+  height: 70px;
+  width: 40px;
 }
 
 .swiper-button-prev::after, .swiper-button-next::after {

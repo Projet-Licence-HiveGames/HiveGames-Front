@@ -1,58 +1,58 @@
 .game-buy-card-container {
-    background-color: var(--bg-color-darker);
-    border-radius: var(--button-border-radius-lg);
+  background-color: var(--bg-color-darker);
+  border-radius: var(--button-border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+
+  @media screen and (width <= 768px) {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  &.dlc {
+    border-radius: 0 0 var(--button-border-radius-lg) var(--button-border-radius-lg);
+  }
+
+  & .game-buy-card-container__banner-text {
+    align-items: center;
+    background-color: var(--bg-color-blue-light);
+    border-radius: var(--button-border-radius-lg) var(--button-border-radius-lg) 0 0;
+    color: white;
     display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    position: relative;
+    font-size: .9rem;
+    font-weight: 600;
+    left: 0;
+    padding: .5rem 1rem;
+    position: absolute;
+    top: -2rem;
     width: 100%;
-
-    @media screen and (width <= 768px) {
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-
-    &.dlc {
-        border-radius: 0 0 var(--button-border-radius-lg) var(--button-border-radius-lg);
-    }
-
-    & .game-buy-card-container__banner-text {
-        align-items: center;
-        background-color: var(--bg-color-blue-light);
-        border-radius: var(--button-border-radius-lg) var(--button-border-radius-lg) 0 0;
-        color: white;
-        display: flex;
-        font-size: .9rem;
-        font-weight: 600;
-        left: 0;
-        padding: .5rem 1rem;
-        position: absolute;
-        top: -2rem;
-        width: 100%;
-    }
+  }
 }
 
 .game-buy-card-content {
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    height: 100%;
-    width: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  width: 100%;
 }
 
 .game-buy-card__title {
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .game-buy-card__description {
-    color: var(--bg-color-blue-lighter);
-    font-size: .8rem;
+  color: var(--bg-color-blue-lighter);
+  font-size: .8rem;
 }
 
 .game-buy-card-content__price {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
