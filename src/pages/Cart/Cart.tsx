@@ -55,7 +55,10 @@ export const Cart: FC = () => {
             className={"cart-empty-title"}
             label={"cart.empty"}
           />
-          <button className="cart-empty-button" onClick={() => navigate("/")}>
+          <button
+            className="cart-empty-button"
+            onClick={() => navigate("/catalog")}
+          >
             <TLabel label={"cart.continue_shopping"} />
           </button>
         </div>

@@ -53,7 +53,7 @@ export const PaymentSuccess: FC = ({}) => {
     if (paymentData?.status && paymentData.status !== "complete") {
       navigate("/payment-failed");
     } else {
-      clearLocalCart();
+      clearLocalCart(paymentData?.game_ids.map(Number));
     }
   }, [paymentData, navigate]);
 

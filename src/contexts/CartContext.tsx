@@ -11,7 +11,7 @@ interface CartContextType {
   addToCart: (item: number) => void;
   removeFromCart: (id: number[]) => void;
   clearCart: () => void;
-  clearLocalCart: () => void;
+  clearLocalCart: (game_ids: number[] | undefined) => void;
   fetchOrderDetails: (sessionId: string) => Promise<any>;
 }
 
@@ -111,10 +111,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("cart");
   };
 
-  const clearLocalCart = () => {
-    setCartItems([]);
-    localStorage.removeItem("cart");
-    window.dispatchEvent(new Event("storage"));
+  const clearLocalCart = (game_ids?: number[]) => {
+    const updatedCart = game_ids
+      ? cartItems.filter((item) => !game_ids?.includes(item))
+      : [];
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (
