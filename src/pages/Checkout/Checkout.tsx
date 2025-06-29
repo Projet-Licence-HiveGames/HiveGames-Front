@@ -61,7 +61,7 @@ export const Checkout: FC = () => {
   }, [fetchClientSecret]);
 
   if (!clientSecret) {
-    return <Loader />;
+    return <Loader large />;
   }
 
   return (

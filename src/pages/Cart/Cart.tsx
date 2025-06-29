@@ -43,7 +43,7 @@ export const Cart: FC = () => {
     setGames((prevGames) => prevGames.filter((game) => game.id !== id));
   };
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader large />;
   if (error) return <p>Error: {error}</p>;
   if (games.length === 0) {
     return (

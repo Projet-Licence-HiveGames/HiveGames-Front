@@ -1,16 +1,24 @@
-.loader-container {
+.loader {
   align-items: center;
   display: flex;
   height: 100%;
   justify-content: center;
   width: 100%;
+  
+  &.search-results-loader {
+    height: unset;
+    width: unset;
+  }
 }
   
 .logo {
   animation: rotateLogo 2s linear infinite;
-  height: 100%;
-  max-width: 10rem;
   width: fit-content;
+  
+  &.large {
+    height: 6em;
+    padding: 1.5em;
+  }
   
   &:hover {
     filter: drop-shadow(0 0 2em #646cffaa);

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { FC } from 'react';
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Cart } from "@pages/Cart/Cart.tsx";
 import { Checkout } from "@pages/Checkout/Checkout.tsx";
@@ -56,11 +56,11 @@ const App: FC = () => {
           <Route path=':id' element={<Home/>}/>
         </Route>
 
-        <Route path='cart' element={<ProtectedRoute><Outlet/></ProtectedRoute>}>
+        <Route path='cart'>
           <Route index element={<Cart/>}/>
-          <Route path="checkout" element={<Checkout/>}/>
-          <Route path="order" element={<PaymentSuccess/>}/>
-          <Route path="payment-failed" element={<PaymentFailed/>}/>
+          <Route path="checkout" element={<ProtectedRoute><Checkout/></ProtectedRoute>}/>
+          <Route path="order" element={<ProtectedRoute><PaymentSuccess/></ProtectedRoute>}/>
+          <Route path="payment-failed" element={<ProtectedRoute><PaymentFailed/></ProtectedRoute>}/>
         </Route>
         <Route path='404' element={<ErrorPage/>}/>
       </Route>

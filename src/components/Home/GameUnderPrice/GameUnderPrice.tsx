@@ -3,8 +3,9 @@ import { useFetch } from "@api/privateApi.ts";
 
 import { GameBaseType } from "@customTypes/Game.ts";
 
+import { GameCardSkeleton } from "@components/Skeleton/GameCard/GameCardSkeleton.tsx";
+
 import GameCard from "../../GameCard/GameCard.tsx";
-import { Loader } from "../../ui/Loader/Loader.tsx";
 import { TLabel } from "../../ui/TranslationLabel/TLabel.tsx";
 
 import "./GameUnderPrice.css";
@@ -40,7 +41,13 @@ export const GameUnderPrice: FC = () => {
         />
       </header>
       {loading ? (
-        <Loader />
+        <div className="game-under-price-body">
+          {Array(2)
+            .fill(null)
+            .map((_, idx) => (
+              <GameCardSkeleton key={idx} />
+            ))}
+        </div>
       ) : (
         <div className="game-under-price-body">
           {gameData.map((game) => (

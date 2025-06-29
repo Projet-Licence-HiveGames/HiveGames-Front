@@ -60,7 +60,7 @@ export const PaymentSuccess: FC = ({}) => {
   if (!paymentData) {
     return (
       <div className="confirmation-container">
-        <Loader />
+        <Loader large />
       </div>
     );
   }

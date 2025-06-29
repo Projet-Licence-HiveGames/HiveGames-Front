@@ -50,7 +50,7 @@ export const GameInfo: FC = () => {
   );
 
   if (!gameData) {
-    return <Loader />;
+    return <Loader large />;
   }
 
   return (

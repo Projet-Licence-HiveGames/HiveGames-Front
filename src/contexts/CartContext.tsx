@@ -114,6 +114,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const clearLocalCart = () => {
     setCartItems([]);
     localStorage.removeItem("cart");
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
