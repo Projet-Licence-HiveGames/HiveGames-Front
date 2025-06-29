@@ -22,9 +22,9 @@ interface UserGameCollections {
   be_notified: boolean;
 }
 
-const userRole = {
-  user: 1,
-  editor: 2,
-  modo: 3,
-  admin: 4,
+export const userRole = {
+  1: "user",
+  2: "editor",
+  3: "moderator",
+  4: "admin",
 };

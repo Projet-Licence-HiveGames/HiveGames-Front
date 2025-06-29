@@ -4,6 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { describe, it, vi } from "vitest";
 
 import { AuthContext } from "@contexts/AuthProvider";
+import { userRole } from "@customTypes/User";
 
 import ProtectedRoute from "@components/ProtectedRoute";
 
@@ -24,7 +25,7 @@ const MockAuthProvider: React.FC<{
           avatar_path: null,
           pseudo: "Test",
           user_tag: "test#1234",
-          user_role: "admin",
+          user_role: 4 as keyof typeof userRole,
         }
       : null,
     loading: false,
