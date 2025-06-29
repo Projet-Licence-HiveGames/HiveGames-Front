@@ -40,7 +40,7 @@ const App: FC = () => {
         <Route path='library' element={<ProtectedRoute><Library/></ProtectedRoute>}/>
         <Route path='setting' element={<ProtectedRoute><Setting/></ProtectedRoute>}/>
         <Route path='subscription' element={<ProtectedRoute><Subscription/></ProtectedRoute>}/>
-        <Route path='whislist' element={<ProtectedRoute><Wishlist/></ProtectedRoute>}/>
+        <Route path='wishlist' element={<ProtectedRoute><Wishlist/></ProtectedRoute>}/>
         <Route path='about' element={<About/>}/>
         <Route path='contact' element={<Contact/>}/>
         <Route path='login' element={<Login/>}/>
