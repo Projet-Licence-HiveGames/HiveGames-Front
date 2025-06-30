@@ -47,10 +47,10 @@ const GameReviewItem: FC<GameReviewProps> = ({
       <div className="game-review-header">
         <div className="game-review-user-info">
           <ImageWithLoader
-            className="game-review-content-user-avatar"
-            src={review.user.avatar_path ?? defaultGameThumbnailImage}
             alt={review.user.pseudo}
+            className="game-review-content-user-avatar"
             loaderSrc={defaultGameThumbnailImage}
+            src={review.user.avatar_path ?? defaultGameThumbnailImage}
           />
           <span className="game-review-content-username">
             {review.user.pseudo}
@@ -77,7 +77,7 @@ const GameReviewItem: FC<GameReviewProps> = ({
               {reviewRatingKeys.map((key) => (
                 <span className="game-review-content-rating-label" key={key}>
                   <TLabel label={`review.${key}` as TranslationLabelType} />
-                  <Rating precision={1} value={review[key]} readOnly />
+                  <Rating precision={1} readOnly value={review[key]} />
                 </span>
               ))}
             </div>

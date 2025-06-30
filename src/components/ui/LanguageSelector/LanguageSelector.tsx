@@ -30,15 +30,15 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
 
   return (
     <div
-      ref={containerRef}
       className={classNames("language-selector-container", className)}
+      ref={containerRef}
     >
       <MaterialSymbol
-        icon="translate"
-        size={24}
-        color="white"
         className="language-selector-icon"
+        color="white"
+        icon="translate"
         onClick={handleIconClick}
+        size={24}
       />
       <div
         className={classNames("language-dropdown", {
@@ -47,10 +47,10 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
       >
         {AVAILABLE_TRANSLATION_LANGUAGES.map((language) => (
           <div
-            key={language.value}
             className={classNames("language-option", {
               "language-option-selected": language.value === selectedLanguage,
             })}
+            key={language.value}
             onClick={() => handleOptionClick(language.value)}
           >
             {language.label}

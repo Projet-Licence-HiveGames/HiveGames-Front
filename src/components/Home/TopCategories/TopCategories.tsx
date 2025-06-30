@@ -43,8 +43,8 @@ export const TopCategories: React.FC = () => {
           {categories.map((category, index) => (
             <li key={index}>
               <Link
-                to={`/catalog?categories=${category.id}`}
                 className={"top-categories__item"}
+                to={`/catalog?categories=${category.id}`}
               >
                 {categoryIcons[category.category_name]}
                 <TLabel

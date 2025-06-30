@@ -81,9 +81,9 @@ export const Cart: FC = () => {
           </header>
           {games.map((game) => (
             <CartArticleCard
+              game={game}
               imageUrl={game.images}
               key={game.id}
-              game={game}
               onRemove={() => handleRemoveFromCart(game.id)}
             />
           ))}

@@ -48,22 +48,22 @@ describe("ProtectedRoute", () => {
     render(
       <MockAuthProvider isAuthenticated={true}>
         <MemoryRouter
-          initialEntries={["/protected"]}
           future={{
             v7_relativeSplatPath: true,
             v7_startTransition: true,
           }}
+          initialEntries={["/protected"]}
         >
           <Routes>
             <Route
-              path="/protected"
               element={
                 <ProtectedRoute>
                   <TestComponent />
                 </ProtectedRoute>
               }
+              path="/protected"
             />
-            <Route path="/login" element={<div>Page de connexion</div>} />
+            <Route element={<div>Page de connexion</div>} path="/login" />
           </Routes>
         </MemoryRouter>
       </MockAuthProvider>,
@@ -78,22 +78,22 @@ describe("ProtectedRoute", () => {
     render(
       <MockAuthProvider isAuthenticated={false}>
         <MemoryRouter
-          initialEntries={["/protected"]}
           future={{
             v7_relativeSplatPath: true,
             v7_startTransition: true,
           }}
+          initialEntries={["/protected"]}
         >
           <Routes>
             <Route
-              path="/protected"
               element={
                 <ProtectedRoute>
                   <TestComponent />
                 </ProtectedRoute>
               }
+              path="/protected"
             />
-            <Route path="/login" element={<div>Page de connexion</div>} />
+            <Route element={<div>Page de connexion</div>} path="/login" />
           </Routes>
         </MemoryRouter>
       </MockAuthProvider>,

@@ -7,23 +7,23 @@ import "./DropDown.css";
 const DropdownMenu: React.FC = () => {
   return (
     <div className="dropdown-menu">
-      <NavLink to="Library" className="dropdown-item">
+      <NavLink className="dropdown-item" to="Library">
         <MaterialSymbol icon="widgets" />
         <span>Library</span>
       </NavLink>
-      <NavLink to="Friend" className="dropdown-item">
+      <NavLink className="dropdown-item" to="Friend">
         <MaterialSymbol icon="groups" />
         <span>Friends</span>
       </NavLink>
-      <NavLink to="Profil" className="dropdown-item">
+      <NavLink className="dropdown-item" to="Profil">
         <MaterialSymbol icon="person_4" />
         <span>Profil</span>
       </NavLink>
-      <NavLink to="Setting" className="dropdown-item">
+      <NavLink className="dropdown-item" to="Setting">
         <MaterialSymbol icon="page_info" />
         <span>Preference</span>
       </NavLink>
-      <NavLink to="Wishlist" className="dropdown-item">
+      <NavLink className="dropdown-item" to="Wishlist">
         <MaterialSymbol icon="bookmark" />
         <span>Wishlist</span>
       </NavLink>

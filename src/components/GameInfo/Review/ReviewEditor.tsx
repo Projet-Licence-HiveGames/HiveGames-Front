@@ -106,9 +106,9 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ game, updateReviewList }) => {
 
   return (
     <div
-      ref={ref}
       className="review-editor-container"
       onFocus={() => setIsFocused(true)}
+      ref={ref}
     >
       <div className="review-editor-header">
         <TLabel
@@ -132,15 +132,15 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ game, updateReviewList }) => {
         <div className="review-editor-commentary">
           <Textarea
             className="editor-textarea"
-            placeholder={TText({
-              label: "review.editor.commentary.placeholder",
-            })}
-            value={textCommentary}
+            maxRows={10}
             onChange={(e) =>
               e.target.value.length <= MAX_COMMENTARY_LENGTH &&
               setTextCommentary(e.target.value)
             }
-            maxRows={10}
+            placeholder={TText({
+              label: "review.editor.commentary.placeholder",
+            })}
+            value={textCommentary}
           />
           {textCommentary.length > 0 && (
             <span
@@ -157,15 +157,14 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ game, updateReviewList }) => {
           <TLabel className="editor-rating_title" label="review.rating" />
           <div className="editor-rating-values">
             {Object.entries(ratingValues).map(([key, value]) => (
-              <div key={key} className="editor-rating-value">
+              <div className="editor-rating-value" key={key}>
                 <TLabel
-                  label={`review.${key}` as TranslationLabelType}
                   baliseType="span"
+                  label={`review.${key}` as TranslationLabelType}
                 />
                 <Rating
                   className="editor-rating_star"
                   name={key}
-                  value={value}
                   onChange={(_, newValue) => {
                     setRatingValues((prev) => ({
                       ...prev,
@@ -174,6 +173,7 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ game, updateReviewList }) => {
                   }}
                   precision={1}
                   size="medium"
+                  value={value}
                 />
               </div>
             ))}
@@ -183,12 +183,12 @@ const ReviewEditor: FC<ReviewEditorProps> = ({ game, updateReviewList }) => {
       {isFocused && (
         <button
           className="review-editor-submit-button"
-          onClick={handleSubmit}
           disabled={disableSubmit}
+          onClick={handleSubmit}
         >
           <TLabel
-            label="review.editor.submit"
             className="review-editor-submit-button_label"
+            label="review.editor.submit"
           />
         </button>
       )}

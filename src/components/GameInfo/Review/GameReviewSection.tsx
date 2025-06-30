@@ -25,9 +25,9 @@ const GameReviewSection: FC<GameReviewSectionProps> = ({
   return (
     <div className={classNames("game-review-section-container", className)}>
       <TLabel
+        baliseType={"h2"}
         className="game-review-section-title"
         label="reviews"
-        baliseType={"h2"}
       />
       <ReviewEditor game={game} updateReviewList={updateReviewList} />
       <div className="game-review-group-content">
@@ -41,7 +41,7 @@ const GameReviewSection: FC<GameReviewSectionProps> = ({
         {!!onlyRatings?.length && (
           <div className="game-review-group-rate">
             {onlyRatings.map((review) => (
-              <GameReviewItem key={review.id} review={review} RatingOnly />
+              <GameReviewItem key={review.id} RatingOnly review={review} />
             ))}
           </div>
         )}

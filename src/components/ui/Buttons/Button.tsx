@@ -34,9 +34,9 @@ const Button: FC<ButtonProps> = ({
   if (to) {
     return (
       <Link
+        className={classNames(`hivegames-button`, className)}
         id={id}
         to={disabled ? "#" : to}
-        className={classNames(`hivegames-button`, className)}
       >
         {children}
       </Link>
@@ -44,9 +44,9 @@ const Button: FC<ButtonProps> = ({
   } else {
     return (
       <button
-        id={id}
         className={classNames(`hivegames-button`, className)}
         disabled={disabled}
+        id={id}
         onClick={_onClick}
       >
         {children}

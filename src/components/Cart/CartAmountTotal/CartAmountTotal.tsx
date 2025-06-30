@@ -72,14 +72,14 @@ export const CartAmountTotal: React.FC<CartAmountTotalProps> = ({ games }) => {
             label="cart.delete"
           />
         </button>
-        <Link to="/catalog" className="cart-amount-total__link">
+        <Link className="cart-amount-total__link" to="/catalog">
           <TLabel
             baliseType="button"
             className="cart-amount-total__button"
             label="cart.continue_shopping"
           />
         </Link>
-        <Link to="/cart/checkout" className="cart-amount-total__link">
+        <Link className="cart-amount-total__link" to="/cart/checkout">
           <TLabel
             baliseType="button"
             className="cart-amount-total__button purchase"

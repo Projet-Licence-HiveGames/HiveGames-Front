@@ -41,11 +41,11 @@ export const GameImages: FC<GameImagesProps> = ({
         thumbs={{ swiper: thumbsSwiper }}
       >
         {_images.map((image, index) => (
-          <SwiperSlide key={index} className={large ? "large" : ""}>
+          <SwiperSlide className={large ? "large" : ""} key={index}>
             <ImageWithLoader
-              src={image.file_url}
-              className={"panel-image"}
               alt={"panel-image"}
+              className={"panel-image"}
+              src={image.file_url}
             />
           </SwiperSlide>
         ))}
@@ -63,9 +63,9 @@ export const GameImages: FC<GameImagesProps> = ({
         {_images.map((image, index) => (
           <SwiperSlide key={index}>
             <ImageWithLoader
-              src={image.file_url}
-              className={"panel-image"}
               alt={"game-image"}
+              className={"panel-image"}
+              src={image.file_url}
             />
             <div className="progress-bar" />
           </SwiperSlide>

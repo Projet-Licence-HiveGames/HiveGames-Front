@@ -15,8 +15,8 @@ interface MenuItemProps {
 const MenuItem: FC<MenuItemProps> = ({ children, to, className, disabled }) => {
   return (
     <NavLink
-      to={disabled ? "#" : to}
       className={classNames(className, "hivegames-menuItem")}
+      to={disabled ? "#" : to}
     >
       <label>{children}</label>
     </NavLink>

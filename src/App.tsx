@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react/jsx-sort-props */
 import { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
