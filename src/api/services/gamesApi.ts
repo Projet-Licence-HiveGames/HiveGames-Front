@@ -29,10 +29,19 @@ export const useGamesApi = () => {
     return await api.get<GameBaseType[]>("/games/week");
   };
 
+  const fetchGameById = async ({
+    id,
+  }: {
+    id: number;
+  }): Promise<GameBaseType> => {
+    return await api.get<GameBaseType>(`/games/${id}`);
+  };
+
   return {
     fetchGamesByIds,
     fetchSearchGamesByName,
     fetchTopCategories,
     fetchWeeklyGames,
+    fetchGameById,
   };
 };

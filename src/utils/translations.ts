@@ -87,6 +87,8 @@ const labelList = [
   "cart.payment_failed",
   "cart.payment_error_message",
   "cart.return_to_cart",
+  "wishlist.title",
+  "wishlist.empty",
 ] as const;
 
 export type TranslationLabelType = (typeof labelList)[number];
@@ -192,6 +194,8 @@ export const translationDictionnaries: {
     "cart.payment_error_message":
       "An error occurred during the payment process. Please try again later.",
     "cart.return_to_cart": "Return to Cart",
+    "wishlist.title": "My Wishlist",
+    "wishlist.empty": "Your wishlist is empty.",
   },
 
   // -------------------- French --------------------
@@ -289,5 +293,7 @@ export const translationDictionnaries: {
     "cart.payment_error_message":
       "Une erreur s'est produite lors du processus de paiement. Veuillez réessayer plus tard.",
     "cart.return_to_cart": "Retour au panier",
+    "wishlist.title": "Ma liste de souhaits",
+    "wishlist.empty": "Votre liste de souhaits est vide.",
   },
 };

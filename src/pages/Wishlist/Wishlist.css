@@ -1,0 +1,19 @@
+.wishlist-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 20px;
+  
+  & h1 {
+    color: white;
+    font-size: var(--font-size-24);
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+.wishlist-empty {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+}

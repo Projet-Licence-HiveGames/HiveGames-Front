@@ -11,7 +11,7 @@ export interface User {
   user_tag: string;
   avatar_path: string | null;
   email: string;
-  user_role: string;
+  user_role: keyof typeof userRole;
   game_collections?: UserGameCollections[];
 }
 
@@ -21,3 +21,10 @@ interface UserGameCollections {
   is_owned: boolean;
   be_notified: boolean;
 }
+
+export const userRole = {
+  1: "user",
+  2: "editor",
+  3: "moderator",
+  4: "admin",
+};
