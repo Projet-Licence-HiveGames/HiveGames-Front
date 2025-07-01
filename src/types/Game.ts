@@ -18,7 +18,6 @@ export interface GameType {
   studios?: GameStudio[];
   release_date?: string;
   game_type: "base" | "dlc" | "demo" | "beta";
-  reviews?: GameReview[];
   votes?: {
     likes: number;
     dislikes: number;

@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "@api/privateApi.ts";
 
-import { GameBaseType, GameDlcType, GameReview } from "@customTypes/Game.ts";
+import { GameBaseType, GameDlcType } from "@customTypes/Game.ts";
 import { useWindowSize } from "@hooks/useWindowSize.ts";
 import { getGameImage } from "@utils/gameUtils.ts";
 
@@ -35,19 +35,6 @@ export const GameInfo: FC = () => {
   useEffect(() => {
     fetchGame();
   }, [fetchGame]);
-
-  const updateReviewList = useCallback(
-    (review: GameReview) => {
-      setGameData((prev) => {
-        if (!prev) return prev;
-        return {
-          ...prev,
-          reviews: [review, ...(prev.reviews || [])],
-        };
-      });
-    },
-    [setGameData],
-  );
 
   if (!gameData) {
     return <Loader large />;
@@ -122,7 +109,7 @@ export const GameInfo: FC = () => {
           </div>
         </div>
       </div>
-      <GameReviewSection game={gameData} updateReviewList={updateReviewList} />
+      <GameReviewSection game={gameData} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { MaterialSymbol } from "react-material-symbols";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
@@ -16,10 +16,14 @@ import logoAccount from "@assets/images/logoAccount.png";
 
 import "./GroupMenu.css";
 
+import { useOutsideClick } from "@/hooks/useOutsideClick.tsx";
+
 export const GroupMenu: React.FC = () => {
   const { isAuthenticated, user, logout } = useAuth();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(true);
-  const dropdownRef = useRef<HTMLDivElement>(null); // Référence pour le Menu
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useOutsideClick<HTMLDivElement>(() => {
+    isDropdownOpen && setIsDropdownOpen(false);
+  });
   const { isMobile } = useWindowSize();
   const location = useLocation();
   const { cartItems } = useCart();
@@ -27,23 +31,6 @@ export const GroupMenu: React.FC = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
-  // Close the dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="group-menu-content">
