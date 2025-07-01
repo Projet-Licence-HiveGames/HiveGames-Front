@@ -18,7 +18,7 @@ import { Catalog } from './pages/Catalog/Catalog.tsx';
 import { Contact } from './pages/Contact/Contact.tsx';
 import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx';
 import { Friend } from './pages/Friend/Friend.tsx';
-import { GameInfo } from './pages/Game/GameInfo.tsx';
+import { GameInfo } from './pages/GameInfo/GameInfo.tsx';
 import { Home } from './pages/Home/Home';
 import { Library } from './pages/Library/Library.tsx';
 import { Login } from './pages/Login/Login.tsx';

@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
 
-import { GameReview, GameType } from "@customTypes/Game";
+import { GameReview } from "@customTypes/Game";
 
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
@@ -10,18 +10,39 @@ import ReviewEditor from "./ReviewEditor";
 
 import "./GameReviewSection.css";
 
+import { useFetch } from "@/api/privateApi";
+import { Loader } from "@/components/ui/Loader/Loader";
+
 interface GameReviewSectionProps {
   className?: string;
-  game: GameType;
-  updateReviewList: (review: GameReview) => void;
+  game: { id: number; name: string };
 }
 
-const GameReviewSection: FC<GameReviewSectionProps> = ({
-  className,
-  game,
-  updateReviewList,
-}) => {
-  const onlyRatings = game.reviews?.filter((f) => !f.commentary);
+const GameReviewSection: FC<GameReviewSectionProps> = ({ className, game }) => {
+  const fetchAPI = useFetch();
+
+  const [reviews, setReviews] = useState<GameReview[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchAPI
+      .get<GameReview[]>(`/games/${game.id}/reviews`)
+      .then(setReviews)
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  const addNewUserReview = useCallback(
+    (review: GameReview) => {
+      setReviews((prev) => {
+        if (!prev) return prev;
+        return [review, ...(prev || [])];
+      });
+    },
+    [setReviews],
+  );
+
+  const onlyRatings = reviews?.filter((f) => !f.commentary);
   return (
     <div className={classNames("game-review-section-container", className)}>
       <TLabel
@@ -29,21 +50,27 @@ const GameReviewSection: FC<GameReviewSectionProps> = ({
         label="reviews"
         baliseType={"h2"}
       />
-      <ReviewEditor game={game} updateReviewList={updateReviewList} />
+      <ReviewEditor game={game} updateReviewList={addNewUserReview} />
       <div className="game-review-group-content">
-        <div className="game-review-group-main">
-          {game.reviews
-            ?.filter((f) => !!f.commentary)
-            .map((review) => (
-              <GameReviewItem key={review.id} review={review} />
-            ))}
-        </div>
-        {!!onlyRatings?.length && (
-          <div className="game-review-group-rate">
-            {onlyRatings.map((review) => (
-              <GameReviewItem key={review.id} review={review} RatingOnly />
-            ))}
-          </div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="game-review-group-main">
+              {reviews
+                ?.filter((f) => !!f.commentary)
+                .map((review) => (
+                  <GameReviewItem key={review.id} review={review} />
+                ))}
+            </div>
+            {!!onlyRatings?.length && (
+              <div className="game-review-group-rate">
+                {onlyRatings.map((review) => (
+                  <GameReviewItem key={review.id} review={review} RatingOnly />
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
