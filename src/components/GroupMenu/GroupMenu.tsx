@@ -5,6 +5,7 @@ import Person4RoundedIcon from "@mui/icons-material/Person4Rounded";
 
 import { useAuth } from "@contexts/AuthProvider.tsx";
 import { useCart } from "@contexts/CartContext.tsx";
+import { useOutsideClick } from "@hooks/useOutsideClick.tsx";
 import useWindowSize from "@hooks/useWindowSize.ts";
 
 import DropdownMenu from "../ui/DropDown/DropDown.tsx";
@@ -15,8 +16,6 @@ import { NotificationBell } from "@assets/icones/NotificationBell.tsx";
 import logoAccount from "@assets/images/logoAccount.png";
 
 import "./GroupMenu.css";
-
-import { useOutsideClick } from "@/hooks/useOutsideClick.tsx";
 
 export const GroupMenu: React.FC = () => {
   const { isAuthenticated, user, logout } = useAuth();
