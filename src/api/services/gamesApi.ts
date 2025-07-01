@@ -1,4 +1,9 @@
-import { GameBaseType, GameCategory, GameType } from "@customTypes/Game.ts";
+import {
+  GameBaseType,
+  GameCategory,
+  GameReview,
+  GameType,
+} from "@customTypes/Game.ts";
 
 import { useFetch } from "../privateApi";
 
@@ -29,10 +34,15 @@ export const useGamesApi = () => {
     return await api.get<GameBaseType[]>("/games/week");
   };
 
+  const fetchGameReviews = async (gameId: number): Promise<GameReview[]> => {
+    return await api.get<GameReview[]>(`/games/${gameId}/reviews`);
+  };
+
   return {
     fetchGamesByIds,
     fetchSearchGamesByName,
     fetchTopCategories,
     fetchWeeklyGames,
+    fetchGameReviews,
   };
 };

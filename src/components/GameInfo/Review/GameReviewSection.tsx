@@ -1,7 +1,11 @@
 import { FC, useCallback, useEffect, useState } from "react";
+import { useFetch } from "@api/privateApi";
+import { useGamesApi } from "@api/services/gamesApi";
 import classNames from "classnames";
 
 import { GameReview } from "@customTypes/Game";
+
+import { Loader } from "@components/ui/Loader/Loader";
 
 import { TLabel } from "../../ui/TranslationLabel/TLabel";
 
@@ -10,9 +14,6 @@ import ReviewEditor from "./ReviewEditor";
 
 import "./GameReviewSection.css";
 
-import { useFetch } from "@/api/privateApi";
-import { Loader } from "@/components/ui/Loader/Loader";
-
 interface GameReviewSectionProps {
   className?: string;
   game: { id: number; name: string };
@@ -20,14 +21,14 @@ interface GameReviewSectionProps {
 
 const GameReviewSection: FC<GameReviewSectionProps> = ({ className, game }) => {
   const fetchAPI = useFetch();
+  const { fetchGameReviews } = useGamesApi();
 
   const [reviews, setReviews] = useState<GameReview[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchAPI
-      .get<GameReview[]>(`/games/${game.id}/reviews`)
+    fetchGameReviews(game.id)
       .then(setReviews)
       .finally(() => setIsLoading(false));
   }, []);
